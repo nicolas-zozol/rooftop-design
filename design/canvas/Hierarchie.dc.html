@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop — quatre niveaux, quatre signatures</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1440px;height:940px;box-sizing:border-box;padding:40px;display:flex;flex-direction:column;gap:32px;background:{{T.bg}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:15px;font-weight:600;color:{{T.fg}}">Quatre niveaux, quatre signatures. Les teintes restent aux états.</h2>
+<div style="display:grid;grid-template-columns:170px 64px 250px 190px 250px minmax(0, 1fr);gap:0 20px;align-items:end;height:28px;padding-bottom:6px;border-bottom:1px solid {{T.bd}};font-size:11.5px;font-weight:600;color:{{T.mu}}"><span>Niveau</span><span>Icône</span><span>Surface</span><span>Étiquette</span><span>Texte</span><span>Avancement</span></div>
+
+<div style="display:grid;grid-template-columns:170px 64px 250px 190px 250px minmax(0, 1fr);gap:0 20px;align-items:center;min-height:72px;border-bottom:1px solid {{T.bd}}">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:700">Module</span><span style="font-size:11.5px;color:{{T.mu}}">le plus lourd</span></div>
+<span style="display:flex;color:{{T.fg}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="width:220px;border-radius:8px;overflow:hidden;border:1px solid {{T.bd}}"><div style="height:22px;background:{{T.band}}"></div><div style="height:18px;background:{{T.frame}}"></div></div><span style="font-size:11.5px;color:{{T.mu}}">bandeau gris foncé, cadre clair</span></div>
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:5px"><span style="display:flex;align-items:center;height:22px;padding:0 8px;border-radius:5px;background:{{T.band}};color:{{T.bandMu}};font-size:10px;font-weight:700;letter-spacing:0.08em">MODULE</span><span style="font-size:11.5px;color:{{T.mu}}">capitales sur le bandeau</span></div>
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:15px;font-weight:700">RB Compound</span><span style="font-size:11.5px;color:{{T.mu}}">Inter 15 / 700</span></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="width:180px;height:4px;border-radius:2px;background:{{T.bd}}"><div style="width:60%;height:4px;border-radius:2px;background:{{T.fg}}"></div></div><span style="font-size:11.5px;color:{{T.mu}}">barre pleine largeur sous le bandeau, 4 px</span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:170px 64px 250px 190px 250px minmax(0, 1fr);gap:0 20px;align-items:center;min-height:72px;border-bottom:1px solid {{T.bd}}">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600">Epic</span><span style="font-size:11.5px;color:{{T.mu}}">un chantier</span></div>
+<span style="display:flex;color:{{T.fg}}"><svg aria-hidden="true" width="19" height="19" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="width:220px;height:40px;box-sizing:border-box;border-radius:8px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}}"></div><span style="font-size:11.5px;color:{{T.mu}}">carte blanche, bord fin</span></div>
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:5px"><span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:20px;padding:0 7px;border-radius:5px;background:{{T.tag}};color:{{T.fg}}">PLUGIN</span><span style="font-size:11.5px;color:{{T.mu}}">l'INFIX, en pastille grise</span></div>
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:13px;font-weight:600">Compound en deux plugins</span><span style="font-size:11.5px;color:{{T.mu}}">Inter 13 / 600</span></div>
+<div style="display:flex;align-items:center;gap:10px"><svg role="img" aria-label="anneau à 35 %" width="22" height="22" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.prog}}" stroke-width="2.2" stroke-dasharray="13.19 37.70" transform="rotate(-90 8 8)"></circle></svg><span style="font-size:11.5px;color:{{T.mu}}">anneau 16 px, sa couleur dit l'état ; le rail des batchs en dessous</span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:170px 64px 250px 190px 250px minmax(0, 1fr);gap:0 20px;align-items:center;min-height:72px;border-bottom:1px solid {{T.bd}}">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;font-weight:600">Batch</span><span style="font-size:11.5px;color:{{T.mu}}">un lot de stories</span></div>
+<span style="display:flex;color:{{T.fg}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M2 3h8M2 6h8M2 9h8"></path></svg></span>
+<div style="display:flex;flex-direction:column;gap:5px"><div style="width:220px;height:40px;box-sizing:border-box;border-radius:8px;background:{{T.batch}};border:1px solid {{T.bdB}}"></div><span style="font-size:11.5px;color:{{T.mu}}">surface gris clair, dans la carte</span></div>
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:5px"><span style="display:flex;align-items:center;padding:3px 5px;border-radius:6px;background:{{T.batch}}"><span style="font-size:10.5px;font-weight:700;letter-spacing:0.03em;line-height:17px;padding:0 5px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}};color:{{T.fg}}">B1</span></span><span style="font-size:11.5px;color:{{T.mu}}">puce blanche cerclée</span></div>
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:11px;font-weight:500;color:{{T.accT}}">courant</span><span style="font-size:11.5px;color:{{T.mu}}">Inter 11 / 500, puce 10,5 / 700</span></div>
+<div style="display:flex;align-items:center;gap:10px"><span style="display:flex;gap:2px"><span style="width:12px;height:5px;border-radius:2px;background:{{T.bd2}}"></span><span style="width:12px;height:5px;border-radius:2px;background:linear-gradient(90deg, {{T.pipOn}} 30%, {{T.bd2}} 30%)"></span><span style="width:12px;height:5px;border-radius:2px;background:linear-gradient(90deg, {{T.pipOn}} 40%, {{T.bd2}} 40%)"></span><span style="width:12px;height:5px;border-radius:2px;background:linear-gradient(90deg, {{T.pipOn}} 60%, {{T.bd2}} 60%)"></span></span><span style="font-size:11.5px;color:{{T.mu}}">mini-barre : un trait par story, rempli selon ses pips</span></div>
+</div>
+
+<div style="display:grid;grid-template-columns:170px 64px 250px 190px 250px minmax(0, 1fr);gap:0 20px;align-items:center;min-height:72px;border-bottom:1px solid {{T.bd}}">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12.5px;font-weight:400">Story</span><span style="font-size:11.5px;color:{{T.mu}}">le plus léger</span></div>
+<span style="font-size:11.5px;color:{{T.mu}}">aucune</span>
+<span style="font-size:11.5px;color:{{T.mu}}">aucune : texte nu sur le batch</span>
+<span style="font-size:11.5px;color:{{T.mu}}">aucune</span>
+<div style="display:flex;flex-direction:column;gap:3px"><span style="font-family:{{M}};font-size:12px;color:{{T.fg2}}">plugin-split</span><span style="font-size:11.5px;color:{{T.mu}}">JetBrains Mono 12 / 400, seul texte mono d'un nœud hors commande</span></div>
+<div style="display:flex;align-items:center;gap:10px"><span style="display:flex;gap:3px"><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;background:{{T.pipOn}};border:1.25px solid {{T.pipOn}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;background:linear-gradient(90deg, {{T.pipOn}} 50%, transparent 50%);border:1.25px solid {{T.pipOn}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span></span><span style="font-size:11.5px;color:{{T.mu}}">cinq pips : story, design, code, soumise, terminée</span></div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Emboîtés : bandeau, carte, surface, texte</h2>
+<div style="display:flex;align-items:flex-start;gap:40px">
+
+<section aria-label="Module RB Compound" style="box-sizing:border-box;border-radius:14px;overflow:hidden;background:{{T.frame}};border:1px solid {{T.bd}}">
+<div style="background:{{T.band}};color:{{T.bandT}}">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:{{T.bandMu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:{{T.bandMu}}">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:{{T.bandMu}}">en cours</span>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:{{T.bandTrack}}"><div style="width:60%;height:4px;background:{{T.bandT}}"></div></div>
+</div>
+<div style="padding:16px">
+<dc-import name="EpicCompound" theme="{{theme}}" hint-size="864px,354px"></dc-import>
+</div>
+</section>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;color:{{T.mu}}">module à une seule epic : bandeau fusionné</span>
+<dc-import name="CarteEpic" theme="{{theme}}" module="trwg" modetat="encours" modpct="20" infix="TRWG" titre="trwg, deux réponses fermées" pct="20" etat="encours" groupe="debloquee" rail="" cmd="epicman trwg-epic" hint-size="240px,153px"></dc-import>
+</div>
+
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1440,"height":940}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',plan:'#0f0f0f',dot:'#262626',frame:'#141414',band:'#333333',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.18)',card:'#1c1c1c',batch:'#262626',bdB:'#383838',cmd:'#2f2f2f',tag:'#2f2f2f',sunk:'#171717',sel:'#3a3a3a',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',edge:'#6b6b6b',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',todo:'#8f8f8f',prog:'#f59e0b',progT:'#fbbf24',fresh:'#22c55e',freshT:'#4ade80',done:'#3b82f6',doneT:'#60a5fa',acc:'#e879f9',accT:'#f0abfc',blk:'#ef4444',blkT:'#f87171',blkS:'#2a1515',blkB:'#5c2424',pipOn:'#e5e5e5',pipOff:'#555555',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)',pop:'0 10px 30px rgba(0,0,0,0.6)'};
+    }
+    return {bg:'#ffffff',plan:'#f3f3f3',dot:'#d6d6d6',frame:'#fafafa',band:'#262626',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.2)',card:'#ffffff',batch:'#f4f4f4',bdB:'#e5e5e5',cmd:'#ececec',tag:'#ededed',sunk:'#f5f5f5',sel:'#e2e2e2',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',edge:'#9a9a9a',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',todo:'#8f8f8f',prog:'#d97706',progT:'#b45309',fresh:'#16a34a',freshT:'#15803d',done:'#2563eb',doneT:'#1d4ed8',acc:'#d946ef',accT:'#a21caf',blk:'#dc2626',blkT:'#b91c1c',blkS:'#fef2f2',blkB:'#fecaca',pipOn:'#2b2b2b',pipOff:'#c2c2c2',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)',pop:'0 10px 30px rgba(0,0,0,0.12)'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    return {
+      T: this.tok(dark),
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      theme: dark ? 'sombre' : 'clair'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Chemin de déblocage à deux branches</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1000px;height:660px;box-sizing:border-box;padding:36px;display:flex;align-items:flex-start;gap:40px;background:{{T.bg}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.4">
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;color:{{T.mu}}">dans l'inspecteur</span>
+<section aria-label="Chemin de déblocage à deux branches" style="width:400px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;padding:16px 18px;border-radius:12px;background:{{T.bg}};border:1px solid {{T.bd}};box-shadow:{{T.sh}}">
+<h3 style="margin:0;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>Pour débloquer<span style="font-weight:500;color:{{T.blkT}}">3 batchs à soumettre</span></h3>
+<p style="margin:0;font-size:12px;line-height:1.5;color:{{T.fg2}}"><span style="font-family:{{M}}">shared-skills</span> dépend de <strong style="font-weight:600">B-TOOLMAN-2</strong> et de <strong style="font-weight:600">B-QUALITYGATES-1</strong>. B-TOOLMAN-2 est tenu par le verrou de B-TOOLMAN-1.</p>
+<span style="font-size:11.5px;color:{{T.mu}}">1a et 1b sont indépendantes : dans l'ordre que tu veux, ou en même temps.</span>
+<ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column">
+
+<li style="display:flex;gap:10px">
+<div style="width:24px;flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">1a</span><span style="flex:1;width:0;border-left:1.5px solid {{T.bd2}};margin:4px 0"></span></div>
+<div style="flex:1;min-width:0;margin-bottom:10px;display:flex;flex-direction:column;gap:7px;padding:10px 10px 10px 12px;border-radius:10px;background:{{T.batch}};border:1px solid {{T.acc}};box-shadow:0 0 0 1px {{T.acc}}">
+<div style="display:flex;align-items:center;gap:6px"><span style="font-size:11.5px;font-weight:600;color:{{T.fg2}}">Toolman</span><span style="font-size:10.5px;font-weight:700;line-height:17px;padding:0 5px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}}">B-TOOLMAN-1</span><span style="flex:1"></span><span style="font-size:11px;font-weight:500;color:{{T.accT}}">courant</span></div>
+<span style="font-size:12.5px"><strong style="font-weight:600">À soumettre</strong> · 1 story</span>
+<div style="display:flex;align-items:center;gap:8px;padding:5px 5px 5px 9px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.card}}"><code style="flex:1;min-width:0;font-family:{{M}};font-size:11.5px;color:{{T.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">designman update features/toolman-epic/toolman/toolman.story.md</code><button type="button" style="flex:none;height:26px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500">Copier</button></div>
+</div>
+</li>
+
+<li style="display:flex;gap:10px">
+<div style="width:24px;flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">1b</span><span style="flex:1;width:0;border-left:1.5px solid {{T.bd2}};margin:4px 0"></span></div>
+<div style="flex:1;min-width:0;margin-bottom:10px;display:flex;flex-direction:column;gap:7px;padding:10px 10px 10px 12px;border-radius:10px;background:{{T.batch}};border:1px solid {{T.acc}};box-shadow:0 0 0 1px {{T.acc}}">
+<div style="display:flex;align-items:center;gap:6px"><span style="font-size:11.5px;font-weight:600;color:{{T.fg2}}">RB Compound</span><span style="font-size:10.5px;font-weight:700;line-height:17px;padding:0 5px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}}">B-QUALITYGATES-1</span><span style="flex:1"></span><span style="font-size:11px;font-weight:500;color:{{T.accT}}">courant</span></div>
+<span style="font-size:12.5px"><strong style="font-weight:600">À soumettre</strong> · 1 story : <span style="font-family:{{M}};font-size:12px">checker-depth</span></span>
+<div style="display:flex;align-items:center;gap:8px;padding:5px 5px 5px 9px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.card}}"><code style="flex:1;min-width:0;font-family:{{M}};font-size:11.5px;color:{{T.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">storyman checker-depth</code><button type="button" style="flex:none;height:26px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500">Copier</button></div>
+</div>
+</li>
+
+<li style="display:flex;gap:10px">
+<div style="width:24px;flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:24px;height:24px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><span style="flex:1;width:0;border-left:1.5px dashed {{T.dash}};margin:4px 0"></span></div>
+<div style="flex:1;min-width:0;margin-bottom:10px;display:flex;flex-direction:column;gap:5px;padding:10px 10px 10px 12px;border-radius:10px;border:1px dashed {{T.dash}}">
+<div style="display:flex;align-items:center;gap:6px"><span style="font-size:11.5px;font-weight:600;color:{{T.fg2}}">Toolman</span><span style="font-size:10.5px;font-weight:700;line-height:17px;padding:0 5px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}}">B-TOOLMAN-2</span><span style="flex:1"></span><span style="font-size:11px;color:{{T.mu}}">après 1a</span></div>
+<span style="font-size:12.5px"><strong style="font-weight:600">À soumettre</strong> · 2 stories</span>
+</div>
+</li>
+
+<li style="display:flex;gap:10px;align-items:center">
+<span style="width:24px;height:24px;flex:none;box-sizing:border-box;border-radius:50%;border:1.5px solid {{T.fresh}};color:{{T.fresh}};display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 5 8.7l4.5-5"></path></svg></span>
+<span style="font-size:13px;font-weight:600"><span style="font-family:{{M}};font-weight:500">shared-skills</span> débloquée, une fois 1b et 2 soumis</span>
+</li>
+</ol>
+</section>
+</div>
+
+<div style="flex:1;display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;color:{{T.mu}}">sur le plan</span>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-size:11.5px;font-weight:600;color:{{T.fg2}}">Toolman · TOOLMAN</span>
+<div style="align-self:flex-start;display:flex;align-items:flex-start;padding:20px 14px 14px 20px;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}}">
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" ouvert="non" etape="1a" stories="toolman:1.5" hint-size="150px,52px"></dc-import>
+<div style="width:56px;height:52px;position:relative;display:flex;align-items:center;justify-content:center"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span><span style="position:relative;width:22px;height:22px;box-sizing:border-box;border-radius:50%;background:{{T.card}};border:1px solid {{T.bd2}};display:flex;align-items:center;justify-content:center;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span></div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="tenu" par="B1" nb="2" ouvert="non" etape="2" hint-size="104px,52px"></dc-import>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+<span style="font-size:11.5px;font-weight:600;color:{{T.fg2}}">RB Compound · QUALITYGATES</span>
+<div style="align-self:flex-start;display:flex;align-items:flex-start;padding:20px 14px 14px 20px;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}}">
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" ouvert="non" etape="1b" stories="checker-depth:0" hint-size="150px,52px"></dc-import>
+<div style="width:56px;height:52px;position:relative;display:flex;align-items:center;justify-content:center"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span><span style="position:relative;width:22px;height:22px;box-sizing:border-box;border-radius:50%;background:{{T.card}};border:1px solid {{T.bd2}};display:flex;align-items:center;justify-content:center;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span></div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="tenu" par="B1" nb="2" ouvert="non" estompe="oui" hint-size="104px,52px"></dc-import>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;max-width:470px">
+<p style="margin:0;font-size:12.5px;line-height:1.55;color:{{T.fg2}}"><strong style="color:{{T.fg}}">Le chiffre donne le rang, la lettre la branche.</strong> Toutes les étapes d'un même rang qu'on peut lancer tout de suite portent le fuchsia : ici 1a et 1b.</p>
+<p style="margin:0;font-size:12.5px;line-height:1.55;color:{{T.fg2}}">Le rang vient du backend : c'est la profondeur de l'étape dans le chemin. 2 n'attend que 1a, mais la cible attend 2 et 1b. Une seule branche : pas de lettre, comme pour plugin-split.</p>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1000,"height":660}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',card:'#1c1c1c',batch:'#262626',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',fresh:'#22c55e',acc:'#e879f9',accT:'#f0abfc',blk:'#ef4444',blkT:'#f87171',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)'};
+    }
+    return {bg:'#ffffff',card:'#ffffff',batch:'#f4f4f4',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',fresh:'#16a34a',acc:'#d946ef',accT:'#a21caf',blk:'#dc2626',blkT:'#b91c1c',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    return {
+      T: this.tok(dark),
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      theme: dark ? 'sombre' : 'clair'
+    };
+  }
+}
+</script>
+</body>
+</html>

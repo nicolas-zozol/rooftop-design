@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Planche — cartes d'epic</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1160px;height:860px;box-sizing:border-box;padding:36px 40px;display:flex;flex-direction:column;gap:24px;background:{{T.bg}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Carte d'epic repliée · 240 × 116 · INFIX, titre, anneau, rail, commande</h2>
+<div style="display:flex;align-items:flex-start;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">débloquée : l'anneau fuchsia</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="PLUGIN" titre="Compound en deux plugins Claude Code" pct="35" etat="encours" groupe="debloquee" rail="Atttt" cmd="storyman compound-inventory" hint-size="240px,116px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">bloquée : pointillé, « dépend de » + INFIX</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="RTWORKTREES" titre="Rooftop lit les worktrees" pct="0" etat="afaire" groupe="bloquee" dep="BATCHES" rail="ctt" cmd="storyman worktree-sources" hint-size="240px,139px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">terminée : anneau plein, plus de commande</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="BATCHES" titre="Rooftop, les batchs et ce qui les débloque" pct="100" etat="fini" groupe="terminee" rail="dddd" cmd="" pied="3 suivis · 2 non mergées" hint-size="240px,116px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">sans batch : la commande de l'epic</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="PIPELINE" titre="Pipeline documentaire des agents" pct="80" etat="encours" groupe="debloquee" rail="" cmd="epicman design-pipeline-epic" hint-size="240px,116px"></dc-import></div>
+</div>
+<span style="font-size:11.5px;color:{{T.mu}}">L'id complet (compound-plugins-epic) passe dans l'inspecteur et au survol du titre. Déroulée : artboard « Epic déroulée (composant) ».</span>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Module à une seule epic · bandeau fusionné en tête de carte</h2>
+<div style="display:flex;align-items:flex-start;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">repliée, sans batch</span>
+<dc-import name="CarteEpic" theme="{{theme}}" module="trwg" modetat="encours" modpct="20" infix="TRWG" titre="trwg, deux réponses fermées" pct="20" etat="encours" groupe="debloquee" rail="" cmd="epicman trwg-epic" hint-size="240px,153px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">repliée, avec batchs</span>
+<dc-import name="CarteEpic" theme="{{theme}}" module="Toolman" modetat="encours" modpct="65" infix="TOOLMAN" titre="toolman, un menu de corvées" pct="65" etat="encours" groupe="debloquee" rail="Att" cmd="designman update features/toolman-epic/toolman/toolman.story.md" hint-size="240px,153px"></dc-import></div>
+<p style="margin:0;max-width:440px;padding-top:26px;font-size:12px;line-height:1.55;color:{{T.fg2}}">Un seul cadre : le bandeau du module, puis l'epic sans second cadre. Déroulée, la carte garde le bandeau et s'ouvre dessous, comme Toolman sur le plan.</p>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Rail selon le nombre de batchs · segments égaux, repère à droite</h2>
+<div style="display:flex;align-items:flex-start;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">2 batchs</span>
+<div style="width:240px;box-sizing:border-box;padding:12px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};display:flex;align-items:center;gap:8px">
+<div style="flex:1;display:flex;gap:3px"><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.acc}}"></span></div>
+<span style="font-size:10.5px;font-weight:600;color:{{T.mu}}">B2/2</span>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">5 batchs</span>
+<div style="width:240px;box-sizing:border-box;padding:12px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};display:flex;align-items:center;gap:8px">
+<div style="flex:1;display:flex;gap:3px"><span style="flex:1;height:6px;border-radius:3px;background:{{T.acc}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span></div>
+<span style="font-size:10.5px;font-weight:600;color:{{T.mu}}">B1/5</span>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">9 batchs</span>
+<div style="width:240px;box-sizing:border-box;padding:12px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};display:flex;align-items:center;gap:8px">
+<div style="flex:1;display:flex;gap:3px"><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.acc}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span></div>
+<span style="font-size:10.5px;font-weight:600;color:{{T.mu}}">B4/9</span>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">16 batchs : 7 px par segment</span>
+<div style="width:240px;box-sizing:border-box;padding:12px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};display:flex;align-items:center;gap:8px">
+<div style="flex:1;display:flex;gap:3px"><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.done}}"></span><span style="flex:1;height:6px;border-radius:3px;background:{{T.acc}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span></div>
+<span style="font-size:10.5px;font-weight:600;color:{{T.mu}}">B10/16</span>
+</div></div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Survol et sélection</h2>
+<div style="display:flex;align-items:flex-start;gap:40px;padding-left:4px">
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">survol : bord renforcé, ombre portée</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="BATCHES" titre="Rooftop, les batchs et ce qui les débloque" pct="100" etat="fini" groupe="terminee" rail="dddd" cmd="" pied="3 suivis · 2 non mergées" survol="oui" hint-size="240px,116px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">sélectionnée : contour plein, inspecteur ouvert</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="BATCHES" titre="Rooftop, les batchs et ce qui les débloque" pct="100" etat="fini" groupe="terminee" rail="dddd" cmd="" pied="3 suivis · 2 non mergées" sel="oui" hint-size="240px,116px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">débloquée et sélectionnée : anneau puis contour</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="PIPELINE" titre="Pipeline documentaire des agents" pct="80" etat="encours" groupe="debloquee" rail="" cmd="epicman design-pipeline-epic" sel="oui" hint-size="240px,116px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">fait : anneau plein bleu</span>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="BATCHES" titre="Rooftop, les batchs et ce qui les débloque" pct="100" etat="fait" groupe="terminee" rail="dddd" cmd="" pied="3 suivis" hint-size="240px,116px"></dc-import></div>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1160,"height":860}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',card:'#1c1c1c',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',done:'#3b82f6',acc:'#e879f9'};
+    }
+    return {bg:'#ffffff',card:'#ffffff',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',done:'#2563eb',acc:'#d946ef'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    return {
+      T: this.tok(dark),
+      theme: dark ? 'sombre' : 'clair'
+    };
+  }
+}
+</script>
+</body>
+</html>

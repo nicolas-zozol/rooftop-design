@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop — une epic repliée, puis déroulée</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1680px;height:820px;position:relative;overflow:hidden;box-sizing:border-box;background-color:{{T.plan}};background-image:radial-gradient({{T.dot}} 1px, transparent 1.3px);background-size:18px 18px;color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<div style="position:absolute;left:40px;top:40px;width:320px;display:flex;flex-direction:column;gap:18px;padding:18px;box-sizing:border-box;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}}">
+<h2 style="margin:0;font-size:15px;font-weight:600;color:{{T.fg}}">Dérouler une epic, sur place</h2>
+<div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center">1</span><p style="margin:0;font-size:12.5px;line-height:1.5;color:{{T.fg2}}">Clic sur la carte repliée ou sur son rail : elle s'ouvre en cadre, là où elle est.</p></div>
+<div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center">2</span><p style="margin:0;font-size:12.5px;line-height:1.5;color:{{T.fg2}}">Le coin haut gauche reste fixe : le cadre grandit vers la droite et vers le bas. L'en-tête garde l'étiquette PLUGIN et l'anneau ; le fuchsia passe de la carte au batch courant.</p></div>
+<div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center">3</span><p style="margin:0;font-size:12.5px;line-height:1.5;color:{{T.fg2}}">Les voisines du dessous glissent de la hauteur gagnée, ici 238 px, en 200 ms ease-out. Celles qui en dépendent, à droite, glissent de la largeur gagnée. Rien ne se chevauche pendant le mouvement.</p></div>
+<div style="display:flex;gap:10px"><span style="width:20px;height:20px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center">4</span><p style="margin:0;font-size:12.5px;line-height:1.5;color:{{T.fg2}}">Le zoom ne change pas. Le plan ne défile que si le batch courant sort de la vue, juste assez pour le montrer en entier. Replier fait le chemin inverse.</p></div>
+</div>
+
+<span style="position:absolute;left:400px;top:44px;font-size:12px;font-weight:600;color:{{T.mu}}">Avant · repliée</span>
+<span style="position:absolute;left:740px;top:44px;font-size:12px;font-weight:600;color:{{T.mu}}">Après · déroulée</span>
+
+<section aria-label="Avant" style="position:absolute;left:400px;top:72px;width:274px;height:820px;box-sizing:border-box;border-radius:14px;overflow:hidden;background:{{T.frame}};border:1px solid {{T.bd}}">
+<div style="background:{{T.band}};color:{{T.bandT}}">
+<div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 12px">
+<span style="display:flex;color:{{T.bandMu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:{{T.bandMu}}">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:{{T.bandTrack}}"><div style="width:60%;height:4px;background:{{T.bandT}}"></div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:20px">
+<dc-import name="CarteEpic" theme="{{theme}}" infix="PLUGIN" titre="Compound en deux plugins Claude Code" pct="35" etat="encours" groupe="debloquee" rail="Atttt" cmd="storyman compound-inventory" survol="oui" hint-size="240px,116px"></dc-import>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="QUALITYGATES" titre="Quality gates" pct="0" etat="afaire" groupe="debloquee" rail="Att" cmd="storyman checker-depth" hint-size="240px,116px"></dc-import>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="WORKTREE" titre="Worktrees longs" pct="66" etat="encours" groupe="debloquee" rail="dA" cmd="designman features/worktree-epic/worktree-sync/worktree-sync.story.md" hint-size="240px,116px"></dc-import>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="PIPELINE" titre="Pipeline documentaire des agents" pct="80" etat="encours" groupe="debloquee" rail="" cmd="epicman design-pipeline-epic" hint-size="240px,116px"></dc-import>
+</div>
+</section>
+
+<section aria-label="Après" style="position:absolute;left:740px;top:72px;width:898px;height:820px;box-sizing:border-box;border-radius:14px;overflow:hidden;background:{{T.frame}};border:1px solid {{T.bd}}">
+<div style="background:{{T.band}};color:{{T.bandT}}">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:{{T.bandMu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:{{T.bandMu}}">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:{{T.bandMu}}">en cours</span>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:{{T.bandTrack}}"><div style="width:60%;height:4px;background:{{T.bandT}}"></div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+<dc-import name="EpicCompound" theme="{{theme}}" hint-size="864px,354px"></dc-import>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="QUALITYGATES" titre="Quality gates" pct="0" etat="afaire" groupe="debloquee" rail="Att" cmd="storyman checker-depth" hint-size="240px,116px"></dc-import>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="WORKTREE" titre="Worktrees longs" pct="66" etat="encours" groupe="debloquee" rail="dA" cmd="designman features/worktree-epic/worktree-sync/worktree-sync.story.md" hint-size="240px,116px"></dc-import>
+</div>
+</section>
+
+<div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:110px;background:linear-gradient(180deg, transparent, {{T.plan}} 85%)"></div>
+
+<span aria-hidden="true" style="position:absolute;left:646px;top:122px;width:22px;height:22px;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px {{T.plan}}">1</span>
+<span aria-hidden="true" style="position:absolute;left:746px;top:122px;width:22px;height:22px;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px {{T.plan}}">2</span>
+<span aria-hidden="true" style="position:absolute;left:986px;top:496px;width:22px;height:22px;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px {{T.plan}}">3</span>
+
+<div style="position:absolute;right:24px;bottom:24px;display:flex;align-items:center;gap:10px">
+<span aria-hidden="true" style="width:22px;height:22px;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center">4</span>
+<div style="display:flex;align-items:center;gap:2px;padding:3px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}}">
+<button type="button" aria-label="Dézoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:{{T.fg2}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7"></path></svg></button>
+<span style="min-width:44px;text-align:center;font-size:11.5px;color:{{T.fg2}}">100 %</span>
+<button type="button" aria-label="Zoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:{{T.fg2}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7M7 3.5v7"></path></svg></button>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1680,"height":820}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',plan:'#0f0f0f',dot:'#262626',frame:'#141414',band:'#333333',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.18)',card:'#1c1c1c',batch:'#262626',bdB:'#383838',cmd:'#2f2f2f',tag:'#2f2f2f',sunk:'#171717',sel:'#3a3a3a',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',edge:'#6b6b6b',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',todo:'#8f8f8f',prog:'#f59e0b',progT:'#fbbf24',fresh:'#22c55e',freshT:'#4ade80',done:'#3b82f6',doneT:'#60a5fa',acc:'#e879f9',accT:'#f0abfc',blk:'#ef4444',blkT:'#f87171',blkS:'#2a1515',blkB:'#5c2424',pipOn:'#e5e5e5',pipOff:'#555555',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)',pop:'0 10px 30px rgba(0,0,0,0.6)'};
+    }
+    return {bg:'#ffffff',plan:'#f3f3f3',dot:'#d6d6d6',frame:'#fafafa',band:'#262626',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.2)',card:'#ffffff',batch:'#f4f4f4',bdB:'#e5e5e5',cmd:'#ececec',tag:'#ededed',sunk:'#f5f5f5',sel:'#e2e2e2',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',edge:'#9a9a9a',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',todo:'#8f8f8f',prog:'#d97706',progT:'#b45309',fresh:'#16a34a',freshT:'#15803d',done:'#2563eb',doneT:'#1d4ed8',acc:'#d946ef',accT:'#a21caf',blk:'#dc2626',blkT:'#b91c1c',blkS:'#fef2f2',blkB:'#fecaca',pipOn:'#2b2b2b',pipOff:'#c2c2c2',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)',pop:'0 10px 30px rgba(0,0,0,0.12)'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    return {
+      T: this.tok(dark),
+      theme: dark ? 'sombre' : 'clair'
+    };
+  }
+}
+</script>
+</body>
+</html>

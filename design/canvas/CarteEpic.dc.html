@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Carte d'epic repliée</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div title="{{titre}}" style="width:240px;opacity:{{op}};box-sizing:border-box;border-radius:10px;background:{{T.card}};border:{{border}};box-shadow:{{shadow}};outline:{{outline}};outline-offset:{{outOff}};overflow:hidden;color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<sc-if value="{{hasMod}}" hint-placeholder-val="{{false}}"><div style="background:{{T.band}};color:{{T.bandT}}">
+<div style="display:flex;align-items:center;gap:7px;height:34px;padding:0 12px">
+<span style="display:flex;color:{{T.bandMu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:9.5px;font-weight:700;letter-spacing:0.08em;color:{{T.bandMu}}">MODULE</span>
+<span style="font-size:13px;font-weight:700;white-space:nowrap">{{mod}}</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="{{g.c}}" stroke-width="1.5" opacity="{{g.ring}}"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="{{g.c}}" opacity="{{g.half}}"></path><circle cx="6" cy="6" r="5" fill="{{g.c}}" opacity="{{g.full}}"></circle><path d="M2.2 6.4 4.9 9 9.8 3.2" fill="none" stroke="{{g.c}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity="{{g.check}}"></path></svg>
+<span style="font-size:12px;font-weight:600;font-variant-numeric:tabular-nums">{{modPct}} %</span>
+</div>
+<div style="height:3px;background:{{T.bandTrack}}"><div style="width:{{modW}};height:3px;background:{{T.bandT}}"></div></div>
+</div></sc-if>
+
+<div style="padding:10px 12px;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;align-items:center;gap:6px;height:18px">
+<span style="display:flex;color:{{T.fg2}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.tag}};color:{{T.fg}};white-space:nowrap">{{infix}}</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="{{ringLabel}}" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{ringCol}}" stroke-width="2.2" stroke-dasharray="{{ringDash}}" transform="rotate(-90 8 8)"></circle><circle cx="8" cy="8" r="3.2" fill="{{ringCol}}" opacity="{{faitOp}}"></circle><path d="M5.4 8.2 7.2 9.9l3.3-3.7" fill="none" stroke="{{ringCol}}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="{{finiOp}}"></path></svg>
+<span style="font-size:12px;font-weight:500;color:{{T.fg2}};font-variant-numeric:tabular-nums">{{pct}} %</span>
+</div>
+<span style="font-size:13px;font-weight:600;color:{{T.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{titre}}</span>
+<sc-if value="{{hasDep}}" hint-placeholder-val="{{false}}"><div style="display:flex;align-items:center;gap:6px;height:16px;font-size:11px;color:{{T.mu}}">dépend de<span style="font-size:10px;font-weight:700;letter-spacing:0.05em;line-height:14px;padding:0 5px;border-radius:4px;border:1px solid {{T.bd2}};color:{{T.fg2}}">{{dep}}</span></div></sc-if>
+<sc-if value="{{hasRail}}" hint-placeholder-val="{{true}}"><div style="display:flex;align-items:center;gap:8px;height:12px">
+<div style="flex:1;display:flex;gap:3px"><sc-for list="{{segs}}" as="g" hint-placeholder-count="5"><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;background:{{g.bg}};border:{{g.bd}}"></span></sc-for></div>
+<span style="font-size:10.5px;font-weight:600;color:{{T.mu}};font-variant-numeric:tabular-nums">{{railLabel}}</span>
+</div></sc-if>
+<sc-if value="{{noRail}}" hint-placeholder-val="{{false}}"><span style="height:12px;display:flex;align-items:center;font-size:11px;color:{{T.mu}}">aucun batch</span></sc-if>
+</div>
+
+<sc-if value="{{hasCmd}}" hint-placeholder-val="{{true}}"><div style="display:flex;align-items:center;gap:4px;height:32px;box-sizing:border-box;padding:0 3px 0 10px;border-top:1px solid {{T.bd}};background:{{T.cmd}}">
+<code title="{{cmd}}" style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:{{T.fg2}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{cmd}}</code>
+<button type="button" aria-label="Copier la commande" style="width:26px;height:26px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{T.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div></sc-if>
+<sc-if value="{{hasPied}}" hint-placeholder-val="{{false}}"><div style="display:flex;align-items:center;height:32px;box-sizing:border-box;padding:0 10px;border-top:1px solid {{T.bd}};background:{{T.cmd}};font-size:11.5px;color:{{T.mu}}">{{pied}}</div></sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"groupe":{"editor":"enum","options":["debloquee","bloquee","terminee"],"default":"debloquee"},"etat":{"editor":"enum","options":["afaire","encours","fini","fait"],"default":"encours"},"infix":{"editor":null},"titre":{"editor":null},"pct":{"editor":null},"rail":{"editor":null},"cmd":{"editor":null},"pied":{"editor":null},"dep":{"editor":null},"module":{"editor":null},"modetat":{"editor":null},"modpct":{"editor":null},"sel":{"editor":null},"survol":{"editor":null},"estompe":{"editor":null},"$preview":{"width":240,"height":116}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',plan:'#0f0f0f',dot:'#262626',frame:'#141414',band:'#333333',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.18)',card:'#1c1c1c',batch:'#262626',bdB:'#383838',cmd:'#2f2f2f',tag:'#2f2f2f',sunk:'#171717',sel:'#3a3a3a',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',edge:'#6b6b6b',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',todo:'#8f8f8f',prog:'#f59e0b',progT:'#fbbf24',fresh:'#22c55e',freshT:'#4ade80',done:'#3b82f6',doneT:'#60a5fa',acc:'#e879f9',accT:'#f0abfc',blk:'#ef4444',blkT:'#f87171',blkS:'#2a1515',blkB:'#5c2424',pipOn:'#e5e5e5',pipOff:'#555555',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)',pop:'0 10px 30px rgba(0,0,0,0.6)'};
+    }
+    return {bg:'#ffffff',plan:'#f3f3f3',dot:'#d6d6d6',frame:'#fafafa',band:'#262626',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.2)',card:'#ffffff',batch:'#f4f4f4',bdB:'#e5e5e5',cmd:'#ececec',tag:'#ededed',sunk:'#f5f5f5',sel:'#e2e2e2',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',edge:'#9a9a9a',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',todo:'#8f8f8f',prog:'#d97706',progT:'#b45309',fresh:'#16a34a',freshT:'#15803d',done:'#2563eb',doneT:'#1d4ed8',acc:'#d946ef',accT:'#a21caf',blk:'#dc2626',blkT:'#b91c1c',blkS:'#fef2f2',blkB:'#fecaca',pipOn:'#2b2b2b',pipOff:'#c2c2c2',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)',pop:'0 10px 30px rgba(0,0,0,0.12)'};
+  }
+  renderVals() {
+    var p = this.props;
+    var dark = p.theme === 'sombre' || p.theme === 'dark';
+    var T = this.tok(dark);
+    var std = p.infix == null;
+    var infix = std ? 'PLUGIN' : String(p.infix);
+    var titre = std ? 'Compound en deux plugins Claude Code' : String(p.titre || '');
+    var pct = parseFloat(std ? 35 : p.pct);
+    if (isNaN(pct)) pct = 0;
+    var etat = p.etat || 'encours';
+    var groupe = p.groupe || 'debloquee';
+    var rail = std ? 'Atttt' : String(p.rail || '');
+    var cmd = std ? 'storyman compound-inventory' : String(p.cmd || '');
+    var pied = std ? '' : String(p.pied || '');
+    var dep = std ? '' : String(p.dep || '');
+    var mod = std ? '' : String(p.module || '');
+    var modEtat = p.modetat || 'encours';
+    var modPct = parseFloat(p.modpct);
+    if (isNaN(modPct)) modPct = 0;
+    var sel = p.sel === 'oui' || p.sel === true;
+    var survol = p.survol === 'oui' || p.survol === true;
+    var cols = {afaire: T.todo, encours: T.prog, fini: T.fresh, fait: T.done};
+    var col = cols[etat] || T.todo;
+    var C = 2 * Math.PI * 6;
+    var arc = Math.max(0, Math.min(100, pct)) / 100 * C;
+    var segs = [];
+    var cur = -1;
+    for (var i = 0; i < rail.length; i++) {
+      var ch = rail.charAt(i);
+      var s = {bg: 'transparent', bd: 'none'};
+      if (ch === 'd') { s.bg = T.done; }
+      else if (ch === 'A') { s.bg = T.acc; cur = i; }
+      else if (ch === 'c') { s.bd = '1.5px solid ' + T.mu; cur = i; }
+      else { s.bd = '1px dashed ' + T.dash; }
+      segs.push(s);
+    }
+    var n = segs.length;
+    var deb = groupe === 'debloquee';
+    var blq = groupe === 'bloquee';
+    var border = deb ? ('1px solid ' + T.acc) : (blq ? ('1px dashed ' + T.dash) : ('1px solid ' + (survol ? T.bd2 : T.bd)));
+    var shadow = deb ? ('0 0 0 1px ' + T.acc + ', ' + (survol ? T.pop : T.sh)) : (blq ? 'none' : (survol ? T.pop : T.sh));
+    var gcol = {afaire: '#a3a3a3', encours: '#fbbf24', fini: '#4ade80', fait: '#60a5fa', neutre: '#a3a3a3'}[modEtat] || '#a3a3a3';
+    var g = {
+      c: gcol,
+      ring: (modEtat === 'afaire' || modEtat === 'encours') ? 1 : 0,
+      half: modEtat === 'encours' ? 1 : 0,
+      full: modEtat === 'fait' ? 1 : 0,
+      check: modEtat === 'fini' ? 1 : 0
+    };
+    return {
+      T: T,
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      infix: infix,
+      titre: titre,
+      pct: Math.round(pct),
+      ringCol: col,
+      ringDash: arc.toFixed(2) + ' ' + C.toFixed(2),
+      ringLabel: 'avancement ' + Math.round(pct) + ' %',
+      faitOp: etat === 'fait' ? 1 : 0,
+      finiOp: etat === 'fini' ? 1 : 0,
+      segs: segs,
+      hasRail: n > 0,
+      noRail: n === 0,
+      railLabel: cur >= 0 ? ('B' + (cur + 1) + '/' + n) : (n + '/' + n),
+      hasDep: dep !== '',
+      dep: dep,
+      hasCmd: cmd !== '',
+      cmd: cmd,
+      hasPied: pied !== '' && cmd === '',
+      pied: pied,
+      hasMod: mod !== '',
+      mod: mod,
+      modPct: Math.round(modPct),
+      modW: Math.max(0, Math.min(100, modPct)) + '%',
+      g: g,
+      border: border,
+      shadow: shadow,
+      outline: sel ? ('2px solid ' + T.fg) : 'none',
+      outOff: deb ? '4px' : '3px',
+      op: p.estompe === 'oui' ? 0.35 : 1
+    };
+  }
+}
+</script>
+</body>
+</html>

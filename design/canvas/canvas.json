@@ -1,0 +1,355 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "CarteBatch.dc.html": {
+      "h": 178,
+      "page": "planche",
+      "title": "Batch (composant)",
+      "w": 320,
+      "x": 320,
+      "y": 480
+    },
+    "CarteEpic.dc.html": {
+      "h": 116,
+      "page": "planche",
+      "title": "Carte d'epic repliée (composant)",
+      "w": 240,
+      "x": 0,
+      "y": 480
+    },
+    "CheminBranches.dc.html": {
+      "h": 660,
+      "page": "planche",
+      "title": "Chemin à deux branches : 1a, 1b",
+      "w": 1000,
+      "x": 4664,
+      "y": 0
+    },
+    "CheminBranchesSombre.dc.html": {
+      "h": 660,
+      "page": "planche",
+      "title": "Chemin à deux branches : 1a, 1b — sombre",
+      "w": 1000,
+      "x": 4664,
+      "y": 2800
+    },
+    "Deroulement.dc.html": {
+      "h": 820,
+      "page": "maquettes",
+      "title": "02 · Epic repliée, puis déroulée — clair",
+      "w": 1680,
+      "x": 1520,
+      "y": 0
+    },
+    "DeroulementSombre.dc.html": {
+      "h": 820,
+      "page": "maquettes",
+      "title": "02 · Epic repliée, puis déroulée — sombre",
+      "w": 1680,
+      "x": 4920,
+      "y": 0
+    },
+    "EpicCompound.dc.html": {
+      "h": 354,
+      "page": "planche",
+      "title": "Epic déroulée (composant)",
+      "w": 864,
+      "x": 0,
+      "y": 0
+    },
+    "Hierarchie.dc.html": {
+      "h": 940,
+      "page": "maquettes",
+      "title": "04 · Quatre niveaux, quatre signatures — clair",
+      "w": 1440,
+      "x": 1520,
+      "y": 1960
+    },
+    "HierarchieSombre.dc.html": {
+      "h": 940,
+      "page": "maquettes",
+      "title": "04 · Quatre niveaux, quatre signatures — sombre",
+      "w": 1440,
+      "x": 4920,
+      "y": 1960
+    },
+    "Inspecteur.dc.html": {
+      "h": 900,
+      "page": "maquettes",
+      "title": "03a · Débloquer une story : la cible et le chemin — clair",
+      "w": 1440,
+      "x": 1520,
+      "y": 940
+    },
+    "InspecteurEtapes.dc.html": {
+      "h": 900,
+      "page": "maquettes",
+      "title": "03b · Débloquer une story : les étapes sur le plan — clair",
+      "w": 1440,
+      "x": 1520,
+      "y": 3020
+    },
+    "InspecteurEtapesSombre.dc.html": {
+      "h": 900,
+      "page": "maquettes",
+      "title": "03b · Débloquer une story : les étapes sur le plan — sombre",
+      "w": 1440,
+      "x": 4920,
+      "y": 3020
+    },
+    "InspecteurSombre.dc.html": {
+      "h": 900,
+      "page": "maquettes",
+      "title": "03a · Débloquer une story : la cible et le chemin — sombre",
+      "w": 1440,
+      "x": 4920,
+      "y": 940
+    },
+    "Main.dc.html": {
+      "h": 1880,
+      "page": "maquettes",
+      "title": "01 · Plan à l'ouverture — clair",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Mobile.dc.html": {
+      "h": 980,
+      "page": "maquettes",
+      "title": "05 · Mobile, plus tard : ce que la conception prévoit — clair",
+      "w": 1460,
+      "x": 0,
+      "y": 2000
+    },
+    "MobileSombre.dc.html": {
+      "h": 980,
+      "page": "maquettes",
+      "title": "05 · Mobile, plus tard : ce que la conception prévoit — sombre",
+      "w": 1460,
+      "x": 3400,
+      "y": 2000
+    },
+    "Palette.dc.html": {
+      "h": 1180,
+      "page": "palette",
+      "title": "Couleurs et tailles ajoutées",
+      "w": 1200,
+      "x": 0,
+      "y": 0
+    },
+    "PanneauInspecteur.dc.html": {
+      "h": 816,
+      "page": "planche",
+      "title": "Inspecteur, story bloquée (composant)",
+      "w": 400,
+      "x": 0,
+      "y": 1020
+    },
+    "PlanSombre.dc.html": {
+      "h": 1880,
+      "page": "maquettes",
+      "title": "01 · Plan à l'ouverture — sombre",
+      "w": 1440,
+      "x": 3400,
+      "y": 0
+    },
+    "Planche-Batchs-sombre.dc.html": {
+      "h": 980,
+      "page": "planche",
+      "title": "Batchs — sombre",
+      "w": 1160,
+      "x": 2184,
+      "y": 2800
+    },
+    "Planche-Batchs.dc.html": {
+      "h": 980,
+      "page": "planche",
+      "title": "Batchs",
+      "w": 1160,
+      "x": 2184,
+      "y": 0
+    },
+    "Planche-Cadres-sombre.dc.html": {
+      "h": 1240,
+      "page": "planche",
+      "title": "Cadres de module et barre git — sombre",
+      "w": 1320,
+      "x": 480,
+      "y": 3820
+    },
+    "Planche-Cadres.dc.html": {
+      "h": 1240,
+      "page": "planche",
+      "title": "Cadres de module et barre git",
+      "w": 1320,
+      "x": 480,
+      "y": 1020
+    },
+    "Planche-Epics-sombre.dc.html": {
+      "h": 860,
+      "page": "planche",
+      "title": "Cartes d'epic — sombre",
+      "w": 1160,
+      "x": 944,
+      "y": 2800
+    },
+    "Planche-Epics.dc.html": {
+      "h": 860,
+      "page": "planche",
+      "title": "Cartes d'epic",
+      "w": 1160,
+      "x": 944,
+      "y": 0
+    },
+    "Planche-Lignes-sombre.dc.html": {
+      "h": 900,
+      "page": "planche",
+      "title": "Lignes de story et barre de commande — sombre",
+      "w": 1160,
+      "x": 3424,
+      "y": 2800
+    },
+    "Planche-Lignes.dc.html": {
+      "h": 900,
+      "page": "planche",
+      "title": "Lignes de story et barre de commande",
+      "w": 1160,
+      "x": 3424,
+      "y": 0
+    },
+    "Planche-Panneaux-sombre.dc.html": {
+      "h": 1300,
+      "page": "planche",
+      "title": "Inspecteur, blocages, tiroir, légende — sombre",
+      "w": 1360,
+      "x": 1880,
+      "y": 3820
+    },
+    "Planche-Panneaux.dc.html": {
+      "h": 1300,
+      "page": "planche",
+      "title": "Inspecteur, blocages, tiroir, légende",
+      "w": 1360,
+      "x": 1880,
+      "y": 1020
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-12T12:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "maquettes",
+    "view": "canvas"
+  },
+  "noteOrder": [
+    "t-clair",
+    "t-sombre",
+    "choix",
+    "pli",
+    "t-planche-clair",
+    "t-planche-sombre"
+  ],
+  "notes": {
+    "choix": {
+      "fill": "blue",
+      "page": "maquettes",
+      "text": "Mes choix sur les points laissés ouverts\n\n1 · Blocage : rouge et ⊖ (rond barré), toujours avec son compte (« 1 blocage »). L'ambre reste à « en cours ». Le verrou n'est pas un blocage visuel : cadenas gris. Écartée : ligne éteinte.\n\n2 · Une seule couleur d'accent. Le fuchsia veut dire « on agit ici » et descend au niveau le plus fin visible : anneau sur la carte repliée ; quand l'epic est déroulée, anneau sur le batch courant et cadre de l'epic neutre. Une epic bloquée n'a pas de fuchsia.\n\n3 · Rail à 5 batchs et plus : segments de largeur égale qui se resserrent (16 batchs = 7 px chacun), repère « B4/9 » à droite, aucun libellé par segment.\n\n4 · Dérouler : le coin haut gauche reste fixe, les voisines glissent en 200 ms, le zoom ne change pas, le plan ne défile que pour montrer le batch courant en entier.\n\n5 · Batch courant à 8 stories : toutes les lignes restent visibles, la carte s'allonge. Rien n'est masqué, c'est le seul endroit où agir.\n\nPointillé = attend ce qui est à sa gauche (batch tenu, epic bloquée). Sélection = contour noir, distinct de l'anneau fuchsia.\n\n6 · Quatre niveaux, quatre signatures (artboard 04) : module = bandeau gris foncé + barre ; epic = carte blanche, étiquette INFIX, anneau d'avancement ; batch = surface grise, puce B1, mini-barre par story ; story = texte mono nu, cinq pips.\n\n7 · Dépendances entre epics et modules (artboards 03a, 03b) : pas de flèches permanentes. Le backend calcule le chemin ; Rooftop l'affiche. Sur le plan, « ⊖ 2 à débloquer » seulement jusqu'à 3 batchs. Au clic : étapes numérotées 1, 2… sur les batchs à soumettre, le reste estompé, l'étape 1 porte le fuchsia et sa commande dans l'inspecteur. Les étapes hors de la vue sont signalées au bord du plan. Deux branches indépendantes : le chiffre donne le rang, la lettre la branche (1a, 1b) ; toutes les étapes lançables d'un même rang portent le fuchsia (planche « Chemin à deux branches »).",
+      "w": 620,
+      "x": -720,
+      "y": 0
+    },
+    "pli": {
+      "fill": "gray",
+      "page": "maquettes",
+      "text": "↦ Pli d'une fenêtre 1440 × 900, à hauteur du bord droit de cette note. La maquette est étirée pour montrer tout le jeu d'exemple ; à l'ouverture, on voit jusqu'ici, puis le plan se déplace.",
+      "w": 620,
+      "x": -720,
+      "y": 860
+    },
+    "t-clair": {
+      "kind": "title1",
+      "maxW": 3200,
+      "page": "maquettes",
+      "text": "Clair",
+      "w": 240,
+      "x": 0,
+      "y": -320
+    },
+    "t-planche-clair": {
+      "kind": "title1",
+      "maxW": 4600,
+      "page": "planche",
+      "text": "Planche — clair",
+      "w": 240,
+      "x": 0,
+      "y": -320
+    },
+    "t-planche-sombre": {
+      "kind": "title1",
+      "maxW": 4600,
+      "page": "planche",
+      "text": "Planche — sombre",
+      "w": 240,
+      "x": 0,
+      "y": 2480
+    },
+    "t-sombre": {
+      "kind": "title1",
+      "maxW": 3200,
+      "page": "maquettes",
+      "text": "Sombre",
+      "w": 240,
+      "x": 3400,
+      "y": -320
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Deroulement.dc.html",
+    "Inspecteur.dc.html",
+    "PlanSombre.dc.html",
+    "DeroulementSombre.dc.html",
+    "InspecteurSombre.dc.html",
+    "EpicCompound.dc.html",
+    "Planche-Epics.dc.html",
+    "Planche-Batchs.dc.html",
+    "Planche-Lignes.dc.html",
+    "PanneauInspecteur.dc.html",
+    "Planche-Cadres.dc.html",
+    "Planche-Panneaux.dc.html",
+    "Planche-Epics-sombre.dc.html",
+    "Planche-Batchs-sombre.dc.html",
+    "Planche-Lignes-sombre.dc.html",
+    "Planche-Cadres-sombre.dc.html",
+    "Planche-Panneaux-sombre.dc.html",
+    "Palette.dc.html",
+    "Hierarchie.dc.html",
+    "HierarchieSombre.dc.html",
+    "CarteEpic.dc.html",
+    "CarteBatch.dc.html",
+    "InspecteurEtapes.dc.html",
+    "InspecteurEtapesSombre.dc.html",
+    "Mobile.dc.html",
+    "MobileSombre.dc.html",
+    "CheminBranches.dc.html",
+    "CheminBranchesSombre.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "maquettes",
+      "name": "Maquettes"
+    },
+    {
+      "id": "planche",
+      "name": "Planche des composants"
+    },
+    {
+      "id": "palette",
+      "name": "Palette et tailles"
+    }
+  ],
+  "title": "Rooftop — le Blueprint qui se déroule"
+}

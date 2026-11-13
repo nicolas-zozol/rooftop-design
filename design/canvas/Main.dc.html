@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop — Blueprint à l'ouverture</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1440px;height:{{H}}px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;background:{{T.bg}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<header style="height:48px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:16px;padding:0 12px 0 14px;border-bottom:1px solid {{T.bd}};background:{{T.bg}}">
+<nav aria-label="Vues" style="display:flex;gap:2px;padding:3px;border-radius:9px;background:{{T.sunk}}">
+<a href="#questions" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:{{T.mu}};font-size:13px;font-weight:500;text-decoration:none">Questions</a>
+<a href="#blueprint" aria-current="page" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;background:{{T.card}};color:{{T.fg}};font-size:13px;font-weight:500;text-decoration:none;box-shadow:{{T.sh}}">Blueprint</a>
+</nav>
+<span style="flex:1"></span>
+<div style="display:flex;align-items:center;gap:12px;font-size:12px;color:{{T.fg2}}">
+<span style="font-family:{{M}};font-size:11.5px;color:{{T.fg}};padding:3px 8px;border-radius:6px;background:{{T.sunk}};border:1px solid {{T.bd}}">epic/rooftop-batches-epic</span>
+<span>37 fichiers à commiter</span>
+<span aria-hidden="true" style="width:1px;height:16px;background:{{T.bd}}"></span>
+<span>20 commits à pousser</span>
+<span style="display:flex;align-items:center;gap:2px;height:26px;box-sizing:border-box;padding:0 2px 0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.sunk}}"><code style="font-family:{{M}};font-size:11.5px;color:{{T.fg2}}">git push</code><button type="button" aria-label="Copier git push" style="width:22px;height:22px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:5px;background:transparent;color:{{T.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button></span>
+<span aria-hidden="true" style="width:1px;height:16px;background:{{T.bd}}"></span>
+<span>intégration : <span style="font-family:{{M}};font-size:11.5px;color:{{T.fg}}">main</span></span>
+<button type="button" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;box-shadow:{{T.sh}}">Relire git</button>
+</div>
+</header>
+
+<div style="flex:1;min-height:0;display:flex">
+<main aria-label="Plan" style="flex:1;min-width:0;position:relative;overflow:hidden;background-color:{{T.plan}};background-image:radial-gradient({{T.dot}} 1px, transparent 1.3px);background-size:18px 18px">
+
+<div style="position:absolute;left:16px;top:16px;display:flex;gap:8px;z-index:2">
+<button type="button" style="height:30px;padding:0 12px;border-radius:7px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:{{T.sh}}">Tout replier</button>
+<button type="button" style="height:30px;padding:0 12px;border-radius:7px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:{{T.sh}}">Dérouler les débloquées</button>
+</div>
+
+<div style="position:absolute;left:32px;top:{{top}}px;display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+
+<section aria-label="Module RB Compound" style="box-sizing:border-box;border-radius:14px;overflow:hidden;background:{{T.frame}};border:1px solid {{T.bd}}">
+<div style="background:{{T.band}};color:{{T.bandT}}">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:{{T.bandMu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:{{T.bandMu}}">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:{{T.bandMu}}">en cours</span>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:{{T.bandTrack}}"><div style="width:60%;height:4px;background:{{T.bandT}}"></div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+
+<dc-import name="EpicCompound" theme="{{theme}}" sel="{{sel}}" focus="{{focus}}" hint-size="864px,354px"></dc-import>
+
+<div title="Quality gates" style="width:628px;opacity:{{dimOp}};box-sizing:border-box;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}};overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid {{T.bd}}">
+<span style="display:flex;color:{{T.fg2}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.tag}};color:{{T.fg}}">QUALITYGATES</span>
+<span style="font-size:13px;font-weight:600;color:{{T.fg}};white-space:nowrap">Quality gates</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 0 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.2"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:{{T.fg2}}">0 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{T.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<div style="padding:14px;display:flex;align-items:flex-start">
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" ouvert="oui" stories="checker-depth:0" cmd="storyman checker-depth" hint-size="320px,100px"></dc-import>
+<div style="width:56px;height:52px;flex:none;position:relative;display:flex;align-items:center;justify-content:center">
+<span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span>
+<span title="Verrou : B2 attend que B1 soit soumis" style="position:relative;width:22px;height:22px;box-sizing:border-box;border-radius:50%;background:{{T.card}};border:1px solid {{T.bd2}};display:flex;align-items:center;justify-content:center;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span>
+</div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="tenu" par="B1" nb="2" entete="bloqué par checker-depth" ouvert="non" hint-size="104px,52px"></dc-import>
+<div aria-hidden="true" style="width:14px;height:52px;flex:none;position:relative"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px dashed {{T.dash}}"></span></div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B3" etat="tenu" par="B2" nb="1" entete="bloqué par checker-depth" ouvert="non" hint-size="104px,52px"></dc-import>
+</div>
+</div>
+
+<div title="Worktrees longs" style="width:478px;opacity:{{dimOp}};box-sizing:border-box;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}};overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid {{T.bd}}">
+<span style="display:flex;color:{{T.fg2}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.tag}};color:{{T.fg}}">WORKTREE</span>
+<span style="font-size:13px;font-weight:600;color:{{T.fg}};white-space:nowrap">Worktrees longs</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 66 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.prog}}" stroke-width="2.2" stroke-dasharray="24.88 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:{{T.fg2}}">66 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{T.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<div style="padding:14px;display:flex;align-items:flex-start">
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="fait" ouvert="non" stories="worktree-create:5|worktree-list:5" hint-size="104px,52px"></dc-import>
+<div aria-hidden="true" style="width:24px;height:52px;flex:none;position:relative"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span></div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="courant" ouvert="oui" stories="worktree-sync:1" cmd="designman features/worktree-epic/worktree-sync/worktree-sync.story.md" hint-size="320px,100px"></dc-import>
+</div>
+</div>
+
+<dc-import name="CarteEpic" theme="{{theme}}" infix="PIPELINE" titre="Pipeline documentaire des agents" pct="80" etat="encours" groupe="debloquee" rail="" cmd="epicman design-pipeline-epic" estompe="{{dim}}" hint-size="240px,116px"></dc-import>
+
+<div style="display:flex;align-items:center;opacity:{{dimOp}}">
+<dc-import name="CarteEpic" theme="{{theme}}" infix="BATCHES" titre="Rooftop, les batchs et ce qui les débloque" pct="100" etat="fini" groupe="terminee" rail="dddd" cmd="" pied="3 suivis · 2 non mergées" hint-size="240px,116px"></dc-import>
+<div aria-hidden="true" style="width:72px;height:12px;flex:none;position:relative">
+<span style="position:absolute;left:7px;right:0;top:5px;border-top:1.5px solid {{T.edge}}"></span>
+<svg width="9" height="12" viewBox="0 0 9 12" style="position:absolute;left:0;top:0"><path d="M9 1.5 1 6l8 4.5Z" fill="{{T.edge}}"></path></svg>
+</div>
+<dc-import name="CarteEpic" theme="{{theme}}" infix="RTWORKTREES" titre="Rooftop lit les worktrees" pct="0" etat="afaire" groupe="bloquee" dep="BATCHES" rail="ctt" cmd="storyman worktree-sources" hint-size="240px,139px"></dc-import>
+</div>
+
+</div>
+</section>
+
+<section aria-label="Module Toolman, une seule epic" style="width:628px;box-sizing:border-box;border-radius:14px;overflow:hidden;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}}">
+<div style="background:{{T.band}};color:{{T.bandT}}">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:{{T.bandMu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:{{T.bandMu}}">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">Toolman</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:{{T.bandMu}}">en cours</span>
+<span style="font-size:13px;font-weight:600">65 %</span>
+</div>
+<div style="height:4px;background:{{T.bandTrack}}"><div style="width:65%;height:4px;background:{{T.bandT}}"></div></div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid {{T.bd}}">
+<span style="display:flex;color:{{T.fg2}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.tag}};color:{{T.fg}}">TOOLMAN</span>
+<span style="font-size:13px;font-weight:600;color:{{T.fg}};white-space:nowrap">toolman, un menu de corvées</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 65 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.prog}}" stroke-width="2.2" stroke-dasharray="24.50 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:{{T.fg2}}">65 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{T.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:flex-start">
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" ouvert="oui" etape="{{st1}}" stories="toolman:1.5" cmd="designman update features/toolman-epic/toolman/toolman.story.md" hint-size="320px,100px"></dc-import>
+<div style="width:56px;height:52px;flex:none;position:relative;display:flex;align-items:center;justify-content:center">
+<span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span>
+<span title="Verrou : B2 attend que B1 soit soumis" style="position:relative;width:22px;height:22px;box-sizing:border-box;border-radius:50%;background:{{T.card}};border:1px solid {{T.bd2}};display:flex;align-items:center;justify-content:center;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span>
+</div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="tenu" par="B1" nb="2" ouvert="non" etape="{{st2}}" hint-size="104px,52px"></dc-import>
+<div aria-hidden="true" style="width:14px;height:52px;flex:none;position:relative"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px dashed {{T.dash}}"></span></div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B3" etat="tenu" par="B2" nb="1" ouvert="non" estompe="{{dim}}" hint-size="104px,52px"></dc-import>
+</div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="HB" etat="hors" ouvert="oui" stories="toolman-presets:1" estompe="{{dim}}" hint-size="320px,68px"></dc-import>
+</div>
+</section>
+
+<dc-import name="CarteEpic" theme="{{theme}}" module="trwg" modetat="encours" modpct="20" estompe="{{dim}}" infix="TRWG" titre="trwg, deux réponses fermées" pct="20" etat="encours" groupe="debloquee" rail="" cmd="epicman trwg-epic" hint-size="240px,153px"></dc-import>
+
+</div>
+
+<div style="position:absolute;left:16px;bottom:16px;display:flex;flex-direction:column;gap:7px;padding:9px 12px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}};font-size:11px;color:{{T.fg2}}">
+<div style="display:flex;align-items:center;gap:14px">
+<span style="display:flex;align-items:center;gap:5px"><span style="height:16px;display:flex;align-items:center;padding:0 5px;border-radius:4px;background:{{T.band}};color:{{T.bandT}};font-size:8.5px;font-weight:700;letter-spacing:0.08em">MODULE</span>bandeau</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="font-size:9.5px;font-weight:700;letter-spacing:0.05em;line-height:16px;padding:0 5px;border-radius:4px;background:{{T.tag}};color:{{T.fg}}">INFIX</span>epic</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="display:flex;align-items:center;padding:2px 3px;border-radius:4px;background:{{T.batch}}"><span style="font-size:9.5px;font-weight:700;line-height:14px;padding:0 4px;border-radius:4px;background:{{T.card}};border:1px solid {{T.bd2}};color:{{T.fg}}">B1</span></span>batch</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="font-family:{{M}};font-size:11px;color:{{T.fg}}">slug</span>story</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px">
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.4"></circle></svg>à faire</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.4"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.prog}}" stroke-width="2.4" stroke-dasharray="15 37.7" transform="rotate(-90 8 8)"></circle></svg>en cours</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.fresh}}" stroke-width="2.4"></circle><path d="M5.4 8.2 7.2 9.9l3.3-3.7" fill="none" stroke="{{T.fresh}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>tout juste fini</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.done}}" stroke-width="2.4"></circle><circle cx="8" cy="8" r="3.2" fill="{{T.done}}"></circle></svg>fait</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>blocage</span>
+</div>
+<div style="display:flex;align-items:center;gap:14px">
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:6px;border-radius:3px;background:{{T.done}}"></span>batch fait</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:6px;border-radius:3px;background:{{T.acc}}"></span>courant</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span>tenu</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="display:flex;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span>verrou</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:11px;box-sizing:border-box;border-radius:3px;border:2px solid {{T.acc}}"></span>débloquée</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="18" height="8" viewBox="0 0 18 8"><path d="M18 4H5" stroke="{{T.edge}}" stroke-width="1.5"></path><path d="M6 0.5 0 4l6 3.5Z" fill="{{T.edge}}"></path></svg>dépend de</span>
+</div>
+</div>
+
+<div style="position:absolute;right:16px;bottom:16px;display:flex;align-items:center;gap:2px;padding:3px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}}">
+<button type="button" aria-label="Dézoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:{{T.fg2}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7"></path></svg></button>
+<span style="min-width:44px;text-align:center;font-size:11.5px;color:{{T.fg2}}">100 %</span>
+<button type="button" aria-label="Zoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:{{T.fg2}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7M7 3.5v7"></path></svg></button>
+<span aria-hidden="true" style="width:1px;height:16px;margin:0 2px;background:{{T.bd}}"></span>
+<button type="button" style="height:28px;padding:0 10px;border:0;border-radius:7px;background:transparent;color:{{T.fg2}};font-family:inherit;font-size:12px;font-weight:500;cursor:pointer">Cadrer</button>
+</div>
+
+<sc-if value="{{showDown}}" hint-placeholder-val="{{false}}"><a href="#chemin" style="position:absolute;left:50%;bottom:118px;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:10px;height:40px;box-sizing:border-box;padding:0 16px 0 12px;border-radius:999px;background:{{T.inv}};color:{{T.invT}};font-size:12.5px;font-weight:500;text-decoration:none;white-space:nowrap;box-shadow:{{T.pop}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.5v9M3.5 8 7 11.5 10.5 8"></path></svg><span>Le chemin continue dans <strong style="font-weight:700">Toolman</strong></span><span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:18px;border-radius:50%;background:{{T.invT}};color:{{T.inv}};font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span>B-TOOLMAN-1</span><span style="display:flex;align-items:center;gap:6px"><span style="width:18px;height:18px;border-radius:50%;background:{{T.invT}};color:{{T.inv}};font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span>B-TOOLMAN-2</span></a></sc-if>
+<sc-if value="{{showUp}}" hint-placeholder-val="{{false}}"><a href="#cible" style="position:absolute;left:50%;top:16px;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:9px;height:36px;box-sizing:border-box;padding:0 16px 0 12px;border-radius:999px;background:{{T.inv}};color:{{T.invT}};font-size:12.5px;font-weight:500;text-decoration:none;white-space:nowrap;box-shadow:{{T.pop}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5v-9M3.5 6 7 2.5 10.5 6"></path></svg><span>Cible : <span style="font-family:{{M}};font-weight:500">plugin-split</span></span><span style="opacity:0.7">RB Compound · PLUGIN · B-PLUGIN-1</span></a></sc-if>
+</main>
+<sc-if value="{{insp}}" hint-placeholder-val="{{false}}"><dc-import name="PanneauInspecteur" theme="{{theme}}" hint-size="400px,816px"></dc-import></sc-if>
+</div>
+
+<footer style="height:36px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 8px 0 16px;border-top:1px solid {{T.bd}};background:{{T.bg}};font-size:12px;color:{{T.fg2}}">
+<span>3 documents écartés</span>
+<span style="color:{{T.mu}}">·</span>
+<span>2 signalements</span>
+<span style="flex:1"></span>
+<button type="button" style="height:26px;display:flex;align-items:center;gap:6px;padding:0 8px;border:0;border-radius:6px;background:transparent;color:{{T.fg2}};font-family:inherit;font-size:12px;font-weight:500;cursor:pointer">Ouvrir le tiroir<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"insp":{"editor":"boolean","default":false},"vue":{"editor":"enum","options":["cible","etapes"],"default":"cible"},"$preview":{"width":1440,"height":1880}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',plan:'#0f0f0f',dot:'#262626',frame:'#141414',band:'#333333',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.18)',card:'#1c1c1c',batch:'#262626',bdB:'#383838',cmd:'#2f2f2f',tag:'#2f2f2f',sunk:'#171717',sel:'#3a3a3a',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',edge:'#6b6b6b',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',todo:'#8f8f8f',prog:'#f59e0b',progT:'#fbbf24',fresh:'#22c55e',freshT:'#4ade80',done:'#3b82f6',doneT:'#60a5fa',acc:'#e879f9',accT:'#f0abfc',blk:'#ef4444',blkT:'#f87171',blkS:'#2a1515',blkB:'#5c2424',pipOn:'#e5e5e5',pipOff:'#555555',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)',pop:'0 10px 30px rgba(0,0,0,0.6)'};
+    }
+    return {bg:'#ffffff',plan:'#f3f3f3',dot:'#d6d6d6',frame:'#fafafa',band:'#262626',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.2)',card:'#ffffff',batch:'#f4f4f4',bdB:'#e5e5e5',cmd:'#ececec',tag:'#ededed',sunk:'#f5f5f5',sel:'#e2e2e2',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',edge:'#9a9a9a',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',todo:'#8f8f8f',prog:'#d97706',progT:'#b45309',fresh:'#16a34a',freshT:'#15803d',done:'#2563eb',doneT:'#1d4ed8',acc:'#d946ef',accT:'#a21caf',blk:'#dc2626',blkT:'#b91c1c',blkS:'#fef2f2',blkB:'#fecaca',pipOn:'#2b2b2b',pipOff:'#c2c2c2',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)',pop:'0 10px 30px rgba(0,0,0,0.12)'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    var insp = this.props.insp === true || this.props.insp === 'true';
+    return {
+      T: this.tok(dark),
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      theme: dark ? 'sombre' : 'clair',
+      insp: insp,
+      sel: insp ? 'plugin-split' : '',
+      H: insp ? 900 : 1880,
+      focus: insp ? 'oui' : '',
+      dim: insp ? 'oui' : '',
+      dimOp: insp ? 0.35 : 1,
+      st1: insp ? '1' : '',
+      st2: insp ? '2' : '',
+      top: (insp && this.props.vue === 'etapes') ? -900 : 64,
+      showDown: insp && this.props.vue !== 'etapes',
+      showUp: insp && this.props.vue === 'etapes'
+    };
+  }
+}
+</script>
+</body>
+</html>

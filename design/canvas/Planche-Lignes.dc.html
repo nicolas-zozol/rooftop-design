@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Planche — lignes de story et barre de commande</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1160px;height:900px;box-sizing:border-box;padding:40px;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:40px;align-items:start;background:{{T.bg}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Ligne de story · 26 px : cinq pips, le slug, une marque</h2>
+<div style="display:flex;align-items:center;gap:16px;font-size:11px;color:{{T.mu}};padding-left:12px">
+<span style="display:flex;gap:3px;width:47px;justify-content:space-between"><span>s</span><span>d</span><span>c</span><span>s</span><span>t</span></span>
+<span>story · design · code · soumise · terminée</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{spec}}" as="s" hint-placeholder-count="11"><div style="display:grid;grid-template-columns:320px minmax(0, 1fr);align-items:center;gap:16px"><div style="box-sizing:border-box;padding:0 4px;border-radius:8px;background:{{T.card}};border:1px solid {{T.bd}}"><div style="display:flex;align-items:center;gap:10px;height:26px;padding:0 6px;border-radius:6px;background:{{s.bg}};opacity:{{s.op}}"><sc-if value="{{s.aside}}" hint-placeholder-val="{{false}}"><span style="width:47px;flex:none;font-size:11px;color:{{T.mu}}">écartée</span></sc-if><sc-if value="{{s.hasPips}}" hint-placeholder-val="{{true}}"><span style="display:flex;gap:3px;width:47px;flex:none"><sc-for list="{{s.pips}}" as="p" hint-placeholder-count="5"><span style="width:7px;height:7px;flex:none;box-sizing:border-box;border-radius:50%;background:{{p.bg}};border:1.25px solid {{p.ring}}"></span></sc-for></span></sc-if><span title="{{s.tip}}" style="flex:1;min-width:0;font-family:{{M}};font-size:12px;color:{{s.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{s.slug}}</span><sc-if value="{{s.unmerged}}" hint-placeholder-val="{{false}}"><span style="flex:none;font-size:10.5px;line-height:16px;padding:0 5px;border-radius:4px;border:1px dashed {{T.bd2}};color:{{T.mu}}">non mergée</span></sc-if><sc-if value="{{s.blocked}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="1 blocage" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg></sc-if><sc-if value="{{s.hasCross}}" hint-placeholder-val="{{false}}"><span style="flex:none;display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:{{T.blkT}};white-space:nowrap"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>{{s.crossLabel}}</span></sc-if></div></div><span style="font-size:11.5px;color:{{T.mu}}">{{s.cap}}</span></div></sc-for>
+</div>
+
+<h3 style="margin:18px 0 0;font-size:12px;font-weight:600;color:{{T.fg2}}">Au survol : l'étape en toutes lettres, sans ouvrir l'inspecteur</h3>
+<div style="position:relative;width:320px;height:150px">
+<div style="box-sizing:border-box;padding:0 4px;border-radius:8px;background:{{T.card}};border:1px solid {{T.bd}}">
+<div style="display:flex;align-items:center;gap:10px;height:26px;padding:0 6px;border-radius:6px;background:{{T.sunk}}">
+<span style="display:flex;gap:3px;width:47px;flex:none"><span style="width:7px;height:7px;box-sizing:border-box;border-radius:50%;background:{{T.pipOn}};border:1.25px solid {{T.pipOn}}"></span><span style="width:7px;height:7px;box-sizing:border-box;border-radius:50%;background:linear-gradient(90deg, {{T.pipOn}} 50%, transparent 50%);border:1.25px solid {{T.pipOn}}"></span><span style="width:7px;height:7px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:7px;height:7px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:7px;height:7px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span></span>
+<span style="flex:1;font-family:{{M}};font-size:12px;color:{{T.fg}}">plugin-split</span>
+<svg role="img" aria-label="1 blocage" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>
+</div>
+</div>
+<div role="tooltip" style="position:absolute;left:28px;top:36px;width:270px;box-sizing:border-box;padding:9px 11px;border-radius:9px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.pop}};display:flex;flex-direction:column;gap:6px">
+<span style="font-size:12.5px;font-weight:500;color:{{T.fg}}">Design en brouillon</span>
+<span style="display:flex;align-items:center;gap:6px;font-size:12px;color:{{T.blkT}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>à trancher dans la vue Questions</span>
+<span style="font-size:11px;color:{{T.mu}}">Clic : ouvrir dans l'inspecteur</span>
+</div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Barre de commande</h2>
+<span style="font-size:12px;color:{{T.fg2}}">Dans un nœud : bande de 32 px, une seule par epic, bouton copier de 26 px.</span>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">repos</span>
+<div style="width:320px;display:flex;align-items:center;gap:4px;height:32px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<code style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:{{T.fg2}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">storyman compound-inventory</code>
+<button type="button" aria-label="Copier la commande" style="width:26px;height:26px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{T.mu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">survol : la bande s'assombrit, le bouton s'affirme</span>
+<div style="position:relative;width:320px;margin-top:30px">
+<span role="tooltip" style="position:absolute;right:-6px;top:-30px;padding:3px 7px;border-radius:5px;background:{{T.inv}};color:{{T.invT}};font-size:11px;white-space:nowrap">Copier</span>
+<div style="display:flex;align-items:center;gap:4px;height:32px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px solid {{T.bd2}};background:{{T.sel}}">
+<code style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:{{T.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">storyman compound-inventory</code>
+<button type="button" aria-label="Copier la commande" style="width:26px;height:26px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid {{T.bd2}};border-radius:6px;background:{{T.card}};color:{{T.fg}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">copié : 1,5 s, puis retour au repos</span>
+<div style="width:320px;display:flex;align-items:center;gap:4px;height:32px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<code style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:{{T.fg2}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">storyman compound-inventory</code>
+<span role="status" style="height:26px;flex:none;display:flex;align-items:center;gap:4px;padding:0 8px;border-radius:6px;background:{{T.card}};border:1px solid {{T.bd}};font-size:11.5px;font-weight:500;color:{{T.fg}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 5 8.7l4.5-5"></path></svg>Copié</span>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">tronquée : coupée à l'affichage, copiée entière</span>
+<div style="width:320px;display:flex;align-items:center;gap:4px;height:32px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<code style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:{{T.fg2}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">designman update features/toolman-epic/toolman/toolman.story.md</code>
+<button type="button" aria-label="Copier la commande" style="width:26px;height:26px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{T.mu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">tronquée, au survol : la commande entière dans une bulle</span>
+<div style="position:relative;width:320px;height:96px">
+<div style="display:flex;align-items:center;gap:4px;height:32px;box-sizing:border-box;padding:0 3px 0 10px;border-radius:8px;border:1px solid {{T.bd2}};background:{{T.sel}}">
+<code style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:{{T.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">designman update features/toolman-epic/toolman/toolman.story.md</code>
+<button type="button" aria-label="Copier la commande" style="width:26px;height:26px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid {{T.bd2}};border-radius:6px;background:{{T.card}};color:{{T.fg}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div>
+<span role="tooltip" style="position:absolute;left:0;top:38px;width:380px;box-sizing:border-box;padding:8px 10px;border-radius:7px;background:{{T.inv}};color:{{T.invT}};font-family:{{M}};font-size:11.5px;line-height:17px;overflow-wrap:anywhere">designman update features/toolman-epic/toolman/toolman.story.md</span>
+</div>
+</div>
+
+<span style="margin-top:8px;font-size:12px;color:{{T.fg2}}">Dans l'inspecteur : boîte, commande entière sur plusieurs lignes, bouton libellé.</span>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">repos</span>
+<div style="width:364px;display:flex;align-items:flex-start;gap:8px;padding:7px 7px 7px 10px;box-sizing:border-box;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<code style="flex:1;min-width:0;padding-top:3px;font-family:{{M}};font-size:12px;line-height:18px;color:{{T.fg}};overflow-wrap:anywhere">storyman update compound-plugins-epic B1</code>
+<button type="button" style="flex:none;height:26px;display:flex;align-items:center;gap:5px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg>Copier</button>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">copié</span>
+<div style="width:364px;display:flex;align-items:flex-start;gap:8px;padding:7px 7px 7px 10px;box-sizing:border-box;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<code style="flex:1;min-width:0;padding-top:3px;font-family:{{M}};font-size:12px;line-height:18px;color:{{T.fg}};overflow-wrap:anywhere">storyman update compound-plugins-epic B1</code>
+<span role="status" style="flex:none;height:26px;box-sizing:border-box;display:flex;align-items:center;gap:5px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-size:12px;font-weight:500"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 5 8.7l4.5-5"></path></svg>Copié</span>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px">
+<span style="font-size:11.5px;color:{{T.mu}}">longue : elle passe à la ligne, rien d'autre ne bouge</span>
+<div style="width:364px;display:flex;align-items:flex-start;gap:8px;padding:7px 7px 7px 10px;box-sizing:border-box;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<code style="flex:1;min-width:0;padding-top:3px;font-family:{{M}};font-size:12px;line-height:18px;color:{{T.fg}};overflow-wrap:anywhere">designman update features/compound-plugins-epic/plugin-split/plugin-split.story.md</code>
+<button type="button" style="flex:none;height:26px;display:flex;align-items:center;gap:5px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg>Copier</button>
+</div>
+</div>
+
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1160,"height":900}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',plan:'#0f0f0f',dot:'#262626',frame:'#141414',card:'#1c1c1c',sunk:'#2f2f2f',sel:'#3a3a3a',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',edge:'#6b6b6b',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',todo:'#8f8f8f',prog:'#f59e0b',progT:'#fbbf24',fresh:'#22c55e',freshT:'#4ade80',done:'#3b82f6',doneT:'#60a5fa',acc:'#e879f9',accT:'#f0abfc',accS:'#2b1530',blk:'#ef4444',blkT:'#f87171',blkS:'#2a1515',blkB:'#5c2424',pipOn:'#e5e5e5',pipOff:'#4d4d4d',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)',pop:'0 10px 30px rgba(0,0,0,0.6)'};
+    }
+    return {bg:'#ffffff',plan:'#f3f3f3',dot:'#d6d6d6',frame:'#fafafa',card:'#ffffff',sunk:'#ececec',sel:'#e2e2e2',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',edge:'#9a9a9a',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',todo:'#8f8f8f',prog:'#d97706',progT:'#b45309',fresh:'#16a34a',freshT:'#15803d',done:'#2563eb',doneT:'#1d4ed8',acc:'#d946ef',accT:'#a21caf',accS:'#fdf4ff',blk:'#dc2626',blkT:'#b91c1c',blkS:'#fef2f2',blkB:'#fecaca',pipOn:'#2b2b2b',pipOff:'#c7c7c7',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)',pop:'0 10px 30px rgba(0,0,0,0.12)'};
+  }
+  row(slug, n, o, T) {
+    o = o || {};
+    var labels = {'-1':'écartée','0':'à écrire','1':'sans design','1.5':'design en brouillon','2':'design approuvé, à coder','3':'code fini, à valider puis soumettre','4':'soumise','5':'terminée'};
+    var pips = [];
+    for (var i = 1; i <= 5; i++) {
+      var full = n >= i;
+      var half = !full && n >= i - 0.5;
+      pips.push({
+        bg: full ? T.pipOn : (half ? 'linear-gradient(90deg, ' + T.pipOn + ' 50%, transparent 50%)' : 'transparent'),
+        ring: (full || half) ? T.pipOn : T.pipOff
+      });
+    }
+    var tip = labels[String(n)] || '';
+    if (o.block) tip = tip + ' · 1 blocage';
+    if (o.unmerged) tip = tip + ' · pas encore mergée sur main';
+    return {slug: slug, pips: pips, aside: n < 0, hasPips: n >= 0, op: n < 0 ? 0.5 : 1, bg: o.sel ? T.sel : 'transparent', fg: o.sel ? T.fg : T.fg2, blocked: !!o.block, unmerged: !!o.unmerged, tip: tip, cap: o.cap || '', hasCross: !!o.cross, crossLabel: (o.cross || 0) + ' à débloquer'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    var T = this.tok(dark);
+    var r = this;
+    return {
+      T: T,
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      spec: [
+        r.row('compound-inventory', 0, {cap: 'à écrire · aucun pip plein'}, T),
+        r.row('worktree-sync', 1, {cap: 'sans design · 1'}, T),
+        r.row('toolman', 1.5, {cap: 'design en brouillon · 1 et demi'}, T),
+        r.row('shared-skills', 2, {cap: 'design approuvé, à coder · 2'}, T),
+        r.row('marketplace-manifest', 3, {cap: 'code fini, à valider puis soumettre · 3'}, T),
+        r.row('batch-lock', 4, {cap: 'soumise · 4'}, T),
+        r.row('batch-parser', 5, {cap: 'terminée · 5'}, T),
+        r.row('migration-notes', -1, {cap: 'écartée · ligne éteinte, pas de pips'}, T),
+        r.row('plugin-split', 1.5, {block: true, cap: 'avec blocage · ⊖ rouge en bout de ligne'}, T),
+        r.row('plugin-split', 1.5, {cross: 2, cap: "dépend d'une autre epic · le compte, jusqu'à 3 batchs"}, T),
+        r.row('blueprint-rail', 4, {unmerged: true, cap: 'soumise, pas encore mergée sur main'}, T),
+        r.row('plugin-split', 1.5, {block: true, sel: true, cap: 'sélectionnée · inspecteur ouvert'}, T)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

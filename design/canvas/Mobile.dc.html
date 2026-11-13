@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop — mobile, ce que la conception prévoit</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1460px;height:980px;box-sizing:border-box;padding:40px;display:flex;flex-direction:column;gap:20px;background:{{T.frame}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.4">
+
+<div style="display:flex;align-items:baseline;gap:14px">
+<h2 style="margin:0;font-size:16px;font-weight:600">Mobile, plus tard : deux écrans pour fixer les contraintes dès maintenant</h2>
+<span style="font-size:12.5px;color:{{T.mu}}">Rien à construire aujourd'hui. Ces écrans disent ce que le desktop ne doit pas empêcher.</span>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:48px">
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;font-weight:600;color:{{T.mu}}">A · Le plan devient une liste</span>
+<div style="width:390px;height:844px;box-sizing:border-box;border-radius:32px;overflow:hidden;border:1px solid {{T.bd2}};background:{{T.bg}};box-shadow:{{T.pop}};display:flex;flex-direction:column">
+<div style="height:60px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:10px;padding:0 12px 0 16px;border-bottom:1px solid {{T.bd}}">
+<nav aria-label="Vues" style="display:flex;gap:2px;padding:3px;border-radius:10px;background:{{T.sunk}}"><a href="#questions" style="display:flex;align-items:center;height:36px;padding:0 14px;border-radius:8px;color:{{T.mu}};font-size:14px;font-weight:500;text-decoration:none">Questions</a><a href="#blueprint" aria-current="page" style="display:flex;align-items:center;height:36px;padding:0 14px;border-radius:8px;background:{{T.card}};color:{{T.fg}};font-size:14px;font-weight:500;text-decoration:none;box-shadow:{{T.sh}}">Blueprint</a></nav>
+<span style="flex:1"></span>
+<button type="button" aria-label="Git : 37 fichiers à commiter, 20 commits à pousser" style="height:44px;display:flex;align-items:center;gap:6px;padding:0 12px;border-radius:10px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg2}};font-family:inherit;font-size:13px;font-weight:500">37 · 20<svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5v-9M3.5 6 7 2.5 10.5 6"></path></svg></button>
+</div>
+<div style="flex:1;min-height:0;overflow:hidden;padding:16px;display:flex;flex-direction:column;gap:14px;background-color:{{T.plan}}">
+
+<div style="border-radius:12px;overflow:hidden;background:{{T.band}};color:{{T.bandT}}">
+<div style="display:flex;align-items:center;gap:8px;height:44px;padding:0 14px">
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:{{T.bandMu}}">MODULE</span>
+<span style="font-size:16px;font-weight:700">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:14px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:{{T.bandTrack}}"><div style="width:60%;height:4px;background:{{T.bandT}}"></div></div>
+</div>
+
+<div style="border-radius:12px;overflow:hidden;background:{{T.card}};border:1px solid {{T.acc}};box-shadow:0 0 0 1px {{T.acc}}">
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:center;gap:7px">
+<span style="display:flex;color:{{T.fg2}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:11px;font-weight:700;letter-spacing:0.05em;line-height:20px;padding:0 7px;border-radius:5px;background:{{T.tag}}">PLUGIN</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.prog}}" stroke-width="2.2" stroke-dasharray="13.19 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:13px;font-weight:500;color:{{T.fg2}}">35 %</span>
+</div>
+<span style="font-size:15px;font-weight:600">Compound en deux plugins Claude Code</span>
+<div style="display:flex;align-items:center;gap:8px"><div style="flex:1;display:flex;gap:3px"><span style="flex:1;height:6px;border-radius:3px;background:{{T.acc}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span></div><span style="font-size:11.5px;font-weight:600;color:{{T.mu}}">B1/5</span></div>
+</div>
+<div style="margin:0 10px 10px;border-radius:10px;overflow:hidden;background:{{T.batch}};border:1px solid {{T.bdB}}">
+<div style="display:flex;align-items:center;gap:7px;height:40px;padding:0 12px">
+<span style="font-size:11px;font-weight:700;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}}">B1</span>
+<span style="font-size:12px;font-weight:500;color:{{T.accT}}">courant</span>
+<span style="flex:1"></span>
+<span style="display:flex;align-items:center;gap:4px;font-size:12px;font-weight:500;color:{{T.blkT}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>1 blocage</span>
+</div>
+<div style="display:flex;flex-direction:column;padding:0 6px 6px">
+<div style="display:flex;align-items:center;gap:10px;height:44px;padding:0 6px"><span style="display:flex;gap:3px"><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span></span><span style="flex:1;font-family:{{M}};font-size:13px;color:{{T.fg2}}">compound-inventory</span></div>
+<div style="display:flex;align-items:center;gap:10px;height:44px;padding:0 6px;border-radius:8px;background:{{T.sel}}"><span style="display:flex;gap:3px"><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;background:{{T.pipOn}};border:1.25px solid {{T.pipOn}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;background:linear-gradient(90deg, {{T.pipOn}} 50%, transparent 50%);border:1.25px solid {{T.pipOn}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span></span><span style="flex:1;font-family:{{M}};font-size:13px;color:{{T.fg}}">plugin-split</span><span style="display:flex;align-items:center;gap:4px;font-size:12px;font-weight:500;color:{{T.blkT}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>2 à débloquer</span></div>
+<div style="display:flex;align-items:center;gap:10px;height:44px;padding:0 6px"><span style="display:flex;gap:3px"><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;background:{{T.pipOn}};border:1.25px solid {{T.pipOn}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;background:{{T.pipOn}};border:1.25px solid {{T.pipOn}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span><span style="width:8px;height:8px;box-sizing:border-box;border-radius:50%;border:1.25px solid {{T.pipOff}}"></span></span><span style="flex:1;font-family:{{M}};font-size:13px;color:{{T.fg2}}">shared-skills</span></div>
+</div>
+<div style="display:flex;align-items:center;gap:6px;height:48px;box-sizing:border-box;padding:0 4px 0 12px;border-top:1px solid {{T.bdB}};background:{{T.cmd}}">
+<code style="flex:1;min-width:0;font-family:{{M}};font-size:12px;color:{{T.fg2}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">storyman compound-inventory</code>
+<button type="button" aria-label="Copier la commande" style="width:44px;height:44px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:transparent;color:{{T.fg2}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div>
+</div>
+</div>
+
+<div style="border-radius:12px;overflow:hidden;background:{{T.card}};border:1px solid {{T.acc}};box-shadow:0 0 0 1px {{T.acc}}">
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;align-items:center;gap:7px">
+<span style="display:flex;color:{{T.fg2}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:11px;font-weight:700;letter-spacing:0.05em;line-height:20px;padding:0 7px;border-radius:5px;background:{{T.tag}}">QUALITYGATES</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.2"></circle></svg>
+<span style="font-size:13px;font-weight:500;color:{{T.fg2}}">0 %</span>
+</div>
+<span style="font-size:15px;font-weight:600">Quality gates</span>
+<div style="display:flex;align-items:center;gap:8px"><div style="flex:1;display:flex;gap:3px"><span style="flex:1;height:6px;border-radius:3px;background:{{T.acc}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span><span style="flex:1;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span></div><span style="font-size:11.5px;font-weight:600;color:{{T.mu}}">B1/3</span></div>
+</div>
+<div style="display:flex;align-items:center;gap:6px;height:48px;box-sizing:border-box;padding:0 4px 0 12px;border-top:1px solid {{T.bd}};background:{{T.cmd}}">
+<code style="flex:1;min-width:0;font-family:{{M}};font-size:12px;color:{{T.fg2}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">storyman checker-depth</code>
+<button type="button" aria-label="Copier la commande" style="width:44px;height:44px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:transparent;color:{{T.fg2}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;font-weight:600;color:{{T.mu}}">B · Le chemin de déblocage, en feuille du bas</span>
+<div style="position:relative;width:390px;height:844px;box-sizing:border-box;border-radius:32px;overflow:hidden;border:1px solid {{T.bd2}};background:{{T.plan}};box-shadow:{{T.pop}}">
+<div aria-hidden="true" style="position:absolute;left:16px;right:16px;top:76px;height:48px;border-radius:12px;background:{{T.band}}"></div>
+<div aria-hidden="true" style="position:absolute;left:16px;right:16px;top:138px;height:150px;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}}"></div>
+<div aria-hidden="true" style="position:absolute;inset:0;background:rgba(0,0,0,0.38)"></div>
+<div role="dialog" aria-label="Pour débloquer plugin-split" style="position:absolute;left:0;right:0;bottom:0;height:700px;box-sizing:border-box;border-radius:20px 20px 0 0;background:{{T.bg}};display:flex;flex-direction:column;padding:8px 16px 20px;gap:14px">
+<span aria-hidden="true" style="align-self:center;width:40px;height:5px;border-radius:3px;background:{{T.bd2}}"></span>
+<div style="display:flex;align-items:flex-start;gap:8px">
+<div style="flex:1;display:flex;flex-direction:column;gap:4px">
+<span style="font-size:12px;color:{{T.mu}}">RB Compound · PLUGIN · B-PLUGIN-1</span>
+<span style="font-family:{{M}};font-size:18px;font-weight:600">plugin-split</span>
+</div>
+<button type="button" aria-label="Fermer" style="width:44px;height:44px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:{{T.sunk}};color:{{T.fg2}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7"></path></svg></button>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>Pour débloquer<span style="font-weight:500;color:{{T.blkT}}">2 batchs à soumettre</span></span>
+<span style="font-size:13px;line-height:1.5;color:{{T.fg2}}">plugin-split dépend de B-TOOLMAN-2, tenu par le verrou de B-TOOLMAN-1.</span>
+</div>
+<div style="display:flex;gap:12px">
+<span style="width:26px;height:26px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:12px;background:{{T.batch}};border:1px solid {{T.acc}};box-shadow:0 0 0 1px {{T.acc}}">
+<div style="display:flex;align-items:center;gap:6px"><span style="font-size:13px;font-weight:600;color:{{T.fg2}}">Toolman</span><span style="font-size:11px;font-weight:700;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}}">B-TOOLMAN-1</span><span style="flex:1"></span><span style="font-size:12px;font-weight:500;color:{{T.accT}}">courant</span></div>
+<span style="font-size:14px"><strong style="font-weight:600">À soumettre</strong> · 1 story : <span style="font-family:{{M}};font-size:13px">toolman</span></span>
+<code style="font-family:{{M}};font-size:12.5px;line-height:18px;color:{{T.fg2}};overflow-wrap:anywhere">designman update features/toolman-epic/toolman/toolman.story.md</code>
+<button type="button" style="height:48px;display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;background:{{T.inv}};color:{{T.invT}};font-family:inherit;font-size:15px;font-weight:600"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg>Copier la commande</button>
+<a href="#toolman" style="align-self:flex-start;display:flex;align-items:center;min-height:44px;font-size:14px;font-weight:500;color:{{T.fg}};text-decoration:underline;text-underline-offset:3px">Aller à Toolman</a>
+</div>
+</div>
+<div style="display:flex;gap:12px">
+<span style="width:26px;height:26px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:12px;border:1px dashed {{T.dash}}">
+<div style="display:flex;align-items:center;gap:6px"><span style="font-size:13px;font-weight:600;color:{{T.fg2}}">Toolman</span><span style="font-size:11px;font-weight:700;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}}">B-TOOLMAN-2</span></div>
+<span style="font-size:14px"><strong style="font-weight:600">À soumettre</strong> · 2 stories</span>
+<span style="font-size:12.5px;color:{{T.mu}}">Sa commande apparaît après l'étape 1.</span>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<span style="width:26px;height:26px;flex:none;box-sizing:border-box;border-radius:50%;border:1.5px solid {{T.fresh}};color:{{T.fresh}};display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.3 5 8.7l4.5-5"></path></svg></span>
+<span style="font-size:14px;font-weight:600"><span style="font-family:{{M}};font-weight:500">plugin-split</span> débloquée</span>
+</div>
+</div>
+</div>
+</div>
+
+<div style="width:470px;display:flex;flex-direction:column;gap:18px;padding-top:28px">
+<h3 style="margin:0;font-size:14px;font-weight:600">Ce que le desktop doit déjà respecter</h3>
+<div style="display:flex;gap:12px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">1</span><p style="margin:0;font-size:13px;line-height:1.55;color:{{T.fg2}}"><strong style="color:{{T.fg}}">Le plan devient une liste.</strong> Même hiérarchie : bandeau de module, carte d'epic pleine largeur, batch courant déplié dessous, les autres batchs dans le rail. Pas de graphe sur mobile : « dépend de INFIX » suffit entre epics.</p></div>
+<div style="display:flex;gap:12px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span><p style="margin:0;font-size:13px;line-height:1.55;color:{{T.fg2}}"><strong style="color:{{T.fg}}">Le chemin est déjà une liste.</strong> Le composant de l'inspecteur passe tel quel dans une feuille du bas. C'est pour cela que le chemin n'est pas dessiné en flèches : une liste ordonnée se lit partout.</p></div>
+<div style="display:flex;gap:12px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">3</span><p style="margin:0;font-size:13px;line-height:1.55;color:{{T.fg2}}"><strong style="color:{{T.fg}}">Rien n'existe qu'au survol.</strong> Étape d'une story en toutes lettres, commande entière : chaque info du survol a aussi sa place au toucher, dans l'inspecteur.</p></div>
+<div style="display:flex;gap:12px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">4</span><p style="margin:0;font-size:13px;line-height:1.55;color:{{T.fg2}}"><strong style="color:{{T.fg}}">Cibles de 44 px.</strong> Ligne de story de 44 px, bande de commande de 48 px, et dans la feuille du bas un vrai bouton « Copier la commande » pleine largeur.</p></div>
+<div style="display:flex;gap:12px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">5</span><p style="margin:0;font-size:13px;line-height:1.55;color:{{T.fg2}}"><strong style="color:{{T.fg}}">Composants à largeur fluide.</strong> La carte d'epic fait 240 px sur desktop et toute la largeur sur mobile ; les tailles de la planche sont des minimums, pas des valeurs figées.</p></div>
+<div style="display:flex;gap:12px"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:{{T.inv}};color:{{T.invT}};font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">6</span><p style="margin:0;font-size:13px;line-height:1.55;color:{{T.fg2}}"><strong style="color:{{T.fg}}">Le calcul reste au backend.</strong> Le téléphone reçoit le chemin déjà ordonné ; il n'a ni graphe à charger ni parcours à faire.</p></div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1460,"height":980}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',plan:'#0f0f0f',frame:'#141414',band:'#333333',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.18)',card:'#1c1c1c',batch:'#262626',bdB:'#383838',cmd:'#2f2f2f',tag:'#2f2f2f',sunk:'#171717',sel:'#3a3a3a',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',prog:'#f59e0b',fresh:'#22c55e',acc:'#e879f9',accT:'#f0abfc',blk:'#ef4444',blkT:'#f87171',pipOn:'#e5e5e5',pipOff:'#555555',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)',pop:'0 10px 30px rgba(0,0,0,0.6)'};
+    }
+    return {bg:'#ffffff',plan:'#f3f3f3',frame:'#fafafa',band:'#262626',bandT:'#fafafa',bandMu:'#b5b5b5',bandTrack:'rgba(255,255,255,0.2)',card:'#ffffff',batch:'#f4f4f4',bdB:'#e5e5e5',cmd:'#ececec',tag:'#ededed',sunk:'#f5f5f5',sel:'#e2e2e2',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',prog:'#d97706',fresh:'#16a34a',acc:'#d946ef',accT:'#a21caf',blk:'#dc2626',blkT:'#b91c1c',pipOn:'#2b2b2b',pipOff:'#c2c2c2',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)',pop:'0 10px 30px rgba(0,0,0,0.12)'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    return {
+      T: this.tok(dark),
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
+    };
+  }
+}
+</script>
+</body>
+</html>

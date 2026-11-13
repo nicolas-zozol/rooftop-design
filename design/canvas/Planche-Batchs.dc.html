@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Planche — batchs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1160px;height:980px;box-sizing:border-box;padding:36px 40px;display:flex;flex-direction:column;gap:32px;background:{{T.bg}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Batch replié · pastille sur le rail : puce, état, mini-barre des stories</h2>
+<div style="align-self:flex-start;display:flex;align-items:flex-start;padding:14px;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}}">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:16px;font-size:11.5px;color:{{T.mu}}">fait</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="fait" ouvert="non" stories="worktree-create:5|worktree-list:5" hint-size="104px,52px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:16px;font-size:11.5px;color:{{T.mu}}">trait</span>
+<div aria-hidden="true" style="width:40px;height:52px;position:relative"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:16px;font-size:11.5px;color:{{T.mu}}">courant, replié</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="courant" ouvert="non" stories="compound-inventory:0|plugin-split:1.5:b|shared-skills:2|marketplace-manifest:3" hint-size="150px,52px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:16px;font-size:11.5px;color:{{T.mu}};text-align:center">verrou</span>
+<div style="width:56px;height:52px;position:relative;display:flex;align-items:center;justify-content:center">
+<span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span>
+<span style="position:relative;width:22px;height:22px;box-sizing:border-box;border-radius:50%;background:{{T.card}};border:1px solid {{T.bd2}};display:flex;align-items:center;justify-content:center;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span>
+</div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:16px;font-size:11.5px;color:{{T.mu}}">tenu</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B3" etat="tenu" par="B2" nb="2" ouvert="non" hint-size="104px,52px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:16px;font-size:11.5px;color:{{T.mu}}">pointillé</span>
+<div aria-hidden="true" style="width:40px;height:52px;position:relative"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px dashed {{T.dash}}"></span></div></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="height:16px;font-size:11.5px;color:{{T.mu}}">tenu</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B4" etat="tenu" par="B3" nb="1" ouvert="non" hint-size="104px,52px"></dc-import></div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Batch ouvert · surface grise de 320 px, un clic le replie</h2>
+<div style="display:flex;align-items:flex-start;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">fait, ouvert : pas de commande</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="fait" ouvert="oui" stories="worktree-create:5|worktree-list:5" hint-size="320px,94px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">courant, ouvert : seul accent de l'epic, sa commande</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" ouvert="oui" stories="checker-depth:0" cmd="storyman checker-depth" hint-size="320px,100px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">tenu, ouvert : son en-tête libre, pas de commande</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="tenu" par="B1" ouvert="oui" entete="bloqué par checker-depth" stories="gate-config:0|gate-report:0" hint-size="320px,116px"></dc-import></div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Cas particuliers</h2>
+<div style="display:flex;align-items:flex-start;gap:40px">
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">courant à 8 stories : tout reste visible, la carte s'allonge</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" ouvert="oui" stories="compound-inventory:0|plugin-split:1.5:b|shared-skills:2|marketplace-manifest:3|hook-routing:1|agent-registry:0|settings-merge:2|release-notes:0" cmd="storyman compound-inventory" hint-size="320px,282px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">hors batch : jamais tenu par le verrou</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="HB" etat="hors" ouvert="oui" stories="compound-docs:1|migration-notes:-1" notes="1" hint-size="320px,94px"></dc-import></div>
+<div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:11.5px;color:{{T.mu}}">courant d'une epic bloquée : pas d'anneau</span>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" actif="non" ouvert="oui" stories="worktree-sources:0" cmd="storyman worktree-sources" hint-size="320px,100px"></dc-import></div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Chemin de déblocage, sur le plan · étapes numérotées, le reste estompé</h2>
+<div style="display:flex;align-items:flex-start;gap:32px">
+<div style="display:flex;align-items:flex-start;padding:20px 14px 14px 20px;border-radius:12px;background:{{T.card}};border:1px solid {{T.bd}}">
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B1" etat="courant" ouvert="non" etape="1" stories="toolman:1.5" hint-size="150px,52px"></dc-import>
+<div style="width:56px;height:52px;position:relative;display:flex;align-items:center;justify-content:center">
+<span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px solid {{T.bd2}}"></span>
+<span style="position:relative;width:22px;height:22px;box-sizing:border-box;border-radius:50%;background:{{T.card}};border:1px solid {{T.bd2}};display:flex;align-items:center;justify-content:center;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span>
+</div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B2" etat="tenu" par="B1" nb="2" ouvert="non" etape="2" hint-size="104px,52px"></dc-import>
+<div aria-hidden="true" style="width:24px;height:52px;position:relative"><span style="position:absolute;left:0;right:0;top:25px;border-top:1.5px dashed {{T.dash}}"></span></div>
+<dc-import name="CarteBatch" theme="{{theme}}" bid="B3" etat="tenu" par="B2" nb="1" ouvert="non" estompe="oui" hint-size="104px,52px"></dc-import>
+</div>
+<p style="margin:0;max-width:520px;padding-top:6px;font-size:12.5px;line-height:1.55;color:{{T.fg2}}">Étape 1 : le seul batch où agir maintenant, il garde son anneau fuchsia et sa commande est dans l'inspecteur. Étape 2 : à soumettre ensuite. Ce qui n'est pas sur le chemin passe à 35 % d'opacité, le temps de la sélection. Aucune flèche n'est dessinée entre modules.</p>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1160,"height":980}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',card:'#1c1c1c',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3'};
+    }
+    return {bg:'#ffffff',card:'#ffffff',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',fg:'#0a0a0a',fg2:'#404040',mu:'#666666'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    return {
+      T: this.tok(dark),
+      theme: dark ? 'sombre' : 'clair'
+    };
+  }
+}
+</script>
+</body>
+</html>

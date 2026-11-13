@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Planche — inspecteur, blocages, tiroir, légende</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1360px;height:1300px;box-sizing:border-box;padding:40px;display:flex;flex-direction:column;gap:40px;background:{{T.plan}};color:{{T.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.4">
+
+<div style="display:flex;align-items:flex-start;gap:40px">
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;color:{{T.mu}}">inspecteur sur une epic terminée : suivis, non mergées, signalement</span>
+<aside aria-label="Inspecteur d'epic" style="width:400px;box-sizing:border-box;display:flex;flex-direction:column;border-radius:12px;background:{{T.bg}};border:1px solid {{T.bd}};box-shadow:{{T.sh}};overflow:hidden">
+<div style="display:flex;align-items:flex-start;gap:8px;padding:14px 10px 14px 18px;border-bottom:1px solid {{T.bd}}">
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+<span style="display:flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:{{T.fg2}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg>RB Compound</span>
+<div style="display:flex;align-items:center;gap:6px;color:{{T.fg2}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg><span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:{{T.tag}};color:{{T.fg}}">BATCHES</span></div>
+<h2 style="margin:0;font-size:16px;font-weight:600;line-height:1.3;color:{{T.fg}}">Rooftop, les batchs et ce qui les débloque</h2>
+<span style="font-family:{{M}};font-size:11.5px;color:{{T.mu}}">rooftop-batches-epic</span>
+</div>
+<button type="button" aria-label="Fermer l'inspecteur" style="width:30px;height:30px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:{{T.mu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7"></path></svg></button>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px;padding:18px">
+
+<section style="display:flex;align-items:center;gap:8px;font-size:13px">
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><path d="M2.2 6.4 4.9 9 9.8 3.2" fill="none" stroke="{{T.fresh}}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span style="font-weight:500;color:{{T.freshT}}">tout juste fini</span>
+<span style="color:{{T.mu}}">· 100 % · terminée</span>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">Batchs</h3>
+<div style="display:flex;align-items:center;gap:6px">
+<span style="display:flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};font-family:{{M}};font-size:11px;color:{{T.fg2}}"><svg aria-hidden="true" width="8" height="8" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="{{T.done}}"></circle></svg>B1</span>
+<span style="display:flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};font-family:{{M}};font-size:11px;color:{{T.fg2}}"><svg aria-hidden="true" width="8" height="8" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="{{T.done}}"></circle></svg>B2</span>
+<span style="display:flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};font-family:{{M}};font-size:11px;color:{{T.fg2}}"><svg aria-hidden="true" width="8" height="8" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="{{T.done}}"></circle></svg>B3</span>
+<span style="display:flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};font-family:{{M}};font-size:11px;color:{{T.fg2}}"><svg aria-hidden="true" width="8" height="8" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="{{T.done}}"></circle></svg>B4</span>
+<span style="font-size:12px;color:{{T.mu}};margin-left:4px">4 stories</span>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:6px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">Pas encore mergées sur main <span style="font-weight:500;color:{{T.mu}}">2</span></h3>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{nm}}" as="s" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:10px;height:26px;padding:0 6px;border-radius:6px;background:{{s.bg}};opacity:{{s.op}}"><sc-if value="{{s.aside}}" hint-placeholder-val="{{false}}"><span style="width:47px;flex:none;font-size:11px;color:{{T.mu}}">écartée</span></sc-if><sc-if value="{{s.hasPips}}" hint-placeholder-val="{{true}}"><span style="display:flex;gap:3px;width:47px;flex:none"><sc-for list="{{s.pips}}" as="p" hint-placeholder-count="5"><span style="width:7px;height:7px;flex:none;box-sizing:border-box;border-radius:50%;background:{{p.bg}};border:1.25px solid {{p.ring}}"></span></sc-for></span></sc-if><span title="{{s.tip}}" style="flex:1;min-width:0;font-family:{{M}};font-size:12px;color:{{s.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{s.slug}}</span><sc-if value="{{s.unmerged}}" hint-placeholder-val="{{false}}"><span style="flex:none;font-size:10.5px;line-height:16px;padding:0 5px;border-radius:4px;border:1px dashed {{T.bd2}};color:{{T.mu}}">non mergée</span></sc-if><sc-if value="{{s.blocked}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="1 blocage" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg></sc-if></div></sc-for>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:12px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">Suivis <span style="font-weight:500;color:{{T.mu}}">3</span></h3>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:600;color:{{T.fg}}">Suivi de <span style="font-family:{{M}}">B2</span></span><p style="margin:0;font-size:12.5px;line-height:1.5;color:{{T.fg2}}">Le verrou comptait les stories écartées ; corrigé dans B3.</p></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:600;color:{{T.fg}}">Suivi de <span style="font-family:{{M}}">B3</span></span><p style="margin:0;font-size:12.5px;line-height:1.5;color:{{T.fg2}}">Les worktrees attendront une epic à part : rooftop-worktrees-epic.</p></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:12px;font-weight:600;color:{{T.fg}}">Suivi de <span style="font-family:{{M}}">B4</span></span><p style="margin:0;font-size:12.5px;line-height:1.5;color:{{T.fg2}}">Rail vérifié jusqu'à neuf batchs.</p></div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">Signalements <span style="font-weight:500;color:{{T.mu}}">1</span></h3>
+<div style="display:flex;flex-direction:column;gap:3px;padding:10px 12px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<span style="font-size:12.5px;font-weight:500;color:{{T.fg}}">suivi sans batch</span>
+<span style="font-size:12px;color:{{T.mu}}">« Suivi de B5 », mais l'epic n'a que 4 batchs.</span>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:6px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">Document</h3>
+<span style="font-family:{{M}};font-size:12px;line-height:18px;color:{{T.fg2}};overflow-wrap:anywhere">features/rooftop-batches-epic/rooftop-batches-epic.epic.md</span>
+</section>
+
+</div>
+</aside>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;color:{{T.mu}}">inspecteur sur un batch tenu : son en-tête, ses stories, sa commande</span>
+<aside aria-label="Inspecteur de batch" style="width:400px;box-sizing:border-box;display:flex;flex-direction:column;border-radius:12px;background:{{T.bg}};border:1px solid {{T.bd}};box-shadow:{{T.sh}};overflow:hidden">
+<div style="display:flex;align-items:flex-start;gap:8px;padding:14px 10px 14px 18px;border-bottom:1px solid {{T.bd}}">
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:11.5px;color:{{T.mu}}"><span style="display:flex;align-items:center;gap:4px;font-weight:600;color:{{T.fg2}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg>RB Compound</span><span aria-hidden="true">/</span><span title="quality-gates-epic" style="display:flex;align-items:center;gap:4px"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg><span style="font-size:10px;font-weight:700;letter-spacing:0.05em;line-height:16px;padding:0 5px;border-radius:4px;background:{{T.tag}};color:{{T.fg}}">QUALITYGATES</span></span></div>
+<div style="display:flex;align-items:center;gap:8px">
+<span style="display:flex;color:{{T.mu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M2 3h8M2 6h8M2 9h8"></path></svg></span>
+<h2 style="margin:0;font-size:14px;font-weight:700;line-height:22px;padding:0 8px;border-radius:6px;background:{{T.card}};border:1px solid {{T.bd2}};color:{{T.fg}}">B2</h2>
+<span style="display:flex;align-items:center;gap:4px;font-size:12px;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg>tenu par B1</span>
+</div>
+</div>
+<button type="button" aria-label="Fermer l'inspecteur" style="width:30px;height:30px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:{{T.mu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7"></path></svg></button>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px;padding:18px">
+<section style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">En-tête</h3>
+<p style="margin:0;padding:10px 12px;border-radius:8px;background:{{T.sunk}};font-size:13px;color:{{T.fg}}">bloqué par checker-depth</p>
+</section>
+<section style="display:flex;flex-direction:column;gap:6px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">Stories <span style="font-weight:500;color:{{T.mu}}">2</span></h3>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{te}}" as="s" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:10px;height:26px;padding:0 6px;border-radius:6px;background:{{s.bg}};opacity:{{s.op}}"><sc-if value="{{s.aside}}" hint-placeholder-val="{{false}}"><span style="width:47px;flex:none;font-size:11px;color:{{T.mu}}">écartée</span></sc-if><sc-if value="{{s.hasPips}}" hint-placeholder-val="{{true}}"><span style="display:flex;gap:3px;width:47px;flex:none"><sc-for list="{{s.pips}}" as="p" hint-placeholder-count="5"><span style="width:7px;height:7px;flex:none;box-sizing:border-box;border-radius:50%;background:{{p.bg}};border:1.25px solid {{p.ring}}"></span></sc-for></span></sc-if><span title="{{s.tip}}" style="flex:1;min-width:0;font-family:{{M}};font-size:12px;color:{{s.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{s.slug}}</span><sc-if value="{{s.unmerged}}" hint-placeholder-val="{{false}}"><span style="flex:none;font-size:10.5px;line-height:16px;padding:0 5px;border-radius:4px;border:1px dashed {{T.bd2}};color:{{T.mu}}">non mergée</span></sc-if><sc-if value="{{s.blocked}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="1 blocage" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg></sc-if></div></sc-for>
+</div>
+</section>
+<section style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:12px;font-weight:600;color:{{T.fg2}}">Commande du batch</h3>
+<div style="display:flex;align-items:flex-start;gap:8px;padding:7px 7px 7px 10px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.sunk}}">
+<code style="flex:1;min-width:0;padding-top:3px;font-family:{{M}};font-size:12px;line-height:18px;color:{{T.fg}};overflow-wrap:anywhere">boss atw quality-gates-epic batch B2</code>
+<button type="button" style="flex:none;height:26px;display:flex;align-items:center;gap:5px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg>Copier</button>
+</div>
+</section>
+</div>
+</aside>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font-size:11.5px;color:{{T.mu}}">les cinq blocages, tels que l'inspecteur les montre</span>
+<div style="width:400px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;padding:18px;border-radius:12px;background:{{T.bg}};border:1px solid {{T.bd}};box-shadow:{{T.sh}}">
+
+<div style="display:flex;flex-direction:column;gap:4px;padding:11px 12px;border-radius:10px;background:{{T.sunk}};border:1px solid {{T.bd}}">
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:{{T.fg2}}"><span style="width:14px;height:2px;border-radius:1px;background:{{T.mu}}"></span>écartée</span>
+<span style="padding-left:22px;font-size:12px;color:{{T.mu}}">Document illisible : le détail est dans le tiroir des documents.</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:4px;padding:11px 12px;border-radius:10px;background:{{T.sunk}};border:1px solid {{T.bd}}">
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:{{T.fg2}}"><span style="display:flex;width:14px;color:{{T.mu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span>tenue par le verrou</span>
+<span style="padding-left:22px;font-size:12px;color:{{T.mu}}">B2 attend que B1 soit soumis.</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:10px;background:{{T.blkS}};border:1px solid {{T.blkB}}">
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:{{T.fg}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>à trancher dans la vue Questions</span>
+<div style="display:flex;align-items:flex-start;gap:8px;padding:7px 7px 7px 10px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.card}}">
+<code style="flex:1;min-width:0;padding-top:3px;font-family:{{M}};font-size:12px;line-height:18px;color:{{T.fg}};overflow-wrap:anywhere">storyman update compound-plugins-epic B2</code>
+<button type="button" style="flex:none;height:26px;display:flex;align-items:center;gap:5px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg>Copier</button>
+</div>
+<a href="#questions" style="align-self:flex-start;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:{{T.fg}};text-decoration:underline;text-underline-offset:3px">Ouvrir la vue Questions<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"></path></svg></a>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:10px;background:{{T.blkS}};border:1px solid {{T.blkB}}">
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:{{T.fg}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>réponse à intégrer</span>
+<div style="display:flex;align-items:flex-start;gap:8px;padding:7px 7px 7px 10px;border-radius:8px;border:1px solid {{T.bd}};background:{{T.card}}">
+<code style="flex:1;min-width:0;padding-top:3px;font-family:{{M}};font-size:12px;line-height:18px;color:{{T.fg}};overflow-wrap:anywhere">boss prepare compound-plugins-epic batch B2</code>
+<button type="button" style="flex:none;height:26px;display:flex;align-items:center;gap:5px;padding:0 8px;border-radius:6px;border:1px solid {{T.bd}};background:{{T.btn}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg>Copier</button>
+</div>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:10px;background:{{T.blkS}};border:1px solid {{T.blkB}}">
+<span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:{{T.fg}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>dépend de<span style="font-size:10.5px;font-weight:700;letter-spacing:0.03em;line-height:17px;padding:0 5px;border-radius:5px;background:{{T.card}};border:1px solid {{T.bd2}};color:{{T.fg}}">B-TOOLMAN-2</span><span style="font-size:11.5px;font-weight:400;color:{{T.mu}}">Toolman</span></span>
+<span style="padding-left:22px;font-size:12px;line-height:1.5;color:{{T.fg2}}">2 batchs à soumettre : B-TOOLMAN-1, puis B-TOOLMAN-2. Calculé par le backend, sans commande ici : celle de l'étape 1 est dans le chemin.</span>
+<a href="#chemin" style="margin-left:22px;align-self:flex-start;display:flex;align-items:center;gap:5px;font-size:12.5px;font-weight:500;color:{{T.fg}};text-decoration:underline;text-underline-offset:3px">Voir le chemin<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h7M6.5 3l3 3-3 3"></path></svg></a>
+</div>
+
+</div>
+
+<span style="margin-top:30px;font-size:11.5px;color:{{T.mu}}">légende, dans le coin bas gauche du plan</span>
+<div style="align-self:flex-start;display:flex;flex-direction:column;gap:7px;padding:9px 12px;border-radius:10px;background:{{T.card}};border:1px solid {{T.bd}};box-shadow:{{T.sh}};font-size:11px;color:{{T.fg2}}">
+<div style="display:flex;align-items:center;gap:12px">
+<span style="display:flex;align-items:center;gap:5px"><span style="height:16px;display:flex;align-items:center;padding:0 5px;border-radius:4px;background:{{T.band}};color:{{T.bandT}};font-size:8.5px;font-weight:700;letter-spacing:0.08em">MODULE</span>bandeau</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="font-size:9.5px;font-weight:700;letter-spacing:0.05em;line-height:16px;padding:0 5px;border-radius:4px;background:{{T.tag}};color:{{T.fg}}">INFIX</span>epic</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="display:flex;align-items:center;padding:2px 3px;border-radius:4px;background:{{T.batch}}"><span style="font-size:9.5px;font-weight:700;line-height:14px;padding:0 4px;border-radius:4px;background:{{T.card}};border:1px solid {{T.bd2}};color:{{T.fg}}">B1</span></span>batch</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="font-family:{{M}};font-size:11px;color:{{T.fg}}">slug</span>story</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.4"></circle></svg>à faire</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.bd2}}" stroke-width="2.4"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.prog}}" stroke-width="2.4" stroke-dasharray="15 37.7" transform="rotate(-90 8 8)"></circle></svg>en cours</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.fresh}}" stroke-width="2.4"></circle><path d="M5.4 8.2 7.2 9.9l3.3-3.7" fill="none" stroke="{{T.fresh}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>tout juste fini</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="{{T.done}}" stroke-width="2.4"></circle><circle cx="8" cy="8" r="3.2" fill="{{T.done}}"></circle></svg>fait</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{T.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>blocage</span>
+</div>
+<div style="display:flex;align-items:center;gap:12px">
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:6px;border-radius:3px;background:{{T.done}}"></span>fait</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:6px;border-radius:3px;background:{{T.acc}}"></span>courant</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:6px;box-sizing:border-box;border-radius:3px;border:1px dashed {{T.dash}}"></span>tenu</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="display:flex;color:{{T.mu}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.2"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span>verrou</span>
+<span style="display:flex;align-items:center;gap:5px"><span style="width:16px;height:11px;box-sizing:border-box;border-radius:3px;border:2px solid {{T.acc}}"></span>débloquée</span>
+<span style="display:flex;align-items:center;gap:5px"><svg aria-hidden="true" width="18" height="8" viewBox="0 0 18 8"><path d="M18 4H5" stroke="{{T.edge}}" stroke-width="1.5"></path><path d="M6 0.5 0 4l6 3.5Z" fill="{{T.edge}}"></path></svg>dépend de</span>
+</div>
+</div>
+</div>
+
+</div>
+
+<section style="display:flex;flex-direction:column;gap:14px">
+<h2 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Tiroir des documents · monte depuis la barre du bas, sur toute la largeur</h2>
+<div style="width:1280px;box-sizing:border-box;border-radius:12px;overflow:hidden;border:1px solid {{T.bd}};box-shadow:{{T.pop}};background:{{T.bg}}">
+<div style="display:flex;align-items:center;gap:12px;height:46px;box-sizing:border-box;padding:0 10px 0 18px;border-bottom:1px solid {{T.bd}}">
+<h3 style="margin:0;font-size:13px;font-weight:600;color:{{T.fg}}">Documents écartés et signalements</h3>
+<span style="flex:1"></span>
+<button type="button" aria-label="Fermer le tiroir" style="width:30px;height:30px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:{{T.mu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7"></path></svg></button>
+</div>
+<div style="display:flex;flex-direction:column;padding:6px 18px 12px">
+<div style="display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.5fr);gap:16px;height:30px;align-items:end;padding-bottom:6px;font-size:11.5px;font-weight:600;color:{{T.fg2}}"><span>Écartés · 3</span><span style="font-weight:500;color:{{T.mu}}">raison</span><span style="font-weight:500;color:{{T.mu}}">détail</span></div>
+<div style="display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.5fr);gap:16px;align-items:center;min-height:34px;border-top:1px solid {{T.bd}}"><span style="font-family:{{M}};font-size:12px;color:{{T.fg}};overflow-wrap:anywhere">features/compound-plugins-epic/migration-notes/migration-notes.story.md</span><span style="font-size:12.5px;color:{{T.fg2}}">front-matter illisible</span><span style="font-size:12px;color:{{T.mu}}">ligne 4 : « status » sans valeur</span></div>
+<div style="display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.5fr);gap:16px;align-items:center;min-height:34px;border-top:1px solid {{T.bd}}"><span style="font-family:{{M}};font-size:12px;color:{{T.fg}};overflow-wrap:anywhere">features/toolman-epic/toolman-legacy/toolman-legacy.story.md</span><span style="font-size:12.5px;color:{{T.fg2}}">titre absent</span><span style="font-size:12px;color:{{T.mu}}">aucun titre de niveau 1</span></div>
+<div style="display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.5fr);gap:16px;align-items:center;min-height:34px;border-top:1px solid {{T.bd}}"><span style="font-family:{{M}};font-size:12px;color:{{T.fg}};overflow-wrap:anywhere">notes/brouillon-rooftop.md</span><span style="font-size:12.5px;color:{{T.fg2}}">hors convention de nommage</span><span style="font-size:12px;color:{{T.mu}}">ni story, ni design, ni epic</span></div>
+<div style="display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.5fr);gap:16px;height:40px;align-items:end;padding-bottom:6px;font-size:11.5px;font-weight:600;color:{{T.fg2}}"><span>Signalements · 2</span><span></span><span></span></div>
+<div style="display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.5fr);gap:16px;align-items:center;min-height:34px;border-top:1px solid {{T.bd}}"><span style="font-family:{{M}};font-size:12px;color:{{T.fg}};overflow-wrap:anywhere">features/rooftop-batches-epic/rooftop-batches-epic.epic.md</span><span style="font-size:12.5px;color:{{T.fg2}}">suivi sans batch</span><span style="font-size:12px;color:{{T.mu}}">« Suivi de B5 », mais l'epic n'a que 4 batchs</span></div>
+<div style="display:grid;grid-template-columns:minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.5fr);gap:16px;align-items:center;min-height:34px;border-top:1px solid {{T.bd}}"><span style="font-family:{{M}};font-size:12px;color:{{T.fg}};overflow-wrap:anywhere">features/toolman-epic/toolman/toolman.design.md</span><span style="font-size:12.5px;color:{{T.fg2}}">lien mort</span><span style="font-size:12px;color:{{T.mu}}">renvoie vers toolman-menu.story.md, introuvable</span></div>
+</div>
+<div style="height:36px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 8px 0 16px;border-top:1px solid {{T.bd}};font-size:12px;color:{{T.fg2}}">
+<span>3 documents écartés</span><span style="color:{{T.mu}}">·</span><span>2 signalements</span>
+<span style="flex:1"></span>
+<button type="button" style="height:26px;display:flex;align-items:center;gap:6px;padding:0 8px;border:0;border-radius:6px;background:{{T.sunk}};color:{{T.fg}};font-family:inherit;font-size:12px;font-weight:500">Fermer le tiroir<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.3 7 8.8l3.5-3.5"></path></svg></button>
+</div>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1360,"height":1300}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {bg:'#0a0a0a',plan:'#0f0f0f',dot:'#262626',frame:'#141414',band:'#333333',bandT:'#fafafa',bandMu:'#b5b5b5',batch:'#262626',tag:'#2f2f2f',card:'#1c1c1c',sunk:'#171717',sel:'#2b2b2b',bd:'#2b2b2b',bd2:'#3f3f3f',dash:'#5f5f5f',edge:'#6b6b6b',fg:'#fafafa',fg2:'#d4d4d4',mu:'#a3a3a3',todo:'#8f8f8f',prog:'#f59e0b',progT:'#fbbf24',fresh:'#22c55e',freshT:'#4ade80',done:'#3b82f6',doneT:'#60a5fa',acc:'#e879f9',accT:'#f0abfc',accS:'#2b1530',blk:'#ef4444',blkT:'#f87171',blkS:'#2a1515',blkB:'#5c2424',pipOn:'#e5e5e5',pipOff:'#4d4d4d',btn:'#1c1c1c',inv:'#fafafa',invT:'#0a0a0a',sh:'0 1px 2px rgba(0,0,0,0.5)',pop:'0 10px 30px rgba(0,0,0,0.6)'};
+    }
+    return {bg:'#ffffff',plan:'#f3f3f3',dot:'#d6d6d6',frame:'#fafafa',band:'#262626',bandT:'#fafafa',bandMu:'#b5b5b5',batch:'#f4f4f4',tag:'#ededed',card:'#ffffff',sunk:'#f5f5f5',sel:'#ebebeb',bd:'#e5e5e5',bd2:'#d4d4d4',dash:'#a3a3a3',edge:'#9a9a9a',fg:'#0a0a0a',fg2:'#404040',mu:'#666666',todo:'#8f8f8f',prog:'#d97706',progT:'#b45309',fresh:'#16a34a',freshT:'#15803d',done:'#2563eb',doneT:'#1d4ed8',acc:'#d946ef',accT:'#a21caf',accS:'#fdf4ff',blk:'#dc2626',blkT:'#b91c1c',blkS:'#fef2f2',blkB:'#fecaca',pipOn:'#2b2b2b',pipOff:'#c7c7c7',btn:'#ffffff',inv:'#171717',invT:'#fafafa',sh:'0 1px 2px rgba(0,0,0,0.06)',pop:'0 10px 30px rgba(0,0,0,0.12)'};
+  }
+  row(slug, n, o, T) {
+    o = o || {};
+    var labels = {'-1':'écartée','0':'à écrire','1':'sans design','1.5':'design en brouillon','2':'design approuvé, à coder','3':'code fini, à valider puis soumettre','4':'soumise','5':'terminée'};
+    var pips = [];
+    for (var i = 1; i <= 5; i++) {
+      var full = n >= i;
+      var half = !full && n >= i - 0.5;
+      pips.push({
+        bg: full ? T.pipOn : (half ? 'linear-gradient(90deg, ' + T.pipOn + ' 50%, transparent 50%)' : 'transparent'),
+        ring: (full || half) ? T.pipOn : T.pipOff
+      });
+    }
+    var tip = labels[String(n)] || '';
+    if (o.block) tip = tip + ' · 1 blocage';
+    if (o.unmerged) tip = tip + ' · pas encore mergée sur main';
+    return {slug: slug, pips: pips, aside: n < 0, hasPips: n >= 0, op: n < 0 ? 0.5 : 1, bg: o.sel ? T.sel : 'transparent', fg: o.sel ? T.fg : T.fg2, blocked: !!o.block, unmerged: !!o.unmerged, tip: tip};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    var T = this.tok(dark);
+    return {
+      T: T,
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      nm: [this.row('blueprint-rail', 4, {unmerged: true}, T), this.row('unlock-hints', 4, {unmerged: true}, T)],
+      te: [this.row('gate-config', 0, null, T), this.row('gate-report', 0, null, T)]
+    };
+  }
+}
+</script>
+</body>
+</html>
