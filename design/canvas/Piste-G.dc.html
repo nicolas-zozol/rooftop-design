@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Essai G, tuiles et chantier</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1440px;height:1160px;box-sizing:border-box;padding:48px;display:flex;flex-direction:column;gap:36px;overflow:hidden;background-color:#f3f3f3;background-image:radial-gradient(#d6d6d6 1px, transparent 1.3px);background-size:18px 18px;color:#0a0a0a;font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<header style="display:flex;flex-direction:column;gap:8px;width:780px">
+<span style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#666666">ESSAI G · JEU DE PLATEAU, PLUS RICHE</span>
+<h1 style="margin:0;font-family:{{A}};font-size:42px;font-weight:800;line-height:1.05;color:#0a0a0a">Tuiles et chantier</h1>
+<p style="margin:0;font-size:13.5px;line-height:1.45;color:#404040">Le corps de l'epic devient une table de jeu. Les batchs sont les emplacements d'un cadre à tuiles : vides tant qu'ils sont tenus, garnis d'une tuile quand on y travaille, définitivement posés quand ils sont faits. Chaque story est une maison qui se construit sur la tuile ; la fiche du chantier compte ses étapes en cubes de bois.</p>
+</header>
+
+<div style="display:flex;align-items:flex-start;gap:40px">
+
+<section aria-label="Module RB Compound" style="flex:none;box-sizing:border-box;border-radius:14px;overflow:hidden;background:#fafafa;border:1px solid #e5e5e5">
+<div style="background:#262626;color:#fafafa">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:#b5b5b5"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#b5b5b5">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:#b5b5b5">en cours</span>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:rgba(255,255,255,0.2)"><div style="width:60%;height:4px;background:#fafafa"></div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+
+<div title="Compound en deux plugins Claude Code" style="width:968px;box-sizing:border-box;border-radius:12px;background:#ffffff;border:1px solid #e5e5e5;box-shadow:0 1px 2px rgba(0,0,0,0.06);overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid #e5e5e5">
+<span style="display:flex;color:#404040"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:#ededed;color:#0a0a0a">PLUGIN</span>
+<span style="font-size:13px;font-weight:600;color:#0a0a0a;white-space:nowrap">Compound en deux plugins Claude Code</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 35 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="#d4d4d4" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="#d97706" stroke-width="2.2" stroke-dasharray="13.19 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:#404040">35 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#666666;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<dc-import name="PlateauTuiles" epic="plugin" hint-size="966px,500px"></dc-import>
+</div>
+
+<div title="Worktrees longs" style="width:968px;box-sizing:border-box;border-radius:12px;background:#ffffff;border:1px solid #e5e5e5;box-shadow:0 1px 2px rgba(0,0,0,0.06);overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid #e5e5e5">
+<span style="display:flex;color:#404040"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:#ededed;color:#0a0a0a">WORKTREE</span>
+<span style="font-size:13px;font-weight:600;color:#0a0a0a;white-space:nowrap">Worktrees longs</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 66 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="#d4d4d4" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="#d97706" stroke-width="2.2" stroke-dasharray="24.88 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:#404040">66 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#666666;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<dc-import name="PlateauTuiles" epic="worktree" hint-size="966px,212px"></dc-import>
+</div>
+
+</div>
+</section>
+
+<aside aria-label="Règle du jeu" style="width:300px;flex:none;box-sizing:border-box;border-radius:6px;background:#efe0bb;border:2px solid #9c7a43;box-shadow:inset 0 0 0 3px #f7ecd1, inset 0 0 0 4px #c8a868, 0 4px 12px rgba(60,40,10,0.2);padding:20px 20px 22px;display:flex;flex-direction:column;gap:14px">
+<span style="font-family:{{A}};font-size:18px;font-weight:800;color:#3a2810">Règle du jeu</span>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:44px;flex:none;border-radius:4px;background:#b2b6bc;box-shadow:inset 0 2px 5px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;color:#7f838a"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></span><span style="font-size:12px;line-height:1.35;color:#2a1f12">Emplacement vide : batch tenu. Le cadenas dit qui le tient.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:44px;flex:none;position:relative"><span style="position:absolute;left:2px;top:2px;width:40px;height:40px;border-radius:2px;background:#88bc4b;transform:rotate(-5deg);box-shadow:0 5px 8px rgba(30,20,5,0.35)"></span><svg aria-hidden="true" width="20" height="22" viewBox="0 0 24 26" style="position:absolute;left:12px;top:10px"><path d="M12 1.6a3.4 3.4 0 0 1 3.4 3.4c0 1.1-.5 2-1.1 2.5 2.8.4 6.6 1.7 7 3.4.3 1.4-1.7 1.7-3.8 1.3l-1.7-.3 2.9 7.8c.3 1-.3 1.6-1.3 1.6h-3.3L12 17.1l-2.1 4.2H6.6c-1 0-1.6-.6-1.3-1.6l2.9-7.8-1.7.3c-2.1.4-4.1.1-3.8-1.3.4-1.7 4.2-3 7-3.4-.6-.5-1.1-1.4-1.1-2.5A3.4 3.4 0 0 1 12 1.6Z" fill="#c026d3" stroke="#701a75" stroke-width="1"></path></svg></span><span style="font-size:12px;line-height:1.35;color:#2a1f12">Tuile posée de travers, ouvrier fuchsia : batch courant, on joue ici.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:44px;flex:none;position:relative"><span style="position:absolute;left:2px;top:2px;width:40px;height:40px;border-radius:2px;background:#88bc4b;box-shadow:0 1px 2px rgba(0,0,0,0.3)"></span><svg aria-hidden="true" width="16" height="20" viewBox="96 5 23 28" style="position:absolute;left:24px;top:4px"><path d="M98 7H117V19.5C117 26.5 107.5 31 107.5 31C107.5 31 98 26.5 98 19.5Z" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.6"></path><path d="M102.8 18.4 106 21.6 111.8 15.2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span style="font-size:12px;line-height:1.35;color:#2a1f12">Tuile en place, blason bleu : batch fait.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;flex:none;display:flex;justify-content:center"><svg aria-hidden="true" width="44" height="24" viewBox="0 0 44 24"><path d="M2 12h12v9H2Z" fill="none" stroke="#6e4b27" stroke-width="1" stroke-dasharray="1.8 1.5"></path><path d="M16 12h12v9H16Z" fill="#f7e9ca" stroke="#6e4b27" stroke-width="1"></path><path d="M30 12h12v9H30Z" fill="#f7e9ca" stroke="#6e4b27" stroke-width="1"></path><path d="M28.5 12.5 36 4l7.5 8.5Z" fill="#c0392b" stroke="#6b1f16" stroke-width="0.9"></path></svg></span><span style="font-size:12px;line-height:1.35;color:#2a1f12">Une maison par story, numérotée comme sur la fiche : du plan au toit rouge.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;flex:none;display:flex;gap:3px;flex-wrap:wrap"><span style="width:12px;height:12px;border-radius:2px;background:#e2809f;box-shadow:inset -2px -2px 0 rgba(0,0,0,0.2)"></span><span style="width:12px;height:12px;border-radius:2px;background:#8a5a2b;box-shadow:inset -2px -2px 0 rgba(0,0,0,0.2)"></span><span style="width:12px;height:12px;border-radius:2px;background:#949ba3;box-shadow:inset -2px -2px 0 rgba(0,0,0,0.2)"></span><span style="width:12px;height:12px;border-radius:2px;background:#7c4dbd;box-shadow:inset -2px -2px 0 rgba(0,0,0,0.2)"></span><span style="width:12px;height:12px;border-radius:2px;background:#e3b12a;box-shadow:inset -2px -2px 0 rgba(0,0,0,0.2)"></span></span><span style="font-size:12px;line-height:1.35;color:#2a1f12">Fiche du chantier : un cube par étape franchie. En pointillé : étape à moitié faite.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;flex:none;display:flex;justify-content:center"><span style="width:22px;height:22px;border-radius:50%;background:#c62828;box-shadow:0 2px 0 #7f1414, inset 0 0 0 2px #e05252;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><rect x="2" y="5" width="8" height="2.2" rx="1.1" fill="#ffffff"></rect></svg></span></span><span style="font-size:12px;line-height:1.35;color:#2a1f12">Sceau rouge : blocage, n batchs d'une autre epic à soumettre.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:44px;height:36px;flex:none;position:relative"><span style="position:absolute;left:6px;top:6px;width:28px;height:28px;border-radius:3px;background:#2d5a78;transform:rotate(-4deg);box-shadow:inset 0 0 0 2px #2d5a78, inset 0 0 0 3px #e9dcb8"></span><span style="position:absolute;left:9px;top:2px;width:28px;height:28px;border-radius:3px;background:#2d5a78;transform:rotate(2deg);box-shadow:inset 0 0 0 2px #2d5a78, inset 0 0 0 3px #e9dcb8, 0 2px 0 #1f4058"></span></span><span style="font-size:12px;line-height:1.35;color:#2a1f12">Pioche : stories hors batch.</span></div>
+</aside>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      A: "'Alegreya', 'Palatino Linotype', Palatino, Georgia, serif"
+    };
+  }
+}
+</script>
+</body>
+</html>

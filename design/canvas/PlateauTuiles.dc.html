@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Tuiles et chantier d'une epic</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="position:relative;width:{{W}}px;height:{{H}}px;flex:none;overflow:hidden;color:#2a1f12;font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+<svg aria-hidden="true" width="{{W}}" height="{{H}}" style="position:absolute;left:0;top:0"><filter id="{{fid}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.004 0.1" numOctaves="3" seed="5"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.42  0 0 0 0 0.27  0 0 0 0 0.12  0.75 0 0 0 -0.27"></feColorMatrix></filter><rect width="100%" height="100%" fill="#dcc49a"></rect><rect width="100%" height="100%" filter="{{fUrl}}"></rect></svg>
+
+<div style="position:absolute;left:{{tray.l}}px;top:{{tray.t}}px;width:{{tray.w}}px;height:{{tray.h}}px;border-radius:10px;background:#c5c8cd;box-shadow:0 3px 0 #9a9ea5, 0 9px 18px rgba(40,25,5,0.3), inset 0 1px 0 rgba(255,255,255,0.65)">
+<sc-for list="{{joints}}" as="j" hint-placeholder-count="8"><span style="position:absolute;left:{{j.l}}px;top:{{j.t}}px;width:10px;height:10px;transform:rotate(45deg);border-radius:2px;background:#d9dce0;box-shadow:0 1px 0 #a4a8ae"></span></sc-for>
+<sc-for list="{{slots}}" as="s" hint-placeholder-count="5"><div title="{{s.title}}" style="position:absolute;left:{{s.l}}px;top:12px;width:132px;height:132px;border-radius:4px;background:#b2b6bc;box-shadow:inset 0 2px 6px rgba(0,0,0,0.3), inset 0 -1px 0 rgba(255,255,255,0.45)">
+<sc-if value="{{s.isEmpty}}" hint-placeholder-val="{{true}}"><div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#7f838a;text-shadow:0 1px 0 rgba(255,255,255,0.55)">
+<span style="font-family:{{M}};font-size:20px;font-weight:700;letter-spacing:0.02em">{{s.id}}</span>
+<span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg>{{s.par}}</span>
+<span style="font-size:11px;font-weight:500">{{s.nb}}</span>
+</div></sc-if>
+<sc-if value="{{s.isTile}}" hint-placeholder-val="{{false}}"><div style="position:absolute;left:0;top:0;width:132px;height:132px;border-radius:3px;overflow:visible;transform:{{s.tf}};box-shadow:{{s.sh}}">
+<svg role="img" aria-label="{{s.title}}" width="132" height="132" viewBox="0 0 132 132" style="display:block;border-radius:3px;overflow:hidden">
+<rect width="132" height="132" fill="#88bc4b"></rect>
+<path d="{{s.art.dark}}" fill="#76a93e"></path>
+<path d="{{s.art.light}}" fill="#9dcd61"></path>
+<path d="M0 93C44 84 88 102 132 90" fill="none" stroke="#bea574" stroke-width="16"></path>
+<path d="M0 93C44 84 88 102 132 90" fill="none" stroke="#f1e7c9" stroke-width="10"></path>
+<path d="M0 0H132V30C100 60 32 60 0 30Z" fill="#e3b870"></path>
+<path d="{{s.art.paves}}" fill="none" stroke="#d1a45d" stroke-width="1"></path>
+<path d="M0 30C32 60 100 60 132 30" fill="none" stroke="#93602d" stroke-width="3.5"></path>
+<path d="{{s.art.plan}}" fill="none" stroke="#6e4b27" stroke-width="1" stroke-dasharray="1.8 1.5"></path>
+<path d="{{s.art.scaf}}" fill="none" stroke="#6e4b27" stroke-width="1.1"></path>
+<path d="{{s.art.walls}}" fill="#f7e9ca" stroke="#6e4b27" stroke-width="1"></path>
+<path d="{{s.art.roofLine}}" fill="none" stroke="#6e4b27" stroke-width="1" stroke-linejoin="round"></path>
+<path d="{{s.art.roofLight}}" fill="#e48a72" stroke="#7a2d1f" stroke-width="0.9" stroke-linejoin="round"></path>
+<path d="{{s.art.roofFull}}" fill="#c0392b" stroke="#6b1f16" stroke-width="0.9" stroke-linejoin="round"></path>
+<path d="{{s.art.chim}}" fill="#8a5a3a"></path>
+<g opacity="{{s.shieldOp}}"><path d="M98 7H117V19.5C117 26.5 107.5 31 107.5 31C107.5 31 98 26.5 98 19.5Z" fill="#1d4ed8" stroke="#ffffff" stroke-width="1.6"></path><path d="M102.8 18.4 106 21.6 111.8 15.2" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></g>
+<g opacity="{{s.meepleOp}}" transform="translate(66 58) scale(1.15)"><ellipse cx="12" cy="24.6" rx="9" ry="2.2" fill="#000000" opacity="0.25"></ellipse><path d="M12 1.6a3.4 3.4 0 0 1 3.4 3.4c0 1.1-.5 2-1.1 2.5 2.8.4 6.6 1.7 7 3.4.3 1.4-1.7 1.7-3.8 1.3l-1.7-.3 2.9 7.8c.3 1-.3 1.6-1.3 1.6h-3.3L12 17.1l-2.1 4.2H6.6c-1 0-1.6-.6-1.3-1.6l2.9-7.8-1.7.3c-2.1.4-4.1.1-3.8-1.3.4-1.7 4.2-3 7-3.4-.6-.5-1.1-1.4-1.1-2.5A3.4 3.4 0 0 1 12 1.6Z" fill="#c026d3" stroke="#701a75" stroke-width="1" stroke-linejoin="round"></path><path d="M10.2 3.6a2 2 0 0 1 2.6-.6M8 9.6c1.2-.4 2.6-.6 4-.6" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.55"></path></g>
+<rect x="0.5" y="0.5" width="131" height="131" fill="none" stroke="rgba(0,0,0,0.28)"></rect>
+</svg>
+<sc-for list="{{s.houses}}" as="h" hint-placeholder-count="4"><span title="{{h.tip}}" style="position:absolute;left:{{h.l}}px;top:{{h.t}}px;width:13px;height:13px;border-radius:50%;background:{{h.bg}};border:1.2px solid #ffffff;color:#ffffff;font-size:8px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(0,0,0,0.35)">{{h.n}}</span></sc-for>
+</div></sc-if>
+</div></sc-for>
+</div>
+
+<sc-if value="{{hasPioche}}" hint-placeholder-val="{{false}}"><div title="Hors batch : 2 stories, 1 note" style="position:absolute;left:{{pi.l}}px;top:{{pi.t}}px;width:150px;height:130px">
+<span style="position:absolute;left:18px;top:14px;width:104px;height:104px;border-radius:4px;transform:rotate(-4deg);background:#2d5a78;box-shadow:inset 0 0 0 5px #2d5a78, inset 0 0 0 6px #e9dcb8, 0 2px 0 #1f4058"></span>
+<span style="position:absolute;left:24px;top:8px;width:104px;height:104px;border-radius:4px;transform:rotate(2deg);background:#2d5a78;box-shadow:inset 0 0 0 5px #2d5a78, inset 0 0 0 6px #e9dcb8, 0 2px 0 #1f4058"></span>
+<span style="position:absolute;left:21px;top:2px;width:104px;height:104px;border-radius:4px;transform:rotate(-1deg);background:#2d5a78;box-shadow:inset 0 0 0 5px #2d5a78, inset 0 0 0 6px #e9dcb8, 0 3px 0 #1f4058, 0 8px 14px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#e9dcb8" stroke-width="1.4"><circle cx="22" cy="22" r="15"></circle><path d="M22 4v36M4 22h36M10 10l24 24M34 10 10 34" opacity="0.6"></path><circle cx="22" cy="22" r="5" fill="#e9dcb8"></circle></svg></span>
+</div></sc-if>
+<sc-if value="{{hasPioche}}" hint-placeholder-val="{{false}}"><div style="position:absolute;left:{{pt.l}}px;top:{{pt.t}}px;width:178px;box-sizing:border-box;border-radius:5px;background:#efe0bb;border:1.5px solid #9c7a43;box-shadow:0 2px 6px rgba(60,40,10,0.25);padding:7px 10px 8px;display:flex;flex-direction:column;gap:3px">
+<span style="font-family:{{A}};font-size:13px;font-weight:800;color:#4a3519">Pioche · hors batch</span>
+<span style="font-family:{{M}};font-size:11px;color:#2a1f12">compound-docs</span>
+<span style="font-family:{{M}};font-size:11px;color:#2a1f12;opacity:0.5;text-decoration:line-through">migration-notes</span>
+<span style="font-size:10.5px;color:#5a4325">1 note jointe</span>
+</div></sc-if>
+
+<div style="position:absolute;left:{{fi.l}}px;top:{{fi.t}}px;width:{{fi.w}}px;box-sizing:border-box;border-radius:6px;background:#efe0bb;border:2px solid #9c7a43;box-shadow:inset 0 0 0 3px #f7ecd1, inset 0 0 0 4px #c8a868, 0 4px 12px rgba(60,40,10,0.28);padding:12px 16px 12px;display:flex;flex-direction:column;gap:6px">
+<div style="display:grid;grid-template-columns:30px minmax(0,1fr) repeat(5, 46px) {{fi.blkW}}px;column-gap:6px;align-items:end">
+<span></span>
+<span style="display:flex;flex-direction:column;gap:1px;padding-bottom:3px"><span style="font-family:{{A}};font-size:17px;font-weight:800;color:#3a2810">{{fi.titre}}</span><span style="font-size:11.5px;font-weight:600;color:#a21caf">{{fi.sous}}</span></span>
+<sc-for list="{{cols}}" as="k" hint-placeholder-count="5"><span style="display:flex;flex-direction:column;align-items:center;gap:3px"><span style="width:28px;height:28px;border-radius:50%;background:{{k.bg}};border:2px solid #f7ecd1;box-shadow:0 0 0 1px #9c7a43, 0 2px 0 rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="{{k.icon}}"></path></svg></span><span style="font-family:{{A}};font-size:11.5px;font-weight:700;color:#5a4325">{{k.lab}}</span></span></sc-for>
+<span></span>
+</div>
+<sc-for list="{{fi.rows}}" as="r" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:30px minmax(0,1fr) repeat(5, 46px) {{fi.blkW}}px;column-gap:6px;align-items:center;height:30px;opacity:{{r.op}}">
+<span style="width:22px;height:22px;border-radius:50%;background:{{r.numBg}};border:2px solid #f7ecd1;box-shadow:0 0 0 1px #6b6f75;color:#ffffff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">{{r.n}}</span>
+<span title="{{r.tip}}" style="min-width:0;font-family:{{M}};font-size:12px;color:#2a1f12;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{r.slug}}</span>
+<sc-for list="{{r.cells}}" as="c" hint-placeholder-count="5"><span style="height:26px;box-sizing:border-box;border-radius:3px;background:#f7eed6;border:1px solid #cdb17a;display:flex;align-items:center;justify-content:center"><span style="width:15px;height:15px;box-sizing:border-box;border-radius:2px;background:{{c.bg}};border:{{c.bd}};box-shadow:{{c.sh}}"></span></span></sc-for>
+<span style="display:flex;align-items:center;gap:6px;min-width:0"><sc-if value="{{r.hasBlock}}" hint-placeholder-val="{{false}}"><span style="width:22px;height:22px;flex:none;border-radius:50%;background:#c62828;box-shadow:0 2px 0 #7f1414, inset 0 0 0 2px #e05252;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><rect x="2" y="5" width="8" height="2.2" rx="1.1" fill="#ffffff"></rect></svg></span><span style="font-size:11.5px;font-weight:700;color:#a31515;white-space:nowrap">{{r.blockTxt}}</span></sc-if></span>
+</div></sc-for>
+<div style="display:flex;align-items:center;gap:10px;height:38px;margin-top:4px;padding-top:6px;border-top:1px dashed #b8975c">
+<span style="font-family:{{A}};font-size:14px;font-weight:800;color:#5a4325">Action</span>
+<code title="{{fi.cmd}}" style="flex:1;min-width:0;font-family:{{M}};font-size:11.5px;color:#2a1f12;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{fi.cmd}}</code>
+<button type="button" aria-label="Copier la commande" style="width:30px;height:30px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#5a4325;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"epic":{"editor":"enum","options":["plugin","worktree"],"default":"plugin"},"$preview":{"width":966,"height":500}}'>
+class Component extends DCLogic {
+  rnd(seed) {
+    var s = 2166136261;
+    for (var i = 0; i < seed.length; i++) { s ^= seed.charCodeAt(i); s = Math.imul(s, 16777619) >>> 0; }
+    return function () { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  fx(n) { return n.toFixed(1); }
+  ell(cx, cy, rx, ry) {
+    var f = this.fx;
+    return 'M' + f(cx - rx) + ' ' + f(cy) + 'a' + f(rx) + ' ' + f(ry) + ' 0 1 0 ' + f(2 * rx) + ' 0a' + f(rx) + ' ' + f(ry) + ' 0 1 0 ' + f(-2 * rx) + ' 0';
+  }
+  art(stories, R) {
+    var f = this.fx, self = this;
+    var a = {dark: '', light: '', paves: '', plan: '', scaf: '', walls: '', roofLine: '', roofLight: '', roofFull: '', chim: ''};
+    for (var i = 0; i < 9; i++) a.dark += this.ell(8 + R() * 116, 62 + R() * 66, 6 + R() * 12, 3 + R() * 5);
+    for (var j = 0; j < 7; j++) a.light += this.ell(8 + R() * 116, 64 + R() * 64, 4 + R() * 9, 2 + R() * 4);
+    for (var p = 0; p < 9; p++) { var px = 6 + R() * 120, py = 4 + R() * 22; a.paves += 'M' + f(px) + ' ' + f(py) + 'h' + f(4 + R() * 8); }
+    var k = stories.length;
+    var houses = [];
+    stories.forEach(function (st, idx) {
+      var hx = k === 1 ? 56 : 18 + idx * (74 / (k - 1));
+      var hy = 17 + 13 * Math.sin(Math.PI * hx / 132);
+      var n = st.n;
+      var wall = 'M' + f(hx - 7) + ' ' + f(hy) + 'h14v10h-14Z';
+      var roof = 'M' + f(hx - 9.5) + ' ' + f(hy + 0.5) + 'L' + f(hx) + ' ' + f(hy - 9) + 'L' + f(hx + 9.5) + ' ' + f(hy + 0.5) + 'Z';
+      if (n < 1) a.plan += wall;
+      else if (n < 2) a.scaf += wall + 'M' + f(hx - 7) + ' ' + f(hy) + 'l14 10M' + f(hx + 7) + ' ' + f(hy) + 'l-14 10M' + f(hx - 9) + ' ' + f(hy + 4) + 'h18';
+      else {
+        a.walls += wall + 'M' + f(hx - 1.6) + ' ' + f(hy + 10) + 'v-4.5h3.2v4.5';
+        if (n >= 5) { a.roofFull += roof; a.chim += 'M' + f(hx + 3.5) + ' ' + f(hy - 8) + 'h3v5h-3Z'; }
+        else if (n >= 4) a.roofLight += roof;
+        else if (n >= 3) a.roofLine += roof;
+      }
+      houses.push({l: f(hx - 6.5), t: f(n >= 3 ? hy - 23 : hy - 15), n: idx + 1, bg: st.blk ? '#dc2626' : '#3a2810', tip: (idx + 1) + ' · ' + st.s});
+    });
+    return {art: a, houses: houses};
+  }
+  slot(i, o, R) {
+    var s = {l: 12 + i * 140, id: o.id, title: o.title, isEmpty: o.etat === 'tenu', isTile: o.etat !== 'tenu', par: 'tenu par ' + (o.par || ''), nb: (o.nb || 0) + ' stories', tf: 'none', sh: 'none', shieldOp: 0, meepleOp: 0, houses: [], art: {}};
+    if (s.isTile) {
+      var t = this.art(o.stories, R);
+      s.art = t.art;
+      s.houses = t.houses;
+      if (o.etat === 'courant') { s.tf = 'translate(-4px, -7px) rotate(-3.5deg)'; s.sh = '0 12px 18px rgba(30,20,5,0.42), 0 2px 0 #5d7d34'; s.meepleOp = 1; }
+      else { s.sh = '0 1px 0 #4e6b2b, 0 1px 3px rgba(0,0,0,0.3)'; s.shieldOp = 1; }
+    }
+    return s;
+  }
+  rows(stories) {
+    var labels = {'-1':'écartée','0':'à écrire','1':'sans design','1.5':'design en brouillon','2':'design approuvé, à coder','3':'code fini, à valider puis soumettre','4':'soumise','5':'terminée'};
+    var COLS = ['#e2809f', '#8a5a2b', '#949ba3', '#7c4dbd', '#e3b12a'];
+    return stories.map(function (st, idx) {
+      var cells = COLS.map(function (col, ci) {
+        var step = ci + 1;
+        if (st.n >= step) return {bg: col, bd: '1px solid rgba(0,0,0,0.25)', sh: 'inset -3px -3px 0 rgba(0,0,0,0.2), inset 2px 2px 0 rgba(255,255,255,0.35), 0 2px 2px rgba(0,0,0,0.35)'};
+        if (st.n >= step - 0.5) return {bg: 'transparent', bd: '1.6px dashed ' + col, sh: 'none'};
+        return {bg: 'transparent', bd: 'none', sh: 'none'};
+      });
+      return {n: idx + 1, slug: st.s, cells: cells, numBg: st.blk ? '#dc2626' : '#8d9298', op: st.n < 0 ? 0.5 : 1, hasBlock: !!st.blk, blockTxt: st.blk || '', tip: st.s + ' · ' + (labels[String(st.n)] || '')};
+    });
+  }
+  renderVals() {
+    var ep = this.props.epic === 'worktree' ? 'worktree' : 'plugin';
+    var R = this.rnd('tuiles-' + ep);
+    var self = this;
+    var W = 966, H, slots = [], tray, joints = [], fi, hasPioche = false, pi = {l: 0, t: 0}, pt = {l: 0, t: 0};
+    var plug = [{s: 'compound-inventory', n: 0}, {s: 'plugin-split', n: 1.5, blk: '2 à débloquer'}, {s: 'shared-skills', n: 2}, {s: 'marketplace-manifest', n: 3}];
+    if (ep === 'plugin') {
+      H = 500;
+      var defs = [
+        {id: 'B1', etat: 'courant', stories: plug, title: 'B1 · courant · 4 stories'},
+        {id: 'B2', etat: 'tenu', par: 'B1', nb: 3, title: 'B2 · tenu par B1 · 3 stories'},
+        {id: 'B3', etat: 'tenu', par: 'B2', nb: 2, title: 'B3 · tenu par B2 · 2 stories'},
+        {id: 'B4', etat: 'tenu', par: 'B3', nb: 2, title: 'B4 · tenu par B3 · 2 stories'},
+        {id: 'B5', etat: 'tenu', par: 'B4', nb: 1, title: 'B5 · tenu par B4 · 1 story'}
+      ];
+      slots = defs.map(function (o, i) { return self.slot(i, o, R); });
+      tray = {l: 26, t: 26, w: 12 + 5 * 140 + 4, h: 156};
+      hasPioche = true;
+      pi = {l: 770, t: 26};
+      pt = {l: 762, t: 168};
+      fi = {l: 26, t: 210, w: 716, blkW: 128, titre: 'Chantier B1', sous: 'en cours · 4 stories', cmd: 'storyman compound-inventory', rows: this.rows(plug)};
+    } else {
+      H = 212;
+      var wt = [{s: 'worktree-sync', n: 1}];
+      slots = [
+        self.slot(0, {id: 'B1', etat: 'fait', stories: [{s: 'worktree-create', n: 5}, {s: 'worktree-list', n: 5}], title: 'B1 · fait · 2 stories'}, R),
+        self.slot(1, {id: 'B2', etat: 'courant', stories: wt, title: 'B2 · courant · 1 story'}, R)
+      ];
+      tray = {l: 26, t: 26, w: 12 + 2 * 140 + 4, h: 156};
+      fi = {l: 360, t: 26, w: 580, blkW: 20, titre: 'Chantier B2', sous: 'en cours · 1 story', cmd: 'designman features/worktree-epic/worktree-sync/worktree-sync.story.md', rows: this.rows(wt)};
+    }
+    for (var g = 1; g < slots.length; g++) {
+      joints.push({l: 12 + g * 140 - 9, t: 7});
+      joints.push({l: 12 + g * 140 - 9, t: 139});
+    }
+    var cols = [
+      {bg: '#e2809f', lab: 'écrite', icon: 'M3 11 9.5 4.5l1.9 1.9L5 12.9H3ZM8.4 5.6l1.9 1.9'},
+      {bg: '#8a5a2b', lab: 'design', icon: 'M7 2 12 7 7 12 2 7Z'},
+      {bg: '#949ba3', lab: 'code', icon: 'M5 4 2 7l3 3M9 4l3 3-3 3'},
+      {bg: '#7c4dbd', lab: 'soumise', icon: 'M7 12V3M3.5 6.5 7 3l3.5 3.5'},
+      {bg: '#e3b12a', lab: 'terminée', icon: 'M7 1.8 8.6 5.2l3.7.4-2.8 2.5.8 3.7L7 9.9l-3.3 1.9.8-3.7-2.8-2.5 3.7-.4Z'}
+    ];
+    return {
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      A: "'Alegreya', 'Palatino Linotype', Palatino, Georgia, serif",
+      W: W, H: H,
+      fid: 'bois-' + ep,
+      fUrl: 'url(#bois-' + ep + ')',
+      tray: tray,
+      joints: joints,
+      slots: slots,
+      hasPioche: hasPioche,
+      pi: pi,
+      pt: pt,
+      fi: fi,
+      cols: cols
+    };
+  }
+}
+</script>
+</body>
+</html>

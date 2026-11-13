@@ -31,6 +31,8 @@ Maquettes et spécification de l'écran **Blueprint** de Rooftop (app de bureau 
 | `Piste-C.dc.html`, `BatchCarte.dc.html` | Piste graphique C · Relevé de carte : itinéraire, fanion « vous êtes ici » |
 | `Piste-D.dc.html`, `BatchGare.dc.html` | Piste jeu de plateau D · Réseau ferré : gares, tronçons de cinq wagons |
 | `Piste-E.dc.html`, `BatchTuile.dc.html` | Piste jeu de plateau E · Plateau de bâtisseurs : tuiles, ouvrier, pions sur piste 0-5 |
+| `Piste-F.dc.html`, `PlateauLignes.dc.html` | Essai F · Plateau de lignes : voies de wagons entre gares, piste de score au bord (page *Essais jeu de plateau*) |
+| `Piste-G.dc.html`, `PlateauTuiles.dc.html` | Essai G · Tuiles et chantier : cadre à emplacements, maisons par story, fiche à cubes |
 
 Les fichiers `.dc.html` sont le format du canevas Claude Design : balisage `<x-dc>` avec trous `{{…}}`, boucles `<sc-for>`, conditions `<sc-if>`, imports `<dc-import>`, et un script `DCLogic` dont `renderVals()` calcule les valeurs. Ils s'ouvrent dans le canevas, pas directement dans un navigateur.
 

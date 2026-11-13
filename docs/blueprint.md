@@ -149,3 +149,10 @@ Univers des jeux de plateau modernes, plus coloré : chaque epic reçoit une cou
 
 Liens : D, voie ferrée (traverses = à poser, rails = posée, cadenas = verrou) ; E, route (bordures en tirets = à tracer, pavée = parcourue). Plateau E sur trame hexagonale.
 Polices : D *Zilla Slab*, E *Alegreya SC*.
+
+### Troisième série : le plateau devient le corps de l'epic
+
+D et E restaient des cartes d'interface habillées ; jugées sans intérêt. F et G remplacent le corps de l'epic par un vrai plateau (page *Essais jeu de plateau*, clair seulement pour l'instant).
+
+- **F · Plateau de lignes.** Plateau-carte avec rues et fleuve, bordure à piste de score (0-99, jeton à l'avancement de l'epic). Batch = voie entre deux gares ; story = wagon (slug dedans, cinq rivets = étapes). Wagon imprimé = en cours, wagon plastique posé = soumise ou terminée, voie courte imprimée = batch tenu. Gare cadenassée = verrou, gare cochée = batch soumis, terminus au nom de l'epic. Locomotive fuchsia en tête de la voie courante. Jeton rouge « 2 à débloquer » posé sur le wagon bloqué. Hors batch = billet. Commande = carte « prochain wagon ».
+- **G · Tuiles et chantier.** Table en bois, cadre gris à emplacements. Batch tenu = emplacement vide gravé (B2, cadenas, tenu par B1). Batch courant = tuile posée de travers avec ouvrier fuchsia. Batch fait = tuile en place avec blason bleu. Chaque story = une maison numérotée sur la tuile (plan, échafaudage, murs, toit, toit rouge). Fiche du chantier : une ligne par story, un cube de bois par étape (rose écrite, brun design, gris code, violet soumise, or terminée), sceau rouge pour un blocage, ligne « Action » pour la commande. Hors batch = pioche face cachée.

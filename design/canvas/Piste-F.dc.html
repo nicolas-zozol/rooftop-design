@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Essai F, plateau de lignes</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1440px;height:1060px;box-sizing:border-box;padding:48px;display:flex;flex-direction:column;gap:36px;overflow:hidden;background-color:#f3f3f3;background-image:radial-gradient(#d6d6d6 1px, transparent 1.3px);background-size:18px 18px;color:#0a0a0a;font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<header style="display:flex;flex-direction:column;gap:8px;width:760px">
+<span style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#666666">ESSAI F · JEU DE PLATEAU, CLAIR</span>
+<h1 style="margin:0;font-family:{{K}};font-size:40px;font-weight:800;line-height:1.05;color:#0a0a0a">Plateau de lignes</h1>
+<p style="margin:0;font-size:13.5px;line-height:1.45;color:#404040">Le corps de l'epic devient un plateau. Chaque batch est une voie entre deux gares, chaque story un wagon de la voie. On pose son wagon quand la story est soumise. La gare cadenassée est le verrou, la locomotive fuchsia la ligne où l'on joue, la piste du bord l'avancement de l'epic.</p>
+</header>
+
+<div style="display:flex;align-items:flex-start;gap:40px">
+
+<section aria-label="Module RB Compound" style="flex:none;box-sizing:border-box;border-radius:14px;overflow:hidden;background:#fafafa;border:1px solid #e5e5e5">
+<div style="background:#262626;color:#fafafa">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:#b5b5b5"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#b5b5b5">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:#b5b5b5">en cours</span>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:rgba(255,255,255,0.2)"><div style="width:60%;height:4px;background:#fafafa"></div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+
+<div title="Compound en deux plugins Claude Code" style="width:968px;box-sizing:border-box;border-radius:12px;background:#ffffff;border:1px solid #e5e5e5;box-shadow:0 1px 2px rgba(0,0,0,0.06);overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid #e5e5e5">
+<span style="display:flex;color:#404040"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:#ededed;color:#0a0a0a">PLUGIN</span>
+<span style="font-size:13px;font-weight:600;color:#0a0a0a;white-space:nowrap">Compound en deux plugins Claude Code</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 35 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="#d4d4d4" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="#d97706" stroke-width="2.2" stroke-dasharray="13.19 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:#404040">35 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#666666;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<dc-import name="PlateauLignes" epic="plugin" hint-size="966px,372px"></dc-import>
+</div>
+
+<div title="Worktrees longs" style="width:968px;box-sizing:border-box;border-radius:12px;background:#ffffff;border:1px solid #e5e5e5;box-shadow:0 1px 2px rgba(0,0,0,0.06);overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid #e5e5e5">
+<span style="display:flex;color:#404040"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:#ededed;color:#0a0a0a">WORKTREE</span>
+<span style="font-size:13px;font-weight:600;color:#0a0a0a;white-space:nowrap">Worktrees longs</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 66 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="#d4d4d4" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="#d97706" stroke-width="2.2" stroke-dasharray="24.88 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:#404040">66 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#666666;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<dc-import name="PlateauLignes" epic="worktree" hint-size="966px,214px"></dc-import>
+</div>
+
+</div>
+</section>
+
+<aside aria-label="Règle du plateau" style="width:300px;flex:none;box-sizing:border-box;border-radius:10px;background:#f7efd9;border:2px solid #1f626b;box-shadow:inset 0 0 0 4px #f7efd9, inset 0 0 0 5px #c6b089, 0 3px 10px rgba(0,0,0,0.12);padding:20px 20px 22px;display:flex;flex-direction:column;gap:14px">
+<span style="font-family:{{K}};font-size:15px;font-weight:800;letter-spacing:0.08em;color:#1f4a50">RÈGLE DU PLATEAU</span>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;height:22px;flex:none;box-sizing:border-box;display:flex;align-items:center;justify-content:flex-end;gap:2px;padding-right:5px;border-radius:4px;background:#e2f3e6;border:1.5px solid #2f9e4f;box-shadow:inset 0 0 0 2px rgba(255,255,255,0.75)"><span style="width:6px;height:6px;border-radius:1px;background:#2f9e4f"></span><span style="width:6px;height:6px;border-radius:1px;background:#2f9e4f"></span><span style="width:6px;height:6px;box-sizing:border-box;border-radius:1px;border:1px solid #2f9e4f"></span><span style="width:6px;height:6px;box-sizing:border-box;border-radius:1px;border:1px solid #2f9e4f"></span><span style="width:6px;height:6px;box-sizing:border-box;border-radius:1px;border:1px solid #2f9e4f"></span></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Une story, un wagon. Un rivet par étape franchie.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;height:22px;flex:none;box-sizing:border-box;border-radius:4px;background:linear-gradient(180deg, #66cb80 0%, #2f9e4f 38%, #2f9e4f 72%, #1d7537 100%);border:1px solid #1d7537;box-shadow:0 2px 0 #1d7537, inset 0 1px 0 rgba(255,255,255,0.5)"></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Wagon posé : story soumise ou terminée.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;flex:none;display:flex;gap:4px"><span style="width:22px;height:11px;box-sizing:border-box;border-radius:3px;background:#e2f3e6;border:1.5px solid #2f9e4f;opacity:0.82"></span><span style="width:22px;height:11px;box-sizing:border-box;border-radius:3px;background:#e2f3e6;border:1.5px solid #2f9e4f;opacity:0.82"></span><span style="width:22px;height:11px;box-sizing:border-box;border-radius:3px;background:#e2f3e6;border:1.5px solid #2f9e4f;opacity:0.82"></span></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Voie imprimée : batch tenu, une case par story.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;flex:none;display:flex"><svg aria-hidden="true" width="40" height="27" viewBox="0 0 48 32"><rect x="2" y="3" width="14" height="22" rx="2" fill="#c026d3" stroke="#86198f" stroke-width="1.2"></rect><rect x="5" y="6.5" width="8" height="6.5" rx="1" fill="#fbe8ff"></rect><path d="M15 10H38.5a5.5 7 0 0 1 0 14H15Z" fill="#c026d3" stroke="#86198f" stroke-width="1.2"></path><rect x="31" y="3.5" width="6" height="7.5" rx="1" fill="#c026d3" stroke="#86198f" stroke-width="1.2"></rect><path d="M41 19 47.5 27H38Z" fill="#86198f"></path><circle cx="9" cy="26.5" r="3.8" fill="#4a0d52"></circle><circle cx="22" cy="26.5" r="3.8" fill="#4a0d52"></circle><circle cx="33" cy="26.5" r="3.8" fill="#4a0d52"></circle></svg></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Locomotive : la ligne où l'on joue, le batch courant.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;flex:none;display:flex"><span style="width:26px;height:26px;box-sizing:border-box;border-radius:50%;background:#f5ecd6;border:3px solid #6b4a2b;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#5a3b1f" stroke-width="1.5" stroke-linecap="round"><rect x="2.4" y="5.2" width="7.2" height="5.2" rx="1.1" fill="#5a3b1f"></rect><path d="M4 5.2V3.9a2 2 0 0 1 4 0v1.3"></path></svg></span></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Gare cadenassée : verrou. La voie suivante attend la soumission.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;flex:none;display:flex"><span style="width:26px;height:26px;box-sizing:border-box;border-radius:50%;background:#f5ecd6;border:3px solid #6b4a2b;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" fill="#1d4ed8"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Gare cochée : batch soumis, la voie est ouverte.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;flex:none;display:flex"><span style="width:22px;height:22px;border-radius:50%;background:#dc2626;box-shadow:0 2px 0 #991b1b;display:flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.4" fill="#ffffff"></circle><rect x="4" y="6.9" width="8" height="2.2" rx="1.1" fill="#dc2626"></rect></svg></span></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Jeton rouge : blocage, n batchs d'une autre epic à soumettre.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;flex:none;display:flex"><span style="width:40px;height:26px;box-sizing:border-box;border-radius:5px;background:#f7efd9;border:1px solid #c6b089;box-shadow:0 2px 0 #b6a07a;transform:rotate(-4deg)"></span></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Billet : stories hors batch.</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:78px;flex:none;display:flex;gap:3px"><span style="width:17px;height:17px;box-sizing:border-box;border-radius:50%;background:#d3ebe7;border:1px solid #12434a"></span><span style="width:21px;height:21px;box-sizing:border-box;border-radius:50%;border:2px solid #ffffff;background:#2f9e4f;box-shadow:0 2px 0 #1d7537"></span><span style="width:17px;height:17px;box-sizing:border-box;border-radius:50%;background:#d3ebe7;border:1px solid #12434a"></span></span><span style="font-size:12px;line-height:1.35;color:#2a2117">Piste du bord : avancement de l'epic, en %.</span></div>
+</aside>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      K: "'Cinzel', 'Trajan Pro', Georgia, serif"
+    };
+  }
+}
+</script>
+</body>
+</html>

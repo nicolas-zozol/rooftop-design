@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Plateau de lignes d'une epic</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="position:relative;width:{{W}}px;height:{{H}}px;flex:none;overflow:hidden;background:#1f626b;color:#1d1d1b;font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<div style="position:absolute;left:24px;top:24px;width:{{mw}}px;height:{{mh}}px;overflow:hidden;background:#dde6e9;box-shadow:0 0 0 2px #e7d49b, 0 0 0 4px #164c54">
+<svg aria-hidden="true" width="{{mw}}" height="{{mh}}" viewBox="{{vb}}" style="position:absolute;left:0;top:0">
+<path d="{{parks}}" fill="#cde0c0"></path>
+<path d="{{minor}}" fill="none" stroke="#f6f9fa" stroke-width="2" stroke-linecap="round"></path>
+<path d="{{major}}" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"></path>
+<path d="{{blvd}}" fill="none" stroke="#ffffff" stroke-width="7.5" stroke-linecap="round"></path>
+<path d="{{river}}" fill="none" stroke="#97c3da" stroke-width="20" stroke-linecap="round"></path>
+<path d="{{river}}" fill="none" stroke="#b4d6e7" stroke-width="9" stroke-linecap="round"></path>
+</svg>
+</div>
+
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="100"><span style="position:absolute;left:{{c.l}}px;top:{{c.t}}px;width:17px;height:17px;box-sizing:border-box;border-radius:50%;background:#d3ebe7;border:1px solid #12434a;color:#12434a;font-size:7.5px;font-weight:700;display:flex;align-items:center;justify-content:center">{{c.n}}</span></sc-for>
+<span title="{{scoreTitle}}" style="position:absolute;left:{{mk.l}}px;top:{{mk.t}}px;width:23px;height:23px;box-sizing:border-box;border-radius:50%;border:2px solid #ffffff;background:{{mkBg}};box-shadow:0 2px 0 {{C.dark}}, 0 3px 6px rgba(0,0,0,0.4);color:{{C.on}};font-size:8.5px;font-weight:800;display:flex;align-items:center;justify-content:center">{{pct}}</span>
+
+<div style="position:absolute;left:24px;top:24px;width:{{mw}}px;height:{{mh}}px">
+
+<sc-for list="{{plates}}" as="p" hint-placeholder-count="5"><span style="position:absolute;left:{{p.l}}px;top:{{p.t}}px;display:flex;align-items:center;gap:6px;height:21px;box-sizing:border-box;padding:0 7px;border-radius:4px;background:#ffffff;border:{{p.bd}};box-shadow:0 1px 2px rgba(0,0,0,0.18);white-space:nowrap"><span style="font-family:{{M}};font-size:11px;font-weight:700;color:#1d1d1b">{{p.id}}</span><span style="font-size:11px;font-weight:600;color:{{p.col}}">{{p.txt}}</span></span></sc-for>
+
+<sc-for list="{{wagons}}" as="g" hint-placeholder-count="12"><div title="{{g.tip}}" style="position:absolute;left:{{g.l}}px;top:{{g.t}}px;width:{{g.w}}px;height:{{g.h}}px;box-sizing:border-box;transform:rotate({{g.rot}}deg);border-radius:4px;background:{{g.bg}};border:{{g.bd}};box-shadow:{{g.sh}};opacity:{{g.op}};display:flex;align-items:center;gap:6px;padding:0 6px 0 8px"><sc-if value="{{g.hasTxt}}" hint-placeholder-val="{{true}}"><span style="flex:1;min-width:0;font-family:{{M}};font-size:11px;font-weight:500;color:{{g.txtCol}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{g.slug}}</span><span style="display:flex;gap:2px;flex:none"><sc-for list="{{g.rivets}}" as="r" hint-placeholder-count="5"><span style="width:6px;height:6px;border-radius:1px;box-sizing:border-box;background:{{r.bg}};border:1px solid {{r.bd}}"></span></sc-for></span></sc-if></div></sc-for>
+
+<sc-if value="{{hasBlock}}" hint-placeholder-val="{{false}}"><span title="plugin-split dépend de B-TOOLMAN-2 : 2 batchs à soumettre" style="position:absolute;left:{{blk.l}}px;top:{{blk.t}}px;display:flex;align-items:center;gap:5px;height:22px;box-sizing:border-box;padding:0 9px 0 3px;border-radius:11px;background:#dc2626;box-shadow:0 2px 0 #991b1b, 0 3px 6px rgba(0,0,0,0.3);color:#ffffff;font-size:11px;font-weight:700;white-space:nowrap"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.4" fill="#ffffff"></circle><rect x="4" y="6.9" width="8" height="2.2" rx="1.1" fill="#dc2626"></rect></svg>2 à débloquer</span></sc-if>
+
+<svg role="img" aria-label="locomotive : on joue sur cette ligne" width="48" height="32" viewBox="0 0 48 32" style="position:absolute;left:{{loco.l}}px;top:{{loco.t}}px;overflow:visible"><ellipse cx="24" cy="31" rx="22" ry="2.4" fill="#000000" opacity="0.22"></ellipse><rect x="2" y="3" width="14" height="22" rx="2" fill="#c026d3" stroke="#86198f" stroke-width="1.2"></rect><rect x="5" y="6.5" width="8" height="6.5" rx="1" fill="#fbe8ff"></rect><path d="M15 10H38.5a5.5 7 0 0 1 0 14H15Z" fill="#c026d3" stroke="#86198f" stroke-width="1.2"></path><rect x="31" y="3.5" width="6" height="7.5" rx="1" fill="#c026d3" stroke="#86198f" stroke-width="1.2"></rect><path d="M41 19 47.5 27H38Z" fill="#86198f"></path><path d="M16 12.5H37" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity="0.45"></path><path d="M3.8 5.2V22" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.4"></path><circle cx="9" cy="26.5" r="3.8" fill="#4a0d52"></circle><circle cx="22" cy="26.5" r="3.8" fill="#4a0d52"></circle><circle cx="33" cy="26.5" r="3.8" fill="#4a0d52"></circle></svg>
+
+<sc-for list="{{stations}}" as="s" hint-placeholder-count="6"><span title="{{s.title}}" style="position:absolute;left:{{s.l}}px;top:{{s.t}}px;width:30px;height:30px;box-sizing:border-box;border-radius:50%;background:#f5ecd6;border:3px solid #6b4a2b;box-shadow:0 2px 0 #3f2a17, 0 3px 7px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center"><sc-if value="{{s.isLock}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="#5a3b1f" stroke-width="1.5" stroke-linecap="round"><rect x="2.4" y="5.2" width="7.2" height="5.2" rx="1.1" fill="#5a3b1f"></rect><path d="M4 5.2V3.9a2 2 0 0 1 4 0v1.3"></path></svg></sc-if><sc-if value="{{s.isPass}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" fill="#1d4ed8"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if><sc-if value="{{s.isDep}}" hint-placeholder-val="{{false}}"><span style="width:9px;height:9px;border-radius:50%;background:#6b4a2b"></span></sc-if><sc-if value="{{s.isTerm}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><path d="M3.5 13V1.5" stroke="#5a3b1f" stroke-width="1.6" stroke-linecap="round"></path><path d="M3.8 2h7.4L9.4 4.6 11.2 7.2H3.8Z" fill="{{C.base}}" stroke="{{C.dark}}" stroke-width="0.8"></path></svg></sc-if></span></sc-for>
+
+<sc-for list="{{labels}}" as="b" hint-placeholder-count="2"><span style="position:absolute;left:{{b.l}}px;top:{{b.t}}px;font-family:{{K}};font-size:12px;font-weight:800;letter-spacing:0.05em;color:#2a2117;white-space:nowrap;text-shadow:0 0 3px #ffffff, 0 0 3px #ffffff, 0 0 4px #ffffff">{{b.txt}}</span></sc-for>
+
+<sc-if value="{{hasCmd}}" hint-placeholder-val="{{true}}"><div style="position:absolute;left:{{cmd.l}}px;top:{{cmd.t}}px;width:{{cmd.w}}px;height:46px;box-sizing:border-box;display:flex;align-items:center;gap:9px;padding:0 4px 0 0;border-radius:7px;overflow:hidden;background:#ffffff;border:1px solid #cdbf9e;box-shadow:0 2px 0 #b9a77f, 0 4px 10px rgba(0,0,0,0.22)">
+<span style="width:8px;align-self:stretch;flex:none;background:#c026d3"></span>
+<span style="display:flex;flex-direction:column;gap:1px;flex:1;min-width:0">
+<span style="font-family:{{K}};font-size:10.5px;font-weight:700;letter-spacing:0.06em;color:#a21caf">PROCHAIN WAGON</span>
+<code title="{{cmd.txt}}" style="font-family:{{M}};font-size:11px;color:#1d1d1b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{cmd.txt}}</code>
+</span>
+<button type="button" aria-label="Copier la commande" style="width:30px;height:30px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#5c5446;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button>
+</div></sc-if>
+
+<sc-if value="{{hasTicket}}" hint-placeholder-val="{{false}}"><div style="position:absolute;left:{{tk.l}}px;top:{{tk.t}}px;width:262px;box-sizing:border-box;transform:rotate(-3deg);border-radius:8px;background:#f7efd9;border:1px solid #c6b089;box-shadow:0 2px 0 #b6a07a, 0 6px 12px rgba(0,0,0,0.25);padding:9px 12px 10px;display:flex;flex-direction:column;gap:5px">
+<div style="display:flex;align-items:center;gap:8px">
+<span style="font-family:{{K}};font-size:12.5px;font-weight:800;letter-spacing:0.06em;color:#3a2c1b">HORS BATCH</span>
+<span style="flex:1;height:1px;background:#c6b089"></span>
+<span title="2 stories" style="width:22px;height:22px;border-radius:50%;background:#3a2c1b;color:#f7efd9;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center">2</span>
+</div>
+<sc-for list="{{tk.rows}}" as="r" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:8px;height:20px;opacity:{{r.op}}"><span style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:#2a2117;text-decoration:{{r.deco}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{r.slug}}</span><span style="font-size:10.5px;color:#5c5446">{{r.note}}</span></div></sc-for>
+<span style="font-size:10.5px;color:#5c5446">1 note jointe</span>
+</div></sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"epic":{"editor":"enum","options":["plugin","worktree"],"default":"plugin"},"$preview":{"width":966,"height":372}}'>
+class Component extends DCLogic {
+  rnd(seed) {
+    var s = 2166136261;
+    for (var i = 0; i < seed.length; i++) { s ^= seed.charCodeAt(i); s = Math.imul(s, 16777619) >>> 0; }
+    return function () { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  fx(n) { return n.toFixed(1); }
+  city(W, H, R) {
+    var f = this.fx, maj = '', min = '', blvd = '', parks = '';
+    for (var i = 0; i < 8; i++) {
+      var y = (i + 0.5) * H / 8 + (R() - 0.5) * 16, y2 = y + (R() - 0.5) * 60, cy = (y + y2) / 2 + (R() - 0.5) * 34;
+      maj += 'M-10 ' + f(y) + 'Q' + f(W / 2) + ' ' + f(cy) + ' ' + f(W + 10) + ' ' + f(y2);
+    }
+    for (var j = 0; j < 18; j++) {
+      var x = (j + 0.5) * W / 18 + (R() - 0.5) * 30, x2 = x + (R() - 0.5) * 110;
+      maj += 'M' + f(x) + ' -10L' + f(x2) + ' ' + f(H + 10);
+    }
+    for (var k = 0; k < 4; k++) {
+      var bx = R() * W, bx2 = bx + (R() - 0.5) * 700;
+      blvd += 'M' + f(bx) + ' -10L' + f(bx2) + ' ' + f(H + 10);
+    }
+    for (var m = 0; m < 120; m++) {
+      var mx = R() * W, my = R() * H, a = R() * Math.PI, L = 10 + R() * 34;
+      min += 'M' + f(mx) + ' ' + f(my) + 'L' + f(mx + Math.cos(a) * L) + ' ' + f(my + Math.sin(a) * L);
+    }
+    for (var q = 0; q < 3; q++) {
+      var px = 60 + R() * (W - 120), py = 30 + R() * (H - 60), rx = 26 + R() * 30, ry = 14 + R() * 14;
+      parks += 'M' + f(px - rx) + ' ' + f(py) + 'a' + f(rx) + ' ' + f(ry) + ' 0 1 0 ' + f(2 * rx) + ' 0a' + f(rx) + ' ' + f(ry) + ' 0 1 0 ' + f(-2 * rx) + ' 0';
+    }
+    var river = 'M-20 ' + f(H * 0.86) + 'C' + f(W * 0.22) + ' ' + f(H * 0.62) + ' ' + f(W * 0.42) + ' ' + f(H * 1.08) + ' ' + f(W * 0.62) + ' ' + f(H * 0.84) + 'S' + f(W * 0.9) + ' ' + f(H * 0.58) + ' ' + f(W + 20) + ' ' + f(H * 0.7);
+    return {major: maj, minor: min, blvd: blvd, parks: parks, river: river};
+  }
+  rivets(n, fill, ring) {
+    var out = [];
+    for (var i = 1; i <= 5; i++) {
+      var full = n >= i, half = !full && n >= i - 0.5;
+      out.push({bg: full ? fill : (half ? 'linear-gradient(90deg, ' + fill + ' 50%, transparent 50%)' : 'transparent'), bd: ring});
+    }
+    return out;
+  }
+  wagon(cx, cy, w, h, rot, n, slug, C, mode) {
+    var labels = {'-1':'écartée','0':'à écrire','1':'sans design','1.5':'design en brouillon','2':'design approuvé, à coder','3':'code fini, à valider puis soumettre','4':'soumise','5':'terminée'};
+    var placed = mode !== 'tenu' && n >= 4;
+    var g = {l: this.fx(cx - w / 2), t: this.fx(cy - h / 2), w: w, h: h, rot: this.fx(rot), slug: slug, hasTxt: mode !== 'tenu', tip: slug ? (slug + ' · ' + (labels[String(n)] || '')) : 'story à venir', op: mode === 'tenu' ? 0.82 : 1};
+    if (placed) {
+      g.bg = 'linear-gradient(180deg, ' + C.light + ' 0%, ' + C.base + ' 38%, ' + C.base + ' 72%, ' + C.dark + ' 100%)';
+      g.bd = '1px solid ' + C.dark;
+      g.sh = '0 2px 0 ' + C.dark + ', 0 4px 7px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.5)';
+      g.txtCol = C.on;
+      g.rivets = this.rivets(n, C.on, C.on);
+    } else {
+      g.bg = C.tint;
+      g.bd = '1.5px solid ' + C.base;
+      g.sh = 'inset 0 0 0 2px rgba(255,255,255,0.75), 0 1px 2px rgba(0,0,0,0.12)';
+      g.txtCol = C.ink;
+      g.rivets = this.rivets(n, C.base, C.base);
+    }
+    return g;
+  }
+  route(A, B, k, C, out) {
+    var dx = B.x - A.x, dy = B.y - A.y, d = Math.sqrt(dx * dx + dy * dy), ux = dx / d, uy = dy / d;
+    var r = 15, gap = 5, len = (d - 2 * r - (k + 1) * gap) / k, rot = Math.atan2(uy, ux) * 180 / Math.PI;
+    for (var i = 0; i < k; i++) {
+      var o = r + gap + len / 2 + i * (len + gap);
+      out.push(this.wagon(A.x + ux * o, A.y + uy * o, len, 16, rot, 0, '', C, 'tenu'));
+    }
+  }
+  st(x, y, kind, title) {
+    return {l: x - 15, t: y - 15, isLock: kind === 'lock', isPass: kind === 'pass', isDep: kind === 'dep', isTerm: kind === 'term', title: title};
+  }
+  renderVals() {
+    var self = this;
+    var ep = this.props.epic === 'worktree' ? 'worktree' : 'plugin';
+    var COL = {
+      vert: {base:'#2f9e4f', light:'#66cb80', dark:'#1d7537', tint:'#e2f3e6', on:'#ffffff', ink:'#123320'},
+      jaune: {base:'#efbe17', light:'#ffe36b', dark:'#b38a00', tint:'#fdf4cf', on:'#3b2a00', ink:'#3b2a00'}
+    };
+    var W = 966, H, C, pct, wagons = [], stations = [], plates = [], labels = [], loco, cmd, blk = {l: 0, t: 0}, hasBlock = false, tk = {l: 0, t: 0, rows: []}, hasTicket = false;
+    var ww = 172, wh = 30;
+    if (ep === 'plugin') {
+      H = 372; C = COL.vert; pct = 35;
+      var y0 = 72;
+      var sp = [{s:'compound-inventory', n:0}, {s:'plugin-split', n:1.5}, {s:'shared-skills', n:2}, {s:'marketplace-manifest', n:3}];
+      sp.forEach(function (o, i) { wagons.push(self.wagon(54 + ww / 2 + i * (ww + 4), y0, ww, wh, 0, o.n, o.s, C, 'courant')); });
+      loco = {l: 54 + 4 * (ww + 4), t: y0 - 18};
+      var S = [{x:30, y:y0}, {x:836, y:y0}, {x:822, y:232}, {x:700, y:248}, {x:582, y:224}, {x:506, y:240}];
+      this.route(S[1], S[2], 3, C, wagons);
+      this.route(S[2], S[3], 2, C, wagons);
+      this.route(S[3], S[4], 2, C, wagons);
+      this.route(S[4], S[5], 1, C, wagons);
+      stations = [self.st(S[0].x, S[0].y, 'dep', 'départ'), self.st(S[1].x, S[1].y, 'lock', 'Verrou : B2 attend que B1 soit soumis'), self.st(S[2].x, S[2].y, 'lock', 'Verrou : B3 attend que B2 soit soumis'), self.st(S[3].x, S[3].y, 'lock', 'Verrou : B4 attend que B3 soit soumis'), self.st(S[4].x, S[4].y, 'lock', 'Verrou : B5 attend que B4 soit soumis'), self.st(S[5].x, S[5].y, 'term', 'PLUGIN terminée')];
+      labels = [{l: 12, t: y0 + 18, txt: 'DÉPART'}, {l: 470, t: 262, txt: 'PLUGIN'}];
+      plates = [
+        {l: 54, t: 30, id: 'B1', txt: 'courant · 4 stories', col: '#a21caf', bd: '1.5px solid ' + C.base},
+        {l: 856, t: 142, id: 'B2', txt: '3', col: '#5c5446', bd: '1.5px dashed ' + C.base},
+        {l: 742, t: 268, id: 'B3', txt: '2', col: '#5c5446', bd: '1.5px dashed ' + C.base},
+        {l: 618, t: 262, id: 'B4', txt: '2', col: '#5c5446', bd: '1.5px dashed ' + C.base},
+        {l: 524, t: 196, id: 'B5', txt: '1', col: '#5c5446', bd: '1.5px dashed ' + C.base}
+      ];
+      cmd = {l: 54, t: 112, w: 392, txt: 'storyman compound-inventory'};
+      hasBlock = true;
+      blk = {l: 54 + (ww + 4) + 60, t: y0 - wh / 2 - 26};
+      hasTicket = true;
+      tk = {l: 70, t: 190, rows: [{slug: 'compound-docs', note: 'sans design', op: 1, deco: 'none'}, {slug: 'migration-notes', note: 'écartée', op: 0.55, deco: 'line-through'}]};
+    } else {
+      H = 214; C = COL.jaune; pct = 66;
+      var y1 = 64;
+      wagons.push(self.wagon(54 + ww / 2, y1, ww, wh, 0, 5, 'worktree-create', C, 'fait'));
+      wagons.push(self.wagon(54 + ww / 2 + ww + 4, y1, ww, wh, 0, 5, 'worktree-list', C, 'fait'));
+      var sx = 54 + 2 * (ww + 4) + 22;
+      wagons.push(self.wagon(sx + 26 + ww / 2, y1, ww, wh, 0, 1, 'worktree-sync', C, 'courant'));
+      loco = {l: sx + 26 + ww + 4, t: y1 - 18};
+      var tx = sx + 26 + ww + 4 + 48 + 26;
+      stations = [self.st(30, y1, 'dep', 'départ'), self.st(sx, y1, 'pass', 'B1 soumis : la voie est ouverte'), self.st(tx, y1, 'term', 'WORKTREE terminée')];
+      labels = [{l: 12, t: y1 + 18, txt: 'DÉPART'}, {l: tx - 38, t: y1 + 18, txt: 'WORKTREE'}];
+      plates = [
+        {l: 54, t: 22, id: 'B1', txt: 'fait · 2 stories', col: '#1d4ed8', bd: '1.5px solid ' + C.base},
+        {l: sx + 26, t: 22, id: 'B2', txt: 'courant · 1 story', col: '#a21caf', bd: '1.5px solid ' + C.base}
+      ];
+      cmd = {l: sx + 26, t: 98, w: 420, txt: 'designman features/worktree-epic/worktree-sync/worktree-sync.story.md'};
+    }
+    var mw = W - 48, mh = H - 48;
+    var R = this.rnd('carte-' + ep);
+    var town = this.city(mw, mh, R);
+    var cells = [], P = 2 * ((W - 24) + (H - 24)), wI = W - 24, hI = H - 24;
+    var pos = function (t) {
+      if (t < wI) return {x: 12 + t, y: 12};
+      if (t < wI + hI) return {x: W - 12, y: 12 + (t - wI)};
+      if (t < 2 * wI + hI) return {x: W - 12 - (t - wI - hI), y: H - 12};
+      return {x: 12, y: H - 12 - (t - 2 * wI - hI)};
+    };
+    for (var i = 0; i < 100; i++) {
+      var p = pos((i + 0.5) * P / 100);
+      cells.push({l: self.fx(p.x - 8.5), t: self.fx(p.y - 8.5), n: i});
+    }
+    var mp = pos((pct + 0.5) * P / 100);
+    return {
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      K: "'Cinzel', 'Trajan Pro', Georgia, serif",
+      W: W, H: H, mw: mw, mh: mh, vb: '0 0 ' + mw + ' ' + mh,
+      major: town.major, minor: town.minor, blvd: town.blvd, parks: town.parks, river: town.river,
+      cells: cells,
+      mk: {l: self.fx(mp.x - 11.5), t: self.fx(mp.y - 11.5)},
+      mkBg: 'linear-gradient(180deg, ' + C.light + ', ' + C.base + ' 55%, ' + C.dark + ')',
+      C: C,
+      pct: pct,
+      scoreTitle: 'avancement de l’epic : ' + pct + ' %',
+      wagons: wagons,
+      stations: stations,
+      labels: labels,
+      plates: plates,
+      loco: loco,
+      hasCmd: true,
+      cmd: cmd,
+      hasBlock: hasBlock,
+      blk: blk,
+      hasTicket: hasTicket,
+      tk: tk
+    };
+  }
+}
+</script>
+</body>
+</html>

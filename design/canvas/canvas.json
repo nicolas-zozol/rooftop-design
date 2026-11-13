@@ -353,6 +353,38 @@
       "w": 320,
       "x": 3040,
       "y": 4700
+    },
+    "Piste-F.dc.html": {
+      "h": 1060,
+      "page": "plateau",
+      "title": "F · Plateau de lignes",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "PlateauLignes.dc.html": {
+      "h": 372,
+      "page": "plateau",
+      "title": "F · Plateau d'une epic (composant)",
+      "w": 966,
+      "x": 1520,
+      "y": 0
+    },
+    "Piste-G.dc.html": {
+      "h": 1160,
+      "page": "plateau",
+      "title": "G · Tuiles et chantier",
+      "w": 1440,
+      "x": 0,
+      "y": 1180
+    },
+    "PlateauTuiles.dc.html": {
+      "h": 500,
+      "page": "plateau",
+      "title": "G · Table d'une epic (composant)",
+      "w": 966,
+      "x": 1520,
+      "y": 1180
     }
   },
   "createdOnFiles": {
@@ -361,7 +393,7 @@
   },
   "designSystems": [],
   "launch": {
-    "page": "pistes",
+    "page": "plateau",
     "view": "canvas"
   },
   "noteOrder": [
@@ -373,7 +405,8 @@
     "t-planche-sombre",
     "t-pistes",
     "pistes-fixe",
-    "t-plateau"
+    "t-plateau",
+    "t-essais"
   ],
   "notes": {
     "t-pistes": {
@@ -451,6 +484,14 @@
       "text": "Pistes pour les batchs : le jeu de plateau",
       "x": 0,
       "y": 3320
+    },
+    "t-essais": {
+      "kind": "title1",
+      "maxW": 2480,
+      "page": "plateau",
+      "text": "Jeu de plateau, deuxième essai",
+      "x": 0,
+      "y": -320
     }
   },
   "order": [
@@ -497,7 +538,11 @@
     "Piste-D-Sombre.dc.html",
     "BatchTuile.dc.html",
     "Piste-E.dc.html",
-    "Piste-E-Sombre.dc.html"
+    "Piste-E-Sombre.dc.html",
+    "PlateauLignes.dc.html",
+    "Piste-F.dc.html",
+    "PlateauTuiles.dc.html",
+    "Piste-G.dc.html"
   ],
   "pages": [
     {
@@ -515,6 +560,10 @@
     {
       "id": "pistes",
       "name": "Pistes batchs"
+    },
+    {
+      "id": "plateau",
+      "name": "Essais jeu de plateau"
     }
   ],
   "title": "Rooftop — le Blueprint qui se déroule"
