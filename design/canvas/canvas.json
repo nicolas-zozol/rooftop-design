@@ -305,6 +305,54 @@
       "w": 320,
       "x": 3040,
       "y": 2120
+    },
+    "Piste-D.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "D · Réseau ferré — clair",
+      "w": 1440,
+      "x": 0,
+      "y": 3640
+    },
+    "Piste-D-Sombre.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "D · Réseau ferré — sombre (carte de nuit)",
+      "w": 1440,
+      "x": 1520,
+      "y": 3640
+    },
+    "BatchGare.dc.html": {
+      "h": 184,
+      "page": "pistes",
+      "title": "D · Batch en gare (composant)",
+      "w": 320,
+      "x": 3040,
+      "y": 3640
+    },
+    "Piste-E.dc.html": {
+      "h": 1000,
+      "page": "pistes",
+      "title": "E · Plateau de bâtisseurs — clair",
+      "w": 1440,
+      "x": 0,
+      "y": 4700
+    },
+    "Piste-E-Sombre.dc.html": {
+      "h": 1000,
+      "page": "pistes",
+      "title": "E · Plateau de bâtisseurs — sombre (table en noyer)",
+      "w": 1440,
+      "x": 1520,
+      "y": 4700
+    },
+    "BatchTuile.dc.html": {
+      "h": 188,
+      "page": "pistes",
+      "title": "E · Batch en tuile (composant)",
+      "w": 320,
+      "x": 3040,
+      "y": 4700
     }
   },
   "createdOnFiles": {
@@ -324,14 +372,15 @@
     "t-planche-clair",
     "t-planche-sombre",
     "t-pistes",
-    "pistes-fixe"
+    "pistes-fixe",
+    "t-plateau"
   ],
   "notes": {
     "t-pistes": {
       "kind": "title1",
       "maxW": 3360,
       "page": "pistes",
-      "text": "Trois pistes pour les batchs",
+      "text": "Pistes pour les batchs : le papier",
       "x": 0,
       "y": -320
     },
@@ -394,6 +443,14 @@
       "w": 240,
       "x": 3400,
       "y": -320
+    },
+    "t-plateau": {
+      "kind": "title1",
+      "maxW": 3360,
+      "page": "pistes",
+      "text": "Pistes pour les batchs : le jeu de plateau",
+      "x": 0,
+      "y": 3320
     }
   },
   "order": [
@@ -434,7 +491,13 @@
     "Piste-B-Sombre.dc.html",
     "BatchCarte.dc.html",
     "Piste-C.dc.html",
-    "Piste-C-Sombre.dc.html"
+    "Piste-C-Sombre.dc.html",
+    "BatchGare.dc.html",
+    "Piste-D.dc.html",
+    "Piste-D-Sombre.dc.html",
+    "BatchTuile.dc.html",
+    "Piste-E.dc.html",
+    "Piste-E-Sombre.dc.html"
   ],
   "pages": [
     {

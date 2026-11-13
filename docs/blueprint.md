@@ -137,3 +137,15 @@ Le traitement des batchs (panneau gris à cadre rose) et le mode sombre sont jug
 
 Liens entre batchs : A, trait de crayon et cadenas dessiné ; B, pièces en enfilade, porte fermée = la suivante attend, baie ouverte = passage ; C, chemin pointillé, trait plein pour le chemin parcouru.
 Polices d'annotation : A *Architects Daughter*, B *Barlow Condensed* en capitales, C *Cormorant Garamond* italique.
+
+### Deuxième série : le jeu de plateau
+
+Univers des jeux de plateau modernes, plus coloré : chaque epic reçoit une couleur (filet sous l'en-tête, couleur des pièces).
+
+| | Tenu | Courant | Fait | Avancement d'une story | Sombre |
+|---|---|---|---|---|---|
+| **D · Réseau ferré** (clair, sérieux) | gare en pointillé, voie à poser (traverses seules) | billet de gare avec bande de couleur, gare cerclée de fuchsia, commande sur le talon détachable | gare pleine cochée, voie posée (rails + traverses) | tronçon de cinq wagons, un posé par étape | carte de nuit |
+| **E · Plateau de bâtisseurs** (complexe) | tuile face cachée, terrain à bâtir | chantier rayé, ouvrier fuchsia posé sur la tuile, carte « action » pour la commande | bâtiment achevé + jeton bleu | pion de bois sur une piste de 0 à 5 | table en noyer |
+
+Liens : D, voie ferrée (traverses = à poser, rails = posée, cadenas = verrou) ; E, route (bordures en tirets = à tracer, pavée = parcourue). Plateau E sur trame hexagonale.
+Polices : D *Zilla Slab*, E *Alegreya SC*.
