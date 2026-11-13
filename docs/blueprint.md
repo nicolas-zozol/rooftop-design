@@ -1,5 +1,7 @@
 # Blueprint — spécification de conception
 
+> **Direction validée : tuiles sobres sur tapis de jeu** (section 9). Les sections 1 à 7 restent valables pour la hiérarchie, les états, le chemin de déblocage et le contrat backend ; leur traitement graphique est remplacé par la section 9.
+
 État au commit qui porte ce fichier. Les maquettes de référence sont dans le canevas (voir le README) ; ce document en garde les décisions par écrit.
 
 Rooftop est une app de bureau Tauri, **en lecture seule**. Le Blueprint montre un graphe React Flow : modules → epics → batchs → stories. Libellés en français ; identifiants, slugs et commandes en **mono** (JetBrains Mono).
@@ -168,3 +170,24 @@ Page *Tuiles et chantier* du canevas ; composant `TuilesChantier` (props `epic`,
 - **Hors batch** : pile face cachée, affichée seulement si elle contient des stories ; au clic, panneau « Hors batch ».
 - **Clic sur un batch** : panneau Chantier sous le cadre, relié à la tuile. Contenu : en-tête (état, id complet, nombre de stories, lien vers les OQ du batch), stories avec un cube par étape et coche verte à « terminée », colonne Dépendances et blocages (verrou, chemin de déblocage numéroté), **Action** : proposition complète pour avancer le batch dans un éditeur, modifiable avant de copier (Rétablir / Copier).
 - Fonds proposés : noyer (veinage fin, lames) ; tapis de jeu bleu (feutre, couture). Les données OQ des exemples sont fictives.
+
+## 9. Direction validée : l'application sur le tapis de jeu
+
+Page *Application · tapis de jeu* du canevas. Composant unique `EpicPlateau` (props `epic`, `mode` deroulee|repliee, `ouvert`, `chemin` cible|etapes|estompe), interactif : chevron pour replier ou dérouler, clic sur une tuile pour ouvrir son chantier.
+
+**Ce qui ne change pas.** Barre du haut (vues, branche, git), plan à points gris, bandeau de module noir, en-tête d'epic (drapeau, INFIX, anneau d'avancement), pied de page (documents écartés, signalements, tiroir).
+
+**Epic déroulée.** Le corps de l'epic est un tapis de jeu bleu (feutre, couture). Un cadre gris à emplacements contient un emplacement par batch, dans l'ordre :
+- tenu : emplacement vide gravé (id, cadenas, « tenu par B1 », nombre de stories) ;
+- en cours : tuile crème légèrement soulevée, pastille fuchsia (grise si l'epic est bloquée) ;
+- fait : tuile verte en place, drapeau vert.
+
+Chaque tuile montre son id, un cube par story à la couleur de son étape (rose écrite, brun design, gris code, violet soumise, coche verte terminée), les OQ (« 3 OQ » ambre ou « OQ ✓ » vert), les blocages (⊖ n), le nombre de stories. La pile bordeaux « Hors batch » suit le cadre, seulement si elle contient des stories.
+
+**Chantier.** Un clic sur une tuile (ou la pile, ou un emplacement vide) ouvre le panneau sous le cadre, relié à la tuile sélectionnée (contour noir) ; l'epic s'élargit et les voisines glissent. Contenu : état, id complet, lien vers les OQ du batch ; stories avec un cube par étape et « où elle en est » ; Dépendances et blocages (verrou, chemin numéroté vers l'autre epic, bouton « Voir sur le plan ») ; **Action** : proposition complète pour avancer le batch dans un éditeur, modifiable avant copie (Rétablir, Copier). Batch fait : pas d'action. Batch tenu : pas de stories ni d'action, seulement le verrou.
+
+**Epic repliée (240 px).** En-tête, titre, « dépend de » si bloquée, bande de tapis avec une mini-tuile par batch (grise à cadenas, crème à pastille, verte cochée) et la mini-pile hors batch, puis OQ cumulées, blocages et position (« B1/5 »). Sans batch : « aucun batch pour l'instant » et la commande `epicman`.
+
+**Chemin de déblocage.** « Voir sur le plan » : bandeau noir en haut du plan (« Pour débloquer plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », Quitter), numéros 1 et 2 sur les tuiles concernées (aussi sur les mini-tuiles d'une epic repliée), tout le reste estompé à 35 %, la story bloquée surlignée dans le chantier.
+
+À faire ensuite : sombre (le tapis l'est déjà ; reste la barre et le plan), mobile, branches parallèles 1a/1b sur les tuiles. Les nombres d'OQ et les textes d'action des maquettes sont fictifs.

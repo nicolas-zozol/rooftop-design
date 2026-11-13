@@ -412,6 +412,51 @@
       "x": 2360,
       "y": 0,
       "is_interactive": true
+    },
+    "AppPlateau.dc.html": {
+      "h": 920,
+      "page": "application",
+      "title": "01 · Plan à l'ouverture : les epics et leurs tuiles",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true
+    },
+    "App-Chantier.dc.html": {
+      "h": 1160,
+      "page": "application",
+      "title": "02 · Clic sur B1 : le chantier s'ouvre, les voisines glissent",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true
+    },
+    "App-Chemin.dc.html": {
+      "h": 1160,
+      "page": "application",
+      "title": "03 · « Voir sur le plan » : le chemin de déblocage",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true
+    },
+    "Planche-Plateau.dc.html": {
+      "h": 2000,
+      "page": "application",
+      "title": "04 · Planche : epics repliées, panneaux fait, tenu, hors batch",
+      "w": 1440,
+      "x": 0,
+      "y": 1300,
+      "is_interactive": true
+    },
+    "EpicPlateau.dc.html": {
+      "h": 226,
+      "page": "application",
+      "title": "Epic sur le tapis (composant) : epic, mode, ouvert, chemin",
+      "w": 766,
+      "x": 1520,
+      "y": 1300,
+      "is_interactive": true
     }
   },
   "createdOnFiles": {
@@ -420,7 +465,7 @@
   },
   "designSystems": [],
   "launch": {
-    "page": "chantier",
+    "page": "application",
     "view": "canvas"
   },
   "noteOrder": [
@@ -434,7 +479,8 @@
     "pistes-fixe",
     "t-plateau",
     "t-essais",
-    "t-chantier"
+    "t-chantier",
+    "t-app"
   ],
   "notes": {
     "t-pistes": {
@@ -528,6 +574,14 @@
       "text": "Tuiles et chantier, version condensée",
       "x": 0,
       "y": -320
+    },
+    "t-app": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "application",
+      "text": "Rooftop sur le tapis de jeu",
+      "x": 0,
+      "y": -320
     }
   },
   "order": [
@@ -581,7 +635,12 @@
     "Piste-G.dc.html",
     "TuilesChantier.dc.html",
     "Chantier-1.dc.html",
-    "Chantier-2.dc.html"
+    "Chantier-2.dc.html",
+    "EpicPlateau.dc.html",
+    "AppPlateau.dc.html",
+    "App-Chantier.dc.html",
+    "App-Chemin.dc.html",
+    "Planche-Plateau.dc.html"
   ],
   "pages": [
     {
@@ -607,6 +666,10 @@
     {
       "id": "chantier",
       "name": "Tuiles et chantier"
+    },
+    {
+      "id": "application",
+      "name": "Application · tapis de jeu"
     }
   ],
   "title": "Rooftop — le Blueprint qui se déroule"

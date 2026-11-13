@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop, Blueprint sur le tapis de jeu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1440px;height:{{H}}px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;background:#ffffff;color:#0a0a0a;font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<header style="height:48px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:16px;padding:0 12px 0 14px;border-bottom:1px solid #e5e5e5;background:#ffffff">
+<nav aria-label="Vues" style="display:flex;gap:2px;padding:3px;border-radius:9px;background:#f5f5f5">
+<a href="#questions" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:#666666;font-size:13px;font-weight:500;text-decoration:none">Questions</a>
+<a href="#blueprint" aria-current="page" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;background:#ffffff;color:#0a0a0a;font-size:13px;font-weight:500;text-decoration:none;box-shadow:0 1px 2px rgba(0,0,0,0.06)">Blueprint</a>
+</nav>
+<span style="flex:1"></span>
+<div style="display:flex;align-items:center;gap:12px;font-size:12px;color:#404040">
+<span style="font-family:{{M}};font-size:11.5px;color:#0a0a0a;padding:3px 8px;border-radius:6px;background:#f5f5f5;border:1px solid #e5e5e5">epic/rooftop-batches-epic</span>
+<span>37 fichiers à commiter</span>
+<span aria-hidden="true" style="width:1px;height:16px;background:#e5e5e5"></span>
+<span>20 commits à pousser</span>
+<span style="display:flex;align-items:center;gap:2px;height:26px;box-sizing:border-box;padding:0 2px 0 8px;border-radius:6px;border:1px solid #e5e5e5;background:#f5f5f5"><code style="font-family:{{M}};font-size:11.5px;color:#404040">git push</code><button type="button" aria-label="Copier git push" style="width:22px;height:22px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:5px;background:transparent;color:#666666;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg></button></span>
+<span aria-hidden="true" style="width:1px;height:16px;background:#e5e5e5"></span>
+<span>intégration : <span style="font-family:{{M}};font-size:11.5px;color:#0a0a0a">main</span></span>
+<button type="button" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid #e5e5e5;background:#ffffff;color:#0a0a0a;font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,0.06)">Relire git</button>
+</div>
+</header>
+
+<main aria-label="Plan" style="flex:1;min-height:0;position:relative;overflow:hidden;background-color:#f3f3f3;background-image:radial-gradient(#d6d6d6 1px, transparent 1.3px);background-size:18px 18px">
+
+<div style="position:absolute;left:16px;top:16px;display:flex;gap:8px;z-index:2">
+<button type="button" style="height:30px;padding:0 12px;border-radius:7px;border:1px solid #e5e5e5;background:#ffffff;color:#0a0a0a;font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,0.06)">Tout replier</button>
+<button type="button" style="height:30px;padding:0 12px;border-radius:7px;border:1px solid #e5e5e5;background:#ffffff;color:#0a0a0a;font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,0.06)">Dérouler les débloquées</button>
+</div>
+
+<sc-if value="{{isChemin}}" hint-placeholder-val="{{false}}"><div role="status" style="position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:10px;height:40px;box-sizing:border-box;padding:0 5px 0 16px;border-radius:999px;background:#171717;color:#fafafa;font-size:12.5px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,0.25)">
+<span>Pour débloquer <span style="font-family:{{M}};font-weight:600">plugin-split</span>, soumettre :</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:20px;height:20px;border-radius:50%;background:#fafafa;color:#171717;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">1</span><span style="font-family:{{M}};font-weight:600">B-TOOLMAN-1</span></span>
+<span aria-hidden="true" style="opacity:0.6">→</span>
+<span style="display:flex;align-items:center;gap:6px"><span style="width:20px;height:20px;border-radius:50%;background:#fafafa;color:#171717;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">2</span><span style="font-family:{{M}};font-weight:600">B-TOOLMAN-2</span></span>
+<button type="button" style="height:30px;margin-left:4px;padding:0 12px;border-radius:999px;border:0;background:#3a3a3a;color:#fafafa;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer">Quitter le chemin</button>
+</div></sc-if>
+
+<div style="position:absolute;left:32px;top:64px;display:flex;align-items:flex-start;gap:28px">
+
+<section aria-label="Module RB Compound" style="flex:none;box-sizing:border-box;border-radius:14px;overflow:hidden;background:#fafafa;border:1px solid #e5e5e5">
+<div style="background:#262626;color:#fafafa">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:#b5b5b5"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:#b5b5b5">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:#b5b5b5">en cours</span>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:rgba(255,255,255,0.2)"><div style="width:60%;height:4px;background:#fafafa"></div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+<dc-import name="EpicPlateau" epic="plugin" mode="deroulee" ouvert="{{plOuvert}}" chemin="{{plChemin}}" hint-size="766px,206px"></dc-import>
+<div style="display:flex;align-items:flex-start;gap:20px">
+<dc-import name="EpicPlateau" epic="qualitygates" mode="deroulee" ouvert="" chemin="{{autre}}" hint-size="390px,206px"></dc-import>
+<dc-import name="EpicPlateau" epic="worktree" mode="deroulee" ouvert="" chemin="{{autre}}" hint-size="278px,206px"></dc-import>
+</div>
+<div style="display:flex;align-items:flex-start;gap:20px">
+<dc-import name="EpicPlateau" epic="pipeline" mode="repliee" ouvert="" chemin="{{autre}}" hint-size="240px,186px"></dc-import>
+<div style="display:flex;align-items:flex-start">
+<dc-import name="EpicPlateau" epic="batches" mode="repliee" ouvert="" chemin="{{autre}}" hint-size="240px,154px"></dc-import>
+<div title="RTWORKTREES dépend de BATCHES" style="width:56px;height:40px;flex:none;position:relative;opacity:{{autreOp}}"><span style="position:absolute;left:8px;right:0;top:19px;border-top:1.5px solid #9a9a9a"></span><svg aria-hidden="true" width="9" height="12" viewBox="0 0 9 12" style="position:absolute;left:0;top:14px"><path d="M9 1.5 1 6l8 4.5Z" fill="#9a9a9a"></path></svg></div>
+<dc-import name="EpicPlateau" epic="rtworktrees" mode="repliee" ouvert="" chemin="{{autre}}" hint-size="240px,178px"></dc-import>
+</div>
+</div>
+</div>
+</section>
+
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:28px">
+<dc-import name="EpicPlateau" epic="toolman" mode="deroulee" ouvert="" chemin="{{tmChemin}}" hint-size="542px,250px"></dc-import>
+<dc-import name="EpicPlateau" epic="trwg" mode="repliee" ouvert="" chemin="{{autre}}" hint-size="240px,228px"></dc-import>
+</div>
+
+</div>
+
+<div style="position:absolute;right:16px;bottom:16px;z-index:2;display:flex;align-items:center;gap:2px;padding:3px;border-radius:10px;background:#ffffff;border:1px solid #e5e5e5;box-shadow:0 1px 2px rgba(0,0,0,0.06)">
+<button type="button" aria-label="Dézoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:#404040;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7"></path></svg></button>
+<span style="min-width:44px;text-align:center;font-size:11.5px;color:#404040">100 %</span>
+<button type="button" aria-label="Zoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:#404040;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7M7 3.5v7"></path></svg></button>
+<span aria-hidden="true" style="width:1px;height:16px;margin:0 2px;background:#e5e5e5"></span>
+<button type="button" style="height:28px;padding:0 10px;border:0;border-radius:7px;background:transparent;color:#404040;font-family:inherit;font-size:12px;font-weight:500;cursor:pointer">Cadrer</button>
+</div>
+</main>
+
+<footer style="height:36px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 8px 0 16px;border-top:1px solid #e5e5e5;background:#ffffff;font-size:12px;color:#404040">
+<span>3 documents écartés</span>
+<span style="color:#666666">·</span>
+<span>2 signalements</span>
+<span style="flex:1"></span>
+<button type="button" style="height:26px;display:flex;align-items:center;gap:6px;padding:0 8px;border:0;border-radius:6px;background:transparent;color:#404040;font-family:inherit;font-size:12px;font-weight:500;cursor:pointer">Ouvrir le tiroir<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"vue":{"editor":"enum","options":["ouverture","chantier","chemin"],"default":"ouverture"},"$preview":{"width":1440,"height":920}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var vue = this.props.vue || 'ouverture';
+    var chemin = vue === 'chemin';
+    var ouvert = vue === 'ouverture' ? '' : 'B1';
+    return {
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      H: vue === 'ouverture' ? 920 : 1160,
+      isChemin: chemin,
+      plOuvert: ouvert,
+      plChemin: chemin ? 'cible' : '',
+      plHint: ouvert ? '968px,880px' : '766px,206px',
+      tmChemin: chemin ? 'etapes' : '',
+      autre: chemin ? 'estompe' : '',
+      autreOp: chemin ? 0.35 : 1
+    };
+  }
+}
+</script>
+</body>
+</html>

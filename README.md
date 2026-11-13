@@ -4,6 +4,8 @@ Maquettes et spécification de l'écran **Blueprint** de Rooftop (app de bureau 
 
 ## Où regarder
 
+> **Direction retenue : tuiles sobres sur tapis de jeu.** Écrans : page *Application · tapis de jeu* du canevas (`AppPlateau`, `App-Chantier`, `App-Chemin`, `Planche-Plateau`, composant `EpicPlateau`). Les autres pages gardent l'historique des pistes.
+
 - **Le canevas vivant** (Claude Design) : https://claude.ai/artifact/3EwPxSWQuHuvURMgwKGjyR
   Trois pages : *Maquettes*, *Planche des composants*, *Palette et tailles*.
 - **La spec écrite** : [`docs/blueprint.md`](docs/blueprint.md) — hiérarchie, états, chemin de déblocage, contrat backend, mobile, jetons.
@@ -33,6 +35,9 @@ Maquettes et spécification de l'écran **Blueprint** de Rooftop (app de bureau 
 | `Piste-E.dc.html`, `BatchTuile.dc.html` | Piste jeu de plateau E · Plateau de bâtisseurs : tuiles, ouvrier, pions sur piste 0-5 |
 | `Piste-F.dc.html`, `PlateauLignes.dc.html` | Essai F · Plateau de lignes : voies de wagons entre gares, piste de score au bord (page *Essais jeu de plateau*) |
 | `Piste-G.dc.html`, `PlateauTuiles.dc.html` | Essai G · Tuiles et chantier : cadre à emplacements, maisons par story, fiche à cubes |
+| `EpicPlateau.dc.html` | **Retenu** · carte d'epic sur le tapis : repliée (mini-tuiles) ou déroulée (cadre à tuiles, Hors batch, chantier au clic), étapes du chemin |
+| `AppPlateau.dc.html`, `App-Chantier.dc.html`, `App-Chemin.dc.html` | **Retenu** · l'application : plan à l'ouverture, chantier B1 ouvert, chemin de déblocage sur le plan |
+| `Planche-Plateau.dc.html` | **Retenu** · planche : les huit epics repliées, panneaux fait, tenu, hors batch |
 | `Chantier-1.dc.html`, `Chantier-2.dc.html`, `TuilesChantier.dc.html` | Tuiles et chantier condensé, interactif : tuiles de l'epic, panneau Chantier au clic, action éditable ; fonds noyer et tapis (page *Tuiles et chantier*) |
 
 Les fichiers `.dc.html` sont le format du canevas Claude Design : balisage `<x-dc>` avec trous `{{…}}`, boucles `<sc-for>`, conditions `<sc-if>`, imports `<dc-import>`, et un script `DCLogic` dont `renderVals()` calcule les valeurs. Ils s'ouvrent dans le canevas, pas directement dans un navigateur.
