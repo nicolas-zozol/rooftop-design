@@ -26,6 +26,9 @@ Maquettes et spécification de l'écran **Blueprint** de Rooftop (app de bureau 
 | `Planche-*.dc.html` | Planches des états de chaque composant |
 | `Palette.dc.html` | Couleurs et tailles |
 | `*Sombre.dc.html`, `*-sombre.dc.html` | Jumeaux sombres : importent la planche claire avec `theme="sombre"` |
+| `Piste-A.dc.html`, `BatchCrayon.dc.html` | Piste graphique A · Planche à dessin : crayon → encre (page *Pistes batchs*) |
+| `Piste-B.dc.html`, `BatchPiece.dc.html` | Piste graphique B · Plan d'étage : le batch est une pièce, les murs disent l'état |
+| `Piste-C.dc.html`, `BatchCarte.dc.html` | Piste graphique C · Relevé de carte : itinéraire, fanion « vous êtes ici » |
 
 Les fichiers `.dc.html` sont le format du canevas Claude Design : balisage `<x-dc>` avec trous `{{…}}`, boucles `<sc-for>`, conditions `<sc-if>`, imports `<dc-import>`, et un script `DCLogic` dont `renderVals()` calcule les valeurs. Ils s'ouvrent dans le canevas, pas directement dans un navigateur.
 

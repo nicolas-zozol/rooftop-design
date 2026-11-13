@@ -125,6 +125,15 @@ Rien à construire aujourd'hui ; la planche 05 dit ce que le desktop ne doit pas
 
 Les jetons complets sont dans la méthode `tok(dark)` de chaque composant.
 
-## 8. Ouvert
+## 8. Ouvert : trois pistes graphiques pour les batchs
 
-- Le traitement graphique des batchs et le mode sombre sont jugés trop « classiques » : une évolution purement graphique (style architecte / papier) est en cours, en pistes séparées, à côté de l'existant.
+Le traitement des batchs (panneau gris à cadre rose) et le mode sombre sont jugés trop génériques. Trois pistes, page *Pistes batchs* du canevas, chacune en clair et en sombre. L'existant n'a pas bougé. Constantes : bandeau de module noir, en-tête d'epic, Inter / mono, fuchsia = on agit ici, rouge ⊖ = blocage, mêmes données d'exemple.
+
+| | Tenu (pas commencé) | Courant (en cours) | Fait | Sombre |
+|---|---|---|---|---|
+| **A · Planche à dessin** | croquis au crayon, traits qui débordent aux angles | mise à l'encre : le trait d'encre fait le tour du cadre au prorata de l'avancement des stories, une plume marque où il s'arrête ; numéro entouré au crayon fuchsia | mis au propre à l'encre, double filet, tampon bleu « FAIT » | graphite et encre blanche sur ardoise |
+| **B · Plan d'étage** | murs projetés : doubles tirets | murs en travaux : hachures fuchsia | murs existants : poché noir plein | cyanotype (bleu de Prusse, traits blancs) |
+| **C · Relevé de carte** | pointillé au crayon, terra incognita | cartouche à l'encre + fanion fuchsia « vous êtes ici » | cartouche à double filet, lavis, sceau bleu | carte de nuit, encre claire sur papier sombre |
+
+Liens entre batchs : A, trait de crayon et cadenas dessiné ; B, pièces en enfilade, porte fermée = la suivante attend, baie ouverte = passage ; C, chemin pointillé, trait plein pour le chemin parcouru.
+Polices d'annotation : A *Architects Daughter*, B *Barlow Condensed* en capitales, C *Cormorant Garamond* italique.

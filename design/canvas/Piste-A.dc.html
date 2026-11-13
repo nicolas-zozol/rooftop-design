@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Piste A, planche à dessin</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1440px;height:940px;box-sizing:border-box;padding:48px;display:flex;flex-direction:column;gap:40px;overflow:hidden;background-color:{{P.plan}};background-image:radial-gradient({{P.dot}} 1px, transparent 1.3px);background-size:18px 18px;color:{{P.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<header style="display:flex;align-items:flex-end;justify-content:space-between;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px;width:460px">
+<span style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:{{P.mu}}">PISTE A</span>
+<h1 style="margin:0;font-family:{{H}};font-size:38px;font-weight:400;line-height:1.05;color:{{P.fg}}">Planche à dessin</h1>
+<p style="margin:0;font-size:13.5px;line-height:1.45;color:{{P.fg2}}">Un batch commence au crayon. Le trait d'encre fait le tour du cadre à mesure que ses stories avancent ; fini, il est mis au propre et reçoit son visa.</p>
+</div>
+<div style="display:flex;align-items:flex-end;gap:44px;padding-bottom:4px">
+<figure style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B3" etat="tenu" par="B2" nb="2" ouvert="non" hint-size="112px,52px"></dc-import>
+<figcaption style="font-family:{{H}};font-size:14px;color:{{P.fg2}}">crayon · tenu</figcaption>
+</figure>
+<figure style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B2" etat="courant" ouvert="non" stories="worktree-sync:1" hint-size="150px,52px"></dc-import>
+<figcaption style="font-family:{{H}};font-size:14px;color:{{P.fg2}}">mise à l'encre · courant</figcaption>
+</figure>
+<figure style="margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B1" etat="fait" ouvert="non" stories="worktree-create:5|worktree-list:5" hint-size="112px,52px"></dc-import>
+<figcaption style="font-family:{{H}};font-size:14px;color:{{P.fg2}}">encre et visa · fait</figcaption>
+</figure>
+</div>
+</header>
+
+<div style="display:flex;align-items:flex-start;gap:56px">
+
+<section aria-label="Module RB Compound" style="flex:none;box-sizing:border-box;border-radius:14px;overflow:hidden;background:{{P.frame}};border:1px solid {{P.bd}}">
+<div style="background:{{P.band}};color:{{P.bandT}}">
+<div style="display:flex;align-items:center;gap:9px;height:40px;padding:0 14px">
+<span style="display:flex;color:{{P.bandMu}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:{{P.bandMu}}">MODULE</span>
+<span style="font-size:15px;font-weight:700;white-space:nowrap">RB Compound</span>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke="#fbbf24" stroke-width="1.5"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" fill="#fbbf24"></path></svg>
+<span style="font-size:12px;color:{{P.bandMu}}">en cours</span>
+<span style="font-size:13px;font-weight:600">60 %</span>
+</div>
+<div style="height:4px;background:{{P.bandTrack}}"><div style="width:60%;height:4px;background:{{P.bandT}}"></div></div>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;align-items:flex-start;gap:20px">
+
+<div title="Compound en deux plugins Claude Code" style="width:896px;box-sizing:border-box;border-radius:12px;background:{{P.card}};border:1px solid {{P.bd}};box-shadow:{{P.sh}};overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid {{P.bd}}">
+<span style="display:flex;color:{{P.fg2}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:{{P.tag}};color:{{P.fg}}">PLUGIN</span>
+<span style="font-size:13px;font-weight:600;color:{{P.fg}};white-space:nowrap">Compound en deux plugins Claude Code</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 35 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="{{P.bd2}}" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{P.prog}}" stroke-width="2.2" stroke-dasharray="13.19 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:{{P.fg2}}">35 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{P.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<div style="padding:14px;display:flex;flex-direction:column;gap:14px;background-color:{{P.paper}};background-image:linear-gradient({{P.grid2}} 1px, transparent 1px),linear-gradient(90deg, {{P.grid2}} 1px, transparent 1px),linear-gradient({{P.grid}} 1px, transparent 1px),linear-gradient(90deg, {{P.grid}} 1px, transparent 1px);background-size:60px 60px,60px 60px,12px 12px,12px 12px">
+<div style="display:flex;align-items:flex-start">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B1" etat="courant" ouvert="oui" stories="compound-inventory:0|plugin-split:1.5:x2|shared-skills:2|marketplace-manifest:3" cmd="storyman compound-inventory" hint-size="320px,176px"></dc-import>
+<div title="Verrou : B2 attend que B1 soit soumis" style="width:56px;height:52px;flex:none"><svg aria-hidden="true" width="56" height="52" viewBox="0 0 56 52"><path d="M1 26.4Q20 25.1 55 26.2" fill="none" stroke="{{P.pencil}}" stroke-width="1" stroke-linecap="round"></path><path d="M3 27.3Q30 26.7 53 25.7" fill="none" stroke="{{P.pencil}}" stroke-width="0.6" stroke-linecap="round" opacity="0.6"></path><rect x="20" y="16" width="16" height="20" fill="{{P.paper}}"></rect><path d="M22.4 25.4 33.6 25l.3 7.8-11.2.4Z" fill="none" stroke="{{P.pencil}}" stroke-width="1.1" stroke-linejoin="round"></path><path d="M25 25.3v-2.8c0-2 1.3-3.3 3-3.3s3 1.3 3 3.3v2.6" fill="none" stroke="{{P.pencil}}" stroke-width="1.1" stroke-linecap="round"></path></svg></div>
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B2" etat="tenu" par="B1" nb="3" ouvert="non" hint-size="112px,52px"></dc-import>
+<div aria-hidden="true" style="width:14px;height:52px;flex:none"><svg width="14" height="52" viewBox="0 0 14 52"><path d="M0 26.3 14 25.8" fill="none" stroke="{{P.pencil}}" stroke-width="1" stroke-dasharray="2.5 2.5"></path></svg></div>
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B3" etat="tenu" par="B2" nb="2" ouvert="non" hint-size="112px,52px"></dc-import>
+<div aria-hidden="true" style="width:14px;height:52px;flex:none"><svg width="14" height="52" viewBox="0 0 14 52"><path d="M0 25.9 14 26.4" fill="none" stroke="{{P.pencil}}" stroke-width="1" stroke-dasharray="2.5 2.5"></path></svg></div>
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B4" etat="tenu" par="B3" nb="2" ouvert="non" hint-size="112px,52px"></dc-import>
+<div aria-hidden="true" style="width:14px;height:52px;flex:none"><svg width="14" height="52" viewBox="0 0 14 52"><path d="M0 26.2 14 25.9" fill="none" stroke="{{P.pencil}}" stroke-width="1" stroke-dasharray="2.5 2.5"></path></svg></div>
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B5" etat="tenu" par="B4" nb="1" ouvert="non" hint-size="112px,52px"></dc-import>
+</div>
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="HB" etat="hors" ouvert="oui" stories="compound-docs:1|migration-notes:-1" notes="1" hint-size="320px,92px"></dc-import>
+</div>
+</div>
+
+<div title="Worktrees longs" style="width:486px;box-sizing:border-box;border-radius:12px;background:{{P.card}};border:1px solid {{P.bd}};box-shadow:{{P.sh}};overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid {{P.bd}}">
+<span style="display:flex;color:{{P.fg2}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:{{P.tag}};color:{{P.fg}}">WORKTREE</span>
+<span style="font-size:13px;font-weight:600;color:{{P.fg}};white-space:nowrap">Worktrees longs</span>
+<span style="flex:1"></span>
+<svg role="img" aria-label="avancement 66 %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke="{{P.bd2}}" stroke-width="2.2"></circle><circle cx="8" cy="8" r="6" fill="none" stroke="{{P.prog}}" stroke-width="2.2" stroke-dasharray="24.88 37.70" transform="rotate(-90 8 8)"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:{{P.fg2}}">66 %</span>
+<button type="button" aria-label="Replier l'epic" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:{{P.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.8 7 5.3l3.5 3.5"></path></svg></button>
+</div>
+<div style="padding:14px;display:flex;align-items:flex-start;background-color:{{P.paper}};background-image:linear-gradient({{P.grid2}} 1px, transparent 1px),linear-gradient(90deg, {{P.grid2}} 1px, transparent 1px),linear-gradient({{P.grid}} 1px, transparent 1px),linear-gradient(90deg, {{P.grid}} 1px, transparent 1px);background-size:60px 60px,60px 60px,12px 12px,12px 12px">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B1" etat="fait" ouvert="non" stories="worktree-create:5|worktree-list:5" hint-size="112px,52px"></dc-import>
+<div aria-hidden="true" style="width:24px;height:52px;flex:none"><svg width="24" height="52" viewBox="0 0 24 52"><path d="M0 26H24" fill="none" stroke="{{P.ink}}" stroke-width="1.4"></path></svg></div>
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B2" etat="courant" ouvert="oui" stories="worktree-sync:1" cmd="designman features/worktree-epic/worktree-sync/worktree-sync.story.md" hint-size="320px,98px"></dc-import>
+</div>
+</div>
+
+</div>
+</section>
+
+<aside aria-label="Les états de près" style="width:340px;flex:none;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:{{P.mu}}">FAIT, OUVERT</span>
+<div style="padding:14px;margin:0 -14px;background-color:{{P.paper}};border-radius:10px">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B1" etat="fait" ouvert="oui" stories="worktree-create:5|worktree-list:5" hint-size="320px,92px"></dc-import>
+</div>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:{{P.mu}};margin-top:8px">TENU, OUVERT</span>
+<div style="padding:14px;margin:0 -14px;background-color:{{P.paper}};border-radius:10px">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B2" etat="tenu" par="B1" ouvert="oui" entete="bloqué par checker-depth" stories="gate-config:0|gate-report:0" hint-size="320px,114px"></dc-import>
+</div>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.08em;color:{{P.mu}};margin-top:8px">CHEMIN DE DÉBLOCAGE</span>
+<div style="padding:18px 14px 14px 18px;margin:0 -14px;background-color:{{P.paper}};border-radius:10px;display:flex;align-items:flex-start">
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B1" etat="courant" ouvert="non" etape="1" stories="toolman:1.5" hint-size="150px,52px"></dc-import>
+<div title="Verrou : B2 attend que B1 soit soumis" style="width:56px;height:52px;flex:none"><svg aria-hidden="true" width="56" height="52" viewBox="0 0 56 52"><path d="M1 26.4Q20 25.1 55 26.2" fill="none" stroke="{{P.pencil}}" stroke-width="1" stroke-linecap="round"></path><rect x="20" y="16" width="16" height="20" fill="{{P.paper}}"></rect><path d="M22.4 25.4 33.6 25l.3 7.8-11.2.4Z" fill="none" stroke="{{P.pencil}}" stroke-width="1.1" stroke-linejoin="round"></path><path d="M25 25.3v-2.8c0-2 1.3-3.3 3-3.3s3 1.3 3 3.3v2.6" fill="none" stroke="{{P.pencil}}" stroke-width="1.1" stroke-linecap="round"></path></svg></div>
+<dc-import name="BatchCrayon" theme="{{theme}}" bid="B2" etat="tenu" par="B1" nb="2" ouvert="non" etape="2" hint-size="112px,52px"></dc-import>
+</div>
+</aside>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"$preview":{"width":1440,"height":940}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {plan:'#171a1c', dot:'#262b2e', frame:'#1b1f22', band:'#0d0f10', bandT:'#f1efe9', bandMu:'#a9b0b5', bandTrack:'rgba(241,239,233,0.16)', card:'#262b2f', bd:'#353c41', bd2:'#454d53', tag:'#333a3f', fg:'#f1efe9', fg2:'#d5d8da', mu:'#a9b0b5', prog:'#f5b84a', sh:'none', paper:'#22272b', grid:'#2a3034', grid2:'#323a40', ink:'#f1efe9', pencil:'#838c92'};
+    }
+    return {plan:'#f3f3f3', dot:'#d6d6d6', frame:'#fafafa', band:'#262626', bandT:'#fafafa', bandMu:'#b5b5b5', bandTrack:'rgba(255,255,255,0.2)', card:'#ffffff', bd:'#e5e5e5', bd2:'#d4d4d4', tag:'#ededed', fg:'#0a0a0a', fg2:'#404040', mu:'#666666', prog:'#d97706', sh:'0 1px 2px rgba(0,0,0,0.06)', paper:'#fbfaf7', grid:'#eeebe4', grid2:'#e2ddd3', ink:'#161616', pencil:'#8d8a84'};
+  }
+  renderVals() {
+    var dark = this.props.theme === 'sombre' || this.props.theme === 'dark';
+    return {
+      P: this.tok(dark),
+      theme: dark ? 'sombre' : 'clair',
+      H: "'Architects Daughter', 'Segoe Print', 'Bradley Hand', cursive"
+    };
+  }
+}
+</script>
+</body>
+</html>

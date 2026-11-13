@@ -233,6 +233,78 @@
       "w": 1360,
       "x": 1880,
       "y": 1020
+    },
+    "Piste-A.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "A · Planche à dessin — clair",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Piste-A-Sombre.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "A · Planche à dessin — sombre (graphite sur ardoise)",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "BatchCrayon.dc.html": {
+      "h": 178,
+      "page": "pistes",
+      "title": "A · Batch au crayon (composant)",
+      "w": 320,
+      "x": 3040,
+      "y": 0
+    },
+    "Piste-B.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "B · Plan d'étage — clair",
+      "w": 1440,
+      "x": 0,
+      "y": 1060
+    },
+    "Piste-B-Sombre.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "B · Plan d'étage — sombre (cyanotype)",
+      "w": 1440,
+      "x": 1520,
+      "y": 1060
+    },
+    "BatchPiece.dc.html": {
+      "h": 190,
+      "page": "pistes",
+      "title": "B · Batch en pièce (composant)",
+      "w": 320,
+      "x": 3040,
+      "y": 1060
+    },
+    "Piste-C.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "C · Relevé de carte — clair",
+      "w": 1440,
+      "x": 0,
+      "y": 2120
+    },
+    "Piste-C-Sombre.dc.html": {
+      "h": 940,
+      "page": "pistes",
+      "title": "C · Relevé de carte — sombre (carte de nuit)",
+      "w": 1440,
+      "x": 1520,
+      "y": 2120
+    },
+    "BatchCarte.dc.html": {
+      "h": 178,
+      "page": "pistes",
+      "title": "C · Batch en étape de carte (composant)",
+      "w": 320,
+      "x": 3040,
+      "y": 2120
     }
   },
   "createdOnFiles": {
@@ -241,7 +313,7 @@
   },
   "designSystems": [],
   "launch": {
-    "page": "maquettes",
+    "page": "pistes",
     "view": "canvas"
   },
   "noteOrder": [
@@ -250,9 +322,27 @@
     "choix",
     "pli",
     "t-planche-clair",
-    "t-planche-sombre"
+    "t-planche-sombre",
+    "t-pistes",
+    "pistes-fixe"
   ],
   "notes": {
+    "t-pistes": {
+      "kind": "title1",
+      "maxW": 3360,
+      "page": "pistes",
+      "text": "Trois pistes pour les batchs",
+      "x": 0,
+      "y": -320
+    },
+    "pistes-fixe": {
+      "fill": "gray",
+      "page": "pistes",
+      "text": "Ce qui ne bouge pas d'une piste à l'autre\n\nBandeau de module noir, en-tête d'epic (drapeau, INFIX, anneau), Inter pour l'interface, mono pour les ids, slugs et commandes. Fuchsia = on agit ici. Rouge ⊖ = blocage. Mêmes tailles de batch que la planche, mêmes données d'exemple.\n\nSeul le batch change : son trait, son papier, sa façon de dire tenu, courant, fait.\n\nL'existant reste intact sur les autres pages.",
+      "w": 560,
+      "x": -660,
+      "y": 0
+    },
     "choix": {
       "fill": "blue",
       "page": "maquettes",
@@ -335,7 +425,16 @@
     "Mobile.dc.html",
     "MobileSombre.dc.html",
     "CheminBranches.dc.html",
-    "CheminBranchesSombre.dc.html"
+    "CheminBranchesSombre.dc.html",
+    "BatchCrayon.dc.html",
+    "Piste-A.dc.html",
+    "Piste-A-Sombre.dc.html",
+    "BatchPiece.dc.html",
+    "Piste-B.dc.html",
+    "Piste-B-Sombre.dc.html",
+    "BatchCarte.dc.html",
+    "Piste-C.dc.html",
+    "Piste-C-Sombre.dc.html"
   ],
   "pages": [
     {
@@ -349,6 +448,10 @@
     {
       "id": "palette",
       "name": "Palette et tailles"
+    },
+    {
+      "id": "pistes",
+      "name": "Pistes batchs"
     }
   ],
   "title": "Rooftop — le Blueprint qui se déroule"

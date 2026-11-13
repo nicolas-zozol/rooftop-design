@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Batch, piste A : crayon puis encre</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="position:relative;width:{{w}}px;height:{{h}}px;flex:none;opacity:{{op}};color:{{K.fg}};font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+<svg aria-hidden="true" width="{{svgW}}" height="{{svgH}}" viewBox="{{vb}}" style="position:absolute;left:-20px;top:-20px;z-index:0;overflow:visible;pointer-events:none">
+<defs><filter id="crayon-grain" x="-10%" y="-40%" width="120%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="bruit"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="bruit" scale="1.8" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></defs>
+<path d="{{rectD}}" fill="{{fill}}" stroke="none"></path>
+<path d="{{pencilD}}" fill="none" stroke="{{K.pencil}}" stroke-width="0.95" stroke-linecap="round" opacity="{{pencilOp}}" filter="url(#crayon-grain)"></path>
+<path d="{{rectD}}" fill="none" stroke="{{K.ink}}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="miter" stroke-dasharray="{{inkDash}}" opacity="{{inkOp}}"></path>
+<path d="{{innerD}}" fill="none" stroke="{{K.ink}}" stroke-width="0.6" opacity="{{innerOp}}"></path>
+<circle cx="{{nibX}}" cy="{{nibY}}" r="2.3" fill="{{K.ink}}" opacity="{{nibOp}}"></circle>
+<path d="{{loopD}}" fill="none" stroke="{{K.acc}}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="{{loopOp}}"></path>
+</svg>
+<div style="position:relative;z-index:1;width:100%;height:100%;display:flex;flex-direction:column">
+
+<sc-if value="{{open}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;align-items:center;gap:8px;height:34px;flex:none;padding:0 10px 0 12px">
+<span style="font-family:{{M}};font-size:11px;font-weight:600;color:{{chipCol}};white-space:nowrap">{{chip}}</span>
+<sc-if value="{{isTenu}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="{{K.pencil}}" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M2.8 6.3 10.3 6l.2 5.3-7.5.3Z"></path><path d="M4.6 6.2V4.3c0-1.5 1-2.4 2.1-2.4s2.1.9 2.1 2.4v1.8"></path></svg></sc-if>
+<sc-if value="{{hasStamp}}" hint-placeholder-val="{{false}}"><span style="display:inline-flex;align-items:center;height:16px;padding:0 5px;border:1.5px solid {{K.done}};border-radius:3px;color:{{K.done}};font-size:9.5px;font-weight:800;letter-spacing:0.16em;transform:rotate(-6deg)">FAIT</span></sc-if>
+<span style="font-family:{{H}};font-size:14px;color:{{wordCol}};white-space:nowrap">{{word}}</span>
+<span style="flex:1"></span>
+<sc-if value="{{hasMini}}" hint-placeholder-val="{{true}}"><span role="img" aria-label="{{miniLabel}}" style="display:flex;gap:2px"><sc-for list="{{mini}}" as="m" hint-placeholder-count="4"><span style="width:10px;height:4px;background:{{m.bg}}"></span></sc-for></span></sc-if>
+<span style="font-family:{{H}};font-size:13px;color:{{K.mu}};white-space:nowrap">{{count}}</span>
+<sc-if value="{{hasBlock}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:{{K.blkT}};white-space:nowrap"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{K.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>{{blockLabel}}</span></sc-if>
+</div>
+<sc-if value="{{hasEntete}}" hint-placeholder-val="{{false}}"><p style="margin:0;height:22px;flex:none;padding:0 10px 0 31px;font-family:{{H}};font-size:13px;color:{{K.mu}}">{{entete}}</p></sc-if>
+<div style="display:flex;flex-direction:column;padding:0 4px 6px">
+<sc-for list="{{rows}}" as="s" hint-placeholder-count="4"><div style="display:flex;align-items:center;gap:10px;height:26px;padding:0 8px;opacity:{{s.op}}"><sc-if value="{{s.aside}}" hint-placeholder-val="{{false}}"><span style="width:47px;flex:none;font-family:{{H}};font-size:12.5px;color:{{K.mu}}">écartée</span></sc-if><sc-if value="{{s.hasPips}}" hint-placeholder-val="{{true}}"><span style="display:flex;gap:3px;width:47px;flex:none"><sc-for list="{{s.pips}}" as="q" hint-placeholder-count="5"><span style="width:7px;height:7px;flex:none;box-sizing:border-box;border-radius:50%;background:{{q.bg}};border:1.2px solid {{q.ring}}"></span></sc-for></span></sc-if><span title="{{s.tip}}" style="flex:1;min-width:0;font-family:{{M}};font-size:12px;font-weight:400;color:{{s.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{s.slug}}</span><sc-if value="{{s.blocked}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="1 blocage" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{K.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg></sc-if><sc-if value="{{s.hasCross}}" hint-placeholder-val="{{false}}"><span style="flex:none;display:flex;align-items:center;gap:4px;font-size:11px;font-weight:500;color:{{K.blkT}};white-space:nowrap"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{K.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg>{{s.crossLabel}}</span></sc-if></div></sc-for>
+</div>
+<sc-if value="{{hasCmd}}" hint-placeholder-val="{{true}}"><div style="display:flex;align-items:center;gap:6px;height:32px;flex:none;box-sizing:border-box;padding:0 3px 0 12px;border-top:1px dashed {{K.rule}}">
+<span aria-hidden="true" style="font-family:{{M}};font-size:11px;color:{{K.mu}}">$</span>
+<code title="{{cmd}}" style="flex:1;min-width:0;font-family:{{M}};font-size:11px;color:{{K.fg}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{cmd}}</code>
+<button type="button" aria-label="Copier la commande" style="width:26px;height:26px;flex:none;padding:0;display:flex;align-items:center;justify-content:center;border:0;background:transparent;color:{{K.mu}};cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"><path d="M4.7 4.6h7v7.2h-7Z"></path><path d="M9.3 4.6V2.3H2.3v7.1h2.4"></path></svg></button>
+</div></sc-if>
+</sc-if>
+
+<sc-if value="{{folded}}" hint-placeholder-val="{{false}}">
+<div style="height:52px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 10px">
+<div style="display:flex;align-items:center;gap:7px;height:18px">
+<span style="font-family:{{M}};font-size:11px;font-weight:600;color:{{chipCol}};white-space:nowrap">{{chip}}</span>
+<sc-if value="{{hasStamp}}" hint-placeholder-val="{{false}}"><span style="display:inline-flex;align-items:center;height:14px;padding:0 4px;border:1.5px solid {{K.done}};border-radius:3px;color:{{K.done}};font-size:8.5px;font-weight:800;letter-spacing:0.16em;transform:rotate(-6deg)">FAIT</span></sc-if>
+<span style="font-family:{{H}};font-size:13px;color:{{w1Col}};white-space:nowrap">{{w1}}</span>
+</div>
+<div style="display:flex;align-items:center;gap:6px;height:16px">
+<sc-if value="{{isTenu}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 13 13" fill="none" stroke="{{K.pencil}}" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M2.8 6.3 10.3 6l.2 5.3-7.5.3Z"></path><path d="M4.6 6.2V4.3c0-1.5 1-2.4 2.1-2.4s2.1.9 2.1 2.4v1.8"></path></svg></sc-if>
+<sc-if value="{{hasMini}}" hint-placeholder-val="{{false}}"><span role="img" aria-label="{{miniLabel}}" style="display:flex;gap:2px"><sc-for list="{{mini}}" as="m" hint-placeholder-count="2"><span style="width:10px;height:4px;background:{{m.bg}}"></span></sc-for></span></sc-if>
+<sc-if value="{{pillBlock}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="{{K.blk}}"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg></sc-if>
+<span style="font-family:{{H}};font-size:12.5px;color:{{w2Col}};white-space:nowrap">{{w2}}</span>
+</div>
+</div>
+</sc-if>
+
+</div>
+<sc-if value="{{hasStep}}" hint-placeholder-val="{{false}}"><span title="{{stepTitle}}" style="position:absolute;z-index:2;left:-11px;top:-11px;width:22px;height:22px;border-radius:50%;background:{{K.ink}};color:{{K.paper}};font-family:{{H}};font-size:13px;display:flex;align-items:center;justify-content:center">{{etape}}</span></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["clair","sombre"],"default":"clair"},"etat":{"editor":"enum","options":["courant","fait","tenu","hors"],"default":"courant"},"ouvert":{"editor":"boolean","default":true},"bid":{"editor":null},"actif":{"editor":null},"par":{"editor":null},"entete":{"editor":null},"stories":{"editor":null},"nb":{"editor":null},"notes":{"editor":null},"cmd":{"editor":null},"etape":{"editor":null},"estompe":{"editor":null},"$preview":{"width":320,"height":178}}'>
+class Component extends DCLogic {
+  tok(dark) {
+    if (dark) {
+      return {paper:'#22272b', ink:'#f1efe9', pencil:'#838c92', pencilL:'rgba(131,140,146,0.4)', fill:'#2a3035', fillCur:'rgba(42,48,53,0.82)', acc:'#f0abfc', accT:'#f5c2fd', done:'#93c5fd', blk:'#f87171', blkT:'#fca5a5', fg:'#f1efe9', fg2:'#d5d8da', mu:'#a9b0b5', rule:'#4a5258'};
+    }
+    return {paper:'#fbfaf7', ink:'#161616', pencil:'#8d8a84', pencilL:'rgba(141,138,132,0.38)', fill:'#ffffff', fillCur:'rgba(255,255,255,0.82)', acc:'#c026d3', accT:'#a21caf', done:'#1d4ed8', blk:'#dc2626', blkT:'#b91c1c', fg:'#161616', fg2:'#3b3a37', mu:'#67645f', rule:'#cfcac1'};
+  }
+  rnd(seed) {
+    var s = 2166136261;
+    for (var i = 0; i < seed.length; i++) { s ^= seed.charCodeAt(i); s = Math.imul(s, 16777619) >>> 0; }
+    return function () { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  fx(n) { return n.toFixed(1); }
+  stroke(x1, y1, x2, y2, R) {
+    var dx = x2 - x1, dy = y2 - y1, L = Math.sqrt(dx * dx + dy * dy) || 1;
+    var k = (R() - 0.5) * 2.4;
+    var cx = (x1 + x2) / 2 - dy / L * k, cy = (y1 + y2) / 2 + dx / L * k;
+    return 'M' + this.fx(x1) + ' ' + this.fx(y1) + 'Q' + this.fx(cx) + ' ' + this.fx(cy) + ' ' + this.fx(x2) + ' ' + this.fx(y2);
+  }
+  sketch(w, h, R, passes) {
+    var d = '';
+    var o = function () { return 2 + R() * 6; };
+    var j = function () { return (R() - 0.5) * 1.6; };
+    for (var p = 0; p < passes; p++) {
+      d += this.stroke(-o(), j(), w + o(), j(), R);
+      d += this.stroke(w + j(), -o(), w + j(), h + o(), R);
+      d += this.stroke(w + o(), h + j(), -o(), h + j(), R);
+      d += this.stroke(j(), h + o(), j(), -o(), R);
+    }
+    return d;
+  }
+  loop(cx, cy, rx, ry, R) {
+    var pts = [];
+    var a0 = -2.4 + R() * 0.5;
+    var n = 30;
+    for (var i = 0; i <= n; i++) {
+      var a = a0 + i / n * 1.14 * Math.PI * 2;
+      var jr = 1 + (R() - 0.5) * 0.09 + i / n * 0.1;
+      pts.push(this.fx(cx + Math.cos(a) * rx * jr) + ' ' + this.fx(cy + Math.sin(a) * ry * jr));
+    }
+    return 'M' + pts.join('L');
+  }
+  row(slug, n, o, K, tenu) {
+    var labels = {'-1':'écartée','0':'à écrire','1':'sans design','1.5':'design en brouillon','2':'design approuvé, à coder','3':'code fini, à valider puis soumettre','4':'soumise','5':'terminée'};
+    var on = tenu ? K.pencil : K.ink;
+    var pips = [];
+    for (var i = 1; i <= 5; i++) {
+      var full = n >= i;
+      var half = !full && n >= i - 0.5;
+      pips.push({bg: full ? on : (half ? 'linear-gradient(90deg, ' + on + ' 50%, transparent 50%)' : 'transparent'), ring: (full || half) ? on : K.pencil});
+    }
+    var cross = o.cross || 0;
+    var near = cross > 0 && cross <= 3;
+    var tip = labels[String(n)] || '';
+    if (o.block || cross > 3) tip = tip + ' · 1 blocage';
+    if (near) tip = tip + ' · dépend d’une autre epic, ' + cross + ' batch' + (cross > 1 ? 's' : '') + ' à débloquer';
+    return {slug: slug, n: n, pips: pips, aside: n < 0, hasPips: n >= 0, op: n < 0 ? 0.5 : 1, fg: tenu ? K.mu : K.fg, blocked: !!o.block || cross > 3, hasCross: near, crossLabel: cross + ' à débloquer', tip: tip};
+  }
+  renderVals() {
+    var p = this.props;
+    var self = this;
+    var dark = p.theme === 'sombre' || p.theme === 'dark';
+    var K = this.tok(dark);
+    var std = p.bid == null;
+    var bid = std ? 'B1' : String(p.bid);
+    var etat = p.etat || 'courant';
+    var actif = p.actif !== 'non';
+    var par = String(p.par || '');
+    var entete = String(p.entete || '');
+    var spec = std ? 'compound-inventory:0|plugin-split:1.5:x2|shared-skills:2|marketplace-manifest:3' : String(p.stories || '');
+    var cmd = std ? 'storyman compound-inventory' : String(p.cmd || '');
+    var etape = String(p.etape || '');
+    var open = p.ouvert == null ? std : (p.ouvert === true || p.ouvert === 'oui');
+    var isCur = etat === 'courant', isTenu = etat === 'tenu', isFait = etat === 'fait', isHors = etat === 'hors';
+    var rows = [];
+    if (spec) {
+      spec.split('|').forEach(function (item) {
+        var parts = item.split(':');
+        var nn = parseFloat(parts[1]);
+        var fl = parts[2] || '';
+        var mx = fl.match(/x(\d+)/);
+        rows.push(self.row(parts[0], isNaN(nn) ? 0 : nn, {block: fl.indexOf('b') >= 0, cross: mx ? parseInt(mx[1], 10) : 0}, K, isTenu));
+      });
+    }
+    var n = rows.length || parseInt(p.nb, 10) || 0;
+    var notes = parseInt(p.notes, 10) || 0;
+    var blocks = rows.filter(function (r) { return r.blocked || r.hasCross; }).length;
+    var live = rows.filter(function (r) { return r.n >= 0; });
+    var prog = live.length ? live.reduce(function (a, r) { return a + Math.min(5, r.n); }, 0) / (live.length * 5) : 0;
+    var mini = live.map(function (r) {
+      var pc = Math.round(r.n / 5 * 100);
+      return {bg: 'linear-gradient(90deg, ' + K.ink + ' ' + pc + '%, ' + K.pencilL + ' ' + pc + '%)'};
+    });
+    var count = n + (n > 1 ? ' stories' : ' story') + (notes ? (' · ' + notes + (notes > 1 ? ' notes' : ' note')) : '');
+    var blockLabel = blocks + (blocks > 1 ? ' blocages' : ' blocage');
+    var hasCmd = cmd !== '' && isCur;
+    var w = open ? 320 : (isCur ? 150 : 112);
+    var h = open ? (34 + (entete ? 22 : 0) + rows.length * 26 + 6 + (hasCmd ? 32 : 0)) : 52;
+    var R = this.rnd(bid + etat + (open ? 'o' : 'f') + n);
+    var L = 2 * (w + h);
+    var inkLen = isFait ? L : (isCur ? L * Math.max(0.06, prog) : 0);
+    var nx = 0, ny = 0, d = inkLen;
+    if (d <= w) { nx = d; ny = 0; }
+    else if (d <= w + h) { nx = w; ny = d - w; }
+    else if (d <= 2 * w + h) { nx = w - (d - w - h); ny = h; }
+    else { nx = 0; ny = h - (d - 2 * w - h); }
+    var pencilD = '';
+    if (isTenu) pencilD = this.sketch(w, h, R, 2);
+    else if (isCur) pencilD = this.sketch(w, h, R, 1);
+    else if (isHors) {
+      var c = 10;
+      pencilD = 'M0 ' + c + 'V0H' + c + 'M' + (w - c) + ' 0H' + w + 'V' + c + 'M' + w + ' ' + (h - c) + 'V' + h + 'H' + (w - c) + 'M' + c + ' ' + h + 'H0V' + (h - c);
+    }
+    var chipW = bid.length * 6.6;
+    var loopD = (isCur && actif) ? this.loop(open ? 12 + chipW / 2 : 10 + chipW / 2, open ? 17 : 16, chipW / 2 + 8, 10, R) : '';
+    var word = isCur ? 'courant' : (isTenu ? ('tenu par ' + par) : '');
+    var wordCol = isCur ? (actif ? K.accT : K.fg2) : K.mu;
+    return {
+      K: K,
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      H: "'Architects Daughter', 'Segoe Print', 'Bradley Hand', cursive",
+      open: open,
+      folded: !open,
+      w: w,
+      h: h,
+      svgW: w + 40,
+      svgH: h + 40,
+      vb: '-20 -20 ' + (w + 40) + ' ' + (h + 40),
+      rectD: 'M0 0H' + w + 'V' + h + 'H0Z',
+      innerD: 'M3 3H' + (w - 3) + 'V' + (h - 3) + 'H3Z',
+      fill: isFait ? K.fill : (isCur ? K.fillCur : 'none'),
+      pencilD: pencilD,
+      pencilOp: isCur ? 0.55 : (pencilD ? 1 : 0),
+      inkDash: inkLen.toFixed(1) + ' ' + (L + 20).toFixed(1),
+      inkOp: (isFait || isCur) ? 1 : 0,
+      innerOp: isFait ? 1 : 0,
+      nibX: nx.toFixed(1),
+      nibY: ny.toFixed(1),
+      nibOp: isCur ? 1 : 0,
+      loopD: loopD,
+      loopOp: loopD ? 0.9 : 0,
+      op: p.estompe === 'oui' ? 0.35 : 1,
+      chip: isHors ? 'HORS BATCH' : bid,
+      chipCol: isTenu ? K.mu : K.fg,
+      isTenu: isTenu,
+      hasStamp: isFait,
+      word: word,
+      wordCol: wordCol,
+      hasMini: mini.length > 0 && !isTenu,
+      mini: mini,
+      miniLabel: 'avancement des ' + mini.length + ' stories',
+      count: count,
+      hasBlock: blocks > 0,
+      blockLabel: blockLabel,
+      hasEntete: entete !== '',
+      entete: entete,
+      rows: rows,
+      hasCmd: hasCmd,
+      cmd: cmd,
+      w1: isTenu ? count : (isCur ? 'courant' : ''),
+      w1Col: isTenu ? K.mu : wordCol,
+      w2: isTenu ? ('tenu par ' + par) : ((isCur && blocks) ? blockLabel : count),
+      w2Col: (isCur && blocks) ? K.blkT : K.mu,
+      pillBlock: isCur && blocks > 0,
+      hasStep: etape !== '',
+      etape: etape,
+      stepTitle: 'étape ' + etape + ' du chemin de déblocage'
+    };
+  }
+}
+</script>
+</body>
+</html>
