@@ -385,6 +385,33 @@
       "w": 966,
       "x": 1520,
       "y": 1180
+    },
+    "Chantier-1.dc.html": {
+      "h": 1400,
+      "page": "chantier",
+      "title": "Exemple 1 · tuiles illustrées, table en noyer, chantier B1 ouvert",
+      "w": 1100,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true
+    },
+    "Chantier-2.dc.html": {
+      "h": 1220,
+      "page": "chantier",
+      "title": "Exemple 2 · tuiles sobres, tapis de jeu, Hors batch et batch fait ouverts",
+      "w": 1100,
+      "x": 1180,
+      "y": 0,
+      "is_interactive": true
+    },
+    "TuilesChantier.dc.html": {
+      "h": 790,
+      "page": "chantier",
+      "title": "Tuiles et chantier (composant) : epic, fond, tuile, ouvert",
+      "w": 966,
+      "x": 2360,
+      "y": 0,
+      "is_interactive": true
     }
   },
   "createdOnFiles": {
@@ -393,7 +420,7 @@
   },
   "designSystems": [],
   "launch": {
-    "page": "plateau",
+    "page": "chantier",
     "view": "canvas"
   },
   "noteOrder": [
@@ -406,7 +433,8 @@
     "t-pistes",
     "pistes-fixe",
     "t-plateau",
-    "t-essais"
+    "t-essais",
+    "t-chantier"
   ],
   "notes": {
     "t-pistes": {
@@ -492,6 +520,14 @@
       "text": "Jeu de plateau, deuxième essai",
       "x": 0,
       "y": -320
+    },
+    "t-chantier": {
+      "kind": "title1",
+      "maxW": 3320,
+      "page": "chantier",
+      "text": "Tuiles et chantier, version condensée",
+      "x": 0,
+      "y": -320
     }
   },
   "order": [
@@ -542,7 +578,10 @@
     "PlateauLignes.dc.html",
     "Piste-F.dc.html",
     "PlateauTuiles.dc.html",
-    "Piste-G.dc.html"
+    "Piste-G.dc.html",
+    "TuilesChantier.dc.html",
+    "Chantier-1.dc.html",
+    "Chantier-2.dc.html"
   ],
   "pages": [
     {
@@ -564,6 +603,10 @@
     {
       "id": "plateau",
       "name": "Essais jeu de plateau"
+    },
+    {
+      "id": "chantier",
+      "name": "Tuiles et chantier"
     }
   ],
   "title": "Rooftop — le Blueprint qui se déroule"

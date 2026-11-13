@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Tuiles et chantier d'une epic</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="position:relative;width:966px;flex:none;overflow:hidden;color:#2a1f12;font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+
+<sc-if value="{{isNoyer}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:0"><defs><filter id="{{fA}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.0016 0.05" numOctaves="4" seed="9"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.16  0 0 0 0 0.09  0 0 0 0 0.05  0.95 0 0 0 -0.32"></feColorMatrix></filter><filter id="{{fB}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.003 0.11" numOctaves="3" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.66  0 0 0 0 0.45  0 0 0 0 0.28  0 0.55 0 0 -0.27"></feColorMatrix></filter><pattern id="{{pS}}" width="40" height="170" patternUnits="userSpaceOnUse"><path d="M0 169.25H40" stroke="#1d0f07" stroke-width="1.5" opacity="0.55"></path><path d="M0 170.5H40" stroke="#a7795a" stroke-width="0.8" opacity="0.35"></path></pattern></defs><rect width="100%" height="100%" fill="#4a2c1c"></rect><rect width="100%" height="100%" filter="{{fAu}}"></rect><rect width="100%" height="100%" filter="{{fBu}}"></rect><rect width="100%" height="100%" fill="{{pSu}}"></rect></svg></sc-if>
+<sc-if value="{{isTapis}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:0"><defs><filter id="{{fA}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.75  0 0 0 0 0.85  0 0 0 0 0.95  0.32 0 0 0 -0.1"></feColorMatrix></filter><filter id="{{fB}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="2" seed="8"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.05  0 0 0 0 0.12  0 0 0 0 0.22  0.6 0 0 0 -0.22"></feColorMatrix></filter></defs><rect width="100%" height="100%" fill="#1f4166"></rect><rect width="100%" height="100%" filter="{{fBu}}"></rect><rect width="100%" height="100%" filter="{{fAu}}"></rect><rect x="7" y="7" width="952" height="99%" rx="10" fill="none" stroke="#88abd1" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.65"></rect></svg></sc-if>
+
+<div style="position:relative;z-index:1;padding:20px 20px 22px;display:flex;flex-direction:column">
+
+<div style="display:flex;align-items:center;gap:24px">
+<div role="group" aria-label="Batchs de l'epic" style="display:flex;gap:8px;padding:10px;border-radius:10px;background:#c5c8cd;box-shadow:0 3px 0 #94989f, 0 10px 20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.65)">
+<sc-for list="{{slots}}" as="s" hint-placeholder-count="5"><span style="position:relative;width:{{T}}px;height:{{T}}px;flex:none;border-radius:4px;background:#b2b6bc;box-shadow:inset 0 2px 6px rgba(0,0,0,0.3), inset 0 -1px 0 rgba(255,255,255,0.45)">
+
+<sc-if value="{{s.isTenu}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" title="{{s.title}}" style="width:100%;height:100%;box-sizing:border-box;padding:0;border:0;border-radius:4px;background:transparent;outline:{{s.outline}};outline-offset:3px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:#7a7e85;text-shadow:0 1px 0 rgba(255,255,255,0.55);font-family:inherit">
+<span style="font-family:{{M}};font-size:20px;font-weight:700">{{s.id}}</span>
+<span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg>tenu par {{s.par}}</span>
+<span style="font-size:11px;font-weight:500">{{s.count}}</span>
+</button></sc-if>
+
+<sc-if value="{{s.isTile}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" title="{{s.title}}" style="position:absolute;left:0;top:0;width:{{T}}px;height:{{T}}px;box-sizing:border-box;padding:0;border:0;border-radius:4px;overflow:hidden;background:{{s.face}};transform:{{s.tf}};box-shadow:{{s.sh}};outline:{{s.outline}};outline-offset:3px;cursor:pointer;font-family:inherit;color:#2a1f12;text-align:left;display:flex;flex-direction:column">
+
+<sc-if value="{{s.illus}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="{{T}}" height="62" viewBox="0 0 116 62" style="display:block;flex:none"><rect width="116" height="62" fill="#88bc4b"></rect><path d="{{s.art.dark}}" fill="#76a93e"></path><path d="{{s.art.light}}" fill="#9dcd61"></path><path d="M0 0H116V24C88 50 28 50 0 24Z" fill="#e3b870"></path><path d="{{s.art.paves}}" fill="none" stroke="#d1a45d" stroke-width="1"></path><path d="M0 24C28 50 88 50 116 24" fill="none" stroke="#93602d" stroke-width="3"></path><path d="{{s.art.plan}}" fill="none" stroke="#6e4b27" stroke-width="1" stroke-dasharray="1.8 1.5"></path><path d="{{s.art.scaf}}" fill="none" stroke="#6e4b27" stroke-width="1.1"></path><path d="{{s.art.walls}}" fill="#f7e9ca" stroke="#6e4b27" stroke-width="1"></path><path d="{{s.art.roofLine}}" fill="none" stroke="#6e4b27" stroke-width="1" stroke-linejoin="round"></path><path d="{{s.art.roofLight}}" fill="#e48a72" stroke="#7a2d1f" stroke-width="0.9" stroke-linejoin="round"></path><path d="{{s.art.roofFull}}" fill="#c0392b" stroke="#6b1f16" stroke-width="0.9" stroke-linejoin="round"></path><path d="{{s.art.chim}}" fill="#8a5a3a"></path></svg>
+<span style="flex:1;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 7px;background:#f4ead2;border-top:1.5px solid #93602d">
+<span style="display:flex;align-items:baseline;gap:6px"><span style="font-family:{{M}};font-size:14px;font-weight:700">{{s.id}}</span><span style="flex:1"></span><span style="font-size:10.5px;color:#5a4325">{{s.count}}</span></span>
+<span style="display:flex;align-items:center;gap:4px"><span style="display:flex;align-items:center;gap:3px;height:17px;box-sizing:border-box;padding:0 5px;border-radius:9px;background:{{s.oqBg}};border:1px solid {{s.oqBd}};color:{{s.oqCol}};font-size:10.5px;font-weight:700;white-space:nowrap">{{s.oqTxt}}</span><sc-if value="{{s.hasBlk}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:3px;height:17px;box-sizing:border-box;padding:0 5px 0 3px;border-radius:9px;background:#dc2626;color:#ffffff;font-size:10.5px;font-weight:700"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" fill="#ffffff"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#dc2626"></rect></svg>{{s.blkN}}</span></sc-if></span>
+</span>
+</sc-if>
+
+<sc-if value="{{s.sobre}}" hint-placeholder-val="{{false}}"><span style="flex:1;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;padding:9px 8px 8px 9px">
+<span style="display:flex;align-items:center;gap:6px"><span style="font-family:{{M}};font-size:17px;font-weight:700">{{s.id}}</span><span style="flex:1"></span></span>
+<span role="img" aria-label="{{s.cubesLabel}}" style="display:flex;flex-wrap:wrap;gap:4px"><sc-for list="{{s.cubes}}" as="q" hint-placeholder-count="4"><span style="width:14px;height:14px;box-sizing:border-box;border-radius:{{q.rad}};background:{{q.bg}};border:{{q.bd}};box-shadow:{{q.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{q.isCheck}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="9" height="9" viewBox="0 0 10 10"><path d="M2 5.2 4.1 7.2 8 2.9" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if></span></sc-for></span>
+<span style="display:flex;align-items:center;gap:4px"><span style="display:flex;align-items:center;height:17px;box-sizing:border-box;padding:0 5px;border-radius:9px;background:{{s.oqBg}};border:1px solid {{s.oqBd}};color:{{s.oqCol}};font-size:10.5px;font-weight:700;white-space:nowrap">{{s.oqTxt}}</span><sc-if value="{{s.hasBlk}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:3px;height:17px;box-sizing:border-box;padding:0 5px 0 3px;border-radius:9px;background:#dc2626;color:#ffffff;font-size:10.5px;font-weight:700"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" fill="#ffffff"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#dc2626"></rect></svg>{{s.blkN}}</span></sc-if><span style="flex:1"></span><span style="font-size:10.5px;color:#5a4325">{{s.count}}</span></span>
+</span></sc-if>
+
+<span style="position:absolute;right:5px;top:5px;width:24px;height:24px;border-radius:50%;background:{{s.badgeBg}};border:2px solid #ffffff;box-shadow:0 1px 3px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center"><sc-if value="{{s.isCur}}" hint-placeholder-val="{{true}}"><svg role="img" aria-label="en cours" width="13" height="13" viewBox="0 0 14 14"><path d="M3.4 2.6h7.4l1.4 3H2Z" fill="#ffffff"></path><path d="M7.1 5.8v6.6" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path></svg></sc-if><sc-if value="{{s.isFait}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="fait" width="14" height="14" viewBox="0 0 14 14"><path d="M4.3 12.8V1.8" stroke="#14532d" stroke-width="1.5" stroke-linecap="round"></path><path d="M4.6 2.2h6.6L9.5 4.7l1.7 2.5H4.6Z" fill="#16a34a" stroke="#14532d" stroke-width="0.8" stroke-linejoin="round"></path></svg></sc-if></span>
+</button></sc-if>
+
+</span></sc-for>
+</div>
+
+<sc-if value="{{hasHb}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{pickHb}}" aria-pressed="{{hbOn}}" title="Hors batch : {{hbCount}}" style="position:relative;width:{{hbW}}px;height:{{hbH}}px;flex:none;padding:0;border:0;background:transparent;cursor:pointer;font-family:inherit;outline:{{hbOutline}};outline-offset:4px;border-radius:6px">
+<span style="position:absolute;left:10px;top:12px;width:{{hbT}}px;height:{{hbT}}px;border-radius:4px;transform:rotate(-4deg);background:#6e2f2a;box-shadow:inset 0 0 0 5px #6e2f2a, inset 0 0 0 6px #e9d6b0, 0 2px 0 #4a1d19"></span>
+<span style="position:absolute;left:15px;top:6px;width:{{hbT}}px;height:{{hbT}}px;border-radius:4px;transform:rotate(2deg);background:#6e2f2a;box-shadow:inset 0 0 0 5px #6e2f2a, inset 0 0 0 6px #e9d6b0, 0 2px 0 #4a1d19"></span>
+<span style="position:absolute;left:12px;top:0;width:{{hbT}}px;height:{{hbT}}px;box-sizing:border-box;border-radius:4px;transform:rotate(-1deg);background:#6e2f2a;box-shadow:inset 0 0 0 5px #6e2f2a, inset 0 0 0 6px #e9d6b0, 0 3px 0 #4a1d19, 0 9px 16px rgba(0,0,0,0.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#f3e6c8">
+<span style="font-family:{{A}};font-size:15px;font-weight:800">Hors batch</span>
+<span style="font-size:11px;font-weight:600">{{hbCount}}</span>
+</span>
+</button></sc-if>
+</div>
+
+<sc-if value="{{hasPanel}}" hint-placeholder-val="{{true}}"><div style="position:relative;margin-top:18px;box-sizing:border-box;border-radius:6px;background:#efe0bb;border:2px solid #9c7a43;box-shadow:inset 0 0 0 3px #f7ecd1, inset 0 0 0 4px #c8a868, 0 8px 22px rgba(0,0,0,0.35);padding:14px 18px 18px;display:flex;flex-direction:column;gap:14px">
+<span aria-hidden="true" style="position:absolute;top:-11px;left:{{notchX}}px;width:18px;height:18px;transform:rotate(45deg);background:#efe0bb;border-left:2px solid #9c7a43;border-top:2px solid #9c7a43"></span>
+
+<div style="display:flex;align-items:center;gap:12px">
+<span style="font-family:{{A}};font-size:20px;font-weight:800;color:#3a2810">{{pn.titre}}</span>
+<span style="display:flex;align-items:center;gap:5px;height:22px;box-sizing:border-box;padding:0 9px 0 5px;border-radius:11px;background:{{pn.stBg}};color:{{pn.stCol}};font-size:12px;font-weight:700"><sc-if value="{{pn.isCur}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" fill="#c026d3"></circle><path d="M4.2 3.6h5.6l1 2.2H3.2Z" fill="#ffffff"></path><path d="M7 5.9v4.8" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"></path></svg></sc-if><sc-if value="{{pn.isFait}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><path d="M4.3 12.8V1.8" stroke="#14532d" stroke-width="1.5" stroke-linecap="round"></path><path d="M4.6 2.2h6.6L9.5 4.7l1.7 2.5H4.6Z" fill="#16a34a" stroke="#14532d" stroke-width="0.8" stroke-linejoin="round"></path></svg></sc-if><sc-if value="{{pn.isTenu}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if>{{pn.stTxt}}</span>
+<span style="font-size:12.5px;color:#5a4325">{{pn.sous}}</span>
+<span style="flex:1"></span>
+<sc-if value="{{pn.hasOq}}" hint-placeholder-val="{{true}}"><a href="{{pn.oqHref}}" title="{{pn.oqTitle}}" style="display:flex;align-items:center;gap:6px;height:28px;box-sizing:border-box;padding:0 10px;border-radius:14px;background:{{pn.oqBg}};border:1.5px solid {{pn.oqBd}};color:{{pn.oqCol}};font-size:12.5px;font-weight:700;text-decoration:none;white-space:nowrap">{{pn.oqTxt}}<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2.5h5.5V8M9.2 2.8 2.8 9.2"></path></svg></a></sc-if>
+<button type="button" onClick="{{close}}" aria-label="Fermer le panneau" style="width:30px;height:30px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:#5a4325;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 3.5 10.5 10.5M10.5 3.5 3.5 10.5"></path></svg></button>
+</div>
+
+<div style="display:flex;align-items:flex-start;gap:24px">
+<sc-if value="{{pn.hasRows}}" hint-placeholder-val="{{true}}"><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5, 40px) 196px;column-gap:6px;align-items:end;padding-bottom:4px;border-bottom:1px solid #c8a868">
+<span style="font-family:{{A}};font-size:13.5px;font-weight:800;color:#5a4325">Stories</span>
+<sc-for list="{{cols}}" as="k" hint-placeholder-count="5"><span style="font-size:10.5px;font-weight:700;color:#5a4325;text-align:center">{{k.lab}}</span></sc-for>
+<span style="font-size:10.5px;font-weight:700;color:#5a4325">où elle en est</span>
+</div>
+<sc-for list="{{pn.rows}}" as="r" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5, 40px) 196px;column-gap:6px;align-items:center;height:32px;opacity:{{r.op}}">
+<span title="{{r.slug}}" style="min-width:0;font-family:{{M}};font-size:12.5px;color:#2a1f12;text-decoration:{{r.deco}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{r.slug}}</span>
+<sc-for list="{{r.cells}}" as="c" hint-placeholder-count="5"><span style="height:26px;box-sizing:border-box;border-radius:3px;background:#f7eed6;border:1px solid #cdb17a;display:flex;align-items:center;justify-content:center"><span style="width:{{c.w}}px;height:{{c.w}}px;box-sizing:border-box;border-radius:{{c.rad}};background:{{c.bg}};border:{{c.bd}};box-shadow:{{c.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{c.isCheck}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 10 10"><path d="M2 5.2 4.1 7.2 8 2.9" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if></span></span></sc-for>
+<span style="display:flex;align-items:center;gap:5px;min-width:0;font-size:11px;font-weight:{{r.fw}};color:{{r.stCol}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><sc-if value="{{r.isBlk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" fill="#dc2626"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg></sc-if>{{r.status}}</span>
+</div></sc-for>
+</div></sc-if>
+<sc-if value="{{pn.noRows}}" hint-placeholder-val="{{false}}"><p style="flex:1;margin:0;font-size:13px;line-height:1.5;color:#3a2810">{{pn.vide}}</p></sc-if>
+
+<div style="width:270px;flex:none;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;padding-left:18px;border-left:1px solid #c8a868">
+<span style="font-family:{{A}};font-size:13.5px;font-weight:800;color:#5a4325">Dépendances et blocages</span>
+<sc-for list="{{pn.deps}}" as="d" hint-placeholder-count="2"><div style="display:flex;align-items:flex-start;gap:8px"><span style="width:16px;height:16px;flex:none;margin-top:1px;display:flex;align-items:center;justify-content:center"><sc-if value="{{d.isLock}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 12 12" fill="none" stroke="#5a4325" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if><sc-if value="{{d.isBlk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" fill="#dc2626"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" fill="#ffffff"></rect></svg></sc-if><sc-if value="{{d.isOk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" fill="#16a34a"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if><sc-if value="{{d.isNote}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#5a4325" stroke-width="1.3" stroke-linejoin="round"><path d="M3 1.8h5.5L11 4.3v7.9H3Z"></path><path d="M5 7h4M5 9.4h4"></path></svg></sc-if></span><span style="font-size:12px;line-height:1.45;color:#2a1f12">{{d.a}}<span style="font-family:{{M}};font-size:11.5px;font-weight:600">{{d.code}}</span>{{d.b}}</span></div></sc-for>
+<sc-if value="{{pn.hasPath}}" hint-placeholder-val="{{false}}"><div style="display:flex;flex-direction:column;gap:7px;margin-left:24px">
+<sc-for list="{{pn.path}}" as="p" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:8px">
+<span style="width:20px;height:20px;flex:none;border-radius:50%;background:#2a1f12;color:#f7ecd1;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">{{p.n}}</span>
+<span style="width:30px;height:30px;flex:none;box-sizing:border-box;border-radius:3px;background:{{p.tBg}};box-shadow:{{p.tSh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{p.cur}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" fill="#c026d3"></circle><path d="M4.2 3.6h5.6l1 2.2H3.2Z" fill="#ffffff"></path><path d="M7 5.9v4.8" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round"></path></svg></sc-if><sc-if value="{{p.tenu}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#7a7e85" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if></span>
+<span style="display:flex;flex-direction:column;min-width:0"><span style="font-family:{{M}};font-size:11.5px;font-weight:700;color:#2a1f12">{{p.id}}</span><span style="font-size:11px;color:#5a4325">{{p.txt}}</span></span>
+</div></sc-for>
+<span style="font-size:11.5px;color:#3a2810">→ <span style="font-family:{{M}};font-weight:600">{{pn.unlock}}</span> débloquée</span>
+</div></sc-if>
+</div>
+</div>
+
+<sc-if value="{{pn.hasAct}}" hint-placeholder-val="{{true}}"><div style="display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px dashed #b8975c">
+<div style="display:flex;align-items:center;gap:12px">
+<label for="{{actId}}" style="font-family:{{A}};font-size:17px;font-weight:800;color:#3a2810">Action</label>
+<span style="font-size:12px;color:#5a4325">Proposition complète pour avancer {{pn.bid}}. Modifie-la ici, puis copie.</span>
+<span style="flex:1"></span>
+<button type="button" onClick="{{reset}}" style="height:30px;padding:0 12px;border-radius:6px;border:1px solid #9c7a43;background:transparent;color:#3a2810;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer">Rétablir</button>
+<button type="button" onClick="{{copy}}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 14px;border-radius:6px;border:0;background:#2a1f12;color:#f7ecd1;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><rect x="4.6" y="4.6" width="7.2" height="7.2" rx="1.6"></rect><path d="M9.4 4.6v-.8a1.6 1.6 0 0 0-1.6-1.6h-4a1.6 1.6 0 0 0-1.6 1.6v4a1.6 1.6 0 0 0 1.6 1.6h.8"></path></svg>{{copyLabel}}</button>
+</div>
+<textarea id="{{actId}}" value="{{actText}}" onChange="{{onEdit}}" rows="{{actRows}}" spellcheck="false" style="width:100%;box-sizing:border-box;resize:vertical;padding:10px 12px;border-radius:5px;border:1px solid #b8975c;background:#fbf6ea;box-shadow:inset 0 1px 3px rgba(90,60,20,0.15);font-family:{{M}};font-size:12.5px;line-height:1.6;color:#2a1f12"></textarea>
+</div></sc-if>
+<sc-if value="{{pn.hasFin}}" hint-placeholder-val="{{false}}"><p style="margin:0;padding-top:12px;border-top:1px dashed #b8975c;font-size:12.5px;color:#5a4325">{{pn.fin}}</p></sc-if>
+
+</div></sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"epic":{"editor":"enum","options":["plugin","worktree"],"default":"plugin"},"fond":{"editor":"enum","options":["noyer","tapis"],"default":"noyer"},"tuile":{"editor":"enum","options":["illustree","sobre"],"default":"illustree"},"ouvert":{"editor":"enum","options":["","B1","B2","HB"],"default":"B1"},"$preview":{"width":966,"height":720}}'>
+class Component extends DCLogic {
+  rnd(seed) {
+    var s = 2166136261;
+    for (var i = 0; i < seed.length; i++) { s ^= seed.charCodeAt(i); s = Math.imul(s, 16777619) >>> 0; }
+    return function () { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+  }
+  fx(n) { return n.toFixed(1); }
+  ell(cx, cy, rx, ry) {
+    var f = this.fx;
+    return 'M' + f(cx - rx) + ' ' + f(cy) + 'a' + f(rx) + ' ' + f(ry) + ' 0 1 0 ' + f(2 * rx) + ' 0a' + f(rx) + ' ' + f(ry) + ' 0 1 0 ' + f(-2 * rx) + ' 0';
+  }
+  art(stories, R) {
+    var f = this.fx;
+    var a = {dark: '', light: '', paves: '', plan: '', scaf: '', walls: '', roofLine: '', roofLight: '', roofFull: '', chim: ''};
+    for (var i = 0; i < 7; i++) a.dark += this.ell(6 + R() * 104, 38 + R() * 24, 5 + R() * 10, 2.5 + R() * 4);
+    for (var j = 0; j < 5; j++) a.light += this.ell(6 + R() * 104, 40 + R() * 22, 4 + R() * 8, 2 + R() * 3);
+    for (var p = 0; p < 7; p++) { var px = 6 + R() * 100, py = 3 + R() * 16; a.paves += 'M' + f(px) + ' ' + f(py) + 'h' + f(4 + R() * 7); }
+    var live = stories.filter(function (s) { return s.n >= 0; });
+    var k = live.length;
+    live.forEach(function (st, idx) {
+      var hx = k === 1 ? 40 : 12 + idx * (58 / (k - 1));
+      var hy = 13 + 10 * Math.sin(Math.PI * hx / 116);
+      var n = st.n;
+      var wall = 'M' + f(hx - 7) + ' ' + f(hy) + 'h14v10h-14Z';
+      var roof = 'M' + f(hx - 9.5) + ' ' + f(hy + 0.5) + 'L' + f(hx) + ' ' + f(hy - 9) + 'L' + f(hx + 9.5) + ' ' + f(hy + 0.5) + 'Z';
+      if (n < 1) a.plan += wall;
+      else if (n < 2) a.scaf += wall + 'M' + f(hx - 7) + ' ' + f(hy) + 'l14 10M' + f(hx + 7) + ' ' + f(hy) + 'l-14 10';
+      else {
+        a.walls += wall + 'M' + f(hx - 1.6) + ' ' + f(hy + 10) + 'v-4.5h3.2v4.5';
+        if (n >= 5) { a.roofFull += roof; a.chim += 'M' + f(hx + 3.5) + ' ' + f(hy - 8) + 'h3v5h-3Z'; }
+        else if (n >= 4) a.roofLight += roof;
+        else if (n >= 3) a.roofLine += roof;
+      }
+    });
+    return a;
+  }
+  data(ep) {
+    if (ep === 'worktree') {
+      return {
+        batches: [
+          {id: 'B1', full: 'B-WORKTREE-1', etat: 'fait', oq: 0, stories: [{s: 'worktree-create', n: 5}, {s: 'worktree-list', n: 5}]},
+          {id: 'B2', full: 'B-WORKTREE-2', etat: 'courant', oq: 1, stories: [{s: 'worktree-sync', n: 1}],
+            act: 'designman features/worktree-epic/worktree-sync/worktree-sync.story.md\n\nBatch B-WORKTREE-2 (epic WORKTREE), 1 story :\n- worktree-sync : sans design → proposer le design.\n\nAvant : répondre à l’OQ ouverte du batch.\nEnsuite : valider le design, puis coder.'}
+        ],
+        hb: null
+      };
+    }
+    return {
+      batches: [
+        {id: 'B1', full: 'B-PLUGIN-1', etat: 'courant', oq: 3, stories: [{s: 'compound-inventory', n: 0}, {s: 'plugin-split', n: 1.5, dep: 'B-TOOLMAN-2'}, {s: 'shared-skills', n: 2}, {s: 'marketplace-manifest', n: 3}],
+          act: 'storyman compound-inventory\n\nBatch B-PLUGIN-1 (epic PLUGIN), 4 stories :\n- compound-inventory : à écrire → écrire la story.\n- shared-skills : design approuvé → coder.\n- marketplace-manifest : code fini → valider, puis soumettre.\n- plugin-split : attend B-TOOLMAN-2 → ne pas y toucher.\n\nAvant : répondre aux 3 OQ ouvertes du batch.'},
+        {id: 'B2', etat: 'tenu', par: 'B1', nb: 3},
+        {id: 'B3', etat: 'tenu', par: 'B2', nb: 2},
+        {id: 'B4', etat: 'tenu', par: 'B3', nb: 2},
+        {id: 'B5', etat: 'tenu', par: 'B4', nb: 1}
+      ],
+      hb: {stories: [{s: 'compound-docs', n: 1}, {s: 'migration-notes', n: -1}], notes: 1}
+    };
+  }
+  stage(n) {
+    if (n >= 5) return {bg: '#16a34a', bd: '1px solid #15803d', sh: '0 1px 2px rgba(0,0,0,0.3)', rad: '50%', isCheck: true};
+    var C = ['#e2809f', '#8a5a2b', '#949ba3', '#7c4dbd'];
+    var i = Math.floor(n);
+    if (i < 1) return {bg: 'transparent', bd: '1.5px dashed #8d7a5a', sh: 'none', rad: '2px', isCheck: false};
+    return {bg: C[i - 1], bd: '1px solid rgba(0,0,0,0.25)', sh: 'inset -2px -2px 0 rgba(0,0,0,0.2), inset 2px 2px 0 rgba(255,255,255,0.35), 0 1px 1px rgba(0,0,0,0.3)', rad: '2px', isCheck: false};
+  }
+  oq(n) {
+    if (n > 0) return {txt: n + ' OQ', bg: '#fde68a', bd: '#b45309', col: '#7c2d12'};
+    return {txt: 'OQ ✓', bg: '#dcfce7', bd: '#15803d', col: '#14532d'};
+  }
+  rows(stories) {
+    var labels = {'-1': 'écartée', '0': 'à écrire', '1': 'sans design', '1.5': 'design en brouillon', '2': 'design approuvé, à coder', '3': 'code fini, à valider puis soumettre', '4': 'soumise', '5': 'terminée'};
+    var C = ['#e2809f', '#8a5a2b', '#949ba3', '#7c4dbd'];
+    return stories.map(function (st) {
+      var cells = [];
+      for (var i = 1; i <= 5; i++) {
+        if (i === 5) {
+          cells.push(st.n >= 5 ? {w: 18, rad: '50%', bg: '#16a34a', bd: '1px solid #15803d', sh: '0 1px 2px rgba(0,0,0,0.3)', isCheck: true} : {w: 0, rad: '0', bg: 'transparent', bd: 'none', sh: 'none', isCheck: false});
+        } else if (st.n >= i) {
+          cells.push({w: 15, rad: '2px', bg: C[i - 1], bd: '1px solid rgba(0,0,0,0.25)', sh: 'inset -3px -3px 0 rgba(0,0,0,0.2), inset 2px 2px 0 rgba(255,255,255,0.35), 0 2px 2px rgba(0,0,0,0.35)', isCheck: false});
+        } else if (st.n >= i - 0.5) {
+          cells.push({w: 15, rad: '2px', bg: 'transparent', bd: '1.6px dashed ' + C[i - 1], sh: 'none', isCheck: false});
+        } else {
+          cells.push({w: 0, rad: '0', bg: 'transparent', bd: 'none', sh: 'none', isCheck: false});
+        }
+      }
+      var blk = !!st.dep;
+      return {slug: st.s, cells: cells, op: st.n < 0 ? 0.5 : 1, deco: st.n < 0 ? 'line-through' : 'none', isBlk: blk, status: blk ? ('attend ' + st.dep) : (labels[String(st.n)] || ''), stCol: blk ? '#a31515' : (st.n >= 5 ? '#15803d' : '#3a2810'), fw: blk || st.n >= 5 ? 700 : 500};
+    });
+  }
+  renderVals() {
+    var self = this;
+    var p = this.props;
+    var st = this.state || {};
+    var ep = p.epic === 'worktree' ? 'worktree' : 'plugin';
+    var fond = p.fond === 'tapis' ? 'tapis' : 'noyer';
+    var illus = p.tuile !== 'sobre';
+    var T = illus ? 116 : 104;
+    var D = this.data(ep);
+    var sel = st.sel !== undefined ? st.sel : (p.ouvert == null ? 'B1' : String(p.ouvert));
+    if (sel === 'HB' && !D.hb) sel = '';
+    var R = this.rnd('tuiles-' + ep);
+    var pick = function (id) { return function () { self.setState({sel: sel === id ? '' : id}); }; };
+    var selIdx = -1;
+    var slots = D.batches.map(function (b, i) {
+      var on = sel === b.id;
+      if (on) selIdx = i;
+      var s = {id: b.id, on: on, pick: pick(b.id), isTenu: b.etat === 'tenu', isTile: b.etat !== 'tenu', illus: illus, sobre: !illus, outline: on ? '2.5px solid #111111' : 'none'};
+      if (s.isTenu) {
+        s.par = b.par;
+        s.count = b.nb + (b.nb > 1 ? ' stories' : ' story');
+        s.title = b.id + ' · tenu par ' + b.par + ' · ' + s.count;
+        return s;
+      }
+      var k = b.stories.length;
+      var q = self.oq(b.oq);
+      var blkN = b.stories.filter(function (x) { return !!x.dep; }).length;
+      s.isCur = b.etat === 'courant';
+      s.isFait = b.etat === 'fait';
+      s.count = k + (k > 1 ? ' stories' : ' story');
+      s.title = b.id + ' · ' + (s.isCur ? 'en cours' : 'fait') + ' · ' + s.count + ' · ' + (b.oq ? b.oq + ' OQ à répondre' : 'aucune OQ ouverte');
+      s.oqTxt = q.txt; s.oqBg = q.bg; s.oqBd = q.bd; s.oqCol = q.col;
+      s.hasBlk = blkN > 0; s.blkN = blkN;
+      s.badgeBg = s.isCur ? '#c026d3' : '#ffffff';
+      s.face = s.isFait && !illus ? '#e3f1dc' : '#f4ead2';
+      s.art = illus ? self.art(b.stories, R) : {};
+      s.cubes = b.stories.filter(function (x) { return x.n >= 0; }).map(function (x) { return self.stage(x.n); });
+      s.cubesLabel = 'avancement des ' + k + ' stories';
+      if (on) { s.tf = 'translateY(-5px)'; s.sh = '0 3px 0 #8a7a55, 0 14px 22px rgba(0,0,0,0.45)'; }
+      else if (s.isCur) { s.tf = 'translateY(-2px)'; s.sh = '0 2px 0 #8a7a55, 0 8px 14px rgba(0,0,0,0.38)'; }
+      else { s.tf = 'none'; s.sh = '0 1px 0 #6d6046, 0 1px 3px rgba(0,0,0,0.3)'; }
+      return s;
+    });
+    var hasHb = !!D.hb;
+    var hbN = hasHb ? D.hb.stories.length : 0;
+    var hbCount = hbN + (hbN > 1 ? ' stories' : ' story') + (hasHb && D.hb.notes ? ' · ' + D.hb.notes + ' note' : '');
+    var trayW = 20 + D.batches.length * T + (D.batches.length - 1) * 8;
+    var hbW = T + 24, hbH = T + 16;
+    var notchCenter = 0;
+    if (selIdx >= 0) notchCenter = 10 + selIdx * (T + 8) + T / 2;
+    else if (sel === 'HB') notchCenter = trayW + 24 + 12 + T / 2;
+    var pn = {}, hasPanel = sel !== '' && (selIdx >= 0 || sel === 'HB');
+    var key = ep + '-' + sel;
+    var txts = st.txt || {};
+    var actText = '';
+    if (hasPanel && sel === 'HB') {
+      pn = {titre: 'Hors batch', stTxt: 'hors batch', stBg: '#e8d6ae', stCol: '#4a3519', sous: hbCount, isCur: false, isFait: false, isTenu: false, hasOq: false, hasRows: true, noRows: false, rows: this.rows(D.hb.stories), deps: [{isNote: true, a: D.hb.notes + ' note jointe, à lire avant de ranger ces stories dans un batch.', code: '', b: ''}, {isLock: true, a: 'Aucun verrou : ces stories ne sont dans aucun batch.', code: '', b: ''}], hasPath: false, path: [], hasAct: false, hasFin: false};
+    } else if (hasPanel) {
+      var b = D.batches[selIdx];
+      if (b.etat === 'tenu') {
+        pn = {titre: 'Batch ' + b.id, stTxt: 'tenu par ' + b.par, stBg: '#d3d6da', stCol: '#4b4f55', sous: b.nb + (b.nb > 1 ? ' stories' : ' story'), isCur: false, isFait: false, isTenu: true, hasOq: false, hasRows: false, noRows: true, vide: 'Ce batch attend la soumission de ' + b.par + '. Ses stories s’afficheront ici dès qu’il sera débloqué.', rows: [], deps: [{isLock: true, a: 'Verrou : attend la soumission de ' + b.par + '.', code: '', b: ''}], hasPath: false, path: [], hasAct: false, hasFin: true, fin: 'Aucune action tant que ' + b.par + ' n’est pas soumis.'};
+      } else {
+        var q2 = this.oq(b.oq);
+        var cur = b.etat === 'courant';
+        var deps = [];
+        var path = [];
+        var unlock = '';
+        var rest = D.batches.filter(function (x, i) { return i > selIdx && x.etat === 'tenu'; }).map(function (x) { return x.id; });
+        if (cur && rest.length) deps.push({isLock: true, a: 'Verrou : ' + rest[0] + (rest.length > 1 ? ' à ' + rest[rest.length - 1] + ' attendent' : ' attend') + ' la soumission de ' + b.id + '.', code: '', b: ''});
+        b.stories.forEach(function (x) {
+          if (x.dep) {
+            deps.push({isBlk: true, a: '', code: x.s, b: ' dépend de ' + x.dep + ' (Toolman). Pour débloquer, soumettre dans l’ordre :'});
+            unlock = x.s;
+            path = [
+              {n: '1', id: 'B-TOOLMAN-1', txt: 'en cours · 1 story', cur: true, tenu: false, tBg: '#f4ead2', tSh: '0 1px 0 #8a7a55, 0 2px 4px rgba(0,0,0,0.3)'},
+              {n: '2', id: 'B-TOOLMAN-2', txt: 'tenu par B-TOOLMAN-1 · 2 stories', cur: false, tenu: true, tBg: '#b2b6bc', tSh: 'inset 0 1px 3px rgba(0,0,0,0.3)'}
+            ];
+          }
+        });
+        if (!cur) {
+          deps.push({isOk: true, a: 'Aucune dépendance ouverte.', code: '', b: ''});
+          var nxt = D.batches[selIdx + 1];
+          if (nxt) deps.push({isOk: true, a: 'Soumis : la voie de ' + nxt.id + ' est ouverte.', code: '', b: ''});
+        } else if (!path.length) {
+          deps.push({isOk: true, a: 'Aucun blocage venant d’une autre epic.', code: '', b: ''});
+        }
+        actText = txts[key] !== undefined ? txts[key] : (b.act || '');
+        pn = {titre: 'Chantier ' + b.id, bid: b.full, stTxt: cur ? 'en cours' : 'fait', stBg: cur ? '#f5d0fe' : '#dcfce7', stCol: cur ? '#86198f' : '#14532d', sous: b.full + ' · ' + b.stories.length + (b.stories.length > 1 ? ' stories' : ' story'), isCur: cur, isFait: !cur, isTenu: false, hasOq: true, oqTxt: b.oq ? (b.oq + ' OQ à répondre') : 'OQ : aucune ouverte', oqBg: q2.bg, oqBd: q2.bd, oqCol: q2.col, oqHref: '#oq-' + b.full.toLowerCase(), oqTitle: 'Ouvrir les questions ouvertes de ' + b.full, hasRows: true, noRows: false, rows: this.rows(b.stories), deps: deps, hasPath: path.length > 0, path: path, unlock: unlock, hasAct: cur, hasFin: !cur, fin: 'Batch fait : toutes ses stories sont terminées, rien à proposer.'};
+      }
+    }
+    var rows = Math.max(6, actText.split('\n').length + 1);
+    var copied = st.copied === key;
+    var fid = 'fond-' + ep + '-' + fond;
+    return {
+      M: "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+      A: "'Alegreya', 'Palatino Linotype', Palatino, Georgia, serif",
+      isNoyer: fond === 'noyer',
+      isTapis: fond === 'tapis',
+      fA: fid + '-a', fB: fid + '-b', pS: fid + '-p',
+      fAu: 'url(#' + fid + '-a)', fBu: 'url(#' + fid + '-b)', pSu: 'url(#' + fid + '-p)',
+      T: T,
+      slots: slots,
+      hasHb: hasHb,
+      hbOn: sel === 'HB',
+      hbOutline: sel === 'HB' ? '2.5px solid #111111' : 'none',
+      pickHb: pick('HB'),
+      hbCount: hbCount,
+      hbW: hbW, hbH: hbH, hbT: T,
+      hasPanel: hasPanel,
+      notchX: (notchCenter - 2 - 9).toFixed(0),
+      pn: pn,
+      cols: [{lab: 'écrite'}, {lab: 'design'}, {lab: 'code'}, {lab: 'soumise'}, {lab: 'terminée'}],
+      actId: 'action-' + key,
+      actText: actText,
+      actRows: rows,
+      onEdit: function (e) { var t = Object.assign({}, st.txt || {}); t[key] = e.target.value; self.setState({txt: t, copied: ''}); },
+      reset: function () { var t = Object.assign({}, st.txt || {}); delete t[key]; self.setState({txt: t, copied: ''}); },
+      copy: function () { try { if (navigator.clipboard) navigator.clipboard.writeText(actText); } catch (err) {} self.setState({copied: key}); },
+      copyLabel: copied ? 'Copié' : 'Copier',
+      close: function () { self.setState({sel: ''}); }
+    };
+  }
+}
+</script>
+</body>
+</html>

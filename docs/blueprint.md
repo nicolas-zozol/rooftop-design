@@ -156,3 +156,15 @@ D et E restaient des cartes d'interface habillées ; jugées sans intérêt. F e
 
 - **F · Plateau de lignes.** Plateau-carte avec rues et fleuve, bordure à piste de score (0-99, jeton à l'avancement de l'epic). Batch = voie entre deux gares ; story = wagon (slug dedans, cinq rivets = étapes). Wagon imprimé = en cours, wagon plastique posé = soumise ou terminée, voie courte imprimée = batch tenu. Gare cadenassée = verrou, gare cochée = batch soumis, terminus au nom de l'epic. Locomotive fuchsia en tête de la voie courante. Jeton rouge « 2 à débloquer » posé sur le wagon bloqué. Hors batch = billet. Commande = carte « prochain wagon ».
 - **G · Tuiles et chantier.** Table en bois, cadre gris à emplacements. Batch tenu = emplacement vide gravé (B2, cadenas, tenu par B1). Batch courant = tuile posée de travers avec ouvrier fuchsia. Batch fait = tuile en place avec blason bleu. Chaque story = une maison numérotée sur la tuile (plan, échafaudage, murs, toit, toit rouge). Fiche du chantier : une ligne par story, un cube de bois par étape (rose écrite, brun design, gris code, violet soumise, or terminée), sceau rouge pour un blocage, ligne « Action » pour la commande. Hors batch = pioche face cachée.
+
+### Retenu : tuiles et chantier, version condensée
+
+Page *Tuiles et chantier* du canevas ; composant `TuilesChantier` (props `epic`, `fond` noyer|tapis, `tuile` illustree|sobre, `ouvert`), interactif.
+
+- Le corps de l'epic ne montre que ses batchs, dans un cadre à emplacements. Plus d'ouvrier, plus de règle du jeu.
+- **Tenu** : emplacement vide gravé (id, cadenas, « tenu par », nombre de stories).
+- **Courant** : tuile légèrement soulevée, pastille fuchsia « en cours ». **Fait** : tuile en place, drapeau vert.
+- Sur chaque tuile : id, nombre de stories, **OQ** (« 3 OQ » en ambre, « OQ ✓ » en vert), blocages (⊖ n). Tuile illustrée : une maison par story qui se construit ; tuile sobre : un cube par story à la couleur de son étape, coche verte pour terminée.
+- **Hors batch** : pile face cachée, affichée seulement si elle contient des stories ; au clic, panneau « Hors batch ».
+- **Clic sur un batch** : panneau Chantier sous le cadre, relié à la tuile. Contenu : en-tête (état, id complet, nombre de stories, lien vers les OQ du batch), stories avec un cube par étape et coche verte à « terminée », colonne Dépendances et blocages (verrou, chemin de déblocage numéroté), **Action** : proposition complète pour avancer le batch dans un éditeur, modifiable avant de copier (Rétablir / Copier).
+- Fonds proposés : noyer (veinage fin, lames) ; tapis de jeu bleu (feutre, couture). Les données OQ des exemples sont fictives.
