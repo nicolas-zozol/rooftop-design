@@ -9,7 +9,7 @@ Maquettes et spécification de l'écran **Blueprint** de Rooftop (app de bureau 
 - **Le canevas vivant** (artefact Claude de type Design) : https://claude.ai/artifact/3EwPxSWQuHuvURMgwKGjyR
   Pages : *Application · tapis de jeu* (ouverture), *Palette et tailles* (jetons du système), puis l'historique : *Maquettes*, *Planche des composants*, *Pistes batchs*, *Essais jeu de plateau*, *Tuiles et chantier*.
 - **Le design system** : https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd — jetons, brand book et onze pièces du tapis de jeu. Copie dans [`design/design-system/`](design/design-system/), installée dans le canevas sous `ds/rooftop/`.
-- **La spec écrite** : [`docs/blueprint.md`](docs/blueprint.md) — hiérarchie, états, chemin de déblocage, contrat backend, mobile, jetons ; section 10 pour le design system.
+- **La spec écrite** : [`docs/blueprint.md`](docs/blueprint.md) — hiérarchie, états, chemin de déblocage, contrat backend, mobile, jetons ; section 10 pour le design system, section 11 pour les étapes, les arrêts du boss et le calcul de l'avancement.
 - **Les sources du canevas** : [`design/canvas/`](design/canvas/) — `canvas.json` (index des planches, notes) et un fichier `.dc.html` par planche ou composant.
 
 ## Contenu de `design/canvas/`

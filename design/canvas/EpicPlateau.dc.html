@@ -158,34 +158,36 @@
 class Component extends DCLogic {
   data(ep) {
     var D = {
-      plugin: {infix: 'PLUGIN', titre: 'Compound en deux plugins Claude Code', pct: 35, etat: 'encours', groupe: 'debloquee',
+      plugin: {infix: 'PLUGIN', titre: 'Compound en deux plugins Claude Code', groupe: 'debloquee',
         batches: [
           {id: 'B1', full: 'B-PLUGIN-1', etat: 'courant', oq: 3, stories: [{s: 'compound-inventory', n: 0, qi: 1, oq: 1, rloq: 1}, {s: 'plugin-split', n: 1, blk: 3, dep: 'B-TOOLMAN-2'}, {s: 'shared-skills', n: 3}, {s: 'marketplace-manifest', n: 4, qi: 5, oq: 1}],
             act: 'boss atw B-PLUGIN-1\n\nOù le boss va s’arrêter :\n- compound-inventory : sur ready, 1 RLOQ à trancher (il répond lui-même à l’autre OQ).\n- plugin-split : brainstorm, puis arrêt sur design file (attend B-TOOLMAN-2).\n- shared-skills : code, puis jusqu’au bout.\n- marketplace-manifest : répond à l’OQ de submitted, puis jusqu’au bout.'},
           {id: 'B2', etat: 'tenu', par: 'B1', nb: 3}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 2}, {id: 'B4', etat: 'tenu', par: 'B3', nb: 2}, {id: 'B5', etat: 'tenu', par: 'B4', nb: 1}],
         hb: {stories: [{s: 'compound-docs', n: 1}, {s: 'migration-notes', n: -1}], notes: 1}},
-      qualitygates: {infix: 'QUALITYGATES', titre: 'Quality gates', pct: 0, etat: 'afaire', groupe: 'debloquee',
+      qualitygates: {infix: 'QUALITYGATES', titre: 'Quality gates', groupe: 'debloquee',
         batches: [
           {id: 'B1', full: 'B-QUALITYGATES-1', etat: 'courant', oq: 0, stories: [{s: 'checker-depth', n: 1}],
             act: 'boss atw B-QUALITYGATES-1\n\nOù le boss va s’arrêter :\n- checker-depth : aucun arrêt prévu, jusqu’au bout.\n\nB2 attend : gate-config et gate-report en dépendent.'},
           {id: 'B2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}], hb: null},
-      worktree: {infix: 'WORKTREE', titre: 'Worktrees longs', pct: 66, etat: 'encours', groupe: 'debloquee',
+      worktree: {infix: 'WORKTREE', titre: 'Worktrees longs', groupe: 'debloquee',
         batches: [
           {id: 'B1', full: 'B-WORKTREE-1', etat: 'fait', oq: 0, stories: [{s: 'worktree-create', n: 6}, {s: 'worktree-list', n: 6}]},
           {id: 'B2', full: 'B-WORKTREE-2', etat: 'courant', oq: 1, stories: [{s: 'worktree-sync', n: 0, qi: 1, oq: 1}],
             act: 'boss atw B-WORKTREE-2\n\nOù le boss va s’arrêter :\n- worktree-sync : répond à l’OQ de ready, puis jusqu’au bout.'}], hb: null},
-      toolman: {infix: 'TOOLMAN', titre: 'toolman, un menu de corvées', pct: 65, etat: 'encours', groupe: 'debloquee', mod: {nom: 'Toolman', pct: 65},
+      toolman: {infix: 'TOOLMAN', titre: 'toolman, un menu de corvées', groupe: 'debloquee', mod: {nom: 'Toolman'},
         batches: [
           {id: 'B1', full: 'B-TOOLMAN-1', etat: 'courant', oq: 0, stories: [{s: 'toolman', n: 2}],
             act: 'boss atw B-TOOLMAN-1\n\nOù le boss va s’arrêter :\n- toolman : aucun arrêt prévu, jusqu’au bout.\n\nSa soumission ouvre B-TOOLMAN-2, qui débloque le design file de plugin-split (PLUGIN).'},
           {id: 'B2', full: 'B-TOOLMAN-2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}],
         hb: {stories: [{s: 'toolman-presets', n: 1}], notes: 0}},
-      pipeline: {infix: 'PIPELINE', titre: 'Pipeline documentaire des agents', pct: 80, etat: 'encours', groupe: 'debloquee', batches: [], hb: null, cmd: 'epicman design-pipeline-epic'},
-      batches: {infix: 'BATCHES', titre: 'Rooftop, les batchs et ce qui les débloque', pct: 100, etat: 'fini', groupe: 'terminee',
-        batches: [{id: 'B1', etat: 'fait', oq: 0, nb: 2}, {id: 'B2', etat: 'fait', oq: 0, nb: 2}, {id: 'B3', etat: 'fait', oq: 0, nb: 1}, {id: 'B4', etat: 'fait', oq: 0, nb: 1}], hb: null, pied: '3 suivis · 2 non mergées'},
-      rtworktrees: {infix: 'RTWORKTREES', titre: 'Rooftop lit les worktrees', pct: 0, etat: 'afaire', groupe: 'bloquee', dep: 'BATCHES',
+      pipeline: {infix: 'PIPELINE', titre: 'Pipeline documentaire des agents', groupe: 'debloquee', batches: [], hb: null, cmd: 'epicman design-pipeline-epic'},
+      batches: {infix: 'BATCHES', titre: 'Rooftop, les batchs et ce qui les débloque', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'fait', oq: 0, nb: 2}, {id: 'B2', etat: 'fait', oq: 0, nb: 2}, {id: 'B3', etat: 'fait', oq: 0, nb: 1},
+          {id: 'B4', full: 'B-BATCHES-4', etat: 'courant', oq: 0, stories: [{s: 'unblock-path', n: 4}],
+            act: 'boss atw B-BATCHES-4\n\nOù le boss va s’arrêter :\n- unblock-path : code fait, puis jusqu’au bout.\n\nDès que B-BATCHES-4 est submitted, RTWORKTREES est débloquée.'}], hb: null},
+      rtworktrees: {infix: 'RTWORKTREES', titre: 'Rooftop lit les worktrees', groupe: 'bloquee', dep: 'BATCHES', depBatch: 'B-BATCHES-4',
         batches: [{id: 'B1', full: 'B-RTWORKTREES-1', etat: 'courant', oq: 0, stories: [{s: 'worktree-sources', n: 1}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 1}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}], hb: null},
-      trwg: {infix: 'TRWG', titre: 'trwg, deux réponses fermées', pct: 20, etat: 'encours', groupe: 'debloquee', mod: {nom: 'trwg', pct: 20}, batches: [], hb: null, cmd: 'epicman trwg-epic'}
+      trwg: {infix: 'TRWG', titre: 'trwg, deux réponses fermées', groupe: 'debloquee', mod: {nom: 'trwg'}, batches: [], hb: null, cmd: 'epicman trwg-epic'}
     };
     return D[ep] || D.plugin;
   }
@@ -199,6 +201,18 @@ class Component extends DCLogic {
     if (n < 1) return {bg: 'transparent', bd: '1.5px dashed var(--etape-pas-ready)', sh: 'none', rad: '2px', isCheck: false};
     var C = ['var(--etape-ready)', 'var(--etape-brainstorm)', 'var(--etape-design-file)', 'var(--etape-code)', 'var(--etape-submitted)'];
     return {bg: C[n - 1], bd: '1px solid rgba(0,0,0,0.3)', sh: 'var(--ombre-cube)', rad: '2px', isCheck: false};
+  }
+  avancement(E) {
+    // story = étapes franchies / 6 ; batch = moyenne de ses stories (tenu 0 %, fait 100 %) ; epic = moyenne de ses batchs
+    if (!E.batches.length) return 0;
+    var tot = E.batches.reduce(function (a, b) {
+      if (b.etat === 'tenu') return a;
+      if (b.etat === 'fait') return a + 1;
+      var st = (b.stories || []).filter(function (x) { return x.n >= 0; });
+      if (!st.length) return a;
+      return a + st.reduce(function (c, x) { return c + Math.min(6, x.n) / 6; }, 0) / st.length;
+    }, 0);
+    return Math.round(tot / E.batches.length * 100);
   }
   arret(st) {
     // première case qu'un « boss atw » ne peut pas franchir : dépendance ou RLOQ ; 0 = aucun arrêt
@@ -261,7 +275,7 @@ class Component extends DCLogic {
       var oqN = list.length ? list.reduce(function (a, x) { return a + (x.oq || 0) + (x.rloq || 0); }, 0) : (b.oq || 0);
       var rloqN = list.reduce(function (a, x) { return a + (x.rloq || 0); }, 0);
       var q = self.oq(oqN);
-      var blkN = list.filter(function (x) { return !!x.dep; }).length;
+      var blkN = list.filter(function (x) { return !!x.dep || (blocked && x.n >= 0 && x.n < 6); }).length;
       s.isCur = b.etat === 'courant';
       s.isFait = b.etat === 'fait';
       s.count = k + (k > 1 ? ' stories' : ' story');
@@ -320,7 +334,7 @@ class Component extends DCLogic {
           var at = self2.arret(x);
           if (!at) { if (x.n >= 0 && x.n < 6) libres.push(x.s); return; }
           if (x.blk === at && x.epicDep) {
-            deps.push({isBlk: true, a: '', code: x.s, b: ' s’arrête sur ' + N[at - 1] + ' : l’epic attend ' + x.dep + '.'});
+            deps.push({isBlk: true, a: '', code: x.s, b: ' s’arrête sur ' + N[at - 1] + ' : l’epic attend ' + x.dep + (E.depBatch ? ' ; ' + E.depBatch + ' submitted suffit.' : '.')});
           } else if (x.blk === at) {
             depStop = {isBlk: true, a: '', code: x.s, b: ' s’arrête sur ' + N[at - 1] + ' : attend ' + x.dep + ' (Toolman). Pour débloquer, soumettre dans l’ordre :'};
             unlock = x.s; pnUnlockA = N[at - 1] + ' de ';
@@ -338,26 +352,29 @@ class Component extends DCLogic {
           if (nxt) deps.push({isOk: true, a: 'Soumis : la voie de ' + nxt.id + ' est ouverte.', code: '', b: ''});
         }
         actText = txts[key] !== undefined ? txts[key] : (b.act || '');
-        pn = {titre: 'Chantier ' + b.id, bid: b.full, stTxt: cur ? 'en cours' : 'fait', stBg: cur ? 'var(--accent-pale)' : 'var(--fait-pale)', stCol: cur ? 'var(--accent-fonce)' : 'var(--fait-fonce)', sous: b.full + ' · ' + (b.stories || []).length + ((b.stories || []).length > 1 ? ' stories' : ' story'), isCur: cur, isFait: !cur, isTenu: false, hasOq: true, oqTxt: oqB ? (oqB + ' OQ à répondre' + (rloqB ? ', dont ' + rloqB + ' RLOQ' : '')) : 'OQ : aucune ouverte', oqBg: q2.bg, oqBd: q2.bd, oqCol: q2.col, oqHref: '#oq-' + String(b.full).toLowerCase(), oqTitle: 'Ouvrir les questions ouvertes de ' + b.full, hasRows: true, noRows: false, rows: this.rows(sts, chemin === 'cible'), deps: deps, hasPath: path.length > 0, path: path, unlock: unlock, unlockA: pnUnlockA, hasAct: cur && !!b.act, hasFin: !cur, fin: 'Batch fait : toutes ses stories sont terminées, rien à proposer.'};
+        var epBloq = cur && blocked;
+        pn = {titre: 'Chantier ' + b.id, bid: b.full, stTxt: epBloq ? 'attend ' + E.dep : (cur ? 'en cours' : 'fait'), stBg: epBloq ? 'var(--etat-tenu)' : (cur ? 'var(--accent-pale)' : 'var(--fait-pale)'), stCol: epBloq ? 'var(--etat-tenu-texte)' : (cur ? 'var(--accent-fonce)' : 'var(--fait-fonce)'), sous: b.full + ' · ' + (b.stories || []).length + ((b.stories || []).length > 1 ? ' stories' : ' story'), isCur: cur && !epBloq, isFait: !cur, isTenu: epBloq, hasOq: true, oqTxt: oqB ? (oqB + ' OQ à répondre' + (rloqB ? ', dont ' + rloqB + ' RLOQ' : '')) : 'OQ : aucune ouverte', oqBg: q2.bg, oqBd: q2.bd, oqCol: q2.col, oqHref: '#oq-' + String(b.full).toLowerCase(), oqTitle: 'Ouvrir les questions ouvertes de ' + b.full, hasRows: true, noRows: false, rows: this.rows(sts, chemin === 'cible'), deps: deps, hasPath: path.length > 0, path: path, unlock: unlock, unlockA: pnUnlockA, hasAct: cur && !!b.act, hasFin: !cur, fin: 'Batch fait : toutes ses stories sont done, rien à proposer.'};
       }
     }
-    var oqTot = E.batches.reduce(function (a, b) { return a + (b.oq || 0); }, 0);
+    var oqTot = E.batches.reduce(function (a, b) { return a + ((b.stories && b.stories.length) ? b.stories.reduce(function (c, x) { return c + (x.oq || 0) + (x.rloq || 0); }, 0) : (b.oq || 0)); }, 0);
     var rloqTot = E.batches.reduce(function (a, b) { return a + (b.stories || []).reduce(function (c, x) { return c + (x.rloq || 0); }, 0); }, 0);
-    var blkTot = E.batches.reduce(function (a, b) { return a + (b.stories || []).filter(function (x) { return !!x.dep; }).length; }, 0);
+    var blkTot = E.batches.reduce(function (a, b) { return a + (b.stories || []).filter(function (x) { return !!x.dep || (blocked && x.n >= 0 && x.n < 6); }).length; }, 0);
     var curIdx = -1;
     E.batches.forEach(function (b, i) { if (b.etat === 'courant' && curIdx < 0) curIdx = i; });
     var C = 2 * Math.PI * 6;
-    var ringCol = {afaire: 'var(--avancement-a-faire)', encours: 'var(--avancement-en-cours)', fini: 'var(--avancement-fini)', fait: 'var(--avancement-fait)'}[E.etat] || 'var(--avancement-a-faire)';
+    var pct = this.avancement(E);
+    var etatAv = pct >= 100 ? (E.merge ? 'fait' : 'fini') : (pct > 0 ? 'encours' : 'afaire');
+    var ringCol = {afaire: 'var(--avancement-a-faire)', encours: 'var(--avancement-en-cours)', fini: 'var(--avancement-fini)', fait: 'var(--avancement-fait)'}[etatAv];
     var fid = 'tp-' + ep + '-' + (folded ? 'r' : 'd');
     var copied = st.copied === key;
     return {
       M: 'var(--font-mono)',
       A: 'var(--font-jeu)',
-      infix: E.infix, titre: E.titre, pct: E.pct,
+      infix: E.infix, titre: E.titre, pct: pct,
       ringCol: ringCol,
-      ringDash: (Math.max(0, Math.min(100, E.pct)) / 100 * C).toFixed(2) + ' ' + C.toFixed(2),
-      finiOp: E.etat === 'fini' ? 1 : 0,
-      hasMod: !!E.mod, modNom: E.mod ? E.mod.nom : '', modPct: E.mod ? E.mod.pct : 0,
+      ringDash: (Math.max(0, Math.min(100, pct)) / 100 * C).toFixed(2) + ' ' + C.toFixed(2),
+      finiOp: etatAv === 'fini' ? 1 : 0,
+      hasMod: !!E.mod, modNom: E.mod ? E.mod.nom : '', modPct: pct,
       cw: cw,
       cardBd: blocked ? '1px dashed var(--tirets-bloquee)' : '1px solid var(--ligne)',
       op: chemin === 'estompe' ? 0.35 : 1,

@@ -2,7 +2,7 @@ En-tête d'une carte d'epic : drapeau, étiquette INFIX, titre, anneau d'avancem
 
 ## L'appelant fournit
 - l'INFIX en capitales (PLUGIN, TOOLMAN) et le titre de l'epic ;
-- l'avancement en pourcentage et son état : à faire, en cours, fini, fait ;
+- l'avancement, calculé et jamais saisi : chaque story vaut ses étapes franchies sur six, un batch la moyenne de ses stories (tenu 0 %, fait 100 %), l'epic la moyenne de ses batchs ; l'état suit : 0 % à faire, en cours, 100 % fini, fait une fois mergée ;
 - l'état ouvert ou replié, qui choisit le chevron et `aria-expanded` ;
 - le fait que l'epic est bloquée, qui passe la carte en tirets.
 

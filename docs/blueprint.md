@@ -37,7 +37,7 @@ Une seule couleur d'accent ; chaque couleur a un sens unique.
 | Ambre / vert / bleu | en cours / tout juste fini / fait (valeurs Tailwind supposées, à caler sur le code). |
 
 États de batch (`CarteBatch.etat`) : `courant`, `fait`, `tenu` (par le batch précédent), `hors` (hors batch).
-Avancement d'une story (pips) : 0 à écrire · 1 sans design · 1,5 design en brouillon · 2 design approuvé, à coder · 3 code fini, à valider puis soumettre · 4 soumise · 5 terminée · −1 écartée.
+Avancement d'une story (pips, ancienne direction) : 0 à écrire · 1 sans design · 1,5 design en brouillon · 2 design approuvé, à coder · 3 code fini, à valider puis soumettre · 4 soumise · 5 terminée · −1 écartée. Remplacé par les six étapes de la section 11.
 
 ## 3. Dérouler une epic
 
@@ -182,13 +182,13 @@ Page *Application · tapis de jeu* du canevas. Composant unique `EpicPlateau` (p
 - en cours : tuile crème légèrement soulevée, pastille fuchsia (grise si l'epic est bloquée) ;
 - fait : tuile verte en place, drapeau vert.
 
-Chaque tuile montre son id, un cube par story à la couleur de son étape (rose écrite, brun design, gris code, violet soumise, coche verte terminée), les OQ (« 3 OQ » ambre ou « OQ ✓ » vert), les blocages (⊖ n), le nombre de stories. La pile bordeaux « Hors batch » suit le cadre, seulement si elle contient des stories.
+Chaque tuile montre son id, un cube par story à la couleur de sa dernière étape franchie (section 11), les OQ (« 3 OQ » ambre ou « OQ ✓ » vert), les RLOQ (puce orange pleine), les blocages (⊖ n), le nombre de stories. La pile bordeaux « Hors batch » suit le cadre, seulement si elle contient des stories.
 
-**Chantier.** Un clic sur une tuile (ou la pile, ou un emplacement vide) ouvre le panneau sous le cadre, relié à la tuile sélectionnée (contour noir) ; l'epic s'élargit et les voisines glissent. Contenu : état, id complet, lien vers les OQ du batch ; stories avec un cube par étape et « où elle en est » ; Dépendances et blocages (verrou, chemin numéroté vers l'autre epic, bouton « Voir sur le plan ») ; **Action** : proposition complète pour avancer le batch dans un éditeur, modifiable avant copie (Rétablir, Copier). Batch fait : pas d'action. Batch tenu : pas de stories ni d'action, seulement le verrou.
+**Chantier.** Un clic sur une tuile (ou la pile, ou un emplacement vide) ouvre le panneau sous le cadre, relié à la tuile sélectionnée (contour noir) ; l'epic s'élargit et les voisines glissent. Contenu : état, id complet, lien vers les OQ du batch ; stories avec une case par étape (OQ, RLOQ et dépendances posées dans la case qu'elles bloquent) ; « Où le boss s'arrête » (une ligne par story arrêtée, chemin numéroté vers l'autre epic, bouton « Voir sur le plan ») ; **Action** : `boss atw B-…` puis où le boss va s'arrêter, dans un éditeur, modifiable avant copie (Rétablir, Copier). Batch fait : pas d'action. Batch tenu : pas de stories ni d'action, seulement le verrou.
 
-**Epic repliée (240 px).** En-tête, titre, « dépend de » si bloquée, bande de tapis avec une mini-tuile par batch (grise à cadenas, crème à pastille, verte cochée) et la mini-pile hors batch, puis OQ cumulées, blocages et position (« B1/5 »). Sans batch : « aucun batch pour l'instant » et la commande `epicman`.
+**Epic repliée (240 px).** En-tête, titre, « ⊖ attend BATCHES » si son batch en cours est bloqué par une autre epic (aucune flèche sur le plan), bande de tapis avec une mini-tuile par batch (grise à cadenas, crème à pastille, verte cochée) et la mini-pile hors batch, puis OQ cumulées, RLOQ, blocages et position (« B1/5 »). Sans batch : « aucun batch pour l'instant » et la commande `epicman`.
 
-**Chemin de déblocage.** « Voir sur le plan » : bandeau noir en haut du plan (« Pour débloquer plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », Quitter), numéros 1 et 2 sur les tuiles concernées (aussi sur les mini-tuiles d'une epic repliée), tout le reste estompé à 35 %, la story bloquée surlignée dans le chantier.
+**Chemin de déblocage.** « Voir sur le plan » : bandeau noir en haut du plan (« Pour débloquer le design file de plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », Quitter), numéros 1 et 2 sur les tuiles concernées (aussi sur les mini-tuiles d'une epic repliée), tout le reste estompé à 35 %, la story bloquée surlignée dans le chantier.
 
 À faire ensuite : sombre (le tapis l'est déjà ; reste la barre et le plan), mobile, branches parallèles 1a/1b sur les tuiles. Les nombres d'OQ et les textes d'action des maquettes sont fictifs.
 
@@ -196,10 +196,24 @@ Chaque tuile montre son id, un cube par story à la couleur de son étape (rose 
 
 Artefact **Rooftop Design System** : https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd (copie dans [`design/design-system/`](../design/design-system/)). Il survit à la fermeture de Claude Design autonome (14 décembre 2026) : c'est un artefact Claude, comme le canevas.
 
-**Contenu.** `tokens.json` (la source : 82 couleurs, 17 styles de texte en trois familles Inter / JetBrains Mono / Alegreya, espacements, rayons, ombres, tailles des pièces, opacités du chemin), `tokens.css` (les mêmes en variables CSS), `README.md` (le brand book : vocabulaire, plan et plateau, états, étapes, chantier, chemin, typographie, icônes, contraste), `components/bundle.css` (classes `rt-` des pièces) et onze pièces avec aperçu et mode d'emploi : BandeauModule, EnTeteEpic, EpicRepliee, BandeauChemin, Cadre, Emplacement, Tuile, CubeEtape, Jeton, HorsBatch, Chantier.
+**Contenu.** `tokens.json` (la source : 84 couleurs, 17 styles de texte en trois familles Inter / JetBrains Mono / Alegreya, espacements, rayons, ombres, tailles des pièces, opacités du chemin), `tokens.css` (les mêmes en variables CSS), `README.md` (le brand book : vocabulaire, plan et plateau, états, étapes, chantier, chemin, typographie, icônes, contraste), `components/bundle.css` (classes `rt-` des pièces) et onze pièces avec aperçu et mode d'emploi : BandeauModule, EnTeteEpic, EpicRepliee, BandeauChemin, Cadre, Emplacement, Tuile, CubeEtape, Jeton, HorsBatch, Chantier.
 
 **Dans le canevas.** Une copie est installée dans `ds/rooftop/` (enregistrée dans `canvas.json`, champ `designSystems`). `EpicPlateau`, `AppPlateau`, `App-Chantier`, `App-Chemin`, `Planche-Plateau` et la nouvelle planche `Palette-Plateau` lient `ds/rooftop/tokens.css` et n'ont plus aucune couleur en dur : tout passe par `var(--jeton)` (dans les SVG, par `style="fill:var(--…)"`). Pour changer une couleur : la modifier dans le design system, puis recopier ses fichiers dans `ds/rooftop/` du canevas ; les planches suivent.
 
-**Limites connues.** Les ombres portent leurs couleurs en dur (`ombre-tuile-en-cours` contient la valeur de `tuile-tranche`) et le grain du tapis encode `tapis-fibre` : à reprendre à la main si ces couleurs changent. Trois paires restent sous le seuil de contraste, gardées des maquettes validées et signalées dans le brand book : texte gravé des emplacements (2:1), « terminée » en `fait-bord` sur le chantier (3,8:1), tirets d'epic bloquée et flèche « dépend de » (2,5:1).
+**Limites connues.** Les ombres portent leurs couleurs en dur (`ombre-tuile-en-cours` contient la valeur de `tuile-tranche`) et le grain du tapis encode `tapis-fibre` : à reprendre à la main si ces couleurs changent. Deux paires restent sous le seuil de contraste, gardées des maquettes validées et signalées dans le brand book : texte gravé des emplacements (2:1) et tirets d'epic bloquée (2,5:1).
 
 **Correction en passant.** Sur une tuile, le compte de stories passe à la ligne sous les puces quand « 3 OQ », « ⊖ 1 » et « 4 stories » ne tiennent pas dans 104 px, au lieu de se couper en deux.
+
+## 11. Étapes, arrêts du boss, avancement
+
+**Six étapes par story**, en anglais : ready, brainstorm, design file, code, submitted, done. Une story existe dès qu'elle est écrite ; elle est ready quand ses OQ ont une réponse (definition of ready). Sur une tuile, un cube par story à la couleur de sa dernière étape franchie : gris clair (ready), bleu clair (brainstorm), bleu vif (design file), mauve (code), cube vert (submitted), coche verte ronde (done). Pas ready : cube vide en tirets orange. Submitted et done partagent le même vert : la forme les distingue.
+
+**Une case peut être bloquée** de trois façons, posées dans la case même : des OQ (le boss y répond et continue), des RLOQ — ReLevant Open Questions, que seul un humain tranche — (le boss s'arrête), une dépendance vers un autre batch (le boss s'arrête). Une dépendance vers un batch est levée dès que ce batch est submitted (version beta). Seule compte la dépendance qui bloque une case que le boss va atteindre ; le plan ne dessine aucune flèche de dépendance.
+
+**`boss atw B-PLUGIN-1`** avance chaque story jusqu'à son premier arrêt. Le chantier le montre : cases après l'arrêt estompées, colonne « Où le boss s'arrête », Action qui commence par la commande. Exemple PLUGIN B1 : compound-inventory s'arrête sur ready (1 RLOQ) ; plugin-split fait son brainstorm puis s'arrête sur design file (attend B-TOOLMAN-2) ; shared-skills et marketplace-manifest vont jusqu'au bout.
+
+**L'avancement est calculé, jamais saisi.** Story = étapes franchies / 6 (design file = 50 %). Batch = moyenne de ses stories (tenu 0 %, fait 100 %, stories écartées ignorées). Epic = moyenne de ses batchs ; sans batch, 0 %. Module = moyenne de ses epics. Exemple : quatre batchs dont un seul a toutes ses stories au design file → 50 % / 4 = 12,5 %.
+
+Valeurs des maquettes, recalculées : PLUGIN 7 %, QUALITYGATES 6 %, WORKTREE 50 %, TOOLMAN 11 % (module Toolman 11 %), PIPELINE 0 %, BATCHES 92 %, RTWORKTREES 6 %, TRWG 0 % ; module RB Compound 27 %.
+
+**Cohérence des états.** Tuile, mini-tuile, pied de l'epic repliée et chantier lisent les mêmes stories. Un batch est fait seulement quand toutes ses stories sont done. Une epic bloquée a la pastille grise sur sa tuile, « ⊖ attend BATCHES » sur sa carte, la puce « attend BATCHES » et le cercle barré sur la prochaine case de chaque story dans son chantier. BATCHES n'est plus présentée comme finie : son B4 (unblock-path, code fait) doit passer submitted pour débloquer RTWORKTREES.

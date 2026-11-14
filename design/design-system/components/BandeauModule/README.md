@@ -2,7 +2,7 @@ Bandeau noir qui coiffe un module sur le plan : surtitre MODULE, nom, avancement
 
 ## L'appelant fournit
 - le nom du module (« RB Compound », « Toolman »), tel qu'écrit dans le projet ;
-- l'avancement en pourcentage entier, écrit « 60 % » et reporté sur la barre ;
+- l'avancement du module : la moyenne de l'avancement de ses epics, en pourcentage entier, écrit « 27 % » et reporté sur la barre ;
 - l'état : le glyphe demi-plein `module-en-cours` seulement si le module est en cours.
 
 ## Quand l'utiliser

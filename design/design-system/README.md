@@ -50,7 +50,9 @@ Rooftop montre l'avancement d'un projet comme une partie en cours : les modules 
 - Réserve l'orange (`oq-ouverte-*`, `rloq`, `etape-pas-ready`) aux questions et le rouge (`blocage-*`) aux dépendances bloquantes. Une étape qui avance ne prend jamais ces couleurs.
 - Réserve `blocage` (rouge) aux blocages : puce « ⊖ n », cercle barré, texte `blocage-texte`, fond de ligne `blocage-fond`. Écris toujours le compte ou la cause à côté.
 - Montre les OQ sur chaque tuile : `oq-ouverte` / `oq-ouverte-bord` / `oq-ouverte-texte` avec le nombre (« 3 OQ »), ou `oq-ok` / `oq-ok-bord` / `oq-ok-texte` (« OQ ✓ »). S'il y a des RLOQ, ajoute la puce pleine `rloq` / `rloq-texte` (« 1 RLOQ »). Dans le chantier, la puce devient un lien vers les OQ du batch.
-- Dis l'avancement d'une epic par son anneau : `avancement-a-faire`, `avancement-en-cours`, `avancement-fini`, `avancement-fait`, sur piste `ligne-forte`. Le pourcentage est écrit à côté.
+- Calcule l'avancement, ne le saisis jamais : une story vaut ses étapes franchies sur six (design file = 3/6 = 50 %, done = 100 %) ; un batch, la moyenne de ses stories (tenu 0 %, fait 100 %, stories écartées ignorées) ; une epic, la moyenne de ses batchs ; un module, la moyenne de ses epics. Une epic sans batch est à 0 %. Exemple : quatre batchs dont un seul a toutes ses stories au design file : 50 % / 4 = 12,5 %.
+- Dis l'avancement d'une epic par son anneau : `avancement-a-faire` (0 %), `avancement-en-cours`, `avancement-fini` (100 %, coche dans l'anneau), `avancement-fait` (mergée), sur piste `ligne-forte`. Le pourcentage est écrit à côté.
+- Garde les mêmes faits partout : la tuile, sa mini-tuile, le pied de l'epic repliée et le chantier lisent les mêmes stories. Un batch est fait seulement quand toutes ses stories sont done ; une epic bloquée a la pastille `accent-bloque` sur sa tuile et la puce « attend BATCHES » dans son chantier.
 - `module-en-cours` (ambre) ne sert qu'au glyphe demi-plein du bandeau de module.
 
 ## Les étapes d'une story
