@@ -10,7 +10,7 @@ Bandeau noir en haut du plan qui dit dans quel ordre soumettre pour débloquer u
 
 ## À faire
 - Fond `inverse`, texte `texte-inverse`, numéros en pastilles `texte-inverse` sur `inverse`, ids en mono, bouton en `inverse-2`.
-- Une seule phrase : « Pour débloquer plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 ».
+- Une seule phrase, qui nomme la case bloquée : « Pour débloquer le design file de plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 ».
 
 ## À éviter
 - Pas plus d'un bandeau à la fois. Pas de fermeture automatique : on quitte le chemin par le bouton.

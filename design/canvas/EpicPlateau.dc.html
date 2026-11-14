@@ -38,7 +38,7 @@
 
 <sc-if value="{{folded}}" hint-placeholder-val="{{false}}"><div style="padding:9px 12px 11px;display:flex;flex-direction:column;gap:8px">
 <span style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{titre}}</span>
-<sc-if value="{{hasDep}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--encre-muette)">dépend de<span style="font-size:10px;font-weight:700;letter-spacing:0.05em;line-height:15px;padding:0 5px;border-radius:4px;border:1px solid var(--ligne-forte);color:var(--encre-2)">{{dep}}</span></span></sc-if>
+<sc-if value="{{hasDep}}" hint-placeholder-val="{{false}}"><span title="Son batch en cours attend {{dep}}" style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--blocage-texte)"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg>attend<span style="font-size:10px;font-weight:700;letter-spacing:0.05em;line-height:15px;padding:0 5px;border-radius:4px;border:1px solid var(--blocage);color:var(--blocage-texte)">{{dep}}</span></span></sc-if>
 <div style="position:relative;height:44px;border-radius:6px;overflow:hidden;background:var(--tapis);box-shadow:inset 0 1px 3px rgba(0,0,0,0.4)">
 <svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><filter id="{{fN}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.75  0 0 0 0 0.85  0 0 0 0 0.95  0.32 0 0 0 -0.1"></feColorMatrix></filter></defs><rect width="100%" height="100%" filter="{{fNu}}"></rect></svg>
 <div style="position:relative;display:flex;align-items:center;gap:6px;height:100%;padding:0 10px">
@@ -48,7 +48,7 @@
 </div>
 </div>
 <div style="display:flex;align-items:center;gap:5px;height:18px">
-<sc-if value="{{hasOqF}}" hint-placeholder-val="{{true}}"><span style="display:flex;align-items:center;height:18px;box-sizing:border-box;padding:0 6px;border-radius:9px;background:{{oqF.bg}};border:1px solid {{oqF.bd}};color:{{oqF.col}};font-size:10.5px;font-weight:700;white-space:nowrap">{{oqF.txt}}</span></sc-if>
+<sc-if value="{{hasOqF}}" hint-placeholder-val="{{true}}"><span style="display:flex;align-items:center;height:18px;box-sizing:border-box;padding:0 6px;border-radius:9px;background:{{oqF.bg}};border:1px solid {{oqF.bd}};color:{{oqF.col}};font-size:10.5px;font-weight:700;white-space:nowrap">{{oqF.txt}}</span></sc-if><sc-if value="{{hasRloqF}}" hint-placeholder-val="{{false}}"><span title="{{rloqF}}" style="display:flex;align-items:center;gap:3px;height:18px;box-sizing:border-box;padding:0 6px 0 3px;border-radius:9px;background:var(--rloq);color:var(--rloq-texte);font-size:10.5px;font-weight:700;white-space:nowrap"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--rloq-texte)"></circle><path d="M5.3 5.4a1.8 1.8 0 1 1 2.6 1.6c-.6.3-.9.7-.9 1.3v.3" fill="none" stroke-width="1.6" stroke-linecap="round" style="stroke:var(--rloq)"></path><circle cx="7" cy="10.4" r=".9" style="fill:var(--rloq)"></circle></svg>{{rloqFN}}</span></sc-if>
 <sc-if value="{{hasBlkF}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:3px;height:18px;box-sizing:border-box;padding:0 6px 0 3px;border-radius:9px;background:var(--blocage);color:var(--surface);font-size:10.5px;font-weight:700"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--surface)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--blocage)"></rect></svg>{{blkF}}</span></sc-if>
 <span style="flex:1"></span>
 <span style="font-size:11px;color:var(--encre-muette);white-space:nowrap">{{piedF}}</span>
@@ -78,7 +78,7 @@
 <sc-if value="{{s.isTile}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" title="{{s.title}}" style="position:absolute;left:0;top:0;width:104px;height:104px;box-sizing:border-box;padding:9px 8px 8px 9px;border:0;border-radius:4px;background:{{s.face}};transform:{{s.tf}};box-shadow:{{s.sh}};outline:{{s.outline}};outline-offset:3px;cursor:pointer;font-family:inherit;color:var(--tuile-encre);text-align:left;display:flex;flex-direction:column;justify-content:space-between">
 <span style="font-family:{{M}};font-size:17px;font-weight:700">{{s.id}}</span>
 <span role="img" aria-label="{{s.cubesLabel}}" style="display:flex;flex-wrap:wrap;gap:4px"><sc-for list="{{s.cubes}}" as="q" hint-placeholder-count="4"><span style="width:14px;height:14px;box-sizing:border-box;border-radius:{{q.rad}};background:{{q.bg}};border:{{q.bd}};box-shadow:{{q.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{q.isCheck}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="9" height="9" viewBox="0 0 10 10"><path d="M2 5.2 4.1 7.2 8 2.9" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if></span></sc-for></span>
-<span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px"><span style="display:flex;align-items:center;height:17px;box-sizing:border-box;padding:0 5px;border-radius:9px;background:{{s.oqBg}};border:1px solid {{s.oqBd}};color:{{s.oqCol}};font-size:10.5px;font-weight:700;white-space:nowrap">{{s.oqTxt}}</span><sc-if value="{{s.hasBlk}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:3px;height:17px;box-sizing:border-box;padding:0 5px 0 3px;border-radius:9px;background:var(--blocage);color:var(--surface);font-size:10.5px;font-weight:700"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--surface)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--blocage)"></rect></svg>{{s.blkN}}</span></sc-if><span style="margin-left:auto;font-size:10.5px;color:var(--tuile-muette);white-space:nowrap">{{s.count}}</span></span>
+<span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px"><span style="display:flex;align-items:center;height:17px;box-sizing:border-box;padding:0 5px;border-radius:9px;background:{{s.oqBg}};border:1px solid {{s.oqBd}};color:{{s.oqCol}};font-size:10.5px;font-weight:700;white-space:nowrap">{{s.oqTxt}}</span><sc-if value="{{s.hasRloq}}" hint-placeholder-val="{{false}}"><span title="{{s.rloqTxt}}" style="display:flex;align-items:center;gap:3px;height:17px;box-sizing:border-box;padding:0 5px 0 3px;border-radius:9px;background:var(--rloq);color:var(--rloq-texte);font-size:10.5px;font-weight:700;white-space:nowrap"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--rloq-texte)"></circle><path d="M5.3 5.4a1.8 1.8 0 1 1 2.6 1.6c-.6.3-.9.7-.9 1.3v.3" fill="none" stroke-width="1.6" stroke-linecap="round" style="stroke:var(--rloq)"></path><circle cx="7" cy="10.4" r=".9" style="fill:var(--rloq)"></circle></svg>{{s.rloqN}}</span></sc-if><sc-if value="{{s.hasBlk}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:3px;height:17px;box-sizing:border-box;padding:0 5px 0 3px;border-radius:9px;background:var(--blocage);color:var(--surface);font-size:10.5px;font-weight:700"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--surface)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--blocage)"></rect></svg>{{s.blkN}}</span></sc-if><span style="margin-left:auto;font-size:10.5px;color:var(--tuile-muette);white-space:nowrap">{{s.count}}</span></span>
 <span style="position:absolute;right:5px;top:5px;width:24px;height:24px;border-radius:50%;background:{{s.badgeBg}};border:2px solid var(--surface);box-shadow:0 1px 3px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center"><sc-if value="{{s.isCur}}" hint-placeholder-val="{{true}}"><svg role="img" aria-label="en cours" width="13" height="13" viewBox="0 0 14 14"><path d="M3.4 2.6h7.4l1.4 3H2Z" style="fill:var(--surface)"></path><path d="M7.1 5.8v6.6" stroke-width="2" stroke-linecap="round" style="stroke:var(--surface)"></path></svg></sc-if><sc-if value="{{s.isFait}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="fait" width="14" height="14" viewBox="0 0 14 14"><path d="M4.3 12.8V1.8" stroke-width="1.5" stroke-linecap="round" style="stroke:var(--fait-fonce)"></path><path d="M4.6 2.2h6.6L9.5 4.7l1.7 2.5H4.6Z" stroke-width="0.8" stroke-linejoin="round" style="fill:var(--fait);stroke:var(--fait-fonce)"></path></svg></sc-if></span>
 </button></sc-if>
 
@@ -110,29 +110,27 @@
 
 <div style="display:flex;align-items:flex-start;gap:24px">
 <sc-if value="{{pn.hasRows}}" hint-placeholder-val="{{true}}"><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px">
-<div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5, 40px) 196px;column-gap:6px;align-items:end;padding-bottom:4px;border-bottom:1px solid var(--chantier-filet)">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(6, 64px);column-gap:6px;align-items:end;padding-bottom:4px;border-bottom:1px solid var(--chantier-filet)">
 <span style="font-family:{{A}};font-size:13.5px;font-weight:800;color:var(--tuile-muette)">Stories</span>
-<span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center">écrite</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center">design</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center">code</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center">soumise</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center">terminée</span>
-<span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette)">où elle en est</span>
+<span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">ready</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">brainstorm</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">design file</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">code</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">submitted</span><span style="font-size:10.5px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">done</span>
 </div>
-<sc-for list="{{pn.rows}}" as="r" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(5, 40px) 196px;column-gap:6px;align-items:center;height:32px;margin:0 -6px;padding:0 6px;border-radius:4px;background:{{r.bg}};opacity:{{r.op}}">
+<sc-for list="{{pn.rows}}" as="r" hint-placeholder-count="4"><div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(6, 64px);column-gap:6px;align-items:center;height:32px;margin:0 -6px;padding:0 6px;border-radius:4px;background:{{r.bg}};opacity:{{r.op}}">
 <span title="{{r.slug}}" style="min-width:0;font-family:{{M}};font-size:12.5px;color:var(--tuile-encre);text-decoration:{{r.deco}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{r.slug}}</span>
-<sc-for list="{{r.cells}}" as="c" hint-placeholder-count="5"><span style="height:26px;box-sizing:border-box;border-radius:3px;background:var(--chantier-case);border:1px solid var(--chantier-case-bord);display:flex;align-items:center;justify-content:center"><span style="width:{{c.w}}px;height:{{c.w}}px;box-sizing:border-box;border-radius:{{c.rad}};background:{{c.bg}};border:{{c.bd}};box-shadow:{{c.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{c.isCheck}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 10 10"><path d="M2 5.2 4.1 7.2 8 2.9" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if></span></span></sc-for>
-<span style="display:flex;align-items:center;gap:5px;min-width:0;font-size:11px;font-weight:{{r.fw}};color:{{r.stCol}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><sc-if value="{{r.isBlk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg></sc-if>{{r.status}}</span>
+<sc-for list="{{r.cells}}" as="c" hint-placeholder-count="6"><span title="{{c.title}}" style="opacity:{{c.op}};height:26px;box-sizing:border-box;border-radius:3px;background:var(--chantier-case);border:1px solid var(--chantier-case-bord);display:flex;align-items:center;justify-content:center"><sc-if value="{{c.isBlk}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="bloqué" width="14" height="14" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg></sc-if><sc-if value="{{c.isRloq}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:17px;box-sizing:border-box;padding:0 5px;border-radius:9px;background:var(--rloq);color:var(--rloq-texte);font-size:10px;font-weight:700;white-space:nowrap">{{c.q}}</span></sc-if><sc-if value="{{c.isOq}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:17px;box-sizing:border-box;padding:0 5px;border-radius:9px;background:var(--oq-ouverte);border:1px solid var(--oq-ouverte-bord);color:var(--oq-ouverte-texte);font-size:10px;font-weight:700;white-space:nowrap">{{c.q}}</span></sc-if><span style="width:{{c.w}}px;height:{{c.w}}px;box-sizing:border-box;border-radius:{{c.rad}};background:{{c.bg}};border:{{c.bd}};box-shadow:{{c.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{c.isCheck}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 10 10"><path d="M2 5.2 4.1 7.2 8 2.9" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if></span></span></sc-for>
 </div></sc-for>
 </div></sc-if>
 <sc-if value="{{pn.noRows}}" hint-placeholder-val="{{false}}"><p style="flex:1;margin:0;font-size:13px;line-height:1.5;color:var(--chantier-titre)">{{pn.vide}}</p></sc-if>
 
 <div style="width:270px;flex:none;box-sizing:border-box;display:flex;flex-direction:column;gap:10px;padding-left:18px;border-left:1px solid var(--chantier-filet)">
-<span style="font-family:{{A}};font-size:13.5px;font-weight:800;color:var(--tuile-muette)">Dépendances et blocages</span>
-<sc-for list="{{pn.deps}}" as="d" hint-placeholder-count="2"><div style="display:flex;align-items:flex-start;gap:8px"><span style="width:16px;height:16px;flex:none;margin-top:1px;display:flex;align-items:center;justify-content:center"><sc-if value="{{d.isLock}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 12 12" fill="none" stroke-width="1.4" stroke-linecap="round" style="stroke:var(--tuile-muette)"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if><sc-if value="{{d.isBlk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg></sc-if><sc-if value="{{d.isOk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--fait)"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if><sc-if value="{{d.isNote}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke-width="1.3" stroke-linejoin="round" style="stroke:var(--tuile-muette)"><path d="M3 1.8h5.5L11 4.3v7.9H3Z"></path><path d="M5 7h4M5 9.4h4"></path></svg></sc-if></span><span style="font-size:12px;line-height:1.45;color:var(--tuile-encre)">{{d.a}}<span style="font-family:{{M}};font-size:11.5px;font-weight:600">{{d.code}}</span>{{d.b}}</span></div></sc-for>
+<span style="font-family:{{A}};font-size:13.5px;font-weight:800;color:var(--tuile-muette)">Où le boss s’arrête</span>
+<sc-for list="{{pn.deps}}" as="d" hint-placeholder-count="2"><div style="display:flex;align-items:flex-start;gap:8px"><span style="width:16px;height:16px;flex:none;margin-top:1px;display:flex;align-items:center;justify-content:center"><sc-if value="{{d.isLock}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 12 12" fill="none" stroke-width="1.4" stroke-linecap="round" style="stroke:var(--tuile-muette)"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if><sc-if value="{{d.isBlk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg></sc-if><sc-if value="{{d.isRloq}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="RLOQ" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--rloq)"></circle><path d="M5.3 5.4a1.8 1.8 0 1 1 2.6 1.6c-.6.3-.9.7-.9 1.3v.3" fill="none" stroke-width="1.5" stroke-linecap="round" style="stroke:var(--rloq-texte)"></path><circle cx="7" cy="10.4" r=".85" style="fill:var(--rloq-texte)"></circle></svg></sc-if><sc-if value="{{d.isOk}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--fait)"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if><sc-if value="{{d.isNote}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke-width="1.3" stroke-linejoin="round" style="stroke:var(--tuile-muette)"><path d="M3 1.8h5.5L11 4.3v7.9H3Z"></path><path d="M5 7h4M5 9.4h4"></path></svg></sc-if></span><span style="font-size:12px;line-height:1.45;color:var(--tuile-encre)">{{d.a}}<span style="font-family:{{M}};font-size:11.5px;font-weight:600">{{d.code}}</span>{{d.b}}</span></div></sc-for>
 <sc-if value="{{pn.hasPath}}" hint-placeholder-val="{{false}}"><div style="display:flex;flex-direction:column;gap:7px;margin-left:24px">
 <sc-for list="{{pn.path}}" as="p" hint-placeholder-count="2"><div style="display:flex;align-items:center;gap:8px">
 <span style="width:20px;height:20px;flex:none;border-radius:50%;background:var(--tuile-encre);color:var(--chantier-lisere);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">{{p.n}}</span>
 <span style="width:30px;height:30px;flex:none;box-sizing:border-box;border-radius:3px;background:{{p.tBg}};box-shadow:{{p.tSh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{p.cur}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--accent)"></circle><path d="M4.2 3.6h5.6l1 2.2H3.2Z" style="fill:var(--surface)"></path><path d="M7 5.9v4.8" stroke-width="1.6" stroke-linecap="round" style="stroke:var(--surface)"></path></svg></sc-if><sc-if value="{{p.tenu}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke-width="1.4" stroke-linecap="round" style="stroke:var(--emplacement-grave)"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if></span>
 <span style="display:flex;flex-direction:column;min-width:0"><span style="font-family:{{M}};font-size:11.5px;font-weight:700;color:var(--tuile-encre)">{{p.id}}</span><span style="font-size:11px;color:var(--tuile-muette)">{{p.txt}}</span></span>
 </div></sc-for>
-<span style="font-size:11.5px;color:var(--chantier-titre)">→ <span style="font-family:{{M}};font-weight:600">{{pn.unlock}}</span> débloquée</span>
+<span style="font-size:11.5px;color:var(--chantier-titre)">→ {{pn.unlockA}}<span style="font-family:{{M}};font-weight:600">{{pn.unlock}}</span> débloqué</span>
 <a href="#chemin" style="align-self:flex-start;display:flex;align-items:center;gap:6px;height:28px;box-sizing:border-box;padding:0 11px;border-radius:6px;background:{{voirBg}};border:1px solid var(--tuile-encre);color:{{voirCol}};font-size:12px;font-weight:700;text-decoration:none"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5.2"></circle><circle cx="7" cy="7" r="1.6" fill="currentColor"></circle></svg>{{voirTxt}}</a>
 </div></sc-if>
 </div>
@@ -162,31 +160,31 @@ class Component extends DCLogic {
     var D = {
       plugin: {infix: 'PLUGIN', titre: 'Compound en deux plugins Claude Code', pct: 35, etat: 'encours', groupe: 'debloquee',
         batches: [
-          {id: 'B1', full: 'B-PLUGIN-1', etat: 'courant', oq: 3, stories: [{s: 'compound-inventory', n: 0}, {s: 'plugin-split', n: 1.5, dep: 'B-TOOLMAN-2'}, {s: 'shared-skills', n: 2}, {s: 'marketplace-manifest', n: 3}],
-            act: 'storyman compound-inventory\n\nBatch B-PLUGIN-1 (epic PLUGIN), 4 stories :\n- compound-inventory : à écrire → écrire la story.\n- shared-skills : design approuvé → coder.\n- marketplace-manifest : code fini → valider, puis soumettre.\n- plugin-split : attend B-TOOLMAN-2 → ne pas y toucher.\n\nAvant : répondre aux 3 OQ ouvertes du batch.'},
+          {id: 'B1', full: 'B-PLUGIN-1', etat: 'courant', oq: 3, stories: [{s: 'compound-inventory', n: 0, qi: 1, oq: 1, rloq: 1}, {s: 'plugin-split', n: 1, blk: 3, dep: 'B-TOOLMAN-2'}, {s: 'shared-skills', n: 3}, {s: 'marketplace-manifest', n: 4, qi: 5, oq: 1}],
+            act: 'boss atw B-PLUGIN-1\n\nOù le boss va s’arrêter :\n- compound-inventory : sur ready, 1 RLOQ à trancher (il répond lui-même à l’autre OQ).\n- plugin-split : brainstorm, puis arrêt sur design file (attend B-TOOLMAN-2).\n- shared-skills : code, puis jusqu’au bout.\n- marketplace-manifest : répond à l’OQ de submitted, puis jusqu’au bout.'},
           {id: 'B2', etat: 'tenu', par: 'B1', nb: 3}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 2}, {id: 'B4', etat: 'tenu', par: 'B3', nb: 2}, {id: 'B5', etat: 'tenu', par: 'B4', nb: 1}],
         hb: {stories: [{s: 'compound-docs', n: 1}, {s: 'migration-notes', n: -1}], notes: 1}},
       qualitygates: {infix: 'QUALITYGATES', titre: 'Quality gates', pct: 0, etat: 'afaire', groupe: 'debloquee',
         batches: [
-          {id: 'B1', full: 'B-QUALITYGATES-1', etat: 'courant', oq: 0, stories: [{s: 'checker-depth', n: 0}],
-            act: 'storyman checker-depth\n\nBatch B-QUALITYGATES-1 (epic QUALITYGATES), 1 story :\n- checker-depth : à écrire → écrire la story.\n\nB2 attend : gate-config et gate-report en dépendent.'},
+          {id: 'B1', full: 'B-QUALITYGATES-1', etat: 'courant', oq: 0, stories: [{s: 'checker-depth', n: 1}],
+            act: 'boss atw B-QUALITYGATES-1\n\nOù le boss va s’arrêter :\n- checker-depth : aucun arrêt prévu, jusqu’au bout.\n\nB2 attend : gate-config et gate-report en dépendent.'},
           {id: 'B2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}], hb: null},
       worktree: {infix: 'WORKTREE', titre: 'Worktrees longs', pct: 66, etat: 'encours', groupe: 'debloquee',
         batches: [
-          {id: 'B1', full: 'B-WORKTREE-1', etat: 'fait', oq: 0, stories: [{s: 'worktree-create', n: 5}, {s: 'worktree-list', n: 5}]},
-          {id: 'B2', full: 'B-WORKTREE-2', etat: 'courant', oq: 1, stories: [{s: 'worktree-sync', n: 1}],
-            act: 'designman features/worktree-epic/worktree-sync/worktree-sync.story.md\n\nBatch B-WORKTREE-2 (epic WORKTREE), 1 story :\n- worktree-sync : sans design → proposer le design.\n\nAvant : répondre à l’OQ ouverte du batch.'}], hb: null},
+          {id: 'B1', full: 'B-WORKTREE-1', etat: 'fait', oq: 0, stories: [{s: 'worktree-create', n: 6}, {s: 'worktree-list', n: 6}]},
+          {id: 'B2', full: 'B-WORKTREE-2', etat: 'courant', oq: 1, stories: [{s: 'worktree-sync', n: 0, qi: 1, oq: 1}],
+            act: 'boss atw B-WORKTREE-2\n\nOù le boss va s’arrêter :\n- worktree-sync : répond à l’OQ de ready, puis jusqu’au bout.'}], hb: null},
       toolman: {infix: 'TOOLMAN', titre: 'toolman, un menu de corvées', pct: 65, etat: 'encours', groupe: 'debloquee', mod: {nom: 'Toolman', pct: 65},
         batches: [
-          {id: 'B1', full: 'B-TOOLMAN-1', etat: 'courant', oq: 0, stories: [{s: 'toolman', n: 1.5}],
-            act: 'designman update features/toolman-epic/toolman/toolman.story.md\n\nBatch B-TOOLMAN-1 (epic TOOLMAN), 1 story :\n- toolman : design en brouillon → finir le design et le faire approuver.\n\nSa soumission débloque B-TOOLMAN-2, dont dépend plugin-split (PLUGIN).'},
+          {id: 'B1', full: 'B-TOOLMAN-1', etat: 'courant', oq: 0, stories: [{s: 'toolman', n: 2}],
+            act: 'boss atw B-TOOLMAN-1\n\nOù le boss va s’arrêter :\n- toolman : aucun arrêt prévu, jusqu’au bout.\n\nSa soumission ouvre B-TOOLMAN-2, qui débloque le design file de plugin-split (PLUGIN).'},
           {id: 'B2', full: 'B-TOOLMAN-2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}],
         hb: {stories: [{s: 'toolman-presets', n: 1}], notes: 0}},
       pipeline: {infix: 'PIPELINE', titre: 'Pipeline documentaire des agents', pct: 80, etat: 'encours', groupe: 'debloquee', batches: [], hb: null, cmd: 'epicman design-pipeline-epic'},
       batches: {infix: 'BATCHES', titre: 'Rooftop, les batchs et ce qui les débloque', pct: 100, etat: 'fini', groupe: 'terminee',
         batches: [{id: 'B1', etat: 'fait', oq: 0, nb: 2}, {id: 'B2', etat: 'fait', oq: 0, nb: 2}, {id: 'B3', etat: 'fait', oq: 0, nb: 1}, {id: 'B4', etat: 'fait', oq: 0, nb: 1}], hb: null, pied: '3 suivis · 2 non mergées'},
       rtworktrees: {infix: 'RTWORKTREES', titre: 'Rooftop lit les worktrees', pct: 0, etat: 'afaire', groupe: 'bloquee', dep: 'BATCHES',
-        batches: [{id: 'B1', full: 'B-RTWORKTREES-1', etat: 'courant', oq: 0, stories: [{s: 'worktree-sources', n: 0}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 1}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}], hb: null},
+        batches: [{id: 'B1', full: 'B-RTWORKTREES-1', etat: 'courant', oq: 0, stories: [{s: 'worktree-sources', n: 1}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 1}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}], hb: null},
       trwg: {infix: 'TRWG', titre: 'trwg, deux réponses fermées', pct: 20, etat: 'encours', groupe: 'debloquee', mod: {nom: 'trwg', pct: 20}, batches: [], hb: null, cmd: 'epicman trwg-epic'}
     };
     return D[ep] || D.plugin;
@@ -196,25 +194,39 @@ class Component extends DCLogic {
     return {txt: 'OQ ✓', bg: 'var(--oq-ok)', bd: 'var(--oq-ok-bord)', col: 'var(--oq-ok-texte)'};
   }
   stage(n) {
-    if (n >= 5) return {bg: 'var(--etape-terminee)', bd: '1px solid var(--fait-bord)', sh: '0 1px 2px rgba(0,0,0,0.3)', rad: '50%', isCheck: true};
-    var C = ['var(--etape-ecrite)', 'var(--etape-design)', 'var(--etape-code)', 'var(--etape-soumise)'];
-    var i = Math.floor(n);
-    if (i < 1) return {bg: 'transparent', bd: '1.5px dashed var(--etape-a-ecrire)', sh: 'none', rad: '2px', isCheck: false};
-    return {bg: C[i - 1], bd: '1px solid rgba(0,0,0,0.25)', sh: 'var(--ombre-cube)', rad: '2px', isCheck: false};
+    // n = étapes franchies : 0 pas ready, 1 ready, 2 brainstorm, 3 design file, 4 code, 5 submitted, 6 done
+    if (n >= 6) return {bg: 'var(--etape-done)', bd: '1px solid var(--fait-bord)', sh: '0 1px 2px rgba(0,0,0,0.3)', rad: '50%', isCheck: true};
+    if (n < 1) return {bg: 'transparent', bd: '1.5px dashed var(--etape-pas-ready)', sh: 'none', rad: '2px', isCheck: false};
+    var C = ['var(--etape-ready)', 'var(--etape-brainstorm)', 'var(--etape-design-file)', 'var(--etape-code)', 'var(--etape-submitted)'];
+    return {bg: C[n - 1], bd: '1px solid rgba(0,0,0,0.3)', sh: 'var(--ombre-cube)', rad: '2px', isCheck: false};
+  }
+  arret(st) {
+    // première case qu'un « boss atw » ne peut pas franchir : dépendance ou RLOQ ; 0 = aucun arrêt
+    if (st.n < 0) return 0;
+    for (var i = st.n + 1; i <= 6; i++) {
+      if (st.blk === i) return i;
+      if (st.qi === i && st.rloq) return i;
+    }
+    return 0;
   }
   rows(stories, cible) {
-    var labels = {'-1': 'écartée', '0': 'à écrire', '1': 'sans design', '1.5': 'design en brouillon', '2': 'design approuvé, à coder', '3': 'code fini, à valider puis soumettre', '4': 'soumise', '5': 'terminée'};
-    var C = ['var(--etape-ecrite)', 'var(--etape-design)', 'var(--etape-code)', 'var(--etape-soumise)'];
+    var self = this;
+    var N = ['ready', 'brainstorm', 'design file', 'code', 'submitted', 'done'];
+    var C = ['var(--etape-ready)', 'var(--etape-brainstorm)', 'var(--etape-design-file)', 'var(--etape-code)', 'var(--etape-submitted)'];
     return stories.map(function (st) {
+      var stop = self.arret(st);
       var cells = [];
-      for (var i = 1; i <= 5; i++) {
-        if (i === 5) cells.push(st.n >= 5 ? {w: 18, rad: '50%', bg: 'var(--etape-terminee)', bd: '1px solid var(--fait-bord)', sh: '0 1px 2px rgba(0,0,0,0.3)', isCheck: true} : {w: 0, rad: '0', bg: 'transparent', bd: 'none', sh: 'none', isCheck: false});
-        else if (st.n >= i) cells.push({w: 15, rad: '2px', bg: C[i - 1], bd: '1px solid rgba(0,0,0,0.25)', sh: 'inset -3px -3px 0 rgba(0,0,0,0.2), inset 2px 2px 0 rgba(255,255,255,0.35), 0 2px 2px rgba(0,0,0,0.35)', isCheck: false});
-        else if (st.n >= i - 0.5) cells.push({w: 15, rad: '2px', bg: 'transparent', bd: '1.6px dashed ' + C[i - 1], sh: 'none', isCheck: false});
-        else cells.push({w: 0, rad: '0', bg: 'transparent', bd: 'none', sh: 'none', isCheck: false});
+      for (var i = 1; i <= 6; i++) {
+        var c = {w: 0, rad: '0', bg: 'transparent', bd: 'none', sh: 'none', isCheck: false, isBlk: false, isRloq: false, isOq: false, q: '', op: (stop && i > stop) ? 'var(--opacite-hors-course)' : '1', title: N[i - 1] + ((stop && i > stop) ? ' : hors de portée du boss' : ' : à venir')};
+        if (st.n >= i && i === 6) Object.assign(c, {w: 18, rad: '50%', bg: 'var(--etape-done)', bd: '1px solid var(--fait-bord)', sh: '0 1px 2px rgba(0,0,0,0.3)', isCheck: true, title: 'done'});
+        else if (st.n >= i) Object.assign(c, {w: 15, rad: '2px', bg: C[i - 1], bd: '1px solid rgba(0,0,0,0.3)', sh: 'inset -3px -3px 0 rgba(0,0,0,0.2), inset 2px 2px 0 rgba(255,255,255,0.35), 0 2px 2px rgba(0,0,0,0.35)', title: N[i - 1]});
+        else if (st.blk === i) Object.assign(c, {isBlk: true, title: N[i - 1] + ' bloqué : attend ' + st.dep + '. Le boss s’arrête ici.'});
+        else if (st.qi === i && st.rloq) Object.assign(c, {isRloq: true, q: st.rloq + ' RLOQ', title: st.rloq + ' RLOQ' + (st.oq ? ' et ' + st.oq + ' OQ' : '') + ' sur ' + N[i - 1] + '. Le boss s’arrête ici.'});
+        else if (st.qi === i && st.oq) Object.assign(c, {isOq: true, q: st.oq + ' OQ', title: st.oq + ' OQ sur ' + N[i - 1] + ' : le boss y répond et continue.'});
+        cells.push(c);
       }
       var blk = !!st.dep;
-      return {slug: st.s, cells: cells, op: st.n < 0 ? 0.5 : 1, deco: st.n < 0 ? 'line-through' : 'none', isBlk: blk, bg: blk && cible ? 'var(--blocage-fond)' : 'transparent', status: blk ? ('attend ' + st.dep) : (labels[String(st.n)] || ''), stCol: blk ? 'var(--blocage-texte)' : (st.n >= 5 ? 'var(--fait-bord)' : 'var(--chantier-titre)'), fw: blk || st.n >= 5 ? 700 : 500};
+      return {slug: st.s, cells: cells, op: st.n < 0 ? 0.5 : 1, deco: st.n < 0 ? 'line-through' : 'none', bg: blk && cible ? 'var(--blocage-fond)' : 'transparent'};
     });
   }
   renderVals() {
@@ -246,18 +258,20 @@ class Component extends DCLogic {
       }
       var list = b.stories || [];
       var k = list.length || b.nb || 0;
-      var q = self.oq(b.oq || 0);
+      var oqN = list.length ? list.reduce(function (a, x) { return a + (x.oq || 0) + (x.rloq || 0); }, 0) : (b.oq || 0);
+      var rloqN = list.reduce(function (a, x) { return a + (x.rloq || 0); }, 0);
+      var q = self.oq(oqN);
       var blkN = list.filter(function (x) { return !!x.dep; }).length;
       s.isCur = b.etat === 'courant';
       s.isFait = b.etat === 'fait';
       s.count = k + (k > 1 ? ' stories' : ' story');
-      s.title = b.id + ' · ' + (s.isCur ? 'en cours' : 'fait') + ' · ' + s.count + ' · ' + (b.oq ? b.oq + ' OQ à répondre' : 'aucune OQ ouverte');
+      s.title = b.id + ' · ' + (s.isCur ? 'en cours' : 'fait') + ' · ' + s.count + ' · ' + (oqN ? oqN + ' OQ à répondre' + (rloqN ? ', dont ' + rloqN + ' RLOQ' : '') : 'aucune OQ ouverte');
       s.oqTxt = q.txt; s.oqBg = q.bg; s.oqBd = q.bd; s.oqCol = q.col;
-      s.hasBlk = blkN > 0; s.blkN = blkN;
+      s.hasBlk = blkN > 0; s.blkN = blkN; s.hasRloq = rloqN > 0; s.rloqTxt = rloqN + ' RLOQ'; s.rloqN = rloqN;
       s.badgeBg = s.isCur ? (blocked ? 'var(--accent-bloque)' : 'var(--accent)') : 'var(--surface)';
       s.face = s.isFait ? 'var(--tuile-faite)' : 'var(--tuile-en-cours)';
       s.cubes = list.filter(function (x) { return x.n >= 0; }).map(function (x) { return self.stage(x.n); });
-      if (!list.length && s.isFait) { s.cubes = []; for (var c = 0; c < k; c++) s.cubes.push(self.stage(5)); }
+      if (!list.length && s.isFait) { s.cubes = []; for (var c = 0; c < k; c++) s.cubes.push(self.stage(6)); }
       s.cubesLabel = 'avancement des ' + k + ' stories';
       if (on) { s.tf = 'translateY(-5px)'; s.sh = 'var(--ombre-tuile-selection)'; }
       else if (s.isCur && !blocked) { s.tf = 'translateY(-2px)'; s.sh = 'var(--ombre-tuile-en-cours)'; }
@@ -284,7 +298,7 @@ class Component extends DCLogic {
     var key = ep + '-' + sel;
     var txts = st.txt || {};
     var actText = '';
-    var pn = {};
+    var pn = {}; var pnUnlockA = '';
     if (hasPanel && sel === 'HB') {
       pn = {titre: 'Hors batch', stTxt: 'hors batch', stBg: 'var(--etat-hors-batch)', stCol: 'var(--etat-hors-batch-texte)', sous: hbCount, hasOq: false, hasRows: true, noRows: false, rows: this.rows(E.hb.stories, false),
         deps: (E.hb.notes ? [{isNote: true, a: E.hb.notes + ' note jointe, à lire avant de ranger ces stories dans un batch.', code: '', b: ''}] : []).concat([{isLock: true, a: 'Aucun verrou : ces stories ne sont dans aucun batch.', code: '', b: ''}]), hasPath: false, path: [], hasAct: false, hasFin: false};
@@ -294,28 +308,41 @@ class Component extends DCLogic {
         pn = {titre: 'Batch ' + b.id, stTxt: 'tenu par ' + b.par, stBg: 'var(--etat-tenu)', stCol: 'var(--etat-tenu-texte)', sous: b.nb + (b.nb > 1 ? ' stories' : ' story'), isTenu: true, hasOq: false, hasRows: false, noRows: true, vide: 'Ce batch attend la soumission de ' + b.par + '. Ses stories s’afficheront ici dès qu’il sera débloqué.', rows: [], deps: [{isLock: true, a: 'Verrou : attend la soumission de ' + b.par + '.', code: '', b: ''}], hasPath: false, path: [], hasAct: false, hasFin: true, fin: 'Aucune action tant que ' + b.par + ' n’est pas soumis.'};
       } else {
         var cur = b.etat === 'courant';
-        var q2 = this.oq(b.oq || 0);
-        var deps = [], path = [], unlock = '';
-        var rest = E.batches.filter(function (x, i) { return i > selIdx && x.etat === 'tenu'; }).map(function (x) { return x.id; });
-        if (cur && rest.length) deps.push({isLock: true, a: 'Verrou : ' + rest[0] + (rest.length > 1 ? ' à ' + rest[rest.length - 1] + ' attendent' : ' attend') + ' la soumission de ' + b.id + '.', code: '', b: ''});
-        (b.stories || []).forEach(function (x) {
-          if (x.dep) {
-            deps.push({isBlk: true, a: '', code: x.s, b: ' dépend de ' + x.dep + ' (Toolman). Pour débloquer, soumettre dans l’ordre :'});
-            unlock = x.s;
+        var oqB = (b.stories || []).reduce(function (a, x) { return a + (x.oq || 0) + (x.rloq || 0); }, 0) || (b.oq || 0);
+        var rloqB = (b.stories || []).reduce(function (a, x) { return a + (x.rloq || 0); }, 0);
+        var q2 = this.oq(oqB);
+        var deps = [], path = [], unlock = '', depStop = null, libres = [];
+        var N = ['ready', 'brainstorm', 'design file', 'code', 'submitted', 'done'];
+        var self2 = this;
+        // epic bloquée : la prochaine case de chaque story attend l'epic dont elle dépend
+        var sts = (b.stories || []).map(function (x) { return (E.groupe === 'bloquee' && E.dep && x.n >= 0 && x.n < 6 && !x.blk) ? Object.assign({}, x, {blk: x.n + 1, dep: E.dep, epicDep: true}) : x; });
+        sts.forEach(function (x) {
+          var at = self2.arret(x);
+          if (!at) { if (x.n >= 0 && x.n < 6) libres.push(x.s); return; }
+          if (x.blk === at && x.epicDep) {
+            deps.push({isBlk: true, a: '', code: x.s, b: ' s’arrête sur ' + N[at - 1] + ' : l’epic attend ' + x.dep + '.'});
+          } else if (x.blk === at) {
+            depStop = {isBlk: true, a: '', code: x.s, b: ' s’arrête sur ' + N[at - 1] + ' : attend ' + x.dep + ' (Toolman). Pour débloquer, soumettre dans l’ordre :'};
+            unlock = x.s; pnUnlockA = N[at - 1] + ' de ';
             path = [{n: '1', id: 'B-TOOLMAN-1', txt: 'en cours · 1 story', cur: true, tenu: false, tBg: 'var(--tuile-en-cours)', tSh: '0 1px 0 var(--tuile-tranche), 0 2px 4px rgba(0,0,0,0.3)'}, {n: '2', id: 'B-TOOLMAN-2', txt: 'tenu par B-TOOLMAN-1 · 2 stories', cur: false, tenu: true, tBg: 'var(--emplacement)', tSh: 'inset 0 1px 3px rgba(0,0,0,0.3)'}];
+          } else {
+            deps.push({isRloq: true, a: '', code: x.s, b: ' s’arrête sur ' + N[at - 1] + ' : ' + x.rloq + ' RLOQ à trancher' + (x.oq ? ' (le boss répond lui-même à l’autre OQ)' : '') + '.'});
           }
         });
-        if (ep === 'toolman' && b.id === 'B1') deps.push({isLock: true, a: 'Sa soumission ouvre B-TOOLMAN-2, dont dépend ', code: 'plugin-split', b: ' (PLUGIN).'});
+        if (cur && libres.length) deps.push({isOk: true, a: '', code: libres.join(', '), b: ' : aucun arrêt, jusqu’au bout.'});
+        if (depStop) deps.push(depStop);
+        if (ep === 'toolman' && b.id === 'B1') deps.push({isLock: true, a: 'Sa soumission ouvre B-TOOLMAN-2, dont dépend le design file de ', code: 'plugin-split', b: ' (PLUGIN).'});
         if (!cur) {
           deps.push({isOk: true, a: 'Aucune dépendance ouverte.', code: '', b: ''});
           var nxt = E.batches[selIdx + 1];
           if (nxt) deps.push({isOk: true, a: 'Soumis : la voie de ' + nxt.id + ' est ouverte.', code: '', b: ''});
-        } else if (!path.length) deps.push({isOk: true, a: 'Aucun blocage venant d’une autre epic.', code: '', b: ''});
+        }
         actText = txts[key] !== undefined ? txts[key] : (b.act || '');
-        pn = {titre: 'Chantier ' + b.id, bid: b.full, stTxt: cur ? 'en cours' : 'fait', stBg: cur ? 'var(--accent-pale)' : 'var(--fait-pale)', stCol: cur ? 'var(--accent-fonce)' : 'var(--fait-fonce)', sous: b.full + ' · ' + (b.stories || []).length + ((b.stories || []).length > 1 ? ' stories' : ' story'), isCur: cur, isFait: !cur, isTenu: false, hasOq: true, oqTxt: b.oq ? (b.oq + ' OQ à répondre') : 'OQ : aucune ouverte', oqBg: q2.bg, oqBd: q2.bd, oqCol: q2.col, oqHref: '#oq-' + String(b.full).toLowerCase(), oqTitle: 'Ouvrir les questions ouvertes de ' + b.full, hasRows: true, noRows: false, rows: this.rows(b.stories || [], chemin === 'cible'), deps: deps, hasPath: path.length > 0, path: path, unlock: unlock, hasAct: cur && !!b.act, hasFin: !cur, fin: 'Batch fait : toutes ses stories sont terminées, rien à proposer.'};
+        pn = {titre: 'Chantier ' + b.id, bid: b.full, stTxt: cur ? 'en cours' : 'fait', stBg: cur ? 'var(--accent-pale)' : 'var(--fait-pale)', stCol: cur ? 'var(--accent-fonce)' : 'var(--fait-fonce)', sous: b.full + ' · ' + (b.stories || []).length + ((b.stories || []).length > 1 ? ' stories' : ' story'), isCur: cur, isFait: !cur, isTenu: false, hasOq: true, oqTxt: oqB ? (oqB + ' OQ à répondre' + (rloqB ? ', dont ' + rloqB + ' RLOQ' : '')) : 'OQ : aucune ouverte', oqBg: q2.bg, oqBd: q2.bd, oqCol: q2.col, oqHref: '#oq-' + String(b.full).toLowerCase(), oqTitle: 'Ouvrir les questions ouvertes de ' + b.full, hasRows: true, noRows: false, rows: this.rows(sts, chemin === 'cible'), deps: deps, hasPath: path.length > 0, path: path, unlock: unlock, unlockA: pnUnlockA, hasAct: cur && !!b.act, hasFin: !cur, fin: 'Batch fait : toutes ses stories sont terminées, rien à proposer.'};
       }
     }
     var oqTot = E.batches.reduce(function (a, b) { return a + (b.oq || 0); }, 0);
+    var rloqTot = E.batches.reduce(function (a, b) { return a + (b.stories || []).reduce(function (c, x) { return c + (x.rloq || 0); }, 0); }, 0);
     var blkTot = E.batches.reduce(function (a, b) { return a + (b.stories || []).filter(function (x) { return !!x.dep; }).length; }, 0);
     var curIdx = -1;
     E.batches.forEach(function (b, i) { if (b.etat === 'courant' && curIdx < 0) curIdx = i; });
@@ -345,7 +372,7 @@ class Component extends DCLogic {
       noBatch: n === 0,
       hasOqF: n > 0 && !E.pied,
       oqF: this.oq(oqTot),
-      hasBlkF: blkTot > 0, blkF: blkTot,
+      hasBlkF: blkTot > 0, blkF: blkTot, hasRloqF: rloqTot > 0, rloqF: rloqTot + ' RLOQ', rloqFN: rloqTot,
       piedF: E.pied ? E.pied : (n === 0 ? '' : (curIdx >= 0 ? 'B' + (curIdx + 1) + '/' + n : n + '/' + n)),
       hasCmdF: !!E.cmd, cmdF: E.cmd || '',
       slots: slots,

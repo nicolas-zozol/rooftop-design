@@ -459,7 +459,7 @@
       "is_interactive": true
     },
     "Palette-Plateau.dc.html": {
-      "h": 2340,
+      "h": 2400,
       "page": "palette",
       "title": "Jetons du Rooftop Design System : couleurs, typographie, espacements, rayons, relief",
       "w": 1440,
@@ -476,8 +476,8 @@
       "title": "Rooftop Design System",
       "namespace": "rooftop",
       "artifact": "https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd",
-      "version": "1794692969-b311",
-      "copiedAt": "2026-11-14T21:53:26Z"
+      "version": "1794696043-ce9c",
+      "copiedAt": "2026-11-14T22:41:05Z"
     }
   ],
   "launch": {

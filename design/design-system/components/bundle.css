@@ -55,26 +55,24 @@
 .rt-pastille--faite { background: var(--surface); }
 .rt-etape-num { position: absolute; z-index: 2; left: -10px; top: -10px; width: 26px; height: 26px; border-radius: var(--radius-rond); background: var(--selection); border: 2px solid var(--surface); color: var(--texte-inverse); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
 
-/* Cubes d'étape */
+/* Cubes d'étape : gris, bleu clair, bleu vif, mauve, cube vert pour submitted, coche verte ronde pour done ; tirets orange tant que la story n'est pas ready */
 .rt-cubes { display: flex; flex-wrap: wrap; gap: var(--gap-cube); }
-.rt-cube { width: var(--taille-cube); height: var(--taille-cube); border-radius: var(--radius-cube); border: 1px solid rgba(0,0,0,0.25); box-shadow: var(--ombre-cube); display: flex; align-items: center; justify-content: center; }
-.rt-cube--a-ecrire { background: transparent; border: 1.5px dashed var(--etape-a-ecrire); box-shadow: none; }
-.rt-cube--ecrite { background: var(--etape-ecrite); }
-.rt-cube--design { background: var(--etape-design); }
+.rt-cube { width: var(--taille-cube); height: var(--taille-cube); border-radius: var(--radius-cube); border: 1px solid rgba(0,0,0,0.3); box-shadow: var(--ombre-cube); display: flex; align-items: center; justify-content: center; }
+.rt-cube--pas-ready { background: transparent; border: 1.5px dashed var(--etape-pas-ready); box-shadow: none; }
+.rt-cube--ready { background: var(--etape-ready); }
+.rt-cube--brainstorm { background: var(--etape-brainstorm); }
+.rt-cube--design-file { background: var(--etape-design-file); }
 .rt-cube--code { background: var(--etape-code); }
-.rt-cube--soumise { background: var(--etape-soumise); }
-.rt-cube--terminee { background: var(--etape-terminee); border-color: var(--fait-bord); border-radius: var(--radius-rond); box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.rt-cube--moitie { background: transparent; border-style: dashed; border-width: 1.6px; box-shadow: none; }
-.rt-cube--moitie.rt-cube--ecrite { border-color: var(--etape-ecrite); }
-.rt-cube--moitie.rt-cube--design { border-color: var(--etape-design); }
-.rt-cube--moitie.rt-cube--code { border-color: var(--etape-code); }
-.rt-cube--moitie.rt-cube--soumise { border-color: var(--etape-soumise); }
+.rt-cube--submitted { background: var(--etape-submitted); }
+.rt-cube--done { background: var(--etape-done); border-color: var(--fait-bord); border-radius: var(--radius-rond); box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
 
 /* Puces */
 .rt-puce { display: inline-flex; align-items: center; gap: 3px; height: 17px; padding: 0 5px; border-radius: var(--radius-puce); border: 1px solid transparent; font-size: 10.5px; font-weight: 700; white-space: nowrap; }
 .rt-puce--oq { background: var(--oq-ouverte); border-color: var(--oq-ouverte-bord); color: var(--oq-ouverte-texte); }
 .rt-puce--oq-ok { background: var(--oq-ok); border-color: var(--oq-ok-bord); color: var(--oq-ok-texte); }
 .rt-puce--blocage { background: var(--blocage); color: var(--surface); padding-left: 3px; }
+.rt-puce--rloq { background: var(--rloq); color: var(--rloq-texte); }
+.rt-puce--icone { padding-left: 3px; }
 
 /* Pile Hors batch */
 .rt-pile { position: relative; width: 128px; height: 120px; flex: none; padding: 0; border: 0; background: transparent; cursor: pointer; font-family: var(--font-sans); }
@@ -97,6 +95,8 @@
 .rt-mini .rt-point { width: 10px; height: 10px; border-radius: var(--radius-rond); background: var(--accent); border: 1.5px solid var(--surface); }
 .rt-pied { display: flex; align-items: center; gap: 5px; height: 18px; }
 .rt-pied .rt-position { margin-left: auto; font-size: 11px; color: var(--encre-muette); }
+.rt-attend { display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: var(--blocage-texte); }
+.rt-attend .rt-infix { font-size: 10px; line-height: 15px; padding: 0 5px; border-radius: 4px; border: 1px solid var(--blocage); background: transparent; color: var(--blocage-texte); }
 
 /* Chantier */
 .rt-chantier { position: relative; border-radius: var(--radius-panneau); background: var(--chantier); border: 2px solid var(--chantier-bord); box-shadow: var(--ombre-panneau); padding: 14px var(--marge-panneau) var(--marge-panneau); display: flex; flex-direction: column; gap: 14px; color: var(--tuile-encre); }
@@ -113,17 +113,17 @@
 .rt-lien-oq--ouvertes { background: var(--oq-ouverte); border-color: var(--oq-ouverte-bord); color: var(--oq-ouverte-texte); }
 .rt-lien-oq--ok { background: var(--oq-ok); border-color: var(--oq-ok-bord); color: var(--oq-ok-texte); }
 .rt-section { font-family: var(--font-jeu); font-size: 13.5px; font-weight: 800; color: var(--tuile-muette); }
-.rt-grille { display: grid; grid-template-columns: minmax(0, 1fr) repeat(5, 40px) 196px; column-gap: 6px; align-items: center; }
+.rt-grille { display: grid; grid-template-columns: minmax(0, 1fr) repeat(6, 64px); column-gap: 6px; align-items: center; }
 .rt-grille--tete { align-items: end; padding-bottom: 4px; border-bottom: 1px solid var(--chantier-filet); font-size: 10.5px; font-weight: 700; color: var(--tuile-muette); }
-.rt-grille--tete > span:not(:first-child):not(:last-child) { text-align: center; }
+.rt-grille--tete > span:not(:first-child) { text-align: center; white-space: nowrap; }
 .rt-grille--ligne { height: 32px; }
 .rt-grille .rt-slug { min-width: 0; font-family: var(--font-mono); font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rt-case { height: 26px; border-radius: 3px; background: var(--chantier-case); border: 1px solid var(--chantier-case-bord); display: flex; align-items: center; justify-content: center; }
 .rt-case .rt-cube { width: var(--taille-cube-chantier); height: var(--taille-cube-chantier); }
-.rt-case .rt-cube--terminee { width: 18px; height: 18px; }
-.rt-statut { font-size: 11px; font-weight: 500; color: var(--chantier-titre); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.rt-statut--blocage { font-weight: 700; color: var(--blocage-texte); }
-.rt-statut--terminee { font-weight: 700; color: var(--fait-bord); }
+.rt-case .rt-cube--done { width: 18px; height: 18px; }
+.rt-case--bloquee { cursor: help; }
+.rt-case .rt-puce { height: 17px; font-size: 10px; }
+.rt-case--hors-course { opacity: var(--opacite-hors-course); }
 .rt-dependances { width: var(--taille-dependances); flex: none; display: flex; flex-direction: column; gap: 10px; padding-left: 18px; border-left: 1px solid var(--chantier-filet); font-size: 12px; line-height: 1.45; }
 .rt-num { width: 20px; height: 20px; flex: none; border-radius: var(--radius-rond); background: var(--tuile-encre); color: var(--chantier-lisere); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
 .rt-action { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px dashed var(--chantier-separateur); }

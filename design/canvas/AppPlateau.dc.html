@@ -40,7 +40,7 @@
 </div>
 
 <sc-if value="{{isChemin}}" hint-placeholder-val="{{false}}"><div role="status" style="position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:10px;height:40px;box-sizing:border-box;padding:0 5px 0 16px;border-radius:999px;background:var(--inverse);color:var(--texte-inverse);font-size:12.5px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,0.25)">
-<span>Pour débloquer <span style="font-family:{{M}};font-weight:600">plugin-split</span>, soumettre :</span>
+<span>Pour débloquer le design file de <span style="font-family:{{M}};font-weight:600">plugin-split</span>, soumettre :</span>
 <span style="display:flex;align-items:center;gap:6px"><span style="width:20px;height:20px;border-radius:50%;background:var(--texte-inverse);color:var(--inverse);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">1</span><span style="font-family:{{M}};font-weight:600">B-TOOLMAN-1</span></span>
 <span aria-hidden="true" style="opacity:0.6">→</span>
 <span style="display:flex;align-items:center;gap:6px"><span style="width:20px;height:20px;border-radius:50%;background:var(--texte-inverse);color:var(--inverse);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">2</span><span style="font-family:{{M}};font-weight:600">B-TOOLMAN-2</span></span>
@@ -72,7 +72,7 @@
 <dc-import name="EpicPlateau" epic="pipeline" mode="repliee" ouvert="" chemin="{{autre}}" hint-size="240px,186px"></dc-import>
 <div style="display:flex;align-items:flex-start">
 <dc-import name="EpicPlateau" epic="batches" mode="repliee" ouvert="" chemin="{{autre}}" hint-size="240px,154px"></dc-import>
-<div title="RTWORKTREES dépend de BATCHES" style="width:56px;height:40px;flex:none;position:relative;opacity:{{autreOp}}"><span style="position:absolute;left:8px;right:0;top:19px;border-top:1.5px solid var(--fleche-dependance)"></span><svg aria-hidden="true" width="9" height="12" viewBox="0 0 9 12" style="position:absolute;left:0;top:14px"><path d="M9 1.5 1 6l8 4.5Z" style="fill:var(--fleche-dependance)"></path></svg></div>
+<div aria-hidden="true" style="width:20px;flex:none"></div>
 <dc-import name="EpicPlateau" epic="rtworktrees" mode="repliee" ouvert="" chemin="{{autre}}" hint-size="240px,178px"></dc-import>
 </div>
 </div>
