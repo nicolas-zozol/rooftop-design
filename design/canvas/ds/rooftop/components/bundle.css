@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+/* Rooftop : classes des pièces du plateau. Toutes les valeurs viennent de tokens.css. */
+
+.rt { font-family: var(--font-sans); font-size: 13px; line-height: 1.35; color: var(--encre); }
+.rt *, .rt *::before, .rt *::after { box-sizing: border-box; }
+
+/* Plan */
+.rt-plan { background-color: var(--surface-plan); background-image: radial-gradient(var(--surface-plan-point) 1px, transparent 1.3px); background-size: 18px 18px; }
+
+/* Bandeau de module */
+.rt-module { border-radius: var(--radius-module); overflow: hidden; background: var(--surface-module); border: 1px solid var(--ligne); }
+.rt-bandeau { background: var(--bandeau); color: var(--bandeau-texte); }
+.rt-bandeau-ligne { display: flex; align-items: center; gap: 9px; height: var(--taille-en-tete); padding: 0 14px; }
+.rt-bandeau-ligne .rt-surtitre { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--bandeau-muet); }
+.rt-bandeau-ligne .rt-nom { font-size: 15px; font-weight: 700; white-space: nowrap; }
+.rt-bandeau-ligne .rt-muet { font-size: 12px; color: var(--bandeau-muet); }
+.rt-bandeau-piste { height: var(--taille-barre-module); background: var(--bandeau-piste); }
+.rt-bandeau-piste > span { display: block; height: 100%; background: var(--bandeau-texte); }
+
+/* Carte et en-tête d'epic */
+.rt-epic { border-radius: var(--radius-epic); background: var(--surface); border: 1px solid var(--ligne); box-shadow: var(--ombre-carte); overflow: hidden; }
+.rt-epic--bloquee { border-style: dashed; border-color: var(--tirets-bloquee); }
+.rt-en-tete { display: flex; align-items: center; gap: 8px; height: var(--taille-en-tete); padding: 0 6px 0 var(--pad-en-tete); border-bottom: 1px solid var(--ligne); }
+.rt-infix { font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; line-height: 18px; padding: 0 6px; border-radius: 5px; background: var(--etiquette-infix); color: var(--encre); white-space: nowrap; }
+.rt-titre-epic { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rt-pct { font-size: 12px; font-weight: 500; color: var(--encre-2); }
+.rt-icone-bouton { width: 28px; height: 28px; padding: 0; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 6px; background: transparent; color: var(--encre-muette); cursor: pointer; }
+
+/* Tapis */
+/* Grain du feutre : bruit fin teinté tapis-fibre (0.75 0.85 0.95 = #bfd9f2), à reprendre si tapis-fibre change. */
+.rt-tapis { position: relative; background-color: var(--tapis); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.75 0 0 0 0 0.85 0 0 0 0 0.95 0.32 0 0 0 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); background-size: 240px 240px; padding: var(--pad-tapis); }
+.rt-tapis::after { content: ""; position: absolute; inset: 6px; border-radius: 8px; border: 1.2px dashed var(--tapis-couture); pointer-events: none; }
+.rt-tapis > * { position: relative; z-index: 1; }
+
+/* Cadre et emplacements */
+.rt-cadre { display: inline-flex; gap: var(--gap-tuile); padding: var(--pad-cadre); border-radius: var(--radius-cadre); background: var(--cadre); box-shadow: var(--ombre-cadre); }
+.rt-emplacement { position: relative; width: var(--taille-tuile); height: var(--taille-tuile); flex: none; border-radius: var(--radius-tuile); background: var(--emplacement); box-shadow: var(--ombre-emplacement); }
+.rt-emplacement--vide { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; color: var(--emplacement-grave); text-shadow: 0 1px 0 rgba(255,255,255,0.55); }
+.rt-emplacement--vide .rt-id { font-family: var(--font-mono); font-size: 20px; font-weight: 700; }
+.rt-emplacement--vide .rt-ligne { display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; }
+.rt-emplacement--vide .rt-compte { font-size: 11px; font-weight: 500; }
+
+/* Tuile */
+.rt-tuile { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 9px 8px 8px 9px; border: 0; border-radius: var(--radius-tuile); color: var(--tuile-encre); font-family: var(--font-sans); text-align: left; cursor: pointer; }
+.rt-tuile--en-cours { background: var(--tuile-en-cours); transform: translateY(-2px); box-shadow: var(--ombre-tuile-en-cours); }
+.rt-tuile--faite { background: var(--tuile-faite); box-shadow: var(--ombre-tuile-posee); }
+.rt-tuile--selection { transform: translateY(-5px); box-shadow: var(--ombre-tuile-selection); outline: 2.5px solid var(--selection); outline-offset: 3px; }
+.rt-tuile .rt-id { font-family: var(--font-mono); font-size: 17px; font-weight: 700; }
+.rt-tuile .rt-bas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap-cube); }
+.rt-tuile .rt-compte { margin-left: auto; font-size: 10.5px; color: var(--tuile-muette); white-space: nowrap; }
+.rt-pastille { position: absolute; right: 5px; top: 5px; width: var(--taille-pastille); height: var(--taille-pastille); border-radius: var(--radius-rond); border: 2px solid var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; }
+.rt-pastille--en-cours { background: var(--accent); }
+.rt-pastille--bloquee { background: var(--accent-bloque); }
+.rt-pastille--faite { background: var(--surface); }
+.rt-etape-num { position: absolute; z-index: 2; left: -10px; top: -10px; width: 26px; height: 26px; border-radius: var(--radius-rond); background: var(--selection); border: 2px solid var(--surface); color: var(--texte-inverse); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+
+/* Cubes d'étape */
+.rt-cubes { display: flex; flex-wrap: wrap; gap: var(--gap-cube); }
+.rt-cube { width: var(--taille-cube); height: var(--taille-cube); border-radius: var(--radius-cube); border: 1px solid rgba(0,0,0,0.25); box-shadow: var(--ombre-cube); display: flex; align-items: center; justify-content: center; }
+.rt-cube--a-ecrire { background: transparent; border: 1.5px dashed var(--etape-a-ecrire); box-shadow: none; }
+.rt-cube--ecrite { background: var(--etape-ecrite); }
+.rt-cube--design { background: var(--etape-design); }
+.rt-cube--code { background: var(--etape-code); }
+.rt-cube--soumise { background: var(--etape-soumise); }
+.rt-cube--terminee { background: var(--etape-terminee); border-color: var(--fait-bord); border-radius: var(--radius-rond); box-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.rt-cube--moitie { background: transparent; border-style: dashed; border-width: 1.6px; box-shadow: none; }
+.rt-cube--moitie.rt-cube--ecrite { border-color: var(--etape-ecrite); }
+.rt-cube--moitie.rt-cube--design { border-color: var(--etape-design); }
+.rt-cube--moitie.rt-cube--code { border-color: var(--etape-code); }
+.rt-cube--moitie.rt-cube--soumise { border-color: var(--etape-soumise); }
+
+/* Puces */
+.rt-puce { display: inline-flex; align-items: center; gap: 3px; height: 17px; padding: 0 5px; border-radius: var(--radius-puce); border: 1px solid transparent; font-size: 10.5px; font-weight: 700; white-space: nowrap; }
+.rt-puce--oq { background: var(--oq-ouverte); border-color: var(--oq-ouverte-bord); color: var(--oq-ouverte-texte); }
+.rt-puce--oq-ok { background: var(--oq-ok); border-color: var(--oq-ok-bord); color: var(--oq-ok-texte); }
+.rt-puce--blocage { background: var(--blocage); color: var(--surface); padding-left: 3px; }
+
+/* Pile Hors batch */
+.rt-pile { position: relative; width: 128px; height: 120px; flex: none; padding: 0; border: 0; background: transparent; cursor: pointer; font-family: var(--font-sans); }
+.rt-pile > span { position: absolute; width: var(--taille-tuile); height: var(--taille-tuile); border-radius: var(--radius-tuile); background: var(--hors-batch); box-shadow: inset 0 0 0 5px var(--hors-batch), inset 0 0 0 6px var(--hors-batch-lisere), 0 2px 0 var(--hors-batch-tranche); }
+.rt-pile > span:nth-child(1) { left: 10px; top: 12px; transform: rotate(-4deg); }
+.rt-pile > span:nth-child(2) { left: 15px; top: 6px; transform: rotate(2deg); }
+.rt-pile > span:nth-child(3) { left: 12px; top: 0; transform: rotate(-1deg); box-shadow: inset 0 0 0 5px var(--hors-batch), inset 0 0 0 6px var(--hors-batch-lisere), var(--ombre-pile); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--hors-batch-texte); }
+.rt-pile .rt-titre { font-family: var(--font-jeu); font-size: 15px; font-weight: 800; }
+.rt-pile .rt-compte { font-size: 11px; font-weight: 600; }
+
+/* Epic repliée */
+.rt-repliee { width: var(--taille-epic-repliee); }
+.rt-repliee-corps { padding: 9px 12px 11px; display: flex; flex-direction: column; gap: 8px; }
+.rt-bande { height: 44px; border-radius: var(--radius-panneau); background: var(--tapis); box-shadow: inset 0 1px 3px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 6px; padding: 0 10px; }
+.rt-mini { position: relative; width: var(--taille-mini-tuile); height: var(--taille-mini-tuile); flex: none; border-radius: 3px; display: flex; align-items: center; justify-content: center; }
+.rt-mini--tenue { background: var(--emplacement); box-shadow: inset 0 1px 3px rgba(0,0,0,0.35); }
+.rt-mini--en-cours { background: var(--tuile-en-cours); box-shadow: 0 1px 0 var(--tuile-tranche), 0 2px 4px rgba(0,0,0,0.35); }
+.rt-mini--faite { background: var(--tuile-faite); box-shadow: 0 1px 0 var(--tuile-tranche-posee), 0 1px 2px rgba(0,0,0,0.3); }
+.rt-mini--hors-batch { margin-left: 6px; background: var(--hors-batch); box-shadow: inset 0 0 0 2px var(--hors-batch), inset 0 0 0 3px var(--hors-batch-lisere), 3px -3px 0 -1px var(--hors-batch-tranche); }
+.rt-mini .rt-point { width: 10px; height: 10px; border-radius: var(--radius-rond); background: var(--accent); border: 1.5px solid var(--surface); }
+.rt-pied { display: flex; align-items: center; gap: 5px; height: 18px; }
+.rt-pied .rt-position { margin-left: auto; font-size: 11px; color: var(--encre-muette); }
+
+/* Chantier */
+.rt-chantier { position: relative; border-radius: var(--radius-panneau); background: var(--chantier); border: 2px solid var(--chantier-bord); box-shadow: var(--ombre-panneau); padding: 14px var(--marge-panneau) var(--marge-panneau); display: flex; flex-direction: column; gap: 14px; color: var(--tuile-encre); }
+.rt-chantier-encoche { position: absolute; top: -11px; width: 18px; height: 18px; transform: rotate(45deg); background: var(--chantier); border-left: 2px solid var(--chantier-bord); border-top: 2px solid var(--chantier-bord); }
+.rt-chantier-tete { display: flex; align-items: center; gap: 12px; }
+.rt-chantier-tete .rt-titre { font-family: var(--font-jeu); font-size: 20px; font-weight: 800; color: var(--chantier-titre); }
+.rt-chantier-tete .rt-sous { font-size: 12.5px; color: var(--tuile-muette); white-space: nowrap; }
+.rt-etat { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px 0 5px; border-radius: 11px; font-size: 12px; font-weight: 700; }
+.rt-etat--en-cours { background: var(--accent-pale); color: var(--accent-fonce); }
+.rt-etat--fait { background: var(--fait-pale); color: var(--fait-fonce); }
+.rt-etat--tenu { background: var(--etat-tenu); color: var(--etat-tenu-texte); }
+.rt-etat--hors-batch { background: var(--etat-hors-batch); color: var(--etat-hors-batch-texte); }
+.rt-lien-oq { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; border: 1.5px solid; font-size: 12.5px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.rt-lien-oq--ouvertes { background: var(--oq-ouverte); border-color: var(--oq-ouverte-bord); color: var(--oq-ouverte-texte); }
+.rt-lien-oq--ok { background: var(--oq-ok); border-color: var(--oq-ok-bord); color: var(--oq-ok-texte); }
+.rt-section { font-family: var(--font-jeu); font-size: 13.5px; font-weight: 800; color: var(--tuile-muette); }
+.rt-grille { display: grid; grid-template-columns: minmax(0, 1fr) repeat(5, 40px) 196px; column-gap: 6px; align-items: center; }
+.rt-grille--tete { align-items: end; padding-bottom: 4px; border-bottom: 1px solid var(--chantier-filet); font-size: 10.5px; font-weight: 700; color: var(--tuile-muette); }
+.rt-grille--tete > span:not(:first-child):not(:last-child) { text-align: center; }
+.rt-grille--ligne { height: 32px; }
+.rt-grille .rt-slug { min-width: 0; font-family: var(--font-mono); font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rt-case { height: 26px; border-radius: 3px; background: var(--chantier-case); border: 1px solid var(--chantier-case-bord); display: flex; align-items: center; justify-content: center; }
+.rt-case .rt-cube { width: var(--taille-cube-chantier); height: var(--taille-cube-chantier); }
+.rt-case .rt-cube--terminee { width: 18px; height: 18px; }
+.rt-statut { font-size: 11px; font-weight: 500; color: var(--chantier-titre); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rt-statut--blocage { font-weight: 700; color: var(--blocage-texte); }
+.rt-statut--terminee { font-weight: 700; color: var(--fait-bord); }
+.rt-dependances { width: var(--taille-dependances); flex: none; display: flex; flex-direction: column; gap: 10px; padding-left: 18px; border-left: 1px solid var(--chantier-filet); font-size: 12px; line-height: 1.45; }
+.rt-num { width: 20px; height: 20px; flex: none; border-radius: var(--radius-rond); background: var(--tuile-encre); color: var(--chantier-lisere); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.rt-action { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px dashed var(--chantier-separateur); }
+.rt-action-tete { display: flex; align-items: center; gap: 12px; }
+.rt-action-tete label { font-family: var(--font-jeu); font-size: 17px; font-weight: 800; color: var(--chantier-titre); }
+.rt-action-tete .rt-aide { flex: 1; font-size: 12px; color: var(--tuile-muette); }
+.rt-bouton { height: 30px; padding: 0 12px; border-radius: var(--radius-panneau); border: 1px solid var(--chantier-bord); background: transparent; color: var(--chantier-titre); font-family: var(--font-sans); font-size: 12px; font-weight: 600; cursor: pointer; }
+.rt-bouton--plein { display: inline-flex; align-items: center; gap: 6px; border: 0; padding: 0 14px; background: var(--chantier-bouton); color: var(--chantier-lisere); font-weight: 700; }
+.rt-bouton:focus-visible, .rt-tuile:focus-visible, .rt-pile:focus-visible { outline: 2.5px solid var(--selection); outline-offset: 3px; }
+.rt-editeur { width: 100%; resize: vertical; padding: 10px 12px; border-radius: 5px; border: 1px solid var(--chantier-separateur); background: var(--chantier-editeur); box-shadow: inset 0 1px 3px rgba(90,60,20,0.15); font-family: var(--font-mono); font-size: 12.5px; line-height: 1.6; color: var(--tuile-encre); }
+
+/* Bandeau du chemin */
+.rt-chemin { display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 5px 0 16px; border-radius: 999px; background: var(--inverse); color: var(--texte-inverse); font-size: 12.5px; white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+.rt-chemin .rt-num { background: var(--texte-inverse); color: var(--inverse); }
+.rt-chemin .rt-mono { font-family: var(--font-mono); font-weight: 600; }
+.rt-chemin button { height: 30px; margin-left: 4px; padding: 0 12px; border-radius: 999px; border: 0; background: var(--inverse-2); color: var(--texte-inverse); font-family: var(--font-sans); font-size: 12px; font-weight: 600; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) { .rt-tuile { transition: none; } }

@@ -1,0 +1,146 @@
+/* Rooftop Design System — generated from tokens.json */
+:root, [data-theme="clair"] {
+  --surface: #ffffff;
+  --surface-plan: #f3f3f3;
+  --surface-plan-point: #d6d6d6;
+  --surface-module: #fafafa;
+  --surface-creuse: #f5f5f5;
+  --ligne: #e5e5e5;
+  --ligne-forte: #d4d4d4;
+  --encre: #0a0a0a;
+  --encre-2: #404040;
+  --encre-muette: #666666;
+  --etiquette-infix: #ededed;
+  --tirets-bloquee: #a3a3a3;
+  --fleche-dependance: #9a9a9a;
+  --inverse: #171717;
+  --inverse-2: #3a3a3a;
+  --texte-inverse: #fafafa;
+  --bandeau: #262626;
+  --bandeau-texte: #fafafa;
+  --bandeau-muet: #b5b5b5;
+  --bandeau-piste: #ffffff33;
+  --module-en-cours: #fbbf24;
+  --avancement-a-faire: #8f8f8f;
+  --avancement-en-cours: #d97706;
+  --avancement-fini: #16a34a;
+  --avancement-fait: #2563eb;
+  --tapis: #1f4166;
+  --tapis-fibre: #bfd9f2;
+  --tapis-ombre: #0d1f38;
+  --tapis-couture: #88abd199;
+  --tapis-texte: #d2e1f2;
+  --cadre: #c5c8cd;
+  --cadre-arete: #94989f;
+  --emplacement: #b2b6bc;
+  --emplacement-grave: #7a7e85;
+  --tuile-en-cours: #f4ead2;
+  --tuile-faite: #e3f1dc;
+  --tuile-tranche: #8a7a55;
+  --tuile-tranche-posee: #6d6046;
+  --tuile-encre: #2a1f12;
+  --tuile-muette: #5a4325;
+  --selection: #111111;
+  --accent: #c026d3;
+  --accent-fonce: #86198f;
+  --accent-pale: #f5d0fe;
+  --accent-bloque: #9ca3af;
+  --fait: #16a34a;
+  --fait-bord: #15803d;
+  --fait-fonce: #14532d;
+  --fait-pale: #dcfce7;
+  --etape-a-ecrire: #8d7a5a;
+  --etape-ecrite: #e2809f;
+  --etape-design: #8a5a2b;
+  --etape-code: #949ba3;
+  --etape-soumise: #7c4dbd;
+  --etape-terminee: var(--fait);
+  --oq-ouverte: #fde68a;
+  --oq-ouverte-bord: #b45309;
+  --oq-ouverte-texte: #7c2d12;
+  --oq-ok: var(--fait-pale);
+  --oq-ok-bord: var(--fait-bord);
+  --oq-ok-texte: var(--fait-fonce);
+  --blocage: #dc2626;
+  --blocage-texte: #a31515;
+  --blocage-fond: #dc26261f;
+  --hors-batch: #6e2f2a;
+  --hors-batch-lisere: #e9d6b0;
+  --hors-batch-tranche: #4a1d19;
+  --hors-batch-texte: #f3e6c8;
+  --chantier: #efe0bb;
+  --chantier-bord: #9c7a43;
+  --chantier-lisere: #f7ecd1;
+  --chantier-filet: #c8a868;
+  --chantier-titre: #3a2810;
+  --chantier-case: #f7eed6;
+  --chantier-case-bord: #cdb17a;
+  --chantier-separateur: #b8975c;
+  --chantier-editeur: #fbf6ea;
+  --chantier-bouton: var(--tuile-encre);
+  --etat-tenu: #d3d6da;
+  --etat-tenu-texte: #4b4f55;
+  --etat-hors-batch: #e8d6ae;
+  --etat-hors-batch-texte: #4a3519;
+  --ombre-carte: 0 1px 2px rgba(0,0,0,0.06);
+  --ombre-cadre: 0 3px 0 #94989f, 0 10px 20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.65);
+  --ombre-emplacement: inset 0 2px 6px rgba(0,0,0,0.3), inset 0 -1px 0 rgba(255,255,255,0.45);
+  --ombre-tuile-posee: 0 1px 0 #6d6046, 0 1px 3px rgba(0,0,0,0.3);
+  --ombre-tuile-en-cours: 0 2px 0 #8a7a55, 0 8px 14px rgba(0,0,0,0.38);
+  --ombre-tuile-selection: 0 3px 0 #8a7a55, 0 14px 22px rgba(0,0,0,0.45);
+  --ombre-cube: inset -2px -2px 0 rgba(0,0,0,0.2), inset 2px 2px 0 rgba(255,255,255,0.35), 0 1px 1px rgba(0,0,0,0.3);
+  --ombre-panneau: inset 0 0 0 3px #f7ecd1, inset 0 0 0 4px #c8a868, 0 8px 22px rgba(0,0,0,0.35);
+  --ombre-pile: 0 3px 0 #4a1d19, 0 9px 16px rgba(0,0,0,0.35);
+}
+:root {
+  --gap-cube: 4px;
+  --gap-tuile: 8px;
+  --pad-cadre: 10px;
+  --pad-en-tete: 12px;
+  --pad-module: 16px;
+  --marge-panneau: 18px;
+  --pad-tapis: 20px;
+  --gap-hors-batch: 24px;
+  --gap-module: 28px;
+  --radius-cube: 2px;
+  --radius-tuile: 4px;
+  --radius-panneau: 6px;
+  --radius-puce: 9px;
+  --radius-cadre: 10px;
+  --radius-epic: 12px;
+  --radius-module: 14px;
+  --radius-rond: 50%;
+  --taille-tuile: 104px;
+  --taille-mini-tuile: 24px;
+  --taille-cube: 14px;
+  --taille-cube-chantier: 15px;
+  --taille-pastille: 24px;
+  --taille-en-tete: 40px;
+  --taille-barre-module: 4px;
+  --taille-epic-repliee: 240px;
+  --taille-chantier: 966px;
+  --taille-dependances: 270px;
+  --opacite-estompe: 0.35;
+  --opacite-mini-estompe: 0.4;
+  --opacite-ecartee: 0.5;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-jeu: Alegreya, "Palatino Linotype", Palatino, Georgia, serif;
+}
+.module { font-family: var(--font-sans); font-size: 15px; line-height: 20px; font-weight: 700; }
+.titre-epic { font-family: var(--font-sans); font-size: 13px; line-height: 18px; font-weight: 600; }
+.texte { font-family: var(--font-sans); font-size: 13px; line-height: 18px; font-weight: 400; }
+.texte-petit { font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500; }
+.legende { font-family: var(--font-sans); font-size: 11px; line-height: 15px; font-weight: 600; }
+.puce { font-family: var(--font-sans); font-size: 10.5px; line-height: 17px; font-weight: 700; }
+.infix { font-family: var(--font-sans); font-size: 10.5px; line-height: 18px; font-weight: 700; letter-spacing: 0.05em; }
+.surtitre { font-family: var(--font-sans); font-size: 10px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; }
+.id-emplacement { font-family: var(--font-mono); font-size: 20px; line-height: 24px; font-weight: 700; }
+.id-tuile { font-family: var(--font-mono); font-size: 17px; line-height: 22px; font-weight: 700; }
+.slug { font-family: var(--font-mono); font-size: 12.5px; line-height: 18px; font-weight: 400; }
+.commande { font-family: var(--font-mono); font-size: 11.5px; line-height: 16px; font-weight: 400; }
+.editeur { font-family: var(--font-mono); font-size: 12.5px; line-height: 20px; font-weight: 400; }
+.chantier-titre { font-family: var(--font-jeu); font-size: 20px; line-height: 24px; font-weight: 800; }
+.action-titre { font-family: var(--font-jeu); font-size: 17px; line-height: 22px; font-weight: 800; }
+.hors-batch-titre { font-family: var(--font-jeu); font-size: 15px; line-height: 18px; font-weight: 800; }
+.chantier-section { font-family: var(--font-jeu); font-size: 13.5px; line-height: 18px; font-weight: 800; }

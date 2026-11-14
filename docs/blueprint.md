@@ -191,3 +191,15 @@ Chaque tuile montre son id, un cube par story à la couleur de son étape (rose 
 **Chemin de déblocage.** « Voir sur le plan » : bandeau noir en haut du plan (« Pour débloquer plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », Quitter), numéros 1 et 2 sur les tuiles concernées (aussi sur les mini-tuiles d'une epic repliée), tout le reste estompé à 35 %, la story bloquée surlignée dans le chantier.
 
 À faire ensuite : sombre (le tapis l'est déjà ; reste la barre et le plan), mobile, branches parallèles 1a/1b sur les tuiles. Les nombres d'OQ et les textes d'action des maquettes sont fictifs.
+
+## 10. Design system : les jetons du tapis de jeu
+
+Artefact **Rooftop Design System** : https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd (copie dans [`design/design-system/`](../design/design-system/)). Il survit à la fermeture de Claude Design autonome (14 décembre 2026) : c'est un artefact Claude, comme le canevas.
+
+**Contenu.** `tokens.json` (la source : 82 couleurs, 17 styles de texte en trois familles Inter / JetBrains Mono / Alegreya, espacements, rayons, ombres, tailles des pièces, opacités du chemin), `tokens.css` (les mêmes en variables CSS), `README.md` (le brand book : vocabulaire, plan et plateau, états, étapes, chantier, chemin, typographie, icônes, contraste), `components/bundle.css` (classes `rt-` des pièces) et onze pièces avec aperçu et mode d'emploi : BandeauModule, EnTeteEpic, EpicRepliee, BandeauChemin, Cadre, Emplacement, Tuile, CubeEtape, Jeton, HorsBatch, Chantier.
+
+**Dans le canevas.** Une copie est installée dans `ds/rooftop/` (enregistrée dans `canvas.json`, champ `designSystems`). `EpicPlateau`, `AppPlateau`, `App-Chantier`, `App-Chemin`, `Planche-Plateau` et la nouvelle planche `Palette-Plateau` lient `ds/rooftop/tokens.css` et n'ont plus aucune couleur en dur : tout passe par `var(--jeton)` (dans les SVG, par `style="fill:var(--…)"`). Pour changer une couleur : la modifier dans le design system, puis recopier ses fichiers dans `ds/rooftop/` du canevas ; les planches suivent.
+
+**Limites connues.** Les ombres portent leurs couleurs en dur (`ombre-tuile-en-cours` contient la valeur de `tuile-tranche`) et le grain du tapis encode `tapis-fibre` : à reprendre à la main si ces couleurs changent. Trois paires restent sous le seuil de contraste, gardées des maquettes validées et signalées dans le brand book : texte gravé des emplacements (2:1), « terminée » en `fait-bord` sur le chantier (3,8:1), tirets d'epic bloquée et flèche « dépend de » (2,5:1).
+
+**Correction en passant.** Sur une tuile, le compte de stories passe à la ligne sous les puces quand « 3 OQ », « ⊖ 1 » et « 4 stories » ne tiennent pas dans 104 px, au lieu de se couper en deux.

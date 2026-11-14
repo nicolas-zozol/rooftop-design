@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>Planche, epics sur le tapis de jeu</title>
 <script src="./support.js"></script>
+<link rel="stylesheet" href="ds/rooftop/tokens.css">
 </head>
 <body>
 <x-dc>
@@ -11,9 +12,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
 <style>body{margin:0}</style>
 </helmet>
-<div style="width:1440px;height:2000px;box-sizing:border-box;padding:48px;display:flex;flex-direction:column;gap:22px;overflow:hidden;background-color:#f3f3f3;background-image:radial-gradient(#d6d6d6 1px, transparent 1.3px);background-size:18px 18px;color:#0a0a0a;font-family:Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;font-size:13px;line-height:1.35">
+<div style="width:1440px;height:2000px;box-sizing:border-box;padding:48px;display:flex;flex-direction:column;gap:22px;overflow:hidden;background-color:var(--surface-plan);background-image:radial-gradient(var(--surface-plan-point) 1px, transparent 1.3px);background-size:18px 18px;color:var(--encre);font-family:var(--font-sans);font-size:13px;line-height:1.35">
 
-<span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:#666666">EPICS REPLIÉES · UNE MINI-TUILE PAR BATCH SUR UNE BANDE DE TAPIS</span>
+<span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--encre-muette)">EPICS REPLIÉES · UNE MINI-TUILE PAR BATCH SUR UNE BANDE DE TAPIS</span>
 <div style="display:grid;grid-template-columns:repeat(4, 240px);column-gap:32px;row-gap:28px;align-items:start">
 <dc-import name="EpicPlateau" epic="plugin" mode="repliee" ouvert="" hint-size="240px,154px"></dc-import>
 <dc-import name="EpicPlateau" epic="qualitygates" mode="repliee" ouvert="" hint-size="240px,154px"></dc-import>
@@ -24,9 +25,9 @@
 <dc-import name="EpicPlateau" epic="rtworktrees" mode="repliee" ouvert="" hint-size="240px,178px"></dc-import>
 <dc-import name="EpicPlateau" epic="toolman" mode="repliee" ouvert="" chemin="etapes" hint-size="240px,196px"></dc-import>
 </div>
-<p style="margin:0;max-width:980px;font-size:12.5px;line-height:1.5;color:#404040">Mini-tuile grise et cadenas : batch tenu. Crème à pastille fuchsia : en cours (grise si l'epic est bloquée). Verte cochée : fait. Pile bordeaux : hors batch. La dernière carte montre les étapes 1 et 2 du chemin de déblocage sur une epic repliée.</p>
+<p style="margin:0;max-width:980px;font-size:12.5px;line-height:1.5;color:var(--encre-2)">Mini-tuile grise et cadenas : batch tenu. Crème à pastille fuchsia : en cours (grise si l'epic est bloquée). Verte cochée : fait. Pile bordeaux : hors batch. La dernière carte montre les étapes 1 et 2 du chemin de déblocage sur une epic repliée.</p>
 
-<span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:#666666;margin-top:14px">PANNEAUX · BATCH FAIT, BATCH TENU, HORS BATCH</span>
+<span style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--encre-muette);margin-top:14px">PANNEAUX · BATCH FAIT, BATCH TENU, HORS BATCH</span>
 <dc-import name="EpicPlateau" epic="worktree" mode="deroulee" ouvert="B1" hint-size="968px,470px"></dc-import>
 <dc-import name="EpicPlateau" epic="qualitygates" mode="deroulee" ouvert="B2" hint-size="968px,404px"></dc-import>
 <dc-import name="EpicPlateau" epic="toolman" mode="deroulee" ouvert="HB" hint-size="968px,430px"></dc-import>

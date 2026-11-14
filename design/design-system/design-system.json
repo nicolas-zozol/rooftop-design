@@ -1,0 +1,25 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-14T21:49:15Z"
+  },
+  "title": "Rooftop Design System",
+  "namespace": "Rooftop",
+  "libraries": [],
+  "sections": {},
+  "groups": [],
+  "assetGroups": {},
+  "blobs": {},
+  "docs": {
+    "readme": "project/README.md",
+    "sections": []
+  },
+  "lastChange": {
+    "by": "Nicolas",
+    "at": "2026-11-14T21:49:15Z",
+    "via": "Claude",
+    "note": "Première version : jetons, brand book, 11 pièces et la couverture, tirés des maquettes Tuiles sobres, tapis de jeu."
+  }
+}

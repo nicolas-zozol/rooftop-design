@@ -133,9 +133,9 @@
     "Palette.dc.html": {
       "h": 1180,
       "page": "palette",
-      "title": "Couleurs et tailles ajoutées",
+      "title": "Ancienne palette (avant le tapis de jeu)",
       "w": 1200,
-      "x": 0,
+      "x": 1520,
       "y": 0
     },
     "PanneauInspecteur.dc.html": {
@@ -457,13 +457,29 @@
       "x": 1520,
       "y": 1300,
       "is_interactive": true
+    },
+    "Palette-Plateau.dc.html": {
+      "h": 2340,
+      "page": "palette",
+      "title": "Jetons du Rooftop Design System : couleurs, typographie, espacements, rayons, relief",
+      "w": 1440,
+      "x": 0,
+      "y": 0
     }
   },
   "createdOnFiles": {
     "at": "2026-11-12T12:00:00Z",
     "v": 1
   },
-  "designSystems": [],
+  "designSystems": [
+    {
+      "title": "Rooftop Design System",
+      "namespace": "rooftop",
+      "artifact": "https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd",
+      "version": "1794692969-b311",
+      "copiedAt": "2026-11-14T21:53:26Z"
+    }
+  ],
   "launch": {
     "page": "application",
     "view": "canvas"
@@ -480,7 +496,8 @@
     "t-plateau",
     "t-essais",
     "t-chantier",
-    "t-app"
+    "t-app",
+    "t-palette"
   ],
   "notes": {
     "t-pistes": {
@@ -582,6 +599,14 @@
       "text": "Rooftop sur le tapis de jeu",
       "x": 0,
       "y": -320
+    },
+    "t-palette": {
+      "kind": "title1",
+      "maxW": 2960,
+      "page": "palette",
+      "text": "Jetons du système, branchés sur ds/rooftop",
+      "x": 0,
+      "y": -320
     }
   },
   "order": [
@@ -603,6 +628,7 @@
     "Planche-Lignes-sombre.dc.html",
     "Planche-Cadres-sombre.dc.html",
     "Planche-Panneaux-sombre.dc.html",
+    "Palette-Plateau.dc.html",
     "Palette.dc.html",
     "Hierarchie.dc.html",
     "HierarchieSombre.dc.html",

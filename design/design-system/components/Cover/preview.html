@@ -1,0 +1,57 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+body { margin: 0; background: var(--surface); }
+.cover { position: relative; width: 960px; height: 288px; overflow: hidden; background: var(--surface); }
+.cover svg { position: absolute; left: 0; top: 0; }
+.tapis { fill: var(--tapis); rx: var(--radius-module); }
+.cadre { fill: var(--cadre); rx: var(--radius-cadre); }
+.creux { fill: var(--emplacement); rx: var(--radius-tuile); }
+.faite { fill: var(--tuile-faite); rx: var(--radius-tuile); }
+.encours { fill: var(--tuile-en-cours); rx: var(--radius-tuile); }
+.accent { fill: var(--accent); stroke: var(--surface); stroke-width: 2px; }
+.texte { position: absolute; left: 48px; bottom: 48px; max-width: 440px; }
+.nom { margin: 0; font-family: var(--font-jeu); font-size: 112px; font-weight: 800; line-height: 0.92; color: var(--encre); }
+.accroche { margin: 8px 0 0; font-family: var(--font-sans); font-size: 14px; line-height: 18px; color: var(--encre-muette); }
+</style>
+</head>
+<body>
+<div class="cover">
+<!--
+  blocs : tapis (slab 454×316, débord haut/droite/bas), cadre (440×124, débord droit), tuile-faite, tuile-en-cours et deux emplacement en taille-tuile 104, accent en disque taille-pastille 24
+  agencement : une dalle de tapis qui saigne à droite, le cadre posé dessus comme sur le plateau, une rangée de mini-tuiles en dessous comme la bande d'une epic repliée
+  motif : « géométrique, modulaire » → des tuiles taillées aux rayons, parce que Rooftop est littéralement un cadre de tuiles carrées (README : chaque batch y est une tuile dans un cadre à emplacements)
+  échelles : taille-tuile 104 et taille-mini-tuile 24 au pas gap-tuile 8, pad-cadre 10 ; rayons radius-module, radius-cadre, radius-tuile ; tuile en cours soulevée de 2 px
+-->
+<svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true">
+  <rect class="tapis" x="520" y="-14" width="454" height="316"></rect>
+  <rect class="cadre" x="560" y="56" width="440" height="124"></rect>
+  <rect class="faite" x="570" y="66" width="104" height="104"></rect>
+  <rect class="encours" x="682" y="64" width="104" height="104"></rect>
+  <circle class="accent" cx="769" cy="81" r="12"></circle>
+  <rect class="creux" x="794" y="66" width="104" height="104"></rect>
+  <rect class="creux" x="906" y="66" width="104" height="104"></rect>
+  <rect class="faite" x="570" y="212" width="24" height="24"></rect>
+  <rect class="faite" x="602" y="212" width="24" height="24"></rect>
+  <rect class="faite" x="634" y="212" width="24" height="24"></rect>
+  <rect class="encours" x="666" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="698" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="730" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="762" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="794" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="826" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="858" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="890" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="922" y="212" width="24" height="24"></rect>
+  <rect class="creux" x="954" y="212" width="24" height="24"></rect>
+</svg>
+<div class="texte">
+  <p class="nom">Rooftop</p>
+  <p class="accroche">Tuiles sobres sur tapis de jeu.</p>
+</div>
+</div>
+</body>
+</html>
