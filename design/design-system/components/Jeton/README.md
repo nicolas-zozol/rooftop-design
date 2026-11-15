@@ -11,8 +11,8 @@ Puces, pastilles et liens d'état : OQ, blocage, état d'un batch, lien vers les
 
 ## À faire
 - OQ ouvertes : `oq-ouverte` / `oq-ouverte-bord` / `oq-ouverte-texte`, « 3 OQ ». Aucune : `oq-ok` / `oq-ok-bord` / `oq-ok-texte`, « OQ ✓ ».
-- RLOQ : puce pleine `rloq` / `rloq-texte`. Sur une tuile et au pied d'une epic repliée, la forme courte : disque blanc au point d'interrogation et le nombre (`title` « 1 RLOQ »), comme la puce de blocage. Dans une case du chantier, la forme longue « 1 RLOQ ». Dans une phrase, le disque `rloq` au point d'interrogation. Une RLOQ arrête le boss, une OQ non.
-- Blocage : `blocage`, cercle barré `surface`, le nombre à côté.
+- Toutes les puces se lisent pareil : le nombre d'abord, puis ce qu'il compte. « 3 OQ », « 1 RLOQ » (puce pleine `rloq` / `rloq-texte`, le mot écrit, jamais un symbole), « 1 ⊖ » (le cercle barré après le nombre). Dans une liste, la petite puce « RLOQ » sert d'icône. Une RLOQ arrête le boss, une OQ non.
+- Blocage : `blocage`, le nombre puis le cercle barré `surface`.
 - États : en cours `accent-pale` / `accent-fonce`, fait `fait-pale` / `fait-fonce`, tenu `etat-tenu` / `etat-tenu-texte`, hors batch `etat-hors-batch` / `etat-hors-batch-texte`. Chaque puce garde son icône.
 - Lien OQ : « 3 OQ à répondre, dont 1 RLOQ » ou « OQ : aucune ouverte », flèche sortante.
 

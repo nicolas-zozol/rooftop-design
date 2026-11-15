@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop, vue Questions</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/rooftop/tokens.css">
+<link rel="stylesheet" href="ds/rooftop/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div style="width:1440px;height:980px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;background:var(--surface);color:var(--encre);font-family:var(--font-sans);font-size:13px;line-height:1.35">
+
+<header style="height:48px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:16px;padding:0 12px 0 14px;border-bottom:1px solid var(--ligne);background:var(--surface)">
+<nav aria-label="Vues" style="display:flex;gap:2px;padding:3px;border-radius:9px;background:var(--surface-creuse)">
+<a href="#questions" aria-current="page" style="display:flex;align-items:center;gap:7px;height:28px;padding:0 10px 0 12px;border-radius:7px;background:var(--surface);color:var(--encre);font-size:13px;font-weight:500;text-decoration:none;box-shadow:var(--ombre-carte)">Questions<span class="rt-puce rt-puce--oq">{{totOq}} OQ</span><span class="rt-puce rt-puce--rloq">{{totRloq}} RLOQ</span></a>
+<a href="#blueprint" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:var(--encre-muette);font-size:13px;font-weight:500;text-decoration:none">Blueprint</a>
+<a href="#arbre" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:var(--encre-muette);font-size:13px;font-weight:500;text-decoration:none">Arbre</a>
+</nav>
+<span style="flex:1"></span>
+<div style="display:flex;align-items:center;gap:12px;font-size:12px;color:var(--encre-2)">
+<span style="font-family:var(--font-mono);font-size:11.5px;color:var(--encre);padding:3px 8px;border-radius:6px;background:var(--surface-creuse);border:1px solid var(--ligne)">epic/rooftop-batches-epic</span>
+<span>37 fichiers à commiter</span>
+<span aria-hidden="true" style="width:1px;height:16px;background:var(--ligne)"></span>
+<span>intégration : <span style="font-family:var(--font-mono);font-size:11.5px;color:var(--encre)">main</span></span>
+<button type="button" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte)">Relire git</button>
+</div>
+</header>
+
+<div style="flex:1;min-height:0;display:flex">
+
+<aside aria-label="Epics" style="width:300px;flex:none;box-sizing:border-box;padding:18px 12px;border-right:1px solid var(--ligne);background:var(--surface-module);display:flex;flex-direction:column;gap:4px;overflow:hidden">
+<sc-for list="{{modules}}" as="mo" hint-placeholder-count="3">
+<span style="padding:12px 8px 6px;font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--encre-muette)">MODULE · {{mo.nom}}</span>
+<sc-for list="{{mo.epics}}" as="e" hint-placeholder-count="3"><button type="button" onClick="{{e.pick}}" aria-pressed="{{e.on}}" style="display:flex;align-items:center;gap:8px;height:40px;padding:0 8px 0 10px;border:0;border-radius:8px;background:{{e.bg}};box-shadow:{{e.sh}};font-family:inherit;text-align:left;cursor:pointer;opacity:{{e.op}}">
+<span class="rt-infix" style="flex:none">{{e.infix}}</span>
+<span style="flex:1;min-width:0;font-size:12.5px;font-weight:500;color:var(--encre-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{e.titre}}</span>
+<sc-if value="{{e.hasOq}}" hint-placeholder-val="{{true}}"><span class="rt-puce rt-puce--oq">{{e.oqTxt}}</span></sc-if>
+<sc-if value="{{e.hasRloq}}" hint-placeholder-val="{{false}}"><span class="rt-puce rt-puce--rloq">{{e.rloqTxt}}</span></sc-if>
+<sc-if value="{{e.ok}}" hint-placeholder-val="{{false}}"><span class="rt-puce rt-puce--oq-ok">OQ ✓</span></sc-if>
+</button></sc-for>
+</sc-for>
+</aside>
+
+<main aria-label="Questions de l'epic" style="flex:1;min-width:0;box-sizing:border-box;padding:24px 36px 28px;display:flex;flex-direction:column;gap:20px;overflow:hidden;background:var(--surface)">
+
+<div style="display:flex;align-items:flex-start;gap:16px">
+<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:10px"><span class="rt-infix">{{ep.infix}}</span><span style="font-size:15px;font-weight:700">{{ep.titre}}</span></div>
+<span style="font-size:13px;color:var(--encre-2)">{{ep.resume}}</span>
+</div>
+<sc-if value="{{ep.hasOq}}" hint-placeholder-val="{{true}}"><div style="display:flex;align-items:center;gap:8px;flex:none">
+<sc-if value="{{ep.lgtmFait}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{annuler}}" style="height:34px;padding:0 12px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre-2);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer">Annuler</button></sc-if>
+<button type="button" onClick="{{lgtm}}" aria-pressed="{{ep.lgtmFait}}" title="Les OQ prennent la proposition du boss comme réponse. Les RLOQ ne sont jamais concernées." style="display:flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:7px;border:0;background:{{ep.lgtmBg}};color:{{ep.lgtmCol}};font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--ombre-carte)"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:{{ep.lgtmIco}}"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:{{ep.lgtmCoche}}"></path></svg>{{ep.lgtmTxt}}</button>
+</div></sc-if>
+</div>
+
+<section aria-label="RLOQ" style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:center;gap:10px;padding-bottom:6px;border-bottom:1px solid var(--ligne)"><span class="rt-puce rt-puce--rloq" style="font-size:11px">RLOQ</span><span style="font-size:13px;font-weight:600">À trancher par toi</span><span style="font-size:12px;color:var(--encre-muette)">Le boss s’arrête sur chacune tant qu’elle n’a pas de réponse. Jamais de LGTM en bloc.</span></div>
+<sc-if value="{{ep.noRloq}}" hint-placeholder-val="{{false}}"><p style="margin:0;padding:10px 0;font-size:12.5px;color:var(--encre-muette)">Aucune RLOQ : aucune question n’arrête le boss sur cette epic.</p></sc-if>
+<sc-for list="{{ep.rloqs}}" as="q" hint-placeholder-count="1"><article style="display:flex;flex-direction:column;gap:10px;padding:14px 16px;border-radius:10px;border:1px solid var(--ligne);border-left:4px solid var(--rloq);background:var(--surface)">
+<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--encre-muette)">
+<span style="font-family:var(--font-mono);font-size:11.5px;font-weight:600;color:var(--encre)">{{q.batch}}</span><span aria-hidden="true">·</span>
+<span style="font-family:var(--font-mono);font-size:12px;color:var(--encre)">{{q.story}}</span>
+<span style="padding:0 7px;line-height:18px;border-radius:9px;border:1px solid var(--ligne-forte);font-size:11px;font-weight:600;color:var(--encre-2)">case {{q.etape}}</span>
+<span style="flex:1"></span>
+<span style="font-weight:600;color:{{q.etatCol}}">{{q.etat}}</span>
+</div>
+<p style="margin:0;font-size:14px;line-height:1.45;font-weight:500">{{q.texte}}</p>
+<p style="margin:0;font-size:12.5px;line-height:1.45;color:var(--encre-2)"><span style="font-weight:600">(boss)</span> {{q.contexte}}</p>
+<div style="display:flex;align-items:flex-end;gap:10px">
+<textarea value="{{q.val}}" onChange="{{q.edit}}" rows="2" placeholder="Ta réponse…" aria-label="Réponse à la RLOQ" style="flex:1;box-sizing:border-box;resize:vertical;padding:8px 10px;border-radius:7px;border:1px solid var(--ligne-forte);background:var(--surface-module);font-family:inherit;font-size:13px;line-height:1.45;color:var(--encre)"></textarea>
+<button type="button" onClick="{{q.repondre}}" style="height:34px;padding:0 14px;border-radius:7px;border:0;background:var(--inverse);color:var(--texte-inverse);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer">Répondre</button>
+</div>
+</article></sc-for>
+</section>
+
+<section aria-label="OQ" style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:10px;padding-bottom:6px;border-bottom:1px solid var(--ligne)"><span class="rt-puce rt-puce--oq" style="font-size:11px">OQ</span><span style="font-size:13px;font-weight:600">Le boss peut y répondre</span><span style="font-size:12px;color:var(--encre-muette)">Sa proposition est écrite sous chaque question ; LGTM la valide telle quelle.</span></div>
+<sc-if value="{{ep.noOq}}" hint-placeholder-val="{{false}}"><p style="margin:0;padding:10px 0;font-size:12.5px;color:var(--encre-muette)">Aucune OQ ouverte sur cette epic.</p></sc-if>
+<sc-for list="{{ep.oqs}}" as="q" hint-placeholder-count="2">
+<sc-if value="{{q.showBatch}}" hint-placeholder-val="{{true}}"><div style="display:flex;align-items:center;gap:8px;padding:10px 0 2px"><span style="width:22px;height:22px;border-radius:3px;background:var(--tuile-en-cours);box-shadow:0 1px 0 var(--tuile-tranche), 0 2px 4px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--tuile-encre)">{{q.bid}}</span><span style="font-family:var(--font-mono);font-size:12px;font-weight:600">{{q.batch}}</span><span style="font-size:12px;color:var(--encre-muette)">{{q.batchSous}}</span></div></sc-if>
+<div style="display:grid;grid-template-columns:200px minmax(0,1fr) 150px;align-items:start;column-gap:18px;padding:10px 0 10px 30px;border-bottom:1px solid var(--ligne)">
+<div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-family:var(--font-mono);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{q.story}}</span><span style="align-self:flex-start;padding:0 7px;line-height:18px;border-radius:9px;border:1px solid var(--ligne-forte);font-size:11px;font-weight:600;color:var(--encre-2)">case {{q.etape}}</span></div>
+<div style="display:flex;flex-direction:column;gap:5px;min-width:0"><span style="font-size:13.5px;line-height:1.45;font-weight:500">{{q.texte}}</span><span style="font-size:12.5px;line-height:1.45;color:var(--encre-2)"><span style="font-weight:600">(boss)</span> {{q.proposition}}</span></div>
+<div style="display:flex;justify-content:flex-end"><sc-if value="{{q.fait}}" hint-placeholder-val="{{false}}"><span class="rt-puce rt-puce--oq-ok" style="height:22px;padding:0 9px;font-size:11.5px">LGTM</span></sc-if><sc-if value="{{q.afaire}}" hint-placeholder-val="{{true}}"><span class="rt-puce rt-puce--oq" style="height:22px;padding:0 9px;font-size:11.5px">à répondre</span></sc-if></div>
+</div>
+</sc-for>
+</section>
+
+<p style="margin:0;margin-top:auto;font-size:12px;line-height:1.5;color:var(--encre-muette)">LGTM (looks good to me) écrit la proposition du boss comme réponse dans le Markdown de la story. Les RLOQ ne passent jamais en LGTM d’un clic : il faut une réponse écrite.</p>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"epic":{"editor":"enum","options":["plugin","worktree","toolman"],"default":"plugin"},"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  donnees() {
+    // Mêmes questions que sur le tapis : PLUGIN B1 (1 RLOQ et 1 OQ sur ready de compound-inventory, 1 OQ sur submitted de marketplace-manifest), WORKTREE B2 (1 OQ sur ready de worktree-sync).
+    return {
+      plugin: {infix: 'PLUGIN', titre: 'Compound en deux plugins Claude Code', module: 'RB Compound', questions: [
+        {id: 'p1', rloq: true, bid: 'B1', batch: 'B-PLUGIN-1', story: 'compound-inventory', case: 'ready', texte: 'L’inventaire couvre-t-il aussi les skills partagées avec les autres dépôts, ou seulement celles du dépôt compound ?', contexte: 'L’epic ne tranche pas, et les deux réponses changent le périmètre de plugin-split. Je ne lance pas le brainstorm sans réponse.'},
+        {id: 'p2', rloq: false, bid: 'B1', batch: 'B-PLUGIN-1', story: 'compound-inventory', case: 'ready', texte: 'Où va le fichier d’inventaire : dans docs/ ou à la racine du plugin ?', proposition: 'docs/inventory.md, avec les autres documents de l’epic.'},
+        {id: 'p3', rloq: false, bid: 'B1', batch: 'B-PLUGIN-1', story: 'marketplace-manifest', case: 'submitted', texte: 'Le numéro de version du manifeste suit-il celui du plugin, ou démarre-t-il à 0.1.0 ?', proposition: 'Il suit celui du plugin : une seule version à maintenir.'}]},
+      qualitygates: {infix: 'QUALITYGATES', titre: 'Quality gates', module: 'RB Compound', questions: []},
+      worktree: {infix: 'WORKTREE', titre: 'Worktrees longs', module: 'RB Compound', questions: [
+        {id: 'w1', rloq: false, bid: 'B2', batch: 'B-WORKTREE-2', story: 'worktree-sync', case: 'ready', texte: 'Synchroniser le worktree à chaque ouverture de Rooftop, ou seulement à la demande ?', proposition: 'À la demande, avec un rappel quand la branche a plus de 20 commits de retard.'}]},
+      pipeline: {infix: 'PIPELINE', titre: 'Pipeline documentaire des agents', module: 'RB Compound', questions: []},
+      batches: {infix: 'BATCHES', titre: 'Rooftop, les batchs et ce qui les débloque', module: 'RB Compound', questions: []},
+      rtworktrees: {infix: 'RTWORKTREES', titre: 'Rooftop lit les worktrees', module: 'RB Compound', questions: []},
+      toolman: {infix: 'TOOLMAN', titre: 'toolman, un menu de corvées', module: 'Toolman', questions: []},
+      trwg: {infix: 'TRWG', titre: 'trwg, deux réponses fermées', module: 'trwg', questions: []}
+    };
+  }
+  renderVals() {
+    var self = this;
+    var st = this.state || {};
+    var D = this.donnees();
+    var cur = st.ep || this.props.epic || 'plugin';
+    var lg = st.lgtm || {};
+    var rep = st.rep || {};
+    var val = st.val || {};
+    var ordre = ['plugin', 'qualitygates', 'worktree', 'pipeline', 'batches', 'rtworktrees', 'toolman', 'trwg'];
+    var nbRloq = function (k) { return D[k].questions.filter(function (q) { return q.rloq && !rep[q.id]; }).length; };
+    var nbOq = function (k) { return D[k].questions.filter(function (q) { return !(q.rloq ? rep[q.id] : lg[k]); }).length; };
+    var mods = [];
+    ordre.forEach(function (k) {
+      var E = D[k];
+      var m = mods.filter(function (x) { return x.nom === E.module; })[0];
+      if (!m) { m = {nom: E.module, epics: []}; mods.push(m); }
+      var r = nbRloq(k), o = nbOq(k);
+      m.epics.push({infix: E.infix, titre: E.titre, on: k === cur, bg: k === cur ? 'var(--surface)' : 'transparent', sh: k === cur ? 'var(--ombre-carte), inset 3px 0 0 var(--encre)' : 'none', op: o ? 1 : 0.7,
+        hasRloq: r > 0, rloqTxt: r + ' RLOQ', hasOq: o > 0, oqTxt: o + ' OQ', ok: o === 0,
+        pick: function () { self.setState({ep: k}); }});
+    });
+    var E = D[cur];
+    var qs = E.questions;
+    var rl = qs.filter(function (q) { return q.rloq; });
+    var oqs = qs.filter(function (q) { return !q.rloq; });
+    var fait = !!lg[cur];
+    var r = nbRloq(cur), o = nbOq(cur);
+    var resume = !qs.length ? 'Aucune question ouverte.' : !o ? 'Toutes les questions ont une réponse : rien n’arrête le boss.' : (o + (o > 1 ? ' questions ouvertes' : ' question ouverte') + (o ? ' : ' : '') + (r ? r + ' RLOQ à trancher' : '') + (r && (o - r) ? ', ' : '') + ((o - r) ? (o - r) + ((o - r) > 1 ? ' OQ auxquelles' : ' OQ à laquelle') + ' le boss peut répondre' : '') + '.');
+    var lastB = '';
+    var totR = ordre.reduce(function (a, k) { return a + nbRloq(k); }, 0);
+    var totO = ordre.reduce(function (a, k) { return a + nbOq(k); }, 0);
+    return {
+      totRloq: totR, totOq: totO,
+      modules: mods,
+      ep: {
+        infix: E.infix, titre: E.titre, resume: resume,
+        hasOq: oqs.length > 0, noOq: oqs.length === 0, noRloq: rl.length === 0,
+        lgtmFait: fait,
+        lgtmTxt: fait ? oqs.length + ' OQ en LGTM' : 'LGTM sur ' + (oqs.length > 1 ? 'les ' + oqs.length + ' OQ' : 'l’OQ'),
+        lgtmBg: fait ? 'var(--fait-pale)' : 'var(--inverse)', lgtmCol: fait ? 'var(--fait-fonce)' : 'var(--texte-inverse)',
+        lgtmIco: fait ? 'var(--fait)' : 'var(--texte-inverse)', lgtmCoche: fait ? 'var(--surface)' : 'var(--inverse)',
+        rloqs: rl.map(function (q) {
+          var ok = !!rep[q.id];
+          return {batch: q.batch, story: q.story, etape: q.case, texte: q.texte, contexte: q.contexte, val: val[q.id] || '',
+            etat: ok ? 'Répondue : le boss reprend' : 'Le boss s’arrête ici', etatCol: ok ? 'var(--fait-bord)' : 'var(--rloq)',
+            edit: function (e) { var v = Object.assign({}, st.val || {}); v[q.id] = e.target.value; self.setState({val: v}); },
+            repondre: function () { if (!(val[q.id] || '').trim()) return; var x = Object.assign({}, st.rep || {}); x[q.id] = true; self.setState({rep: x}); }};
+        }),
+        oqs: oqs.map(function (q) {
+          var show = q.batch !== lastB; lastB = q.batch;
+          return {showBatch: show, bid: q.bid, batch: q.batch, batchSous: 'en cours', story: q.story, etape: q.case, texte: q.texte, proposition: q.proposition,
+            fait: fait, afaire: !fait};
+        })
+      },
+      lgtm: function () { if (lg[cur]) return; var x = Object.assign({}, st.lgtm || {}); x[cur] = true; self.setState({lgtm: x}); },
+      annuler: function () { var x = Object.assign({}, st.lgtm || {}); x[cur] = false; self.setState({lgtm: x}); }
+    };
+  }
+}
+</script>
+</body>
+</html>

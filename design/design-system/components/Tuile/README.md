@@ -10,7 +10,7 @@ Tuile de carton posée dans un emplacement : un batch en cours ou fait, avec ses
 - Pour chaque batch en cours ou fait d'une epic déroulée. C'est un bouton : il ouvre et ferme le chantier.
 
 ## À faire
-- En cours : `tuile-en-cours`, soulevée de 2 px (`ombre-tuile-en-cours`), pastille `accent` au marteau. Epic bloquée : pastille `accent-bloque`, tuile à plat.
+- En cours : `tuile-en-cours`, soulevée de 2 px (`ombre-tuile-en-cours`), pastille `accent` à l'engrenage. Epic bloquée : pastille `accent-bloque`, tuile à plat.
 - Fait : `tuile-faite`, à plat (`ombre-tuile-posee`), pastille `surface` au drapeau `fait`.
 - Sélectionnée : soulevée de 5 px (`ombre-tuile-selection`), anneau `selection` de 2,5 px décalé de 3 px.
 - Id en `id-tuile`, puces en `puce` (OQ, puis RLOQ pleine `rloq`, puis ⊖), compte en `tuile-muette`. `title` complet : « B1 · en cours · 4 stories · 3 OQ à répondre, dont 1 RLOQ ».

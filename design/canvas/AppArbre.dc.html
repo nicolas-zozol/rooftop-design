@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop, l’Arbre</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/rooftop/tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}
+.rt-cible:hover,.rt-cible:focus-visible{outline:2px dashed var(--priorite-bord) !important;outline-offset:3px !important}
+.rt-cible-fond:hover,.rt-cible-fond:focus-visible{background:var(--priorite-pale) !important;box-shadow:inset 0 0 0 1.5px var(--priorite-bord) !important}
+</style>
+</helmet>
+<div tabindex="0" onKeyDown="{{onKey}}" aria-label="Arbre des batchs. Raccourcis : F drapeau, Échap annuler." style="width:1440px;height:{{H}}px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;outline:none;background:var(--surface);color:var(--encre);font-family:var(--font-sans);font-size:13px;line-height:1.35">
+
+<header style="height:48px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:16px;padding:0 12px 0 14px;border-bottom:1px solid var(--ligne);background:var(--surface)">
+<nav aria-label="Vues" style="display:flex;gap:2px;padding:3px;border-radius:9px;background:var(--surface-creuse)">
+<a href="#questions" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:var(--encre-muette);font-size:13px;font-weight:500;text-decoration:none">Questions</a>
+<a href="#blueprint" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:var(--encre-muette);font-size:13px;font-weight:500;text-decoration:none">Blueprint</a>
+<a href="#arbre" aria-current="page" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;background:var(--surface);color:var(--encre);font-size:13px;font-weight:500;text-decoration:none;box-shadow:var(--ombre-carte)">Arbre</a>
+</nav>
+<span style="flex:1"></span>
+<div style="display:flex;align-items:center;gap:12px;font-size:12px;color:var(--encre-2)">
+<span style="font-family:var(--font-mono);font-size:11.5px;color:var(--encre);padding:3px 8px;border-radius:6px;background:var(--surface-creuse);border:1px solid var(--ligne)">epic/rooftop-batches-epic</span>
+<span>37 fichiers à commiter</span>
+<span aria-hidden="true" style="width:1px;height:16px;background:var(--ligne)"></span>
+<span>intégration : <span style="font-family:var(--font-mono);font-size:11.5px;color:var(--encre)">main</span></span>
+<button type="button" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte)">Relire git</button>
+</div>
+</header>
+
+<main aria-label="Arbre des batchs" style="flex:1;min-height:0;position:relative;overflow:hidden;cursor:{{curseur}};background-color:var(--surface-plan);background-image:radial-gradient(var(--surface-plan-point) 1px, transparent 1.3px);background-size:18px 18px">
+<div style="position:absolute;left:16px;top:12px;right:16px;display:flex;align-items:center;gap:8px;z-index:4">
+<span style="font-size:12px;font-weight:600;color:var(--encre-2);margin-right:2px">Chemin vers le drapeau de</span>
+<div role="group" aria-label="Chemin vers le drapeau d’un module" style="display:flex;gap:2px;padding:3px;border-radius:9px;background:var(--surface-creuse);border:1px solid var(--ligne)">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="3"><button type="button" onClick="{{c.act}}" aria-pressed="{{c.on}}" style="display:flex;align-items:center;gap:6px;height:26px;padding:0 9px 0 7px;border:0;border-radius:6px;background:{{c.bg}};box-shadow:{{c.sh}};color:{{c.col}};font-family:inherit;font-size:12.5px;font-weight:{{c.fw}};cursor:{{c.cur}};white-space:nowrap"><sc-if value="{{c.hasFlag}}" hint-placeholder-val="{{true}}"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></sc-if>{{c.nom}}<span style="font-family:var(--font-mono);font-size:11px;color:var(--encre-muette)">{{c.lab}}</span></button></sc-for>
+<button type="button" onClick="{{aucun}}" aria-pressed="{{aucunOn}}" style="height:26px;padding:0 10px;border:0;border-radius:6px;background:{{aucunBg}};box-shadow:{{aucunSh}};color:var(--encre-2);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer">Aucun</button>
+</div>
+<button type="button" onClick="{{toDrapeau}}" aria-pressed="{{isDrapeau}}" title="Poser le drapeau d’un module sur un batch ou une epic de l’arbre" style="height:32px;display:flex;align-items:center;gap:6px;padding:0 8px 0 10px;border-radius:7px;border:1px solid var(--ligne);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte);background:{{drBg}};border-color:{{drBd}};color:{{drCol}}"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg>Drapeau<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">F</kbd></button>
+<span style="flex:1"></span>
+<div aria-label="Légende" style="display:flex;align-items:center;gap:14px;height:32px;box-sizing:border-box;padding:0 12px;border-radius:8px;background:var(--surface);border:1px solid var(--ligne);font-size:11.5px;color:var(--encre-2);white-space:nowrap">
+<span style="display:flex;align-items:center;gap:6px"><svg aria-hidden="true" width="26" height="8"><path d="M1 4H25" stroke-width="2" style="stroke:var(--cadre-arete)"></path></svg>batch suivant</span>
+<span style="display:flex;align-items:center;gap:6px"><svg aria-hidden="true" width="30" height="10"><path d="M1 5H22" stroke-width="2" stroke-dasharray="5 3" style="stroke:var(--blocage)"></path><path d="M22 1.5 28 5 22 8.5Z" style="fill:var(--blocage)"></path></svg>dépendance bloquante</span>
+<span style="display:flex;align-items:center;gap:6px"><svg aria-hidden="true" width="26" height="8"><path d="M1 4H25" stroke-width="2" stroke-dasharray="2 3" style="stroke:var(--accent)"></path></svg>commencé, finit plus tard</span>
+</div>
+</div>
+<div style="position:absolute;left:36px;top:68px;width:1376px;height:{{treeH}}px">
+<span aria-hidden="true" style="position:absolute;left:{{col0X}}px;top:30px;width:116px;height:{{stripeH}}px;margin-left:-16px;padding:0 16px;border-radius:10px;background:var(--accent-pale);opacity:0.5"></span>
+<span style="position:absolute;left:{{faitX}}px;top:6px;width:92px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:0.06em;color:var(--encre-muette)">FAIT</span>
+<sc-for list="{{cols}}" as="k" hint-placeholder-count="7"><span style="position:absolute;left:{{k.x}}px;top:6px;width:116px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:0.06em;color:var(--encre-2)">{{k.txt}}</span></sc-for>
+
+<sc-for list="{{lanes}}" as="l" hint-placeholder-count="3"><div style="position:absolute;left:0;top:{{l.y}}px;width:100%;height:34px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:8px;background:var(--bandeau);color:var(--bandeau-texte)">
+<span style="display:flex;color:var(--bandeau-muet)"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--bandeau-muet)">MODULE</span>
+<span style="font-size:14px;font-weight:700;white-space:nowrap">{{l.nom}}</span>
+<sc-if value="{{l.hasFlag}}" hint-placeholder-val="{{true}}"><span style="display:flex;align-items:center;gap:5px;height:22px;box-sizing:border-box;padding:0 8px 0 6px;border-radius:11px;background:rgba(255,255,255,0.12);font-family:var(--font-mono);font-size:11.5px;font-weight:600;white-space:nowrap"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg>{{l.flagLabel}}</span></sc-if>
+<sc-if value="{{l.noFlag}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:22px;box-sizing:border-box;padding:0 8px;border-radius:11px;border:1px dashed var(--bandeau-muet);font-size:11px;color:var(--bandeau-muet)">aucun drapeau</span></sc-if>
+<span style="flex:1"></span>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke-width="1.5" style="stroke:{{l.etatCol}}"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" opacity="{{l.demiOp}}" style="fill:var(--module-en-cours)"></path></svg>
+<span style="font-size:12.5px;font-weight:600">{{l.pct}} %</span>
+</div></sc-for>
+
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8"><div style="position:absolute;left:0;top:{{r.y}}px;width:100%;height:72px;box-sizing:border-box;border-bottom:1px solid var(--ligne)">
+<div role="{{r.role}}" tabindex="{{r.tab}}" onClick="{{r.act}}" class="{{r.cls}}" title="{{r.tt}}" style="position:absolute;left:0;top:8px;width:220px;height:56px;box-sizing:border-box;padding:7px 10px;border-radius:8px;background:var(--surface);border:{{r.bd}};box-shadow:var(--ombre-carte);display:flex;flex-direction:column;justify-content:center;gap:4px;opacity:{{r.op}};cursor:{{r.cur}}">
+<span style="display:flex;align-items:center;gap:6px"><span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:var(--etiquette-infix);color:var(--encre);white-space:nowrap">{{r.infix}}</span><sc-if value="{{r.flag}}" hint-placeholder-val="{{false}}"><span title="Drapeau de priorité du module : cette epic" style="display:flex"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if><span style="flex:1"></span><svg role="img" aria-label="avancement {{r.pct}} %" width="14" height="14" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke-width="2.4" style="stroke:var(--ligne-forte)"></circle><circle cx="8" cy="8" r="6" fill="none" stroke-width="2.4" stroke-dasharray="{{r.ringDash}}" transform="rotate(-90 8 8)" style="stroke:{{r.ringCol}}"></circle></svg><span style="font-size:11.5px;font-weight:500;color:var(--encre-2)">{{r.pct}} %</span></span>
+<span style="font-size:12px;color:var(--encre-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{r.titre}}</span>
+</div>
+</div></sc-for>
+
+<sc-for list="{{pistes}}" as="p" hint-placeholder-count="2"><span aria-hidden="true" style="position:absolute;left:{{p.x}}px;top:{{p.y}}px;width:{{p.w}}px;height:0;border-top:2px dashed var(--accent);opacity:{{p.op}}"></span></sc-for>
+
+<svg aria-hidden="true" width="1376" height="{{treeH}}" style="position:absolute;left:0;top:0;z-index:1;pointer-events:none;overflow:visible"><defs>
+<marker id="ar-dep" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.5 8 4 0 7.5Z" style="fill:var(--blocage)"></path></marker>
+<marker id="ar-chemin" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.5 8 4 0 7.5Z" style="fill:var(--selection)"></path></marker>
+</defs>
+<sc-for list="{{liens}}" as="k" hint-placeholder-count="6"><path d="{{k.d}}" fill="none" stroke-width="{{k.w}}" stroke-dasharray="{{k.dash}}" stroke-linejoin="round" marker-end="{{k.fin}}" opacity="{{k.op}}" style="stroke:{{k.col}}"></path></sc-for>
+</svg>
+
+<sc-for list="{{faits}}" as="f" hint-placeholder-count="2"><span title="{{f.title}}" style="position:absolute;z-index:2;left:{{f.x}}px;top:{{f.y}}px;width:92px;height:40px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:6px;border-radius:4px;background:var(--tuile-faite);box-shadow:var(--ombre-tuile-posee);opacity:{{f.op}};font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--tuile-encre)">{{f.txt}}<svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--fait)"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></span></sc-for>
+<sc-for list="{{vides}}" as="v" hint-placeholder-count="2"><span style="position:absolute;z-index:2;left:{{v.x}}px;top:{{v.y}}px;width:264px;height:40px;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:6px;border:1.5px dashed var(--ligne-forte);background:var(--surface);opacity:{{v.op}};font-size:11.5px;color:var(--encre-muette);white-space:nowrap">aucun batch<code style="font-family:var(--font-mono);font-size:11px;color:var(--encre-2)">{{v.txt}}</code></span></sc-for>
+
+<sc-for list="{{nodes}}" as="n" hint-placeholder-count="12"><button type="button" onClick="{{n.act}}" class="{{n.cls}}" title="{{n.title}}" aria-label="{{n.title}}" style="position:absolute;z-index:2;left:{{n.x}}px;top:{{n.y}}px;width:116px;height:58px;box-sizing:border-box;padding:6px 7px 6px 8px;border:0;border-radius:4px;background:{{n.face}};box-shadow:{{n.sh}};outline:{{n.outline}};outline-offset:3px;opacity:{{n.op}};font-family:inherit;color:{{n.col}};text-align:left;display:flex;flex-direction:column;justify-content:space-between;cursor:{{n.cur}}">
+<span style="display:flex;align-items:center;gap:5px;padding-right:20px"><span style="font-family:var(--font-mono);font-size:15px;font-weight:700;line-height:18px;white-space:nowrap">{{n.bid}}</span><sc-if value="{{n.flag}}" hint-placeholder-val="{{false}}"><span title="{{n.flagTitle}}" style="display:flex"><svg role="img" aria-label="drapeau de priorité" width="11" height="11" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if></span>
+<span style="display:flex;align-items:center;gap:3px;min-height:15px">
+<sc-if value="{{n.isC}}" hint-placeholder-val="{{true}}"><sc-for list="{{n.cubes}}" as="q" hint-placeholder-count="3"><span style="width:10px;height:10px;box-sizing:border-box;border-radius:{{q.rad}};background:{{q.bg}};border:{{q.bd}};box-shadow:{{q.sh}}"></span></sc-for></sc-if>
+<sc-if value="{{n.isT}}" hint-placeholder-val="{{false}}"><span style="font-size:10.5px;font-weight:600">tenu</span></sc-if>
+<span style="flex:1"></span>
+<sc-if value="{{n.hasBlk}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:2px;height:15px;box-sizing:border-box;padding:0 2px 0 4px;border-radius:8px;background:var(--blocage);color:var(--surface);font-size:9.5px;font-weight:700">{{n.blkN}}<svg aria-hidden="true" width="10" height="10" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--surface)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--blocage)"></rect></svg></span></sc-if>
+<span style="font-size:10px;white-space:nowrap;opacity:0.85">{{n.count}}</span>
+</span>
+<span style="position:absolute;right:4px;top:4px;width:18px;height:18px;box-sizing:border-box;border-radius:50%;background:{{n.badgeBg}};border:1.5px solid var(--surface);box-shadow:0 1px 2px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center"><sc-if value="{{n.isC}}" hint-placeholder-val="{{true}}"><svg role="img" aria-label="en cours" width="12" height="12" viewBox="0 0 14 14"><path d="M5.77 2.41 L6.01 0.78 L7.99 0.78 L8.23 2.41 L9.38 2.89 L10.70 1.90 L12.10 3.30 L11.11 4.62 L11.59 5.77 L13.22 6.01 L13.22 7.99 L11.59 8.23 L11.11 9.38 L12.10 10.70 L10.70 12.10 L9.38 11.11 L8.23 11.59 L7.99 13.22 L6.01 13.22 L5.77 11.59 L4.63 11.11 L3.30 12.10 L1.90 10.70 L2.89 9.38 L2.41 8.23 L0.78 7.99 L0.78 6.01 L2.41 5.77 L2.89 4.62 L1.90 3.30 L3.30 1.90 L4.62 2.89 Z M5.00 7.00 a2.00 2.00 0 1 0 4.00 0 a2.00 2.00 0 1 0 -4.00 0 Z" fill-rule="evenodd" style="fill:var(--surface)"></path></svg></sc-if><sc-if value="{{n.isT}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="9" height="9" viewBox="0 0 12 12" fill="none" stroke-width="1.6" stroke-linecap="round" style="stroke:var(--emplacement-grave)"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if></span>
+<sc-if value="{{n.hasStep}}" hint-placeholder-val="{{false}}"><span style="position:absolute;left:-9px;top:-9px;width:22px;height:22px;box-sizing:border-box;border-radius:50%;background:var(--selection);border:2px solid var(--surface);color:var(--surface);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,0.35)">{{n.step}}</span></sc-if>
+</button></sc-for>
+</div>
+<sc-if value="{{hasBas}}" hint-placeholder-val="{{true}}"><div role="status" style="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;width:max-content;max-width:1320px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;padding:12px 16px;border-radius:14px;background:var(--inverse);color:var(--texte-inverse);font-size:12.5px;box-shadow:0 10px 30px rgba(0,0,0,0.25)">
+<div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
+<span style="white-space:nowrap">{{tete}}<b style="font-family:var(--font-mono);font-weight:700">{{teteB}}</b>{{teteC}}</span>
+<sc-if value="{{hasChemin}}" hint-placeholder-val="{{true}}"><sc-for list="{{etapes}}" as="e" hint-placeholder-count="3"><span style="display:flex;align-items:center;gap:6px"><span style="width:20px;height:20px;border-radius:50%;background:var(--texte-inverse);color:var(--inverse);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center">{{e.n}}</span><span style="font-family:var(--font-mono);font-weight:600">{{e.id}}</span><sc-if value="{{e.flag}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></sc-if><sc-if value="{{e.notLast}}" hint-placeholder-val="{{true}}"><span aria-hidden="true" style="opacity:0.6">→</span></sc-if></span></sc-for></sc-if>
+<sc-if value="{{hasHors}}" hint-placeholder-val="{{false}}"><span>{{hors}}</span></sc-if>
+</div>
+<sc-if value="{{hasNote}}" hint-placeholder-val="{{false}}"><p style="display:flex;align-items:center;gap:7px;margin:0;font-size:12px;opacity:0.85"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg>{{note}}</p></sc-if>
+</div></sc-if>
+<sc-if value="{{hasHint}}" hint-placeholder-val="{{false}}"><div role="status" style="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:10px;height:40px;box-sizing:border-box;padding:0 6px 0 14px;border-radius:999px;background:var(--inverse);color:var(--texte-inverse);font-size:12.5px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,0.25)">
+<svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg><span><b style="font-weight:700">Drapeau</b> · clique un batch, ou le nom d’une epic : le drapeau de son module s’y pose et l’arbre montre le chemin.</span>
+<button type="button" onClick="{{echap}}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 6px 0 12px;border-radius:999px;border:0;background:var(--inverse-2);color:var(--texte-inverse);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer">Annuler<kbd style="height:18px;box-sizing:border-box;padding:0 5px;border-radius:4px;border:1px solid rgba(255,255,255,0.3);font-family:var(--font-mono);font-size:10px;line-height:16px">Échap</kbd></button>
+</div></sc-if>
+</main>
+
+<footer style="height:36px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 16px;border-top:1px solid var(--ligne);background:var(--surface);font-size:12px;color:var(--encre-2)">
+<span>Une colonne = une soumission de plus : un batch ne peut finir qu’une fois soumis tout ce qui le relie à sa gauche</span>
+<span style="color:var(--encre-muette)">·</span>
+<span>lignes rangées comme le plan</span>
+<span style="flex:1"></span>
+<span style="display:flex;align-items:center;gap:6px;color:var(--encre-muette)"><kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">F</kbd>drapeau<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">Échap</kbd>effacer le chemin</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"vue":{"editor":"enum","options":["rb","toolman","noeud","aucun","drapeau"],"default":"rb"},"$preview":{"width":1440,"height":1046}}'>
+class Component extends DCLogic {
+  data() {
+    return {
+      plugin: {infix: 'PLUGIN', titre: 'Compound en deux plugins Claude Code', groupe: 'debloquee',
+        batches: [
+          {id: 'B1', etat: 'courant', stories: [{s: 'compound-inventory', n: 0, qi: 1, oq: 1, rloq: 1}, {s: 'plugin-split', n: 1, blk: 3, dep: 'B-TOOLMAN-2'}, {s: 'shared-skills', n: 3}, {s: 'marketplace-manifest', n: 4, qi: 5, oq: 1}]},
+          {id: 'B2', etat: 'tenu', par: 'B1', nb: 3}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 2}, {id: 'B4', etat: 'tenu', par: 'B3', nb: 2}, {id: 'B5', etat: 'tenu', par: 'B4', nb: 1}]},
+      qualitygates: {infix: 'QUALITYGATES', titre: 'Quality gates', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'courant', stories: [{s: 'checker-depth', n: 1}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}]},
+      worktree: {infix: 'WORKTREE', titre: 'Worktrees longs', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'fait', nb: 2}, {id: 'B2', etat: 'courant', stories: [{s: 'worktree-sync', n: 0, qi: 1, oq: 1}]}]},
+      pipeline: {infix: 'PIPELINE', titre: 'Pipeline documentaire des agents', groupe: 'debloquee', batches: [], cmd: 'epicman design-pipeline-epic'},
+      batches: {infix: 'BATCHES', titre: 'Rooftop, les batchs et ce qui les débloque', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'fait', nb: 2}, {id: 'B2', etat: 'fait', nb: 2}, {id: 'B3', etat: 'fait', nb: 1}, {id: 'B4', etat: 'courant', stories: [{s: 'unblock-path', n: 4}]}]},
+      rtworktrees: {infix: 'RTWORKTREES', titre: 'Rooftop lit les worktrees', groupe: 'bloquee', dep: 'BATCHES', depBatch: 'B-BATCHES-4',
+        batches: [{id: 'B1', etat: 'courant', stories: [{s: 'worktree-sources', n: 1}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 1}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}]},
+      toolman: {infix: 'TOOLMAN', titre: 'toolman, un menu de corvées', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'courant', stories: [{s: 'toolman', n: 2}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}]},
+      trwg: {infix: 'TRWG', titre: 'trwg, deux réponses fermées', groupe: 'debloquee', batches: [], cmd: 'epicman trwg-epic'}
+    };
+  }
+  modules() {
+    return {
+      rb: {nom: 'RB Compound', epics: ['plugin', 'qualitygates', 'worktree', 'pipeline', 'batches', 'rtworktrees']},
+      toolman: {nom: 'Toolman', epics: ['toolman']},
+      trwg: {nom: 'trwg', epics: ['trwg']}
+    };
+  }
+  full(E, bid) { return 'B-' + E.infix + '-' + bid.slice(1); }
+  stage(n) {
+    if (n >= 6) return {bg: 'var(--etape-done)', bd: '1px solid var(--fait-bord)', sh: '0 1px 2px rgba(0,0,0,0.3)', rad: '50%'};
+    if (n < 1) return {bg: 'transparent', bd: '1.5px dashed var(--etape-pas-ready)', sh: 'none', rad: '2px'};
+    var C = ['var(--etape-ready)', 'var(--etape-brainstorm)', 'var(--etape-design-file)', 'var(--etape-code)', 'var(--etape-submitted)'];
+    return {bg: C[n - 1], bd: '1px solid rgba(0,0,0,0.3)', sh: 'var(--ombre-cube)', rad: '2px'};
+  }
+  avancement(E) {
+    if (!E.batches.length) return 0;
+    var tot = E.batches.reduce(function (a, b) {
+      if (b.etat === 'tenu') return a;
+      if (b.etat === 'fait') return a + 1;
+      var st = (b.stories || []).filter(function (x) { return x.n >= 0; });
+      if (!st.length) return a;
+      return a + st.reduce(function (c, x) { return c + Math.min(6, x.n) / 6; }, 0) / st.length;
+    }, 0);
+    return Math.round(tot / E.batches.length * 100);
+  }
+  graphe() {
+    // Nœuds = batchs non faits. Prérequis = batch précédent de l'epic, dépendances des stories, dépendance de l'epic.
+    var self = this, D = this.data(), MODS = this.modules();
+    var N = {}, ordre = [];
+    ['rb', 'toolman', 'trwg'].forEach(function (mid) {
+      MODS[mid].epics.forEach(function (eid) {
+        var E = D[eid], prev = '';
+        var premier = true;
+        E.batches.forEach(function (b) {
+          var id = self.full(E, b.id);
+          if (b.etat === 'fait') { prev = ''; return; }
+          var n = {id: id, eid: eid, mid: mid, b: b, pre: [], chaine: prev, deps: []};
+          if (prev) n.pre.push(prev);
+          (b.stories || []).forEach(function (x) { if (x.dep) { n.pre.push(x.dep); n.deps.push({dep: x.dep, story: x.s, etape: ['', 'ready', 'brainstorm', 'design file', 'code', 'submitted', 'done'][x.blk] || ''}); } });
+          if (premier && E.depBatch) { n.pre.push(E.depBatch); n.deps.push({dep: E.depBatch, story: '', etape: '', epic: true}); }
+          premier = false;
+          N[id] = n; ordre.push(id); prev = id;
+        });
+      });
+    });
+    var memo = {};
+    var prof = function (id) {
+      if (memo[id] !== undefined) return memo[id];
+      memo[id] = 0;
+      var n = N[id];
+      var d = 0;
+      n.pre.forEach(function (p) { if (N[p]) d = Math.max(d, prof(p) + 1); });
+      memo[id] = d;
+      return d;
+    };
+    ordre.forEach(prof);
+    ordre.forEach(function (id) { N[id].prof = memo[id]; });
+    return {N: N, ordre: ordre};
+  }
+  ancetres(G, id) {
+    var vus = {}, pile = [id];
+    while (pile.length) {
+      var x = pile.pop();
+      if (vus[x] || !G.N[x]) continue;
+      vus[x] = true;
+      G.N[x].pre.forEach(function (p) { pile.push(p); });
+    }
+    return Object.keys(vus);
+  }
+  base(vue) {
+    var b = {mode: 'normal', drap: {rb: {ep: 'plugin', b: 'B1', s: 'plugin-split'}, toolman: {ep: 'toolman', b: 'B1', s: ''}, trwg: null}, focus: {kind: 'drapeau', mid: 'rb'}};
+    if (vue === 'toolman') b.focus = {kind: 'drapeau', mid: 'toolman'};
+    if (vue === 'aucun') b.focus = null;
+    if (vue === 'noeud') b.focus = {kind: 'noeud', id: 'B-RTWORKTREES-2'};
+    if (vue === 'drapeau') { b.mode = 'drapeau'; b.focus = null; }
+    return b;
+  }
+  renderVals() {
+    var self = this;
+    var vue = String(this.props.vue || 'rb');
+    var S = Object.assign({}, this.base(vue), this.state || {});
+    var set = function (x) { self.setState(x); };
+    var D = this.data(), MODS = this.modules(), G = this.graphe();
+    var dr = S.mode === 'drapeau';
+    var LABEL_W = 232, FAIT_X = 248, FAIT_W = 92, COL0 = 364, COLW = 148, NW = 116, NH = 58, ROWH = 72, BANDH = 34;
+    var colX = function (k) { return COL0 + k * COLW; };
+    var modOf = {};
+    Object.keys(MODS).forEach(function (k) { MODS[k].epics.forEach(function (e) { modOf[e] = k; }); });
+
+    // Cible du focus : le batch au drapeau d'un module, ou un batch cliqué
+    var cible = '', focusTxt = null;
+    var F = S.focus;
+    var fDrap = F && F.kind === 'drapeau' ? S.drap[F.mid] : null;
+    if (F && F.kind === 'noeud' && G.N[F.id]) cible = F.id;
+    if (fDrap) {
+      var Ef = D[fDrap.ep];
+      if (fDrap.b && fDrap.b !== 'HB') cible = self.full(Ef, fDrap.b);
+      else if (!fDrap.b) {
+        var reste = Ef.batches.filter(function (b) { return b.etat !== 'fait'; });
+        if (reste.length) cible = self.full(Ef, reste[reste.length - 1].id);
+      }
+      if (cible && G.N[cible] === undefined) cible = '';
+    }
+    var chemin = cible ? this.ancetres(G, cible) : [];
+    var rang = {};
+    var Gord = G.ordre;
+    chemin.sort(function (a, b) { return G.N[a].prof - G.N[b].prof || Gord.indexOf(a) - Gord.indexOf(b); });
+    chemin.forEach(function (id, i) { rang[id] = i + 1; });
+    var focus = !!F && (F.kind === 'noeud' || !!fDrap);
+
+    var poserDrap = function (mid, c) {
+      var nd = Object.assign({}, S.drap); nd[mid] = c;
+      set({drap: nd, mode: 'normal', focus: {kind: 'drapeau', mid: mid}});
+    };
+
+    // Géométrie : bandeaux de module, puis une ligne par epic
+    var y = 40;
+    var lanes = [], rows = [], nodes = [], faits = [], vides = [], liens = [], pistes = [];
+    var pos = {};
+    ['rb', 'toolman', 'trwg'].forEach(function (mid) {
+      var M = MODS[mid];
+      var f = S.drap[mid];
+      var pcts = M.epics.map(function (e) { return self.avancement(D[e]); });
+      var pct = Math.round(pcts.reduce(function (a, x) { return a + x; }, 0) / pcts.length);
+      var lab = !f ? '' : (f.s ? f.s : (f.b ? self.full(D[f.ep], f.b) : D[f.ep].infix));
+      lanes.push({nom: M.nom, y: y, pct: pct, hasFlag: !!f, flagLabel: lab, noFlag: !f, demiOp: pct > 0 ? 1 : 0, etatCol: pct > 0 ? 'var(--module-en-cours)' : 'var(--bandeau-muet)'});
+      y += BANDH + 6;
+      M.epics.forEach(function (eid) {
+        var E = D[eid];
+        var fl = f && f.ep === eid ? f : null;
+        var pct2 = self.avancement(E);
+        var C = 2 * Math.PI * 6;
+        rows.push({y: y, infix: E.infix, titre: E.titre, pct: pct2,
+          ringDash: (pct2 / 100 * C).toFixed(2) + ' ' + C.toFixed(2), ringCol: pct2 >= 100 ? 'var(--avancement-fini)' : (pct2 > 0 ? 'var(--avancement-en-cours)' : 'var(--avancement-a-faire)'),
+          flag: !!fl && !fl.b, cls: dr ? 'rt-cible-fond' : '', cur: dr ? 'crosshair' : 'default', role: dr ? 'button' : 'presentation', tab: dr ? '0' : '-1',
+          act: dr ? function () { poserDrap(mid, {ep: eid, b: '', s: ''}); } : function () {},
+          tt: dr ? 'Poser le drapeau de ' + M.nom + ' sur l’epic ' + E.infix : E.infix + ' · ' + E.titre,
+          bd: E.groupe === 'bloquee' ? '1px dashed var(--tirets-bloquee)' : '1px solid var(--ligne)',
+          op: focus && !E.batches.some(function (b) { return rang[self.full(E, b.id)]; }) ? 0.45 : 1,
+          bloquee: E.groupe === 'bloquee'});
+        var fb = E.batches.filter(function (b) { return b.etat === 'fait'; });
+        if (fb.length) {
+          faits.push({x: FAIT_X, y: y + (ROWH - 40) / 2, txt: fb.length > 1 ? fb[0].id + '–' + fb[fb.length - 1].id : fb[0].id, title: E.infix + ' : ' + fb.map(function (b) { return self.full(E, b.id); }).join(', ') + ' faits', op: focus ? 0.45 : 1});
+        }
+        if (!E.batches.length) {
+          vides.push({x: COL0, y: y + (ROWH - 40) / 2, txt: E.cmd, op: focus ? 0.45 : 1});
+        }
+        var prevFait = fb.length > 0;
+        E.batches.forEach(function (b) {
+          if (b.etat === 'fait') return;
+          var id = self.full(E, b.id), n = G.N[id];
+          var x = colX(n.prof), ny = y + (ROWH - NH) / 2;
+          pos[id] = {x: x, y: ny};
+          var onPath = !!rang[id];
+          var isT = b.etat === 'tenu', isC = b.etat === 'courant';
+          var list = b.stories || [];
+          var k = list.length || b.nb || 0;
+          var blkN = list.filter(function (x2) { return !!x2.dep; }).length + (E.groupe === 'bloquee' && isC ? list.length : 0);
+          var flagged = !!fl && fl.b === b.id;
+          var ttl = id + ' · ' + (isT ? 'tenu par ' + self.full(E, b.par) : 'en cours') + ' · ' + k + (k > 1 ? ' stories' : ' story');
+          n.deps.forEach(function (d) { ttl += d.epic ? ' · l’epic attend ' + d.dep + ' submitted' : ' · ' + d.story + ' attend ' + d.dep + ' pour son ' + d.etape; });
+          if (n.prof > 0 && isC) ttl += ' · commencé, ne peut finir qu’à +' + n.prof;
+          nodes.push({id: id, bid: b.id, x: x, y: ny, isT: isT, isC: isC, face: isT ? 'var(--emplacement)' : 'var(--tuile-en-cours)',
+            sh: isT ? 'inset 0 1px 3px rgba(0,0,0,0.35)' : (onPath || !focus ? 'var(--ombre-tuile-en-cours)' : 'var(--ombre-tuile-posee)'),
+            col: isT ? 'var(--emplacement-grave)' : 'var(--tuile-encre)',
+            op: focus && !onPath ? 0.45 : 1, outline: cible === id ? '2.5px solid var(--selection)' : 'none',
+            cubes: list.filter(function (x2) { return x2.n >= 0; }).map(function (x2) { return self.stage(x2.n); }),
+            count: k + (k > 1 ? ' stories' : ' story'), hasBlk: blkN > 0, blkN: blkN,
+            badgeBg: isC ? (E.groupe === 'bloquee' ? 'var(--accent-bloque)' : 'var(--accent)') : 'var(--surface)',
+            flag: flagged, flagTitle: flagged ? (fl.s ? 'Drapeau de ' + M.nom + ' : la story ' + fl.s : 'Drapeau de ' + M.nom + ' : ce batch') : '',
+            hasStep: onPath, step: rang[id] || '',
+            title: dr ? 'Poser le drapeau de ' + M.nom + ' sur ' + id : ttl + ' · clic : chemin vers ce batch',
+            cls: dr ? 'rt-cible' : '', cur: dr ? 'crosshair' : 'pointer',
+            act: dr ? function () { poserDrap(mid, {ep: eid, b: b.id, s: ''}); } : function () { set({focus: cible === id && F && F.kind === 'noeud' ? null : {kind: 'noeud', id: id}}); }});
+          // piste : batch commencé qui ne peut finir que plus tard
+          if (isC && n.prof > 0) pistes.push({x: COL0, w: x - COL0, y: ny + NH / 2, op: focus && !onPath ? 0.4 : 1});
+          // lien de chaîne avec le batch précédent (ou la pile des faits)
+          if (n.chaine && pos[n.chaine]) {
+            var a = pos[n.chaine];
+            var onC = !!rang[id] && !!rang[n.chaine];
+            liens.push({d: 'M' + (a.x + NW) + ' ' + (a.y + NH / 2) + 'H' + x, col: onC ? 'var(--selection)' : 'var(--cadre-arete)', w: onC ? 2.5 : 2, dash: 'none', op: focus && !onC ? 0.4 : 1, fin: 'none'});
+          } else if (prevFait && E.batches.indexOf(b) === fb.length) {
+            liens.push({d: 'M' + (FAIT_X + FAIT_W) + ' ' + (y + ROWH / 2) + 'H' + x, col: 'var(--cadre-arete)', w: 2, dash: 'none', op: focus ? 0.4 : 1, fin: 'none'});
+          }
+        });
+        y += ROWH;
+      });
+      y += 16;
+    });
+    // liens de dépendance entre epics (coudés, flèche vers le batch qui attend)
+    G.ordre.forEach(function (id) {
+      var n = G.N[id];
+      n.pre.forEach(function (p) {
+        if (p === n.chaine || !pos[p] || !pos[id]) return;
+        var a = pos[p], b = pos[id];
+        var on = !!rang[id] && !!rang[p];
+        var mx = b.x - 17;
+        liens.push({d: 'M' + (a.x + NW) + ' ' + (a.y + NH / 2) + 'H' + mx + 'V' + (b.y + NH / 2) + 'H' + (b.x - 3), col: on ? 'var(--selection)' : 'var(--blocage)', w: on ? 2.5 : 2, dash: on ? 'none' : '5 3', op: focus && !on ? 0.4 : 1, fin: on ? 'url(#ar-chemin)' : 'url(#ar-dep)'});
+      });
+    });
+
+    // Bandeau du bas : le chemin
+    var hasChemin = chemin.length > 0;
+    var etapes = chemin.map(function (id, i) { var n = G.N[id]; return {n: i + 1, id: id, last: i === chemin.length - 1, notLast: i < chemin.length - 1, flag: false}; });
+    var tete = '', teteB = '', teteC = '', note = '', hasNote = false, horsArbre = '';
+    if (fDrap) {
+      var lab2 = fDrap.s ? fDrap.s : (fDrap.b ? self.full(D[fDrap.ep], fDrap.b) : D[fDrap.ep].infix);
+      tete = 'Chemin vers '; teteB = lab2; teteC = ', drapeau de ' + MODS[F.mid].nom + (fDrap.b ? '' : ' (l’epic entière)') + ' :';
+      if (fDrap.b === 'HB') horsArbre = fDrap.s + ' est hors batch : range-la dans un batch pour la placer dans l’arbre.';
+      else if (!cible) horsArbre = D[fDrap.ep].infix + ' n’a pas encore de batch : ' + (D[fDrap.ep].cmd || '') + '.';
+      // un autre module a-t-il son drapeau sur ce chemin ?
+      Object.keys(S.drap).forEach(function (m2) {
+        var f2 = S.drap[m2];
+        if (m2 === F.mid || !f2 || !f2.b || f2.b === 'HB') return;
+        var id2 = self.full(D[f2.ep], f2.b);
+        if (rang[id2]) { note = id2 + ' porte aussi le drapeau de ' + MODS[m2].nom + ' : les deux priorités vont dans le même sens.'; hasNote = true; }
+      });
+      etapes.forEach(function (e) {
+        Object.keys(S.drap).forEach(function (m2) { var f2 = S.drap[m2]; if (f2 && f2.b && f2.b !== 'HB' && self.full(D[f2.ep], f2.b) === e.id) e.flag = true; });
+      });
+    } else if (F && F.kind === 'noeud' && cible) {
+      tete = 'Chemin vers '; teteB = cible; teteC = ' :';
+    }
+
+    var chips = ['rb', 'toolman', 'trwg'].map(function (mid) {
+      var f = S.drap[mid];
+      var on = !!F && F.kind === 'drapeau' && F.mid === mid;
+      return {nom: MODS[mid].nom, lab: !f ? 'aucun drapeau' : (f.s ? f.s : (f.b ? self.full(D[f.ep], f.b) : D[f.ep].infix)), hasFlag: !!f, on: on,
+        bg: on ? 'var(--surface)' : 'transparent', sh: on ? 'var(--ombre-carte)' : 'none', col: f ? 'var(--encre)' : 'var(--encre-muette)', fw: on ? 600 : 500,
+        act: f ? function () { set({focus: on ? null : {kind: 'drapeau', mid: mid}}); } : function () {}, cur: f ? 'pointer' : 'default'};
+    });
+
+    return {
+      H: Math.max(980, y + 262),
+      treeH: y, col0X: COL0, stripeH: y - 30,
+      lanes: lanes, rows: rows, nodes: nodes, faits: faits, vides: vides, liens: liens, pistes: pistes,
+      cols: [0, 1, 2, 3, 4, 5, 6].map(function (k) { return {x: colX(k), txt: k === 0 ? 'Maintenant' : '+' + k}; }),
+      faitX: FAIT_X, chips: chips,
+      aucunOn: !F, aucunBg: !F ? 'var(--surface)' : 'transparent', aucunSh: !F ? 'var(--ombre-carte)' : 'none',
+      aucun: function () { set({focus: null}); },
+      isDrapeau: dr, drBg: dr ? 'var(--priorite-pale)' : 'var(--surface)', drBd: dr ? 'var(--priorite-bord)' : 'var(--ligne)', drCol: dr ? 'var(--priorite-bord)' : 'var(--encre)',
+      toDrapeau: function () { set({mode: dr ? 'normal' : 'drapeau'}); },
+      curseur: dr ? 'crosshair' : 'default',
+      hasHint: dr, echap: function () { set({mode: 'normal'}); },
+      hasBas: !dr && !!F && (hasChemin || !!horsArbre),
+      hasChemin: hasChemin, etapes: etapes, tete: tete, teteB: teteB, teteC: teteC, hasNote: hasNote, note: note,
+      hasHors: !!horsArbre && !hasChemin, hors: horsArbre,
+      onKey: function (ev) {
+        var k = (ev && ev.key) || '';
+        if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+        if (k === 'f' || k === 'F') { set({mode: dr ? 'normal' : 'drapeau'}); if (ev.preventDefault) ev.preventDefault(); }
+        else if (k === 'Escape') { if (dr) set({mode: 'normal'}); else set({focus: null}); if (ev.preventDefault) ev.preventDefault(); }
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

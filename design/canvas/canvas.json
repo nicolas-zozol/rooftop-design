@@ -459,12 +459,39 @@
       "is_interactive": true
     },
     "Palette-Plateau.dc.html": {
-      "h": 2400,
+      "h": 2520,
       "page": "palette",
       "title": "Jetons du Rooftop Design System : couleurs, typographie, espacements, rayons, relief",
       "w": 1440,
       "x": 0,
       "y": 0
+    },
+    "AppQuestions.dc.html": {
+      "h": 980,
+      "page": "application",
+      "title": "05 · Questions : les RLOQ d’abord, LGTM en un clic sur les OQ",
+      "w": 1440,
+      "x": 4560,
+      "y": 0,
+      "is_interactive": true
+    },
+    "AppPriorites.dc.html": {
+      "h": 980,
+      "page": "application",
+      "title": "06 · Priorités sur le plan : un drapeau par module, Déplacer, Ranger",
+      "w": 1440,
+      "x": 6080,
+      "y": 0,
+      "is_interactive": true
+    },
+    "AppArbre.dc.html": {
+      "h": 1046,
+      "page": "application",
+      "title": "07 · L’Arbre : une colonne par soumission, le chemin vers un drapeau",
+      "w": 1440,
+      "x": 7600,
+      "y": 0,
+      "is_interactive": true
     }
   },
   "createdOnFiles": {
@@ -476,8 +503,8 @@
       "title": "Rooftop Design System",
       "namespace": "rooftop",
       "artifact": "https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd",
-      "version": "1794696043-ce9c",
-      "copiedAt": "2026-11-14T22:41:05Z"
+      "version": "1794728141-3275",
+      "copiedAt": "2026-11-15T07:36:23Z"
     }
   ],
   "launch": {
@@ -594,7 +621,7 @@
     },
     "t-app": {
       "kind": "title1",
-      "maxW": 4480,
+      "maxW": 9040,
       "page": "application",
       "text": "Rooftop sur le tapis de jeu",
       "x": 0,
@@ -666,7 +693,10 @@
     "AppPlateau.dc.html",
     "App-Chantier.dc.html",
     "App-Chemin.dc.html",
-    "Planche-Plateau.dc.html"
+    "Planche-Plateau.dc.html",
+    "AppQuestions.dc.html",
+    "AppPriorites.dc.html",
+    "AppArbre.dc.html"
   ],
   "pages": [
     {

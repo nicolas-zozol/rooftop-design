@@ -23,8 +23,8 @@ Rooftop montre l'avancement d'un projet comme une partie en cours : les modules 
 - Une epic seule dans son module fusionne le bandeau en haut de sa carte : ne dessine pas deux en-têtes empilés.
 - Espace les modules de `gap-module`, les epics d'un même module de `pad-tapis`, l'intérieur d'un module de `pad-module`.
 - Une epic repliée fait `taille-epic-repliee` (240 px) de large. Une epic déroulée prend la largeur de son cadre, et au moins `taille-chantier` quand le chantier est ouvert.
-- Ne dessine aucune flèche de dépendance sur le plan : il y en aurait trop. Montre seulement la dépendance qui bloque l'item en cours, sur la carte de l'epic qu'elle bloque : « ⊖ attend BATCHES » en `blocage-texte`.
-- Borde en tirets `tirets-bloquee` une epic bloquée et remplace sa pastille fuchsia par `accent-bloque`.
+- Ne dessine aucune flèche de dépendance sur le plan : il y en aurait trop. Montre seulement la dépendance qui bloque l'item en cours, sur la carte de l'epic qu'elle bloque : « ⊖ attend BATCHES » en `blocage-texte`. Les liens se dessinent dans l'Arbre, et seulement là.
+- Borde en tirets `tirets-bloquee` une epic bloquée et remplace sa pastille sarcelle par `accent-bloque`.
 
 ## Le plateau
 
@@ -39,21 +39,23 @@ Rooftop montre l'avancement d'un projet comme une partie en cours : les modules 
 
 | État | Pièce | Jetons |
 |---|---|---|
-| en cours | tuile soulevée, pastille fuchsia au marteau | `tuile-en-cours`, `accent` ; puce d'état `accent-pale` / `accent-fonce` |
+| en cours | tuile soulevée, pastille sarcelle à l'engrenage | `tuile-en-cours`, `accent` ; puce d'état `accent-pale` / `accent-fonce` |
 | en cours, epic bloquée | même tuile, pastille grise | `accent-bloque` |
 | fait | tuile à plat, pastille blanche au drapeau vert | `tuile-faite`, `fait`, `fait-fonce` ; puce `fait-pale` / `fait-fonce` |
 | tenu | emplacement vide gravé, cadenas | `emplacement`, `emplacement-grave` ; puce `etat-tenu` / `etat-tenu-texte` |
 | hors batch | pile bordeaux | `hors-batch` ; puce `etat-hors-batch` / `etat-hors-batch-texte` |
 
-- Réserve `accent` (fuchsia) à « on agit ici » : la pastille d'une tuile en cours, le point d'une mini-tuile en cours, la puce « en cours ». Jamais en décor, jamais en fond large.
+- Réserve `accent` (sarcelle) à « on agit ici » : la pastille d'une tuile en cours, le point d'une mini-tuile en cours, la puce « en cours ». Jamais en décor, jamais en fond large.
 - Réserve `fait` (vert) à fait et done : drapeau, coche done, puce « OQ ✓ ».
 - Réserve l'orange (`oq-ouverte-*`, `rloq`, `etape-pas-ready`) aux questions et le rouge (`blocage-*`) aux dépendances bloquantes. Une étape qui avance ne prend jamais ces couleurs.
 - Réserve `blocage` (rouge) aux blocages : puce « ⊖ n », cercle barré, texte `blocage-texte`, fond de ligne `blocage-fond`. Écris toujours le compte ou la cause à côté.
+- Écris toutes les puces dans le même ordre : le nombre, puis ce qu'il compte. « 3 OQ », « 1 RLOQ » (le mot, jamais un symbole), « 1 ⊖ ».
 - Montre les OQ sur chaque tuile : `oq-ouverte` / `oq-ouverte-bord` / `oq-ouverte-texte` avec le nombre (« 3 OQ »), ou `oq-ok` / `oq-ok-bord` / `oq-ok-texte` (« OQ ✓ »). S'il y a des RLOQ, ajoute la puce pleine `rloq` / `rloq-texte` (« 1 RLOQ »). Dans le chantier, la puce devient un lien vers les OQ du batch.
 - Calcule l'avancement, ne le saisis jamais : une story vaut ses étapes franchies sur six (design file = 3/6 = 50 %, done = 100 %) ; un batch, la moyenne de ses stories (tenu 0 %, fait 100 %, stories écartées ignorées) ; une epic, la moyenne de ses batchs ; un module, la moyenne de ses epics. Une epic sans batch est à 0 %. Exemple : quatre batchs dont un seul a toutes ses stories au design file : 50 % / 4 = 12,5 %.
 - Dis l'avancement d'une epic par son anneau : `avancement-a-faire` (0 %), `avancement-en-cours`, `avancement-fini` (100 %, coche dans l'anneau), `avancement-fait` (mergée), sur piste `ligne-forte`. Le pourcentage est écrit à côté.
 - Garde les mêmes faits partout : la tuile, sa mini-tuile, le pied de l'epic repliée et le chantier lisent les mêmes stories. Un batch est fait seulement quand toutes ses stories sont done ; une epic bloquée a la pastille `accent-bloque` sur sa tuile et la puce « attend BATCHES » dans son chantier.
 - `module-en-cours` (ambre) ne sert qu'au glyphe demi-plein du bandeau de module.
+- Réserve `priorite` (doré) et `priorite-bord` au fanion du drapeau de priorité, et `priorite-pale` au survol des cibles en mode Drapeau. Le doré ne dit jamais un état.
 
 ## Les étapes d'une story
 
@@ -80,9 +82,28 @@ Rooftop montre l'avancement d'un projet comme une partie en cours : les modules 
 
 ## Le chemin de déblocage
 
-- Quand on demande comment débloquer une story, affiche en haut du plan le bandeau `inverse` : « Pour débloquer le design file de plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », numéros en pastilles `texte-inverse`, bouton « Quitter le chemin » en `inverse-2`.
+- Quand on demande comment débloquer une story, affiche en bas du plan le bandeau `inverse` : « Pour débloquer le design file de plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », numéros en pastilles `texte-inverse`, bouton « Quitter le chemin » en `inverse-2`.
 - Numérote les étapes sur les tuiles mêmes, pastille `selection` bordée de `surface`, en haut à gauche.
 - Estompe tout ce qui n'est pas sur le chemin : epics, tuiles et pile à `opacite-estompe`, mini-tuiles à `opacite-mini-estompe`. Ne masque rien.
+
+## Priorités : le drapeau, l'ordre, Ranger
+
+- Lis le plan comme une page : en haut à gauche, le plus prioritaire. Les modules se suivent dans cet ordre, puis les epics dans leur module. On règle l'ordre à la main, en mode Déplacer.
+- Chaque module porte au plus un drapeau de priorité, le fanion doré, posé sur une de ses epics, un de ses batchs ou une de ses stories. Le reposer ailleurs dans le module le déplace ; recliquer sur sa cible le retire.
+- Montre le drapeau partout où sa cible se voit : en-tête d'epic, tuile et mini-tuile (aussi quand il est sur une de leurs stories), ligne de story du chantier, et la puce du bandeau de module, qui nomme la cible en mono (« plugin-split », « B-TOOLMAN-1 »).
+- Trois modes dans la barre du plan, chacun avec sa touche : **Ouvrir** (V, par défaut : un clic sur le bandeau d'une epic l'ouvre ou la ferme), **Déplacer** (M : on glisse les epics et les modules, ou on les sélectionne puis ← →), **Drapeau** (F : outil ponctuel, on clique la cible, puis on revient au mode d'avant). Échap annule.
+- **Ranger par priorité** (R pour tout le plan, « Ranger » dans le bandeau pour un module) remet les epics du module dans cet ordre : les prérequis de l'epic au drapeau qui sont dans le module, l'epic au drapeau, les epics en cours de la plus avancée à la moins avancée (finir avant de commencer), les pas commencées, les bloquées, les finies. Sans drapeau, on commence aux epics en cours.
+- Après une pose ou un rangement, écris le bilan en bas du plan, avec « Annuler » : le nouvel ordre numéroté et la raison de chaque place (« prérequis de RTWORKTREES », « en cours · 92 % », « pas commencée », « attend BATCHES »). Si l'epic au drapeau attend un autre module, dis-le : « PLUGIN attend aussi B-TOOLMAN-2, dans le module Toolman, qui garde sa propre priorité », et renvoie à l'Arbre.
+- La priorité reste par module, même quand l'arbre traverse les modules : Rooftop montre le lien, il ne touche jamais au drapeau d'un autre module.
+
+## L'Arbre
+
+- Troisième vue, après Questions et Blueprint, et la seule où l'on dessine des dépendances.
+- Une ligne par epic, sous le bandeau de son module, dans l'ordre du plan. Une colonne par soumission à venir : « Fait », « Maintenant », « +1 », « +2 »… Un batch se place dans la première colonne où tout ce qui le relie à sa gauche est soumis ; un batch commencé qui ne peut finir que plus tard est relié à « Maintenant » par des pointillés `accent`.
+- Nœuds en petit carton (116 × 58) : id court en mono, cubes des stories ou « tenu », compte, pastille d'état. Les batchs faits se regroupent dans « Fait » (« B1–B3 ✓ »). Une epic sans batch montre sa commande dans un cadre en tirets.
+- Deux liens seulement : trait plein `cadre-arete` vers le batch suivant de l'epic ; tirets `blocage` coudés à angle droit, flèche vers le batch qui attend, pour une dépendance bloquante.
+- En haut, choisis le chemin : vers le drapeau d'un module, ou vers un batch cliqué. Le chemin passe en `selection` (trait 2,5 px, pastilles numérotées), le reste à 0,45 ; le bandeau du bas l'écrit (« Chemin vers plugin-split, drapeau de RB Compound : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 → 3 B-PLUGIN-1 ») et signale un drapeau d'un autre module sur le chemin.
+- Le mode Drapeau (F) y marche aussi : clic sur un batch, ou sur le nom d'une epic.
 
 ## Typographie
 
@@ -100,7 +121,7 @@ Rooftop montre l'avancement d'un projet comme une partie en cours : les modules 
 
 ## Iconographie
 
-- Dessine les icônes en SVG inline, trait `currentColor` de 1,3 à 1,6, extrémités arrondies, sur une grille de 12 ou 14 : cadenas (tenu), marteau (en cours), drapeau (fait), coche dans un cercle (done, OQ ✓), cercle barré (dépendance bloquante), point d'interrogation dans un disque `rloq` (RLOQ), cible (« Voir sur le plan »), copie, croix, flèche sortante (lien OQ), chevron (replier), grille (module).
+- Dessine les icônes en SVG inline, trait `currentColor` de 1,3 à 1,6, extrémités arrondies, sur une grille de 12 ou 14 : cadenas (tenu), engrenage plein (en cours), drapeau (fait), coche dans un cercle (done, OQ ✓), cercle barré (dépendance bloquante), pour une RLOQ, la puce « RLOQ » écrite, jamais un point d'interrogation, cible (« Voir sur le plan »), copie, croix, flèche sortante (lien OQ), chevron (replier), grille (module), fanion doré (drapeau de priorité, plein, jamais au trait), flèche de pointeur (Ouvrir), main (Déplacer), poignée à six points (pièce qu'on déplace), lignes et flèche vers le bas (Ranger), chevrons ‹ › (rang).
 - Marque `aria-hidden="true"` toute icône doublée d'un texte, et donne un `aria-label` à celle qui est seule (la pastille d'une tuile : « en cours », « fait »).
 - Rooftop n'a pas de logo dans ses sources : écris le nom en texte.
 
@@ -112,6 +133,7 @@ Rooftop montre l'avancement d'un projet comme une partie en cours : les modules 
 - L'anneau de focus est `selection`, plein, 2,5 px, décalé de 3 px : 11:1 sur `cadre`, 9:1 sur `emplacement`.
 - Les tuiles et la pile sont des boutons : `aria-pressed` quand le chantier est ouvert sur elles, `title` avec l'état complet (« B1 · en cours · 4 stories · 3 OQ à répondre »).
 - Un état ne repose jamais sur la seule couleur : chaque pastille a son icône, chaque puce son nombre, chaque étape sa colonne nommée dans le chantier et un `title` sur sa case.
+- Le plan prend le focus pour ses raccourcis (V, M, F, R, Échap, ← → en Déplacer) ; chaque bouton de mode porte `aria-pressed` et montre sa touche. Glisser a toujours son équivalent : les flèches de la pastille de rang et le clavier. Les cibles du mode Drapeau sont des boutons, soulignées aussi au focus.
 
 ## Utiliser le système
 

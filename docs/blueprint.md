@@ -179,7 +179,7 @@ Page *Application · tapis de jeu* du canevas. Composant unique `EpicPlateau` (p
 
 **Epic déroulée.** Le corps de l'epic est un tapis de jeu bleu (feutre, couture). Un cadre gris à emplacements contient un emplacement par batch, dans l'ordre :
 - tenu : emplacement vide gravé (id, cadenas, « tenu par B1 », nombre de stories) ;
-- en cours : tuile crème légèrement soulevée, pastille fuchsia (grise si l'epic est bloquée) ;
+- en cours : tuile crème légèrement soulevée, pastille sarcelle à l'engrenage (grise si l'epic est bloquée) ;
 - fait : tuile verte en place, drapeau vert.
 
 Chaque tuile montre son id, un cube par story à la couleur de sa dernière étape franchie (section 11), les OQ (« 3 OQ » ambre ou « OQ ✓ » vert), les RLOQ (puce orange pleine), les blocages (⊖ n), le nombre de stories. La pile bordeaux « Hors batch » suit le cadre, seulement si elle contient des stories.
@@ -188,7 +188,7 @@ Chaque tuile montre son id, un cube par story à la couleur de sa dernière éta
 
 **Epic repliée (240 px).** En-tête, titre, « ⊖ attend BATCHES » si son batch en cours est bloqué par une autre epic (aucune flèche sur le plan), bande de tapis avec une mini-tuile par batch (grise à cadenas, crème à pastille, verte cochée) et la mini-pile hors batch, puis OQ cumulées, RLOQ, blocages et position (« B1/5 »). Sans batch : « aucun batch pour l'instant » et la commande `epicman`.
 
-**Chemin de déblocage.** « Voir sur le plan » : bandeau noir en haut du plan (« Pour débloquer le design file de plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », Quitter), numéros 1 et 2 sur les tuiles concernées (aussi sur les mini-tuiles d'une epic repliée), tout le reste estompé à 35 %, la story bloquée surlignée dans le chantier.
+**Chemin de déblocage.** « Voir sur le plan » : bandeau noir en bas du plan (« Pour débloquer le design file de plugin-split, soumettre : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 », Quitter), numéros 1 et 2 sur les tuiles concernées (aussi sur les mini-tuiles d'une epic repliée), tout le reste estompé à 35 %, la story bloquée surlignée dans le chantier.
 
 À faire ensuite : sombre (le tapis l'est déjà ; reste la barre et le plan), mobile, branches parallèles 1a/1b sur les tuiles. Les nombres d'OQ et les textes d'action des maquettes sont fictifs.
 
@@ -196,7 +196,7 @@ Chaque tuile montre son id, un cube par story à la couleur de sa dernière éta
 
 Artefact **Rooftop Design System** : https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd (copie dans [`design/design-system/`](../design/design-system/)). Il survit à la fermeture de Claude Design autonome (14 décembre 2026) : c'est un artefact Claude, comme le canevas.
 
-**Contenu.** `tokens.json` (la source : 84 couleurs, 17 styles de texte en trois familles Inter / JetBrains Mono / Alegreya, espacements, rayons, ombres, tailles des pièces, opacités du chemin), `tokens.css` (les mêmes en variables CSS), `README.md` (le brand book : vocabulaire, plan et plateau, états, étapes, chantier, chemin, typographie, icônes, contraste), `components/bundle.css` (classes `rt-` des pièces) et onze pièces avec aperçu et mode d'emploi : BandeauModule, EnTeteEpic, EpicRepliee, BandeauChemin, Cadre, Emplacement, Tuile, CubeEtape, Jeton, HorsBatch, Chantier.
+**Contenu.** `tokens.json` (la source : 87 couleurs, 17 styles de texte en trois familles Inter / JetBrains Mono / Alegreya, espacements, rayons, ombres, tailles des pièces, opacités du chemin), `tokens.css` (les mêmes en variables CSS), `README.md` (le brand book : vocabulaire, plan et plateau, états, étapes, chantier, chemin, typographie, icônes, contraste), `components/bundle.css` (classes `rt-` des pièces) et quatorze pièces avec aperçu et mode d'emploi : BandeauModule, EnTeteEpic, EpicRepliee, BandeauChemin, Cadre, Emplacement, Tuile, CubeEtape, Jeton, HorsBatch, Chantier, Drapeau, ModesDuPlan, Arbre.
 
 **Dans le canevas.** Une copie est installée dans `ds/rooftop/` (enregistrée dans `canvas.json`, champ `designSystems`). `EpicPlateau`, `AppPlateau`, `App-Chantier`, `App-Chemin`, `Planche-Plateau` et la nouvelle planche `Palette-Plateau` lient `ds/rooftop/tokens.css` et n'ont plus aucune couleur en dur : tout passe par `var(--jeton)` (dans les SVG, par `style="fill:var(--…)"`). Pour changer une couleur : la modifier dans le design system, puis recopier ses fichiers dans `ds/rooftop/` du canevas ; les planches suivent.
 
@@ -217,3 +217,27 @@ Artefact **Rooftop Design System** : https://claude.ai/artifact/55BLU1ow7qCzDD55
 Valeurs des maquettes, recalculées : PLUGIN 7 %, QUALITYGATES 6 %, WORKTREE 50 %, TOOLMAN 11 % (module Toolman 11 %), PIPELINE 0 %, BATCHES 92 %, RTWORKTREES 6 %, TRWG 0 % ; module RB Compound 27 %.
 
 **Cohérence des états.** Tuile, mini-tuile, pied de l'epic repliée et chantier lisent les mêmes stories. Un batch est fait seulement quand toutes ses stories sont done. Une epic bloquée a la pastille grise sur sa tuile, « ⊖ attend BATCHES » sur sa carte, la puce « attend BATCHES » et le cercle barré sur la prochaine case de chaque story dans son chantier. BATCHES n'est plus présentée comme finie : son B4 (unblock-path, code fait) doit passer submitted pour débloquer RTWORKTREES.
+
+## 12. Lisibilité des puces, accent sarcelle, vue Questions
+
+**Accent.** Le fuchsia devient sarcelle (`accent` #0d9488) : pastille ronde à l'engrenage blanc sur une tuile en cours, point d'une mini-tuile en cours, puce « en cours ». Il garde son sens, « on agit ici », et n'est jamais décoratif.
+
+**Puces.** Toujours le nombre d'abord, puis ce qu'il compte : « 3 OQ », « 1 RLOQ » (le mot, jamais un point d'interrogation), « 1 ⊖ ». Même ordre sur la tuile, le pied de l'epic repliée et le chantier.
+
+**Mini-tuiles.** Un clic sur une mini-tuile d'une epic repliée la déroule et ouvre ce batch en un seul geste ; un clic sur le bandeau de l'epic la replie entièrement et ferme le chantier.
+
+**Vue Questions (planche 05).** À gauche, les modules et leurs epics avec leurs puces OQ et RLOQ. À droite, pour l'epic choisie : d'abord les RLOQ, une carte chacune avec la proposition du boss et une réponse à écrire (le boss s'arrête tant qu'elles n'ont pas de réponse, jamais de LGTM en bloc) ; puis les OQ, groupées par batch puis par story, chacune avec la proposition du boss. Un bouton « LGTM sur les N OQ » accepte en un clic toutes les propositions des OQ, jamais celles des RLOQ, et peut s'annuler.
+
+## 13. Priorités sur le plan, et l'Arbre
+
+**L'ordre est la priorité.** On lit le plan comme une page : en haut à gauche, le plus prioritaire, d'abord pour les modules, puis pour les epics dans leur module. On règle cet ordre à la main.
+
+**Un drapeau par module.** Fanion doré (`priorite`, `priorite-bord`), distinct du drapeau vert « fait ». Il se pose sur une epic, un batch ou une story du module ; le reposer ailleurs dans le module le déplace, recliquer dessus le retire. Il apparaît sur la cible (en-tête, tuile, mini-tuile, ligne du chantier ; le batch d'une story au drapeau le porte aussi) et dans le bandeau du module, qui nomme la cible. La priorité reste par module, même quand une epic attend un batch d'un autre module.
+
+**Trois modes, trois touches (planche 06).** Ouvrir (V, par défaut : un clic sur le bandeau d'une epic l'ouvre ou la ferme). Déplacer (M : curseur main, poignée, rang « ‹ n › » au-dessus de chaque epic et module ; on glisse, ou on sélectionne puis ← →). Drapeau (F : outil ponctuel, cibles soulignées au survol en tirets `priorite-bord` sur fond `priorite-pale`, retour au mode d'avant après la pose). Échap annule.
+
+**Ranger par priorité (R, ou « Ranger » dans le bandeau d'un module).** Ordre calculé dans le module : les prérequis de l'epic au drapeau qui sont dans le module ; l'epic au drapeau ; les epics en cours, de la plus avancée à la moins avancée (finir avant de commencer) ; les pas commencées ; les bloquées ; les finies. Sans drapeau, on commence aux epics en cours. Un bilan en bas du plan donne l'ordre, la raison de chaque place et « Annuler », et signale une dépendance vers un autre module. Exemple, drapeau sur plugin-split : PLUGIN, BATCHES (92 %), WORKTREE (50 %), QUALITYGATES (6 %), PIPELINE (pas commencée), RTWORKTREES (attend BATCHES) ; « PLUGIN attend aussi B-TOOLMAN-2, dans le module Toolman ». Drapeau sur RTWORKTREES : BATCHES passe en tête comme prérequis.
+
+**L'Arbre (planche 07), troisième onglet.** Seule vue où l'on dessine des dépendances. Une ligne par epic, sous le bandeau de son module, dans l'ordre du plan ; une colonne par soumission à venir (« Fait », « Maintenant », « +1 »…) : un batch se place dans la première colonne où tout ce dont il dépend est soumis. B-PLUGIN-1, commencé mais qui attend B-TOOLMAN-2, est donc en « +2 », relié à « Maintenant » par des pointillés sarcelle. Liens : trait plein vers le batch suivant de l'epic, tirets rouges coudés avec flèche pour une dépendance bloquante. On choisit en haut le chemin à montrer (vers le drapeau d'un module ou vers un batch cliqué) : il passe en noir avec des étapes numérotées, le reste est estompé, et le bandeau l'écrit : « Chemin vers plugin-split, drapeau de RB Compound : 1 B-TOOLMAN-1 → 2 B-TOOLMAN-2 → 3 B-PLUGIN-1 ; B-TOOLMAN-1 porte aussi le drapeau de Toolman ».
+
+**Ouvert.** Le critère « plus avancée d'abord » pour les epics en cours ; le sens des colonnes de l'Arbre (quand un batch peut finir, plutôt que quand il peut démarrer) ; proposer ou non de remonter un module dont dépend l'epic au drapeau d'un autre module. Le glisser-déposer n'est pas vérifié dans le canevas ; les flèches de rang et le clavier font le même travail.

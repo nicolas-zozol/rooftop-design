@@ -48,6 +48,8 @@
 .rt-tuile--selection { transform: translateY(-5px); box-shadow: var(--ombre-tuile-selection); outline: 2.5px solid var(--selection); outline-offset: 3px; }
 .rt-tuile .rt-id { font-family: var(--font-mono); font-size: 17px; font-weight: 700; }
 .rt-tuile .rt-bas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap-cube); }
+.rt-tuile .rt-puce { font-size: 10px; padding: 0 4px; }
+.rt-tuile .rt-puce--blocage { padding: 0 3px 0 5px; }
 .rt-tuile .rt-compte { margin-left: auto; font-size: 10.5px; color: var(--tuile-muette); white-space: nowrap; }
 .rt-pastille { position: absolute; right: 5px; top: 5px; width: var(--taille-pastille); height: var(--taille-pastille); border-radius: var(--radius-rond); border: 2px solid var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; }
 .rt-pastille--en-cours { background: var(--accent); }
@@ -70,9 +72,8 @@
 .rt-puce { display: inline-flex; align-items: center; gap: 3px; height: 17px; padding: 0 5px; border-radius: var(--radius-puce); border: 1px solid transparent; font-size: 10.5px; font-weight: 700; white-space: nowrap; }
 .rt-puce--oq { background: var(--oq-ouverte); border-color: var(--oq-ouverte-bord); color: var(--oq-ouverte-texte); }
 .rt-puce--oq-ok { background: var(--oq-ok); border-color: var(--oq-ok-bord); color: var(--oq-ok-texte); }
-.rt-puce--blocage { background: var(--blocage); color: var(--surface); padding-left: 3px; }
+.rt-puce--blocage { background: var(--blocage); color: var(--surface); padding: 0 3px 0 6px; }
 .rt-puce--rloq { background: var(--rloq); color: var(--rloq-texte); }
-.rt-puce--icone { padding-left: 3px; }
 
 /* Pile Hors batch */
 .rt-pile { position: relative; width: 128px; height: 120px; flex: none; padding: 0; border: 0; background: transparent; cursor: pointer; font-family: var(--font-sans); }
@@ -140,5 +141,43 @@
 .rt-chemin .rt-num { background: var(--texte-inverse); color: var(--inverse); }
 .rt-chemin .rt-mono { font-family: var(--font-mono); font-weight: 600; }
 .rt-chemin button { height: 30px; margin-left: 4px; padding: 0 12px; border-radius: 999px; border: 0; background: var(--inverse-2); color: var(--texte-inverse); font-family: var(--font-sans); font-size: 12px; font-weight: 600; cursor: pointer; }
+
+/* Priorité : fanion, modes du plan, rang, Ranger, cibles du mode Drapeau */
+.rt-fanion { display: inline-flex; flex: none; }
+.rt-puce-drapeau { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 8px 0 6px; border-radius: 11px; background: rgba(255,255,255,0.12); color: var(--bandeau-texte); font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+.rt-puce-drapeau--aucun { padding: 0 8px; border: 1px dashed var(--bandeau-muet); background: transparent; color: var(--bandeau-muet); font-family: var(--font-sans); font-size: 11px; font-weight: 400; }
+.rt-barre { display: flex; align-items: center; gap: 8px; }
+.rt-modes { display: flex; gap: 2px; padding: 3px; border-radius: 9px; background: var(--surface); border: 1px solid var(--ligne); box-shadow: var(--ombre-carte); }
+.rt-mode { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 6px 0 8px; border: 0; border-radius: 6px; background: transparent; color: var(--encre-2); font-family: var(--font-sans); font-size: 12.5px; font-weight: 500; cursor: pointer; }
+.rt-mode[aria-pressed="true"] { background: var(--surface-creuse); color: var(--encre); font-weight: 600; }
+.rt-outil { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 8px 0 10px; border-radius: 7px; border: 1px solid var(--ligne); background: var(--surface); color: var(--encre); font-family: var(--font-sans); font-size: 12.5px; font-weight: 500; cursor: pointer; box-shadow: var(--ombre-carte); }
+.rt-outil--drapeau[aria-pressed="true"] { background: var(--priorite-pale); border-color: var(--priorite-bord); color: var(--priorite-bord); }
+.rt-kbd { min-width: 16px; height: 18px; box-sizing: border-box; padding: 0 4px; border-radius: 4px; border: 1px solid var(--ligne-forte); background: var(--surface-creuse); font-family: var(--font-mono); font-size: 10.5px; line-height: 16px; text-align: center; color: var(--encre-2); }
+.rt-rang { position: absolute; z-index: 3; left: 12px; top: -13px; display: flex; align-items: center; gap: 1px; height: 24px; padding: 0 2px; border-radius: 12px; background: var(--inverse); color: var(--texte-inverse); box-shadow: 0 2px 6px rgba(0,0,0,0.3); }
+.rt-rang button { width: 20px; height: 20px; padding: 0; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 10px; background: transparent; color: inherit; cursor: pointer; }
+.rt-rang button[aria-disabled="true"] { opacity: 0.35; cursor: default; }
+.rt-rang .rt-n { min-width: 16px; text-align: center; font-size: 11.5px; font-weight: 800; }
+.rt-ranger { display: flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px 0 7px; border: 0; border-radius: 6px; background: rgba(255,255,255,0.12); color: var(--bandeau-texte); font-family: var(--font-sans); font-size: 12px; font-weight: 600; cursor: pointer; }
+.rt-cible:hover, .rt-cible:focus-visible, .rt-cible--survol { outline: 2px dashed var(--priorite-bord); outline-offset: 3px; }
+.rt-cible-fond:hover, .rt-cible-fond:focus-visible, .rt-cible-fond--survol { background: var(--priorite-pale); box-shadow: inset 0 0 0 1.5px var(--priorite-bord); }
+.rt-saisir { cursor: grab; }
+.rt-saisir:active { cursor: grabbing; }
+.rt-saisir:hover { outline: 2px dashed var(--ligne-forte); outline-offset: 3px; }
+.rt-bilan { display: inline-flex; flex-direction: column; gap: 9px; padding: 12px 12px 12px 16px; border-radius: 14px; background: var(--inverse); color: var(--texte-inverse); font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+.rt-bilan ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.rt-bilan li { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 9px 0 4px; border-radius: 13px; background: var(--inverse-2); }
+.rt-bilan li .rt-num { width: 18px; height: 18px; background: var(--texte-inverse); color: var(--inverse); font-size: 10.5px; }
+.rt-bilan .rt-raison { font-size: 11.5px; opacity: 0.75; white-space: nowrap; }
+
+/* Arbre : colonnes de soumissions, une ligne par epic */
+.rt-noeud { position: relative; width: 116px; height: 58px; box-sizing: border-box; padding: 6px 7px 6px 8px; border: 0; border-radius: var(--radius-tuile); background: var(--tuile-en-cours); box-shadow: var(--ombre-tuile-en-cours); color: var(--tuile-encre); font-family: var(--font-sans); text-align: left; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+.rt-noeud--tenu { background: var(--emplacement); box-shadow: inset 0 1px 3px rgba(0,0,0,0.35); color: var(--emplacement-grave); }
+.rt-noeud--hors-chemin { opacity: 0.45; }
+.rt-noeud .rt-id { font-family: var(--font-mono); font-size: 15px; font-weight: 700; line-height: 18px; }
+.rt-noeud .rt-pastille { right: 4px; top: 4px; width: 18px; height: 18px; border-width: 1.5px; }
+.rt-noeud .rt-cube { width: 10px; height: 10px; }
+.rt-noeud-fait { width: 92px; height: 40px; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: var(--radius-tuile); background: var(--tuile-faite); box-shadow: var(--ombre-tuile-posee); font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--tuile-encre); }
+.rt-colonne-maintenant { border-radius: 10px; background: var(--accent-pale); opacity: 0.5; }
+.rt-colonne-tete { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-align: center; color: var(--encre-2); }
 
 @media (prefers-reduced-motion: reduce) { .rt-tuile { transition: none; } }

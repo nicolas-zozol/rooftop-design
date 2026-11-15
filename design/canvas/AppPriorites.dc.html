@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Rooftop, priorités sur le plan</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/rooftop/tokens.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0}
+.rt-cible:hover,.rt-cible:focus-visible{outline:2px dashed var(--priorite-bord) !important;outline-offset:3px !important}
+.rt-cible-fond:hover,.rt-cible-fond:focus-visible{background:var(--priorite-pale) !important;box-shadow:inset 0 0 0 1.5px var(--priorite-bord)}
+.rt-saisir{cursor:grab}
+.rt-saisir:active{cursor:grabbing}
+.rt-saisir:hover{outline:2px dashed var(--ligne-forte);outline-offset:3px}
+</style>
+</helmet>
+<div tabindex="0" onKeyDown="{{onKey}}" aria-label="Plan Blueprint. Raccourcis : V ouvrir, M déplacer, F drapeau, R ranger, Échap annuler." style="width:1440px;height:{{H}}px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;outline:none;background:var(--surface);color:var(--encre);font-family:var(--font-sans);font-size:13px;line-height:1.35">
+
+<header style="height:48px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:16px;padding:0 12px 0 14px;border-bottom:1px solid var(--ligne);background:var(--surface)">
+<nav aria-label="Vues" style="display:flex;gap:2px;padding:3px;border-radius:9px;background:var(--surface-creuse)">
+<a href="#questions" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:var(--encre-muette);font-size:13px;font-weight:500;text-decoration:none">Questions</a>
+<a href="#blueprint" aria-current="page" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;background:var(--surface);color:var(--encre);font-size:13px;font-weight:500;text-decoration:none;box-shadow:var(--ombre-carte)">Blueprint</a>
+<a href="#arbre" style="display:flex;align-items:center;height:28px;padding:0 12px;border-radius:7px;color:var(--encre-muette);font-size:13px;font-weight:500;text-decoration:none">Arbre</a>
+</nav>
+<span style="flex:1"></span>
+<div style="display:flex;align-items:center;gap:12px;font-size:12px;color:var(--encre-2)">
+<span style="font-family:var(--font-mono);font-size:11.5px;color:var(--encre);padding:3px 8px;border-radius:6px;background:var(--surface-creuse);border:1px solid var(--ligne)">epic/rooftop-batches-epic</span>
+<span>37 fichiers à commiter</span>
+<span aria-hidden="true" style="width:1px;height:16px;background:var(--ligne)"></span>
+<span>intégration : <span style="font-family:var(--font-mono);font-size:11.5px;color:var(--encre)">main</span></span>
+<button type="button" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre);font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte)">Relire git</button>
+</div>
+</header>
+
+<main aria-label="Plan" style="flex:1;min-height:0;position:relative;overflow:hidden;cursor:{{curseur}};background-color:var(--surface-plan);background-image:radial-gradient(var(--surface-plan-point) 1px, transparent 1.3px);background-size:18px 18px">
+
+<div style="position:absolute;left:16px;top:12px;display:flex;align-items:center;gap:8px;z-index:4">
+<div role="group" aria-label="Mode du plan" style="display:flex;gap:2px;padding:3px;border-radius:9px;background:var(--surface);border:1px solid var(--ligne);box-shadow:var(--ombre-carte)">
+<button type="button" onClick="{{toOuvrir}}" aria-pressed="{{isOuvrir}}" title="Ouvrir : un clic sur le bandeau d’une epic l’ouvre ou la ferme" style="display:flex;align-items:center;gap:6px;height:26px;padding:0 6px 0 8px;border:0;border-radius:6px;font-family:inherit;font-size:12.5px;cursor:pointer;background:{{ouvBg}};color:{{ouvCol}};font-weight:{{ouvFw}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M3 2l7.6 4.4-3.3.8-1.4 3.2Z"></path></svg>Ouvrir<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">V</kbd></button>
+<button type="button" onClick="{{toDeplacer}}" aria-pressed="{{isDeplacer}}" title="Déplacer : on range les epics et les modules à la main" style="display:flex;align-items:center;gap:6px;height:26px;padding:0 6px 0 8px;border:0;border-radius:6px;font-family:inherit;font-size:12.5px;cursor:pointer;background:{{depBg}};color:{{depCol}};font-weight:{{depFw}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.6 7.4V3.2a.9.9 0 0 1 1.8 0v3.4M6.4 6.4V2.4a.9.9 0 0 1 1.8 0v4M8.2 6.4V3a.9.9 0 0 1 1.8 0v3.6M10 6.6V4.6a.9.9 0 0 1 1.8 0v3.8c0 2.4-1.6 4.1-3.9 4.1H7.4c-1.3 0-2.2-.6-2.9-1.6L2.6 8.1a.9.9 0 0 1 1.4-1.1l.6.7"></path></svg>Déplacer<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">M</kbd></button>
+</div>
+<button type="button" onClick="{{toDrapeau}}" aria-pressed="{{isDrapeau}}" title="Poser le drapeau de priorité d’un module sur une epic, un batch ou une story" style="height:32px;display:flex;align-items:center;gap:6px;padding:0 10px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte);padding:0 8px 0 10px;background:{{drBg}};border-color:{{drBd}};color:{{drCol}}"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg>Drapeau<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">F</kbd></button>
+<button type="button" onClick="{{rangerTout}}" title="Ranger les epics de chaque module selon son drapeau" style="height:32px;display:flex;align-items:center;gap:6px;padding:0 10px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte);padding:0 8px 0 10px"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5h6M2 7h4M2 10.5h2"></path><path d="M10.5 2.5v9M8.5 9.5l2 2 2-2"></path></svg>Ranger par priorité<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">R</kbd></button>
+<button type="button" onClick="{{replier}}" style="height:32px;display:flex;align-items:center;gap:6px;padding:0 10px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte);padding:0 12px">Tout replier</button>
+<button type="button" onClick="{{derouler}}" style="height:32px;display:flex;align-items:center;gap:6px;padding:0 10px;border-radius:7px;border:1px solid var(--ligne);background:var(--surface);color:var(--encre);font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer;box-shadow:var(--ombre-carte);padding:0 12px">Dérouler les débloquées</button>
+</div>
+
+<div style="position:absolute;left:32px;top:72px;width:1380px;display:flex;flex-wrap:wrap;align-items:flex-start;gap:32px 28px">
+<sc-for list="{{mods}}" as="m" hint-placeholder-count="3"><div class="{{m.wrapCls}}" onDragOver="{{m.dragOver}}" onDrop="{{m.drop}}" style="position:relative;flex:none;opacity:{{m.op}}">
+<sc-if value="{{m.showOrd}}" hint-placeholder-val="{{false}}"><span style="position:absolute;z-index:3;left:14px;top:-13px;display:flex;align-items:center;gap:1px;height:24px;box-sizing:border-box;padding:0 2px;border-radius:12px;background:var(--inverse);color:var(--texte-inverse);box-shadow:0 2px 6px rgba(0,0,0,0.3)"><button type="button" onClick="{{m.avant}}" aria-disabled="{{m.first}}" aria-label="Monter le module {{m.nom}} d’un rang" title="Plus prioritaire (←)" style="width:20px;height:20px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:transparent;color:inherit;opacity:{{m.avOp}};cursor:pointer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 2.5 4 6l3.5 3.5"></path></svg></button><span title="{{m.ordTitle}}" style="min-width:16px;text-align:center;font-size:11.5px;font-weight:800">{{m.ord}}</span><button type="button" onClick="{{m.apres}}" aria-disabled="{{m.last}}" aria-label="Descendre le module {{m.nom}} d’un rang" title="Moins prioritaire (→)" style="width:20px;height:20px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:transparent;color:inherit;opacity:{{m.apOp}};cursor:pointer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg></button></span></sc-if>
+<section aria-label="Module {{m.nom}}" style="box-sizing:border-box;border-radius:{{m.rad}};overflow:hidden;background:{{m.bg}};border:1px solid var(--ligne);box-shadow:{{m.sh}};outline:{{m.outline}};outline-offset:3px">
+<div role="{{m.bandRole}}" tabindex="{{m.bandTab}}" draggable="{{m.drag}}" onDragStart="{{m.dragStart}}" onClick="{{m.select}}" aria-label="{{m.bandLabel}}" style="background:var(--bandeau);color:var(--bandeau-texte);cursor:{{m.bandCur}}">
+<div style="display:flex;align-items:center;gap:8px;height:40px;padding:0 10px 0 12px">
+<sc-if value="{{m.grip}}" hint-placeholder-val="{{false}}"><span style="display:flex;color:var(--bandeau-muet)"><svg aria-hidden="true" width="10" height="14" viewBox="0 0 10 14" style="flex:none"><g style="fill:currentColor"><circle cx="3" cy="3" r="1.1"></circle><circle cx="7" cy="3" r="1.1"></circle><circle cx="3" cy="7" r="1.1"></circle><circle cx="7" cy="7" r="1.1"></circle><circle cx="3" cy="11" r="1.1"></circle><circle cx="7" cy="11" r="1.1"></circle></g></svg></span></sc-if><sc-if value="{{m.noGrip}}" hint-placeholder-val="{{true}}"><span style="display:flex;color:var(--bandeau-muet)"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="1.5" width="4.5" height="4.5" rx="1"></rect><rect x="1.5" y="8" width="4.5" height="4.5" rx="1"></rect><rect x="8" y="8" width="4.5" height="4.5" rx="1"></rect></svg></span></sc-if>
+<span style="font-size:10px;font-weight:700;letter-spacing:0.08em;color:var(--bandeau-muet)">MODULE</span>
+<span style="font-size:{{m.nomTaille}}px;font-weight:700;white-space:nowrap">{{m.nom}}</span>
+<span style="flex:1"></span>
+<sc-if value="{{m.hasFlag}}" hint-placeholder-val="{{true}}"><span title="{{m.flagTitle}}" style="display:flex;align-items:center;gap:5px;height:22px;box-sizing:border-box;padding:0 {{m.flagPadR}}px 0 6px;border-radius:11px;background:rgba(255,255,255,0.12);font-family:var(--font-mono);font-size:11.5px;font-weight:600;white-space:nowrap"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg>{{m.flagLabel}}<sc-if value="{{m.canRemove}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{m.retirer}}" aria-label="Retirer le drapeau de {{m.nom}}" title="Retirer le drapeau" style="width:18px;height:18px;margin-left:1px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:9px;background:rgba(255,255,255,0.16);color:var(--bandeau-texte);cursor:pointer"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 3.5 10.5 10.5M10.5 3.5 3.5 10.5"></path></svg></button></sc-if></span></sc-if>
+<sc-if value="{{m.noFlagHint}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:22px;box-sizing:border-box;padding:0 8px;border-radius:11px;border:1px dashed var(--bandeau-muet);font-size:11px;color:var(--bandeau-muet);white-space:nowrap">aucun drapeau</span></sc-if>
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="4.6" fill="none" stroke-width="1.5" style="stroke:{{m.etatCol}}"></circle><path d="M6 1.4A4.6 4.6 0 0 0 6 10.6Z" opacity="{{m.demiOp}}" style="fill:var(--module-en-cours)"></path></svg>
+<span title="{{m.pctTitle}}" style="font-size:12.5px;font-weight:600">{{m.pct}} %</span>
+<sc-if value="{{m.canRanger}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{m.ranger}}" title="{{m.rangerTitle}}" style="display:flex;align-items:center;gap:5px;height:26px;margin-left:4px;padding:0 9px 0 7px;border:0;border-radius:6px;background:{{m.rangerBg}};color:var(--bandeau-texte);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5h6M2 7h4M2 10.5h2"></path><path d="M10.5 2.5v9M8.5 9.5l2 2 2-2"></path></svg>Ranger</button></sc-if>
+</div>
+<div style="height:4px;background:var(--bandeau-piste)"><div style="width:{{m.pct}}%;height:4px;background:var(--bandeau-texte)"></div></div>
+</div>
+<div style="box-sizing:content-box;width:{{m.w}};padding:{{m.pad}};display:{{m.disp}};flex-wrap:wrap;align-items:flex-start;gap:{{m.gap}}">
+<sc-for list="{{m.epics}}" as="e" hint-placeholder-count="3"><div class="{{e.wrapCls}}" draggable="{{e.drag}}" onDragStart="{{e.dragStart}}" onDragOver="{{e.dragOver}}" onDrop="{{e.drop}}" onDragEnd="{{dragEnd}}" onClick="{{e.select}}" style="position:relative;flex:none;border-radius:{{e.rad}};outline:{{e.outline}};outline-offset:3px;opacity:{{e.op}}">
+<sc-if value="{{e.showOrd}}" hint-placeholder-val="{{false}}"><span style="position:absolute;z-index:3;left:12px;top:-13px;display:flex;align-items:center;gap:1px;height:24px;box-sizing:border-box;padding:0 2px;border-radius:12px;background:var(--inverse);color:var(--texte-inverse);box-shadow:0 2px 6px rgba(0,0,0,0.3)"><button type="button" onClick="{{e.avant}}" aria-disabled="{{e.first}}" aria-label="Monter l’epic {{e.nom}} d’un rang" title="Plus prioritaire (←)" style="width:20px;height:20px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:transparent;color:inherit;opacity:{{e.avOp}};cursor:pointer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 2.5 4 6l3.5 3.5"></path></svg></button><span title="{{e.ordTitle}}" style="min-width:16px;text-align:center;font-size:11.5px;font-weight:800">{{e.ord}}</span><button type="button" onClick="{{e.apres}}" aria-disabled="{{e.last}}" aria-label="Descendre l’epic {{e.nom}} d’un rang" title="Moins prioritaire (→)" style="width:20px;height:20px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:transparent;color:inherit;opacity:{{e.apOp}};cursor:pointer"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2.5 8 6 4.5 9.5"></path></svg></button></span></sc-if>
+<div title="{{e.titre}}" style="width:{{e.cw}};min-width:240px;box-sizing:border-box;border-radius:{{e.rad}};background:var(--surface);border:{{e.bd}};box-shadow:{{e.sh}};overflow:hidden">
+
+<div role="{{e.headRole}}" tabindex="{{e.headTab}}" onClick="{{e.onHead}}" class="{{e.headCls}}" aria-label="{{e.headLabel}}" title="{{e.headLabel}}" style="display:flex;align-items:center;gap:8px;height:40px;box-sizing:border-box;padding:0 6px 0 12px;border-bottom:1px solid var(--ligne);cursor:{{e.headCur}}">
+<sc-if value="{{e.grip}}" hint-placeholder-val="{{false}}"><span style="display:flex;color:var(--encre-muette)"><svg aria-hidden="true" width="10" height="14" viewBox="0 0 10 14" style="flex:none"><g style="fill:currentColor"><circle cx="3" cy="3" r="1.1"></circle><circle cx="7" cy="3" r="1.1"></circle><circle cx="3" cy="7" r="1.1"></circle><circle cx="7" cy="7" r="1.1"></circle><circle cx="3" cy="11" r="1.1"></circle><circle cx="7" cy="11" r="1.1"></circle></g></svg></span></sc-if><sc-if value="{{e.noGrip}}" hint-placeholder-val="{{true}}"><span style="display:flex;color:var(--encre-2)"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V1.8"></path><path d="M3 2.3h7.6l-1.9 2.9 1.9 2.9H3"></path></svg></span></sc-if>
+<span style="font-size:10.5px;font-weight:700;letter-spacing:0.05em;line-height:18px;padding:0 6px;border-radius:5px;background:var(--etiquette-infix);color:var(--encre);white-space:nowrap">{{e.infix}}</span>
+<sc-if value="{{e.open}}" hint-placeholder-val="{{false}}"><span style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{e.titre}}</span></sc-if>
+<span style="flex:1"></span>
+<sc-if value="{{e.flagEpic}}" hint-placeholder-val="{{false}}"><span title="Drapeau de priorité du module : cette epic" style="display:flex"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if>
+<svg role="img" aria-label="avancement {{e.pct}} %" width="16" height="16" viewBox="0 0 16 16" style="flex:none"><circle cx="8" cy="8" r="6" fill="none" stroke-width="2.2" style="stroke:var(--ligne-forte)"></circle><circle cx="8" cy="8" r="6" fill="none" stroke-width="2.2" stroke-dasharray="{{e.ringDash}}" transform="rotate(-90 8 8)" style="stroke:{{e.ringCol}}"></circle></svg>
+<span style="font-size:12px;font-weight:500;color:var(--encre-2)">{{e.pct}} %</span>
+<span aria-hidden="true" style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;color:var(--encre-muette);opacity:{{e.chevOp}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="{{e.chev}}"></path></svg></span>
+</div>
+
+<sc-if value="{{e.folded}}" hint-placeholder-val="{{true}}"><div style="padding:9px 12px 11px;display:flex;flex-direction:column;gap:8px">
+<span style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{e.titre}}</span>
+<sc-if value="{{e.hasDep}}" hint-placeholder-val="{{false}}"><span title="Son batch en cours attend {{e.dep}}" style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--blocage-texte)"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg>attend<span style="font-size:10px;font-weight:700;letter-spacing:0.05em;line-height:15px;padding:0 5px;border-radius:4px;border:1px solid var(--blocage);color:var(--blocage-texte)">{{e.dep}}</span></span></sc-if>
+<div style="position:relative;height:44px;border-radius:6px;overflow:hidden;background:var(--tapis);box-shadow:inset 0 1px 3px rgba(0,0,0,0.4)">
+<svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%"><defs><filter id="{{e.fN}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.75  0 0 0 0 0.85  0 0 0 0 0.95  0.32 0 0 0 -0.1"></feColorMatrix></filter></defs><rect width="100%" height="100%" filter="{{e.fNu}}"></rect></svg>
+<div style="position:relative;display:flex;align-items:center;gap:6px;height:100%;padding:0 10px">
+<sc-for list="{{e.minis}}" as="n" hint-placeholder-count="4"><button type="button" onClick="{{n.act}}" class="{{n.cls}}" title="{{n.title}}" aria-label="{{n.label}}" style="position:relative;width:24px;height:24px;flex:none;box-sizing:border-box;padding:0;border:0;cursor:{{n.cur}};font:inherit;border-radius:3px;background:{{n.bg}};box-shadow:{{n.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{n.isTenu}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="9" height="9" viewBox="0 0 12 12" fill="none" stroke-width="1.6" stroke-linecap="round" style="stroke:var(--emplacement-grave)"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if><sc-if value="{{n.isCur}}" hint-placeholder-val="{{false}}"><span style="width:10px;height:10px;box-sizing:border-box;border-radius:50%;background:{{n.dot}};border:1.5px solid var(--surface)"></span></sc-if><sc-if value="{{n.isFait}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--fait)"></circle><path d="M4.2 7.2 6.1 9 9.9 5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if><sc-if value="{{n.flag}}" hint-placeholder-val="{{false}}"><span style="position:absolute;right:-5px;top:-7px;display:flex"><svg role="img" aria-label="drapeau de priorité" width="11" height="11" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if></button></sc-for>
+<sc-if value="{{e.hasHb}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{e.hbAct}}" title="{{e.hbTitle}}" aria-label="Hors batch de {{e.infix}}" style="position:relative;width:24px;height:24px;flex:none;box-sizing:border-box;padding:0;border:0;cursor:{{e.hbCur}};margin-left:6px;border-radius:3px;opacity:{{e.hbOp}};background:var(--hors-batch);box-shadow:inset 0 0 0 2px var(--hors-batch), inset 0 0 0 3px var(--hors-batch-lisere), 3px -3px 0 -1px var(--hors-batch-tranche)"><sc-if value="{{e.hbFlag}}" hint-placeholder-val="{{false}}"><span style="position:absolute;right:-5px;top:-7px;display:flex"><svg role="img" aria-label="drapeau de priorité" width="11" height="11" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if></button></sc-if>
+<sc-if value="{{e.noBatch}}" hint-placeholder-val="{{false}}"><span style="font-size:11.5px;font-weight:500;color:var(--tapis-texte)">aucun batch pour l'instant</span></sc-if>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:5px;height:18px">
+<sc-if value="{{e.hasOqF}}" hint-placeholder-val="{{true}}"><span style="display:flex;align-items:center;height:18px;box-sizing:border-box;padding:0 6px;border-radius:9px;background:{{e.oqF.bg}};border:1px solid {{e.oqF.bd}};color:{{e.oqF.col}};font-size:10.5px;font-weight:700;white-space:nowrap">{{e.oqF.txt}}</span></sc-if><sc-if value="{{e.hasRloqF}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:18px;box-sizing:border-box;padding:0 6px;border-radius:9px;background:var(--rloq);color:var(--rloq-texte);font-size:10.5px;font-weight:700;white-space:nowrap">{{e.rloqF}}</span></sc-if>
+<sc-if value="{{e.hasBlkF}}" hint-placeholder-val="{{false}}"><span title="{{e.blkF}} story arrêtée par une dépendance" style="display:flex;align-items:center;gap:3px;height:18px;box-sizing:border-box;padding:0 3px 0 6px;border-radius:9px;background:var(--blocage);color:var(--surface);font-size:10.5px;font-weight:700">{{e.blkF}}<svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--surface)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--blocage)"></rect></svg></span></sc-if>
+<span style="flex:1"></span>
+<span style="font-size:11px;color:var(--encre-muette);white-space:nowrap">{{e.piedF}}</span>
+</div>
+</div>
+<sc-if value="{{e.hasCmd}}" hint-placeholder-val="{{false}}"><div style="display:flex;align-items:center;gap:4px;height:32px;box-sizing:border-box;padding:0 12px;border-top:1px solid var(--ligne);background:var(--surface-creuse)"><code title="{{e.cmd}}" style="flex:1;min-width:0;font-family:var(--font-mono);font-size:11px;color:var(--encre-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{e.cmd}}</code></div></sc-if>
+</sc-if>
+
+<sc-if value="{{e.open}}" hint-placeholder-val="{{false}}"><div style="position:relative;overflow:hidden">
+<svg aria-hidden="true" style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:0"><defs><filter id="{{e.fA}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.75  0 0 0 0 0.85  0 0 0 0 0.95  0.32 0 0 0 -0.1"></feColorMatrix></filter><filter id="{{e.fB}}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="2" seed="8"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.05  0 0 0 0 0.12  0 0 0 0 0.22  0.6 0 0 0 -0.22"></feColorMatrix></filter></defs><rect width="100%" height="100%" style="fill:var(--tapis)"></rect><rect width="100%" height="100%" filter="{{e.fBu}}"></rect><rect width="100%" height="100%" filter="{{e.fAu}}"></rect></svg>
+<span aria-hidden="true" style="position:absolute;left:6px;top:6px;right:6px;bottom:6px;z-index:0;border-radius:8px;border:1.2px dashed rgba(136,171,209,0.6)"></span>
+<div style="position:relative;z-index:1;padding:20px 20px 22px;display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:24px">
+<div role="group" aria-label="Batchs de {{e.infix}}" style="display:flex;gap:8px;padding:10px;border-radius:10px;background:var(--cadre);box-shadow:var(--ombre-cadre)">
+<sc-for list="{{e.slots}}" as="s" hint-placeholder-count="4"><span style="position:relative;width:104px;height:104px;flex:none;border-radius:4px;background:var(--emplacement);box-shadow:var(--ombre-emplacement)">
+<sc-if value="{{s.isTenu}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{s.act}}" class="{{s.cls}}" aria-pressed="{{s.on}}" title="{{s.title}}" style="width:100%;height:100%;box-sizing:border-box;padding:0;border:0;border-radius:4px;background:transparent;outline:{{s.outline}};outline-offset:3px;cursor:{{s.cur}};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--emplacement-grave);text-shadow:0 1px 0 rgba(255,255,255,0.55);font-family:inherit">
+<span style="display:flex;align-items:center;gap:5px"><span style="font-family:var(--font-mono);font-size:20px;font-weight:700">{{s.id}}</span><sc-if value="{{s.flag}}" hint-placeholder-val="{{false}}"><span title="{{s.flagTitle}}" style="display:flex"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if></span>
+<span style="display:flex;align-items:center;gap:4px;font-size:11px;font-weight:600"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg>tenu par {{s.par}}</span>
+<span style="font-size:11px;font-weight:500">{{s.count}}</span>
+</button></sc-if>
+<sc-if value="{{s.isTile}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{s.act}}" class="{{s.cls}}" aria-pressed="{{s.on}}" title="{{s.title}}" style="position:absolute;left:0;top:0;width:104px;height:104px;box-sizing:border-box;padding:9px 8px 8px 9px;border:0;border-radius:4px;background:{{s.face}};transform:{{s.tf}};box-shadow:{{s.sh}};outline:{{s.outline}};outline-offset:3px;cursor:{{s.cur}};font-family:inherit;color:var(--tuile-encre);text-align:left;display:flex;flex-direction:column;justify-content:space-between">
+<span style="display:flex;align-items:center;gap:5px"><span style="font-family:var(--font-mono);font-size:17px;font-weight:700">{{s.id}}</span><sc-if value="{{s.flag}}" hint-placeholder-val="{{false}}"><span title="{{s.flagTitle}}" style="display:flex"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if></span>
+<span role="img" aria-label="{{s.cubesLabel}}" style="display:flex;flex-wrap:wrap;gap:4px"><sc-for list="{{s.cubes}}" as="q" hint-placeholder-count="4"><span style="width:14px;height:14px;box-sizing:border-box;border-radius:{{q.rad}};background:{{q.bg}};border:{{q.bd}};box-shadow:{{q.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{q.isCheck}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="9" height="9" viewBox="0 0 10 10"><path d="M2 5.2 4.1 7.2 8 2.9" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if></span></sc-for></span>
+<span style="display:flex;flex-wrap:wrap;align-items:center;gap:4px"><span style="display:flex;align-items:center;height:17px;box-sizing:border-box;padding:0 4px;border-radius:9px;background:{{s.oqBg}};border:1px solid {{s.oqBd}};color:{{s.oqCol}};font-size:10px;font-weight:700;white-space:nowrap">{{s.oqTxt}}</span><sc-if value="{{s.hasRloq}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:17px;box-sizing:border-box;padding:0 4px;border-radius:9px;border:1px solid var(--rloq);background:var(--rloq);color:var(--rloq-texte);font-size:10px;font-weight:700;white-space:nowrap">{{s.rloqTxt}}</span></sc-if><sc-if value="{{s.hasBlk}}" hint-placeholder-val="{{false}}"><span title="{{s.blkN}} story arrêtée par une dépendance" style="display:flex;align-items:center;gap:3px;height:17px;box-sizing:border-box;padding:0 3px 0 5px;border-radius:9px;background:var(--blocage);color:var(--surface);font-size:10px;font-weight:700">{{s.blkN}}<svg aria-hidden="true" width="11" height="11" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--surface)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--blocage)"></rect></svg></span></sc-if><span style="margin-left:auto;font-size:10.5px;color:var(--tuile-muette);white-space:nowrap">{{s.count}}</span></span>
+<span style="position:absolute;right:5px;top:5px;width:24px;height:24px;border-radius:50%;background:{{s.badgeBg}};border:2px solid var(--surface);box-shadow:0 1px 3px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center"><sc-if value="{{s.isCur}}" hint-placeholder-val="{{true}}"><svg role="img" aria-label="en cours" width="14" height="14" viewBox="0 0 14 14"><path d="M5.77 2.41 L6.01 0.78 L7.99 0.78 L8.23 2.41 L9.38 2.89 L10.70 1.90 L12.10 3.30 L11.11 4.62 L11.59 5.77 L13.22 6.01 L13.22 7.99 L11.59 8.23 L11.11 9.38 L12.10 10.70 L10.70 12.10 L9.38 11.11 L8.23 11.59 L7.99 13.22 L6.01 13.22 L5.77 11.59 L4.63 11.11 L3.30 12.10 L1.90 10.70 L2.89 9.38 L2.41 8.23 L0.78 7.99 L0.78 6.01 L2.41 5.77 L2.89 4.62 L1.90 3.30 L3.30 1.90 L4.62 2.89 Z M5.00 7.00 a2.00 2.00 0 1 0 4.00 0 a2.00 2.00 0 1 0 -4.00 0 Z" fill-rule="evenodd" style="fill:var(--surface)"></path></svg></sc-if><sc-if value="{{s.isFait}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="fait" width="14" height="14" viewBox="0 0 14 14"><path d="M4.3 12.8V1.8" stroke-width="1.5" stroke-linecap="round" style="stroke:var(--fait-fonce)"></path><path d="M4.6 2.2h6.6L9.5 4.7l1.7 2.5H4.6Z" stroke-width="0.8" stroke-linejoin="round" style="fill:var(--fait);stroke:var(--fait-fonce)"></path></svg></sc-if></span>
+</button></sc-if>
+</span></sc-for>
+</div>
+<sc-if value="{{e.hasHb}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{e.hbAct}}" aria-pressed="{{e.hbOn}}" title="{{e.hbTitle}}" style="position:relative;width:128px;height:120px;flex:none;padding:0;border:0;background:transparent;cursor:{{e.hbCur}};font-family:inherit;outline:{{e.hbOutline}};outline-offset:4px;border-radius:6px;opacity:{{e.hbOp}}">
+<span style="position:absolute;left:10px;top:12px;width:104px;height:104px;border-radius:4px;transform:rotate(-4deg);background:var(--hors-batch);box-shadow:inset 0 0 0 5px var(--hors-batch), inset 0 0 0 6px var(--hors-batch-lisere), 0 2px 0 var(--hors-batch-tranche)"></span>
+<span style="position:absolute;left:15px;top:6px;width:104px;height:104px;border-radius:4px;transform:rotate(2deg);background:var(--hors-batch);box-shadow:inset 0 0 0 5px var(--hors-batch), inset 0 0 0 6px var(--hors-batch-lisere), 0 2px 0 var(--hors-batch-tranche)"></span>
+<span style="position:absolute;left:12px;top:0;width:104px;height:104px;box-sizing:border-box;border-radius:4px;transform:rotate(-1deg);background:var(--hors-batch);box-shadow:inset 0 0 0 5px var(--hors-batch), inset 0 0 0 6px var(--hors-batch-lisere), var(--ombre-pile);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--hors-batch-texte)">
+<span style="font-family:var(--font-jeu);font-size:15px;font-weight:800">Hors batch</span>
+<span style="font-size:11px;font-weight:600">{{e.hbCount}}</span>
+</span>
+<sc-if value="{{e.hbFlag}}" hint-placeholder-val="{{false}}"><span style="position:absolute;right:4px;top:-6px;display:flex"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if>
+</button></sc-if>
+</div>
+
+<sc-if value="{{e.hasPanel}}" hint-placeholder-val="{{false}}"><div style="position:relative;margin-top:18px;box-sizing:border-box;border-radius:6px;background:var(--chantier);border:2px solid var(--chantier-bord);box-shadow:var(--ombre-panneau);padding:12px 16px 14px;display:flex;flex-direction:column;gap:10px">
+<span aria-hidden="true" style="position:absolute;top:-11px;left:{{e.notchX}}px;width:18px;height:18px;transform:rotate(45deg);background:var(--chantier);border-left:2px solid var(--chantier-bord);border-top:2px solid var(--chantier-bord)"></span>
+<div style="display:flex;align-items:center;gap:10px">
+<span style="font-family:var(--font-jeu);font-size:18px;font-weight:800;color:var(--chantier-titre)">{{e.pn.titre}}</span>
+<span style="display:flex;align-items:center;gap:5px;height:22px;box-sizing:border-box;padding:0 9px 0 5px;border-radius:11px;background:{{e.pn.stBg}};color:{{e.pn.stCol}};font-size:12px;font-weight:700"><sc-if value="{{e.pn.isCur}}" hint-placeholder-val="{{true}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.6" style="fill:var(--accent)"></circle><path transform="translate(7 7) scale(0.66) translate(-7 -7)" d="M5.77 2.41 L6.01 0.78 L7.99 0.78 L8.23 2.41 L9.38 2.89 L10.70 1.90 L12.10 3.30 L11.11 4.62 L11.59 5.77 L13.22 6.01 L13.22 7.99 L11.59 8.23 L11.11 9.38 L12.10 10.70 L10.70 12.10 L9.38 11.11 L8.23 11.59 L7.99 13.22 L6.01 13.22 L5.77 11.59 L4.63 11.11 L3.30 12.10 L1.90 10.70 L2.89 9.38 L2.41 8.23 L0.78 7.99 L0.78 6.01 L2.41 5.77 L2.89 4.62 L1.90 3.30 L3.30 1.90 L4.62 2.89 Z M5.00 7.00 a2.00 2.00 0 1 0 4.00 0 a2.00 2.00 0 1 0 -4.00 0 Z" fill-rule="evenodd" style="fill:var(--surface)"></path></svg></sc-if><sc-if value="{{e.pn.isFait}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14"><path d="M4.3 12.8V1.8" stroke-width="1.5" stroke-linecap="round" style="stroke:var(--fait-fonce)"></path><path d="M4.6 2.2h6.6L9.5 4.7l1.7 2.5H4.6Z" stroke-width="0.8" stroke-linejoin="round" style="fill:var(--fait);stroke:var(--fait-fonce)"></path></svg></sc-if><sc-if value="{{e.pn.isTenu}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="2.6" y="5.3" width="6.8" height="4.9" rx="1.1"></rect><path d="M4.2 5.3V4a1.8 1.8 0 0 1 3.6 0v1.3"></path></svg></sc-if>{{e.pn.stTxt}}</span>
+<span style="font-size:12px;color:var(--tuile-muette);white-space:nowrap">{{e.pn.sous}}</span>
+<span style="flex:1"></span>
+<button type="button" onClick="{{e.closePanel}}" aria-label="Fermer le chantier" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:6px;background:transparent;color:var(--tuile-muette);cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 3.5 10.5 10.5M10.5 3.5 3.5 10.5"></path></svg></button>
+</div>
+<sc-if value="{{e.pn.hasRows}}" hint-placeholder-val="{{true}}"><div style="display:flex;flex-direction:column;gap:3px">
+<div style="display:grid;grid-template-columns:minmax(0,1fr) repeat(6, 58px);column-gap:6px;align-items:end;padding-bottom:4px;border-bottom:1px solid var(--chantier-filet)">
+<span style="font-family:var(--font-jeu);font-size:13px;font-weight:800;color:var(--tuile-muette)">Stories</span>
+<span style="font-size:10px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">ready</span><span style="font-size:10px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">brainstorm</span><span style="font-size:10px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">design file</span><span style="font-size:10px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">code</span><span style="font-size:10px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">submitted</span><span style="font-size:10px;font-weight:700;color:var(--tuile-muette);text-align:center;white-space:nowrap">done</span>
+</div>
+<sc-for list="{{e.pn.rows}}" as="r" hint-placeholder-count="3"><div role="{{r.role}}" tabindex="{{r.tab}}" onClick="{{r.act}}" class="{{r.cls}}" title="{{r.tt}}" style="display:grid;grid-template-columns:minmax(0,1fr) repeat(6, 58px);column-gap:6px;align-items:center;height:30px;margin:0 -6px;padding:0 6px;border-radius:4px;opacity:{{r.op}};cursor:{{r.cur}}">
+<span style="display:flex;align-items:center;gap:5px;min-width:0"><sc-if value="{{r.flag}}" hint-placeholder-val="{{false}}"><span title="Drapeau de priorité du module : cette story" style="display:flex"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></span></sc-if><span style="min-width:0;font-family:var(--font-mono);font-size:12px;color:var(--tuile-encre);text-decoration:{{r.deco}};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{r.slug}}</span></span>
+<sc-for list="{{r.cells}}" as="c" hint-placeholder-count="6"><span title="{{c.title}}" style="opacity:{{c.op}};height:24px;box-sizing:border-box;border-radius:3px;background:var(--chantier-case);border:1px solid var(--chantier-case-bord);display:flex;align-items:center;justify-content:center"><sc-if value="{{c.isBlk}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="bloqué" width="14" height="14" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg></sc-if><sc-if value="{{c.isRloq}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:16px;box-sizing:border-box;padding:0 4px;border-radius:8px;background:var(--rloq);color:var(--rloq-texte);font-size:9.5px;font-weight:700;white-space:nowrap">{{c.q}}</span></sc-if><sc-if value="{{c.isOq}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;height:16px;box-sizing:border-box;padding:0 4px;border-radius:8px;background:var(--oq-ouverte);border:1px solid var(--oq-ouverte-bord);color:var(--oq-ouverte-texte);font-size:9.5px;font-weight:700;white-space:nowrap">{{c.q}}</span></sc-if><span style="width:{{c.w}}px;height:{{c.w}}px;box-sizing:border-box;border-radius:{{c.rad}};background:{{c.bg}};border:{{c.bd}};box-shadow:{{c.sh}};display:flex;align-items:center;justify-content:center"><sc-if value="{{c.isCheck}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 10 10"><path d="M2 5.2 4.1 7.2 8 2.9" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--surface)"></path></svg></sc-if></span></span></sc-for>
+</div></sc-for>
+</div></sc-if>
+<sc-if value="{{e.pn.noRows}}" hint-placeholder-val="{{false}}"><p style="margin:0;font-size:12.5px;line-height:1.5;color:var(--chantier-titre)">{{e.pn.vide}}</p></sc-if>
+<sc-if value="{{e.pn.hasAide}}" hint-placeholder-val="{{false}}"><p style="display:flex;align-items:center;gap:6px;margin:0;padding-top:8px;border-top:1px dashed var(--chantier-separateur);font-size:12px;color:var(--chantier-titre)"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg>{{e.pn.aide}}</p></sc-if>
+</div></sc-if>
+</div>
+</div></sc-if>
+
+</div>
+</div></sc-for>
+</div>
+</section>
+</div></sc-for>
+</div>
+
+<sc-if value="{{hasHint}}" hint-placeholder-val="{{false}}"><div role="status" style="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;display:flex;align-items:center;gap:10px;height:40px;box-sizing:border-box;padding:0 6px 0 14px;border-radius:999px;background:var(--inverse);color:var(--texte-inverse);font-size:12.5px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,0.25)">
+<sc-if value="{{hintDrapeau}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:8px"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg><span><b style="font-weight:700">Drapeau</b> · clique une epic, un batch ou une story. Un drapeau par module : le reposer le déplace, recliquer dessus le retire.</span></span></sc-if>
+<sc-if value="{{hintDeplacer}}" hint-placeholder-val="{{false}}"><span style="display:flex;align-items:center;gap:8px"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4.6 7.4V3.2a.9.9 0 0 1 1.8 0v3.4M6.4 6.4V2.4a.9.9 0 0 1 1.8 0v4M8.2 6.4V3a.9.9 0 0 1 1.8 0v3.6M10 6.6V4.6a.9.9 0 0 1 1.8 0v3.8c0 2.4-1.6 4.1-3.9 4.1H7.4c-1.3 0-2.2-.6-2.9-1.6L2.6 8.1a.9.9 0 0 1 1.4-1.1l.6.7"></path></svg><span><b style="font-weight:700">Déplacer</b> · glisse une epic ou un module, ou sélectionne-le puis ← →. En haut à gauche : le plus prioritaire.</span></span></sc-if>
+<button type="button" onClick="{{echap}}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 6px 0 12px;border-radius:999px;border:0;background:var(--inverse-2);color:var(--texte-inverse);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer">{{echapLbl}}<kbd style="height:18px;box-sizing:border-box;padding:0 5px;border-radius:4px;border:1px solid rgba(255,255,255,0.3);font-family:var(--font-mono);font-size:10px;line-height:16px">Échap</kbd></button>
+</div></sc-if>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}"><div role="status" style="position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:5;width:max-content;max-width:1120px;box-sizing:border-box;display:flex;flex-direction:column;gap:9px;padding:12px 12px 12px 16px;border-radius:14px;background:var(--inverse);color:var(--texte-inverse);font-size:12.5px;box-shadow:0 10px 30px rgba(0,0,0,0.25)">
+<div style="display:flex;align-items:center;gap:10px">
+<sc-if value="{{tIcoDrapeau}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="drapeau de priorité" width="13" height="13" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></sc-if><sc-if value="{{tIcoRanger}}" hint-placeholder-val="{{false}}"><span style="display:flex"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5h6M2 7h4M2 10.5h2"></path><path d="M10.5 2.5v9M8.5 9.5l2 2 2-2"></path></svg></span></sc-if>
+<span style="white-space:nowrap">{{tA}}<b style="font-family:var(--font-mono);font-weight:700">{{tB}}</b>{{tC}}</span>
+<span style="flex:1;min-width:16px"></span>
+<sc-if value="{{hasTRanger}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{tRanger}}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:8px;border:0;background:var(--texte-inverse);color:var(--inverse);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3.5h6M2 7h4M2 10.5h2"></path><path d="M10.5 2.5v9M8.5 9.5l2 2 2-2"></path></svg>{{tRangerLbl}}</button></sc-if>
+<button type="button" onClick="{{tAnnuler}}" style="height:30px;padding:0 12px;border-radius:8px;border:0;background:var(--inverse-2);color:var(--texte-inverse);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer">Annuler</button>
+<button type="button" onClick="{{tOk}}" aria-label="Fermer" style="width:30px;height:30px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:transparent;color:var(--texte-inverse);cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 3.5 10.5 10.5M10.5 3.5 3.5 10.5"></path></svg></button>
+</div>
+<sc-if value="{{hasTChips}}" hint-placeholder-val="{{false}}"><ol aria-label="Nouvel ordre" style="display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none">
+<sc-for list="{{tChips}}" as="k" hint-placeholder-count="6"><li style="display:flex;align-items:center;gap:6px;height:26px;box-sizing:border-box;padding:0 9px 0 4px;border-radius:13px;background:var(--inverse-2)"><span style="width:18px;height:18px;border-radius:50%;background:var(--texte-inverse);color:var(--inverse);font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center">{{k.n}}</span><span style="font-size:11px;font-weight:700;letter-spacing:0.04em">{{k.id}}</span><sc-if value="{{k.flag}}" hint-placeholder-val="{{false}}"><svg role="img" aria-label="drapeau de priorité" width="11" height="11" viewBox="0 0 14 14" style="flex:none"><path d="M3 13.2V1" stroke-width="1.7" stroke-linecap="round" style="stroke:var(--priorite-bord)"></path><path d="M3.6 1.4 12.6 4.6 3.6 7.8Z" stroke-width="0.9" stroke-linejoin="round" style="fill:var(--priorite);stroke:var(--priorite-bord)"></path></svg></sc-if><span style="font-size:11.5px;opacity:0.75;white-space:nowrap">{{k.why}}</span></li></sc-for>
+</ol></sc-if>
+<sc-if value="{{hasTNote}}" hint-placeholder-val="{{false}}"><p style="display:flex;align-items:center;gap:8px;margin:0;font-size:12px;opacity:0.85"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" style="flex:none"><circle cx="6" cy="6" r="5.6" style="fill:var(--blocage)"></circle><rect x="3" y="5.1" width="6" height="1.8" rx="0.9" style="fill:var(--surface)"></rect></svg><span>{{tNoteA}}<b style="font-family:var(--font-mono);font-weight:700">{{tNoteB}}</b>{{tNoteC}}</span><a href="#arbre" style="color:var(--texte-inverse);font-weight:700">Voir dans l’Arbre</a></p></sc-if>
+</div></sc-if>
+
+<div style="position:absolute;right:16px;bottom:16px;z-index:2;display:flex;align-items:center;gap:2px;padding:3px;border-radius:10px;background:var(--surface);border:1px solid var(--ligne);box-shadow:var(--ombre-carte)">
+<button type="button" aria-label="Dézoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:var(--encre-2);cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7"></path></svg></button>
+<span style="min-width:44px;text-align:center;font-size:11.5px;color:var(--encre-2)">100 %</span>
+<button type="button" aria-label="Zoomer" style="width:28px;height:28px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:7px;background:transparent;color:var(--encre-2);cursor:pointer"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 7h7M7 3.5v7"></path></svg></button>
+</div>
+</main>
+
+<footer style="height:36px;flex:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:0 16px;border-top:1px solid var(--ligne);background:var(--surface);font-size:12px;color:var(--encre-2)">
+<span>Ordre de lecture = priorité : de gauche à droite, puis de haut en bas</span>
+<span style="color:var(--encre-muette)">·</span>
+<span>un drapeau par module</span>
+<span style="flex:1"></span>
+<span style="display:flex;align-items:center;gap:6px;color:var(--encre-muette)"><kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">V</kbd>ouvrir<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">M</kbd>déplacer<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">F</kbd>drapeau<kbd style="min-width:16px;height:18px;box-sizing:border-box;padding:0 4px;border-radius:4px;border:1px solid var(--ligne-forte);background:var(--surface-creuse);font-family:var(--font-mono);font-size:10.5px;line-height:16px;text-align:center;color:var(--encre-2)">R</kbd>ranger</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"vue":{"editor":"enum","options":["ouvrir","deplacer","drapeau","drapeau-chantier","range"],"default":"ouvrir"},"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  data() {
+    return {
+      plugin: {infix: 'PLUGIN', titre: 'Compound en deux plugins Claude Code', groupe: 'debloquee',
+        batches: [
+          {id: 'B1', etat: 'courant', oq: 3, stories: [{s: 'compound-inventory', n: 0, qi: 1, oq: 1, rloq: 1}, {s: 'plugin-split', n: 1, blk: 3, dep: 'B-TOOLMAN-2'}, {s: 'shared-skills', n: 3}, {s: 'marketplace-manifest', n: 4, qi: 5, oq: 1}]},
+          {id: 'B2', etat: 'tenu', par: 'B1', nb: 3}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 2}, {id: 'B4', etat: 'tenu', par: 'B3', nb: 2}, {id: 'B5', etat: 'tenu', par: 'B4', nb: 1}],
+        hb: {stories: [{s: 'compound-docs', n: 1}, {s: 'migration-notes', n: -1}], notes: 1}},
+      qualitygates: {infix: 'QUALITYGATES', titre: 'Quality gates', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'courant', oq: 0, stories: [{s: 'checker-depth', n: 1}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}], hb: null},
+      worktree: {infix: 'WORKTREE', titre: 'Worktrees longs', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'fait', oq: 0, stories: [{s: 'worktree-create', n: 6}, {s: 'worktree-list', n: 6}]}, {id: 'B2', etat: 'courant', oq: 1, stories: [{s: 'worktree-sync', n: 0, qi: 1, oq: 1}]}], hb: null},
+      toolman: {infix: 'TOOLMAN', titre: 'toolman, un menu de corvées', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'courant', oq: 0, stories: [{s: 'toolman', n: 2}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 2}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}],
+        hb: {stories: [{s: 'toolman-presets', n: 1}], notes: 0}},
+      pipeline: {infix: 'PIPELINE', titre: 'Pipeline documentaire des agents', groupe: 'debloquee', batches: [], hb: null, cmd: 'epicman design-pipeline-epic'},
+      batches: {infix: 'BATCHES', titre: 'Rooftop, les batchs et ce qui les débloque', groupe: 'debloquee',
+        batches: [{id: 'B1', etat: 'fait', oq: 0, nb: 2}, {id: 'B2', etat: 'fait', oq: 0, nb: 2}, {id: 'B3', etat: 'fait', oq: 0, nb: 1}, {id: 'B4', etat: 'courant', oq: 0, stories: [{s: 'unblock-path', n: 4}]}], hb: null},
+      rtworktrees: {infix: 'RTWORKTREES', titre: 'Rooftop lit les worktrees', groupe: 'bloquee', dep: 'BATCHES', depBatch: 'B-BATCHES-4',
+        batches: [{id: 'B1', etat: 'courant', oq: 0, stories: [{s: 'worktree-sources', n: 1}]}, {id: 'B2', etat: 'tenu', par: 'B1', nb: 1}, {id: 'B3', etat: 'tenu', par: 'B2', nb: 1}], hb: null},
+      trwg: {infix: 'TRWG', titre: 'trwg, deux réponses fermées', groupe: 'debloquee', batches: [], hb: null, cmd: 'epicman trwg-epic'}
+    };
+  }
+  modules() {
+    return {
+      rb: {nom: 'RB Compound', epics: ['plugin', 'qualitygates', 'worktree', 'pipeline', 'batches', 'rtworktrees']},
+      toolman: {nom: 'Toolman', epics: ['toolman']},
+      trwg: {nom: 'trwg', epics: ['trwg']}
+    };
+  }
+  full(E, bid) { return bid === 'HB' ? 'hors batch' : 'B-' + E.infix + '-' + bid.slice(1); }
+  oq(n) {
+    if (n > 0) return {txt: n + ' OQ', bg: 'var(--oq-ouverte)', bd: 'var(--oq-ouverte-bord)', col: 'var(--oq-ouverte-texte)'};
+    return {txt: 'OQ ✓', bg: 'var(--oq-ok)', bd: 'var(--oq-ok-bord)', col: 'var(--oq-ok-texte)'};
+  }
+  stage(n) {
+    if (n >= 6) return {bg: 'var(--etape-done)', bd: '1px solid var(--fait-bord)', sh: '0 1px 2px rgba(0,0,0,0.3)', rad: '50%', isCheck: true};
+    if (n < 1) return {bg: 'transparent', bd: '1.5px dashed var(--etape-pas-ready)', sh: 'none', rad: '2px', isCheck: false};
+    var C = ['var(--etape-ready)', 'var(--etape-brainstorm)', 'var(--etape-design-file)', 'var(--etape-code)', 'var(--etape-submitted)'];
+    return {bg: C[n - 1], bd: '1px solid rgba(0,0,0,0.3)', sh: 'var(--ombre-cube)', rad: '2px', isCheck: false};
+  }
+  avancement(E) {
+    // story = étapes franchies / 6 ; batch = moyenne de ses stories (tenu 0 %, fait 100 %) ; epic = moyenne de ses batchs
+    if (!E.batches.length) return 0;
+    var tot = E.batches.reduce(function (a, b) {
+      if (b.etat === 'tenu') return a;
+      if (b.etat === 'fait') return a + 1;
+      var st = (b.stories || []).filter(function (x) { return x.n >= 0; });
+      if (!st.length) return a;
+      return a + st.reduce(function (c, x) { return c + Math.min(6, x.n) / 6; }, 0) / st.length;
+    }, 0);
+    return Math.round(tot / E.batches.length * 100);
+  }
+  arret(st) {
+    if (st.n < 0) return 0;
+    for (var i = st.n + 1; i <= 6; i++) {
+      if (st.blk === i) return i;
+      if (st.qi === i && st.rloq) return i;
+    }
+    return 0;
+  }
+  cells(st) {
+    var N = ['ready', 'brainstorm', 'design file', 'code', 'submitted', 'done'];
+    var C = ['var(--etape-ready)', 'var(--etape-brainstorm)', 'var(--etape-design-file)', 'var(--etape-code)', 'var(--etape-submitted)'];
+    var stop = this.arret(st);
+    var out = [];
+    for (var i = 1; i <= 6; i++) {
+      var c = {w: 0, rad: '0', bg: 'transparent', bd: 'none', sh: 'none', isCheck: false, isBlk: false, isRloq: false, isOq: false, q: '', op: (stop && i > stop) ? 'var(--opacite-hors-course)' : '1', title: N[i - 1] + ((stop && i > stop) ? ' : hors de portée du boss' : ' : à venir')};
+      if (st.n >= i && i === 6) Object.assign(c, {w: 17, rad: '50%', bg: 'var(--etape-done)', bd: '1px solid var(--fait-bord)', sh: '0 1px 2px rgba(0,0,0,0.3)', isCheck: true, title: 'done'});
+      else if (st.n >= i) Object.assign(c, {w: 14, rad: '2px', bg: C[i - 1], bd: '1px solid rgba(0,0,0,0.3)', sh: 'inset -3px -3px 0 rgba(0,0,0,0.2), inset 2px 2px 0 rgba(255,255,255,0.35), 0 2px 2px rgba(0,0,0,0.35)', title: N[i - 1]});
+      else if (st.blk === i) Object.assign(c, {isBlk: true, title: N[i - 1] + ' bloqué : attend ' + st.dep + '. Le boss s’arrête ici.'});
+      else if (st.qi === i && st.rloq) Object.assign(c, {isRloq: true, q: st.rloq + ' RLOQ', title: st.rloq + ' RLOQ' + (st.oq ? ' et ' + st.oq + ' OQ' : '') + ' sur ' + N[i - 1] + '. Le boss s’arrête ici.'});
+      else if (st.qi === i && st.oq) Object.assign(c, {isOq: true, q: st.oq + ' OQ', title: st.oq + ' OQ sur ' + N[i - 1] + ' : le boss y répond et continue.'});
+      out.push(c);
+    }
+    return out;
+  }
+  ranger(mid, ordre, drap) {
+    // 1. prérequis de l'epic au drapeau (dans le module), 2. l'epic au drapeau,
+    // 3. epics en cours par avancement décroissant, 4. pas commencées, 5. bloquées, 6. finies
+    var self = this, D = this.data(), ids = ordre[mid].slice(), pct = {}, dep = {};
+    ids.forEach(function (id) { pct[id] = self.avancement(D[id]); dep[id] = D[id].dep ? D[id].dep.toLowerCase() : ''; });
+    var f = drap[mid], fe = f && ids.indexOf(f.ep) >= 0 ? f.ep : '';
+    var res = [], why = {};
+    var put = function (id, w) { if (res.indexOf(id) < 0) { res.push(id); why[id] = w; } };
+    if (fe) {
+      var pre = [], cur = dep[fe];
+      while (cur && ids.indexOf(cur) >= 0 && pre.indexOf(cur) < 0) { pre.unshift(cur); cur = dep[cur]; }
+      pre.forEach(function (id) { if (pct[id] < 100) put(id, 'prérequis de ' + D[fe].infix); });
+      put(fe, 'drapeau');
+    }
+    var reste = ids.filter(function (id) { return res.indexOf(id) < 0; });
+    var fini = function (id) { return pct[id] >= 100; };
+    var bloque = function (id) { return D[id].groupe === 'bloquee'; };
+    reste.filter(function (id) { return !fini(id) && !bloque(id) && pct[id] > 0; })
+      .sort(function (a, b) { return pct[b] - pct[a] || ids.indexOf(a) - ids.indexOf(b); })
+      .forEach(function (id) { put(id, 'en cours · ' + pct[id] + ' %'); });
+    reste.filter(function (id) { return !fini(id) && !bloque(id) && pct[id] === 0; }).forEach(function (id) { put(id, 'pas commencée'); });
+    reste.filter(function (id) { return !fini(id) && bloque(id); }).forEach(function (id) { put(id, 'attend ' + D[id].dep); });
+    reste.filter(fini).forEach(function (id) { put(id, 'finie'); });
+    return {ids: res, why: why, fe: fe};
+  }
+  base(vue) {
+    var ordre = {mods: ['rb', 'toolman', 'trwg'], rb: ['plugin', 'qualitygates', 'worktree', 'pipeline', 'batches', 'rtworktrees'], toolman: ['toolman'], trwg: ['trwg']};
+    var drap = {rb: {ep: 'plugin', b: 'B1', s: 'plugin-split'}, toolman: {ep: 'toolman', b: 'B1', s: ''}, trwg: null};
+    var b = {mode: 'ouvrir', prev: 'ouvrir', ordre: ordre, drap: drap, ouv: {}, selE: '', selM: '', drag: '', toast: null, raisons: {}};
+    if (vue === 'deplacer') { b.mode = 'deplacer'; b.prev = 'deplacer'; b.selE = 'pipeline'; }
+    if (vue === 'drapeau') b.mode = 'drapeau';
+    if (vue === 'drapeau-chantier') { b.mode = 'drapeau'; b.ouv = {plugin: 'B1'}; }
+    if (vue === 'range') {
+      var r = this.ranger('rb', ordre, drap);
+      b.mode = 'deplacer'; b.prev = 'deplacer';
+      b.ordre = Object.assign({}, ordre, {rb: r.ids});
+      b.raisons = r.why;
+      b.toast = {kind: 'range', mids: ['rb'], avant: ordre};
+    }
+    return b;
+  }
+  renderVals() {
+    var self = this;
+    var vue = String(this.props.vue || 'ouvrir');
+    var S = Object.assign({}, this.base(vue), this.state || {});
+    var D = this.data(), MODS = this.modules();
+    var set = function (x) { self.setState(x); };
+    var noop = function () {};
+    var mode = S.mode;
+    var baseMode = mode === 'drapeau' ? (S.prev || 'ouvrir') : mode;
+    var modOf = {};
+    Object.keys(MODS).forEach(function (k) { MODS[k].epics.forEach(function (e) { modOf[e] = k; }); });
+    var multiMods = S.ordre.mods.filter(function (k) { return MODS[k].epics.length > 1; });
+
+    var label = function (f) {
+      if (!f) return '';
+      if (f.s) return f.s;
+      if (f.b) return self.full(D[f.ep], f.b);
+      return D[f.ep].infix;
+    };
+    var titreDrap = function (mid, f) {
+      if (!f) return '';
+      var E = D[f.ep];
+      if (f.s) return 'Drapeau de priorité de ' + MODS[mid].nom + ' : la story ' + f.s + ' (' + E.infix + ', ' + (f.b === 'HB' ? 'hors batch' : f.b) + ')';
+      if (f.b) return 'Drapeau de priorité de ' + MODS[mid].nom + ' : le batch ' + self.full(E, f.b);
+      return 'Drapeau de priorité de ' + MODS[mid].nom + ' : l’epic ' + E.infix;
+    };
+    var toMode = function (m) {
+      set({mode: m, prev: m === 'drapeau' ? (mode === 'drapeau' ? S.prev : mode) : m, selE: m === 'deplacer' ? S.selE : '', selM: m === 'deplacer' ? S.selM : ''});
+    };
+    var toggleDrapeau = function () { if (mode === 'drapeau') toMode(S.prev || 'ouvrir'); else toMode('drapeau'); };
+    var poser = function (mid, c) {
+      var cur = S.drap[mid];
+      var same = !!cur && cur.ep === c.ep && cur.b === c.b && cur.s === c.s;
+      var nd = Object.assign({}, S.drap); nd[mid] = same ? null : c;
+      set({drap: nd, mode: S.prev || 'ouvrir', toast: {kind: 'drapeau', mid: mid, avant: cur, retire: same}});
+    };
+    var ouvrir = function (eid, val) {
+      var o = Object.assign({}, S.ouv);
+      if (val === null) delete o[eid]; else o[eid] = val;
+      set({ouv: o});
+    };
+    var deplace = function (arr, from, to) {
+      var a = arr.slice(); var x = a.splice(from, 1)[0]; a.splice(Math.max(0, Math.min(a.length, to)), 0, x); return a;
+    };
+    var bouger = function (mid, eid, d) {
+      var arr = S.ordre[mid], i = arr.indexOf(eid);
+      if (i < 0 || arr.length < 2) return;
+      var no = Object.assign({}, S.ordre); no[mid] = deplace(arr, i, i + d);
+      set({ordre: no, selE: eid, selM: '', raisons: {}});
+    };
+    var bougerMod = function (mid, d) {
+      var arr = S.ordre.mods, i = arr.indexOf(mid);
+      var no = Object.assign({}, S.ordre); no.mods = deplace(arr, i, i + d);
+      set({ordre: no, selM: mid, selE: ''});
+    };
+    var deposer = function (mid, src, tgt) {
+      var arr = S.ordre[mid], from = arr.indexOf(src), to = arr.indexOf(tgt);
+      if (from < 0 || to < 0 || from === to) { set({drag: ''}); return; }
+      var no = Object.assign({}, S.ordre); no[mid] = deplace(arr, from, to);
+      set({ordre: no, drag: '', selE: src, selM: '', raisons: {}});
+    };
+    var deposerMod = function (src, tgt) {
+      var arr = S.ordre.mods, from = arr.indexOf(src), to = arr.indexOf(tgt);
+      if (from < 0 || to < 0 || from === to) { set({drag: ''}); return; }
+      var no = Object.assign({}, S.ordre); no.mods = deplace(arr, from, to);
+      set({ordre: no, drag: '', selM: src, selE: ''});
+    };
+    var rangerMods = function (mids) {
+      var no = Object.assign({}, S.ordre), why = {}, done = [];
+      mids.forEach(function (mid) {
+        if (MODS[mid].epics.length < 2) return;
+        var r = self.ranger(mid, S.ordre, S.drap);
+        no[mid] = r.ids; Object.assign(why, r.why); done.push(mid);
+      });
+      if (!done.length) return;
+      set({ordre: no, raisons: why, toast: {kind: 'range', mids: done, avant: S.ordre}});
+    };
+    var echap = function () {
+      if (mode === 'drapeau') toMode(S.prev || 'ouvrir');
+      else if (S.toast) set({toast: null});
+      else if (mode === 'deplacer' && (S.selE || S.selM)) set({selE: '', selM: ''});
+      else if (mode === 'deplacer') toMode('ouvrir');
+    };
+    var lireDrag = function (ev) {
+      var t = '';
+      try { t = ev.dataTransfer.getData('text/plain') || ''; } catch (x) {}
+      return t || S.drag || '';
+    };
+
+    var ringOf = function (pct) {
+      var C = 2 * Math.PI * 6;
+      var col = pct >= 100 ? 'var(--avancement-fini)' : (pct > 0 ? 'var(--avancement-en-cours)' : 'var(--avancement-a-faire)');
+      return {dash: (Math.max(0, Math.min(100, pct)) / 100 * C).toFixed(2) + ' ' + C.toFixed(2), col: col};
+    };
+
+    var epicVals = function (mid, multi, eid, idx, nTot) {
+      var E = D[eid];
+      var nomMod = MODS[mid].nom;
+      var f = S.drap[mid];
+      var fl = f && f.ep === eid ? f : null;
+      var n = E.batches.length;
+      var canOpen = n > 0 || !!E.hb;
+      var isOpen = canOpen && Object.prototype.hasOwnProperty.call(S.ouv, eid);
+      var sel = isOpen ? S.ouv[eid] : '';
+      if (sel === 'HB' && !E.hb) sel = '';
+      var blocked = E.groupe === 'bloquee';
+      var dr = mode === 'drapeau', dep = mode === 'deplacer', ouv = mode === 'ouvrir';
+      var curTool = dr ? 'crosshair' : (ouv ? 'pointer' : 'inherit');
+      var minis = E.batches.map(function (b) {
+        var full = self.full(E, b.id);
+        var etat = b.etat === 'tenu' ? 'tenu par ' + b.par : (b.etat === 'courant' ? 'en cours' : 'fait');
+        var m = {id: b.id, flag: !!fl && fl.b === b.id, isTenu: b.etat === 'tenu', isCur: b.etat === 'courant', isFait: b.etat === 'fait', dot: blocked ? 'var(--accent-bloque)' : 'var(--accent)',
+          cls: dr ? 'rt-cible' : '', cur: curTool,
+          act: dr ? function () { poser(mid, {ep: eid, b: b.id, s: ''}); } : (ouv ? function () { ouvrir(eid, b.id); } : noop),
+          title: dr ? 'Poser le drapeau de ' + nomMod + ' sur ' + full : (b.id + ' · ' + etat + (ouv ? ' · clic : ouvrir l’epic sur ce batch' : '')),
+          label: dr ? 'Poser le drapeau sur ' + full : 'Ouvrir ' + b.id};
+        if (m.isTenu) { m.bg = 'var(--emplacement)'; m.sh = 'inset 0 1px 3px rgba(0,0,0,0.35)'; }
+        else if (m.isCur) { m.bg = 'var(--tuile-en-cours)'; m.sh = '0 1px 0 var(--tuile-tranche), 0 2px 4px rgba(0,0,0,0.35)'; }
+        else { m.bg = 'var(--tuile-faite)'; m.sh = '0 1px 0 var(--tuile-tranche-posee), 0 1px 2px rgba(0,0,0,0.3)'; }
+        return m;
+      });
+      var selIdx = -1;
+      var slots = E.batches.map(function (b, i) {
+        var on = sel === b.id;
+        if (on) selIdx = i;
+        var full = self.full(E, b.id);
+        var s = {id: b.id, on: on, isTenu: b.etat === 'tenu', isTile: b.etat !== 'tenu', outline: on ? '2.5px solid var(--selection)' : 'none', cls: dr ? 'rt-cible' : '', cur: curTool,
+          act: dr ? function () { poser(mid, {ep: eid, b: b.id, s: ''}); } : (ouv ? function () { ouvrir(eid, on ? '' : b.id); } : noop),
+          flag: !!fl && fl.b === b.id, flagTitle: fl && fl.b === b.id && !fl.s ? 'Drapeau de priorité du module : ce batch' : 'Le drapeau du module est sur une story de ce batch : ' + (fl ? fl.s : '')};
+        if (s.isTenu) {
+          s.par = b.par; s.count = b.nb + (b.nb > 1 ? ' stories' : ' story');
+          s.title = dr ? 'Poser le drapeau de ' + nomMod + ' sur ' + full : b.id + ' · tenu par ' + b.par + ' · ' + s.count;
+          return s;
+        }
+        var list = b.stories || [];
+        var k = list.length || b.nb || 0;
+        var oqN = list.length ? list.reduce(function (a, x) { return a + (x.oq || 0) + (x.rloq || 0); }, 0) : (b.oq || 0);
+        var rloqN = list.reduce(function (a, x) { return a + (x.rloq || 0); }, 0);
+        var q = self.oq(oqN);
+        var blkN = list.filter(function (x) { return !!x.dep || (blocked && x.n >= 0 && x.n < 6); }).length;
+        s.isCur = b.etat === 'courant'; s.isFait = b.etat === 'fait';
+        s.count = k + (k > 1 ? ' stories' : ' story');
+        s.title = dr ? 'Poser le drapeau de ' + nomMod + ' sur ' + full : b.id + ' · ' + (s.isCur ? 'en cours' : 'fait') + ' · ' + s.count;
+        s.oqTxt = q.txt; s.oqBg = q.bg; s.oqBd = q.bd; s.oqCol = q.col;
+        s.hasBlk = blkN > 0; s.blkN = blkN; s.hasRloq = rloqN > 0; s.rloqTxt = rloqN + ' RLOQ';
+        s.badgeBg = s.isCur ? (blocked ? 'var(--accent-bloque)' : 'var(--accent)') : 'var(--surface)';
+        s.face = s.isFait ? 'var(--tuile-faite)' : 'var(--tuile-en-cours)';
+        s.cubes = list.filter(function (x) { return x.n >= 0; }).map(function (x) { return self.stage(x.n); });
+        if (!list.length && s.isFait) { s.cubes = []; for (var c = 0; c < k; c++) s.cubes.push(self.stage(6)); }
+        s.cubesLabel = 'avancement des ' + k + ' stories';
+        if (on) { s.tf = 'translateY(-5px)'; s.sh = 'var(--ombre-tuile-selection)'; }
+        else if (s.isCur && !blocked) { s.tf = 'translateY(-2px)'; s.sh = 'var(--ombre-tuile-en-cours)'; }
+        else { s.tf = 'none'; s.sh = 'var(--ombre-tuile-posee)'; }
+        return s;
+      });
+      var hasHb = !!E.hb;
+      var hbN = hasHb ? E.hb.stories.length : 0;
+      var hbCount = hbN + (hbN > 1 ? ' stories' : ' story') + (hasHb && E.hb.notes ? ' · ' + E.hb.notes + ' note' : '');
+      var trayW = n ? 20 + n * 104 + (n - 1) * 8 : 0;
+      var rowW = trayW + (hasHb ? (n ? 24 : 0) + 128 : 0);
+      var hasPanel = isOpen && sel !== '' && (selIdx >= 0 || sel === 'HB');
+      var cwN = isOpen ? Math.max(rowW + 40, hasPanel ? 600 : 0) + 2 : 240;
+      var notchCenter = selIdx >= 0 ? 10 + selIdx * 112 + 52 : trayW + (n ? 24 : 0) + 12 + 52;
+      var rowsOf = function (stories, bid) {
+        return stories.map(function (x) {
+          var isF = !!fl && fl.s === x.s;
+          return {slug: x.s, cells: self.cells(x), op: x.n < 0 ? 0.5 : 1, deco: x.n < 0 ? 'line-through' : 'none', flag: isF,
+            role: dr ? 'button' : 'group', tab: dr ? '0' : '-1', cls: dr ? 'rt-cible-fond' : '', cur: dr ? 'crosshair' : 'default',
+            act: dr ? function () { poser(mid, {ep: eid, b: bid, s: x.s}); } : noop,
+            tt: dr ? 'Poser le drapeau de ' + nomMod + ' sur ' + x.s : x.s};
+        });
+      };
+      var pn = {};
+      var aideDr = 'Clique une story pour y poser le drapeau de ' + nomMod + '.';
+      var aideOuv = 'Touche F, puis clic sur une story : le drapeau de ' + nomMod + ' s’y pose.';
+      if (hasPanel && sel === 'HB') {
+        pn = {titre: 'Hors batch', stTxt: 'hors batch', stBg: 'var(--etat-hors-batch)', stCol: 'var(--etat-hors-batch-texte)', isCur: false, isFait: false, isTenu: false, sous: hbCount, hasRows: true, noRows: false, rows: rowsOf(E.hb.stories, 'HB')};
+      } else if (hasPanel) {
+        var b = E.batches[selIdx];
+        if (b.etat === 'tenu') {
+          pn = {titre: 'Batch ' + b.id, stTxt: 'tenu par ' + b.par, stBg: 'var(--etat-tenu)', stCol: 'var(--etat-tenu-texte)', isCur: false, isFait: false, isTenu: true, sous: b.nb + (b.nb > 1 ? ' stories' : ' story'), hasRows: false, noRows: true, rows: [],
+            vide: 'Ce batch attend la soumission de ' + b.par + '. Ses stories s’afficheront ici dès qu’il sera débloqué.'};
+          aideDr = 'Clique la tuile ' + b.id + ' pour poser le drapeau de ' + nomMod + ' sur ce batch.';
+          aideOuv = 'Touche F, puis clic sur la tuile ' + b.id + ' : le drapeau de ' + nomMod + ' se pose sur ce batch.';
+        } else {
+          var cur = b.etat === 'courant';
+          var epBloq = cur && blocked;
+          var sts = (b.stories || []).map(function (x) { return (blocked && E.dep && x.n >= 0 && x.n < 6 && !x.blk) ? Object.assign({}, x, {blk: x.n + 1, dep: E.dep}) : x; });
+          var k2 = (b.stories || []).length || b.nb || 0;
+          pn = {titre: 'Chantier ' + b.id, stTxt: epBloq ? 'attend ' + E.dep : (cur ? 'en cours' : 'fait'), stBg: epBloq ? 'var(--etat-tenu)' : (cur ? 'var(--accent-pale)' : 'var(--fait-pale)'), stCol: epBloq ? 'var(--etat-tenu-texte)' : (cur ? 'var(--accent-fonce)' : 'var(--fait-fonce)'),
+            isCur: cur && !epBloq, isFait: !cur, isTenu: epBloq, sous: self.full(E, b.id) + ' · ' + k2 + (k2 > 1 ? ' stories' : ' story'),
+            hasRows: sts.length > 0, noRows: sts.length === 0, rows: rowsOf(sts, b.id), vide: 'Batch fait : ses ' + k2 + ' stories sont done.'};
+        }
+      }
+      pn.hasAide = hasPanel && (dr || ouv);
+      pn.aide = dr ? aideDr : aideOuv;
+      var oqTot = E.batches.reduce(function (a, b) { return a + ((b.stories && b.stories.length) ? b.stories.reduce(function (c, x) { return c + (x.oq || 0) + (x.rloq || 0); }, 0) : (b.oq || 0)); }, 0);
+      var rloqTot = E.batches.reduce(function (a, b) { return a + (b.stories || []).reduce(function (c, x) { return c + (x.rloq || 0); }, 0); }, 0);
+      var blkTot = E.batches.reduce(function (a, b) { return a + (b.stories || []).filter(function (x) { return !!x.dep || (blocked && x.n >= 0 && x.n < 6); }).length; }, 0);
+      var curIdx = -1;
+      E.batches.forEach(function (b, i) { if (b.etat === 'courant' && curIdx < 0) curIdx = i; });
+      var pct = self.avancement(E);
+      var ring = ringOf(pct);
+      var fid = 'pr-' + eid + '-' + (isOpen ? 'd' : 'r');
+      var movable = dep && multi;
+      var sel2 = dep && (multi ? S.selE === eid : false);
+      var why = S.raisons[eid];
+      var headLabel = dr ? 'Poser le drapeau de ' + nomMod + ' sur l’epic ' + E.infix
+        : (ouv ? (!canOpen ? E.infix + ' : aucun batch à dérouler' : (isOpen ? 'Replier l’epic et fermer le chantier' : 'Dérouler l’epic'))
+          : E.infix + (multi ? ' · rang ' + (idx + 1) + ' sur ' + nTot + ' dans ' + nomMod : ''));
+      return {
+        nom: E.infix, infix: E.infix, titre: E.titre, pct: pct, ringDash: ring.dash, ringCol: ring.col,
+        wrapCls: movable ? 'rt-saisir' : '',
+        drag: movable ? 'true' : 'false',
+        dragStart: movable ? function (ev) { if (ev && ev.stopPropagation) ev.stopPropagation(); try { ev.dataTransfer.effectAllowed = 'move'; ev.dataTransfer.setData('text/plain', 'epic:' + eid); } catch (x) {} setTimeout(function () { set({drag: 'epic:' + eid}); }, 0); } : noop,
+        dragOver: dep ? function (ev) { if (ev && ev.preventDefault) ev.preventDefault(); } : noop,
+        drop: dep ? function (ev) {
+          var t = lireDrag(ev);
+          if (t.indexOf('epic:') !== 0) return;
+          if (ev && ev.preventDefault) { ev.preventDefault(); ev.stopPropagation(); }
+          var src = t.slice(5);
+          if (modOf[src] === mid) deposer(mid, src, eid); else set({drag: ''});
+        } : noop,
+        select: dep ? function () { if (multi) set({selE: eid, selM: ''}); else set({selM: mid, selE: ''}); } : noop,
+        rad: multi ? '12px' : '0',
+        outline: sel2 ? '2.5px solid var(--selection)' : 'none',
+        op: S.drag === 'epic:' + eid ? 0.45 : 1,
+        showOrd: movable, ord: idx + 1,
+        ordTitle: why ? 'Rang ' + (idx + 1) + ' : ' + why : 'Rang ' + (idx + 1) + ' sur ' + nTot + ' dans ' + nomMod,
+        first: idx === 0 ? 'true' : 'false', last: idx === nTot - 1 ? 'true' : 'false',
+        avOp: idx === 0 ? 0.35 : 1, apOp: idx === nTot - 1 ? 0.35 : 1,
+        avant: function (ev) { if (ev && ev.stopPropagation) ev.stopPropagation(); bouger(mid, eid, -1); },
+        apres: function (ev) { if (ev && ev.stopPropagation) ev.stopPropagation(); bouger(mid, eid, 1); },
+        cwN: cwN, cw: (!multi && !isOpen) ? '100%' : cwN + 'px',
+        bd: multi ? (blocked ? '1px dashed var(--tirets-bloquee)' : '1px solid var(--ligne)') : 'none',
+        sh: multi ? 'var(--ombre-carte)' : 'none',
+        headRole: dep ? 'presentation' : 'button', headTab: dep ? '-1' : '0',
+        onHead: dr ? function () { poser(mid, {ep: eid, b: '', s: ''}); } : (ouv && canOpen ? function () { ouvrir(eid, isOpen ? null : ''); } : noop),
+        headCls: dr ? 'rt-cible-fond' : '', headLabel: headLabel,
+        headCur: dr ? 'crosshair' : (ouv ? (canOpen ? 'pointer' : 'default') : 'inherit'),
+        grip: movable, noGrip: !movable,
+        open: isOpen, folded: !isOpen,
+        flagEpic: !!fl && !fl.b && !fl.s,
+        chev: isOpen ? 'M3.5 8.8 7 5.3l3.5 3.5' : 'M3.5 5.3 7 8.8l3.5-3.5',
+        chevOp: ouv && canOpen ? 1 : 0,
+        hasDep: !!E.dep, dep: E.dep || '',
+        fN: fid + '-n', fNu: 'url(#' + fid + '-n)', fA: fid + '-a', fB: fid + '-b', fAu: 'url(#' + fid + '-a)', fBu: 'url(#' + fid + '-b)',
+        minis: minis, noBatch: n === 0,
+        hasHb: hasHb, hbFlag: !!fl && fl.b === 'HB', hbCount: hbCount, hbOn: sel === 'HB', hbOutline: sel === 'HB' ? '2.5px solid var(--selection)' : 'none', hbOp: 1,
+        hbCur: dep ? 'inherit' : 'pointer',
+        hbAct: dep ? noop : function () { ouvrir(eid, sel === 'HB' && isOpen && !dr ? '' : 'HB'); },
+        hbTitle: dr ? 'Hors batch : ouvrir pour poser le drapeau sur une de ses stories' : 'Hors batch : ' + hbCount,
+        hasOqF: n > 0, oqF: self.oq(oqTot), hasRloqF: rloqTot > 0, rloqF: rloqTot + ' RLOQ', hasBlkF: blkTot > 0, blkF: blkTot,
+        piedF: n === 0 ? '' : (curIdx >= 0 ? 'B' + (curIdx + 1) + '/' + n : n + '/' + n),
+        hasCmd: !!E.cmd, cmd: E.cmd || '',
+        slots: slots, hasPanel: hasPanel, notchX: (notchCenter - 11).toFixed(0), pn: pn,
+        closePanel: function () { ouvrir(eid, ''); }
+      };
+    };
+
+    var mods = S.ordre.mods.map(function (mid, mi) {
+      var M = MODS[mid];
+      var multi = M.epics.length > 1;
+      var ids = S.ordre[mid];
+      var epics = ids.map(function (eid, i) { return epicVals(mid, multi, eid, i, ids.length); });
+      var pcts = ids.map(function (eid) { return self.avancement(D[eid]); });
+      var pct = Math.round(pcts.reduce(function (a, x) { return a + x; }, 0) / pcts.length);
+      var f = S.drap[mid];
+      var dr = mode === 'drapeau', dep = mode === 'deplacer';
+      var maxW = epics.reduce(function (a, e) { return Math.max(a, e.cwN); }, 0);
+      var nM = S.ordre.mods.length;
+      return {
+        nom: M.nom, nomTaille: multi ? 15 : 14, epics: epics,
+        rad: multi ? '14px' : '12px', bg: multi ? 'var(--surface-module)' : 'var(--surface)', sh: multi ? 'none' : 'var(--ombre-carte)',
+        w: multi ? Math.max(3 * 240 + 2 * 20, maxW) + 'px' : 'auto', disp: multi ? 'flex' : 'block', pad: multi ? '16px' : '0', gap: multi ? '28px 20px' : '0',
+        outline: dep && S.selM === mid ? '2.5px solid var(--selection)' : 'none',
+        op: S.drag === 'mod:' + mid ? 0.45 : 1,
+        wrapCls: '',
+        dragOver: dep ? function (ev) { if (ev && ev.preventDefault) ev.preventDefault(); } : noop,
+        drop: dep ? function (ev) {
+          var t = lireDrag(ev);
+          if (ev && ev.preventDefault) ev.preventDefault();
+          if (t.indexOf('mod:') === 0) deposerMod(t.slice(4), mid);
+          else if (t.indexOf('epic:') === 0 && modOf[t.slice(5)] === mid) { var arr = S.ordre[mid]; deposer(mid, t.slice(5), arr[arr.length - 1]); }
+          else set({drag: ''});
+        } : noop,
+        showOrd: dep, ord: mi + 1, ordTitle: 'Module ' + M.nom + ' : rang ' + (mi + 1) + ' sur ' + nM,
+        first: mi === 0 ? 'true' : 'false', last: mi === nM - 1 ? 'true' : 'false', avOp: mi === 0 ? 0.35 : 1, apOp: mi === nM - 1 ? 0.35 : 1,
+        avant: function (ev) { if (ev && ev.stopPropagation) ev.stopPropagation(); bougerMod(mid, -1); },
+        apres: function (ev) { if (ev && ev.stopPropagation) ev.stopPropagation(); bougerMod(mid, 1); },
+        bandRole: dep ? 'button' : 'presentation', bandTab: dep ? '0' : '-1',
+        bandLabel: dep ? 'Sélectionner le module ' + M.nom + ' pour le déplacer' : 'Module ' + M.nom,
+        bandCur: dep ? 'grab' : 'default',
+        drag: dep ? 'true' : 'false',
+        dragStart: dep ? function (ev) { try { ev.dataTransfer.effectAllowed = 'move'; ev.dataTransfer.setData('text/plain', 'mod:' + mid); } catch (x) {} setTimeout(function () { set({drag: 'mod:' + mid}); }, 0); } : noop,
+        select: dep ? function () { set({selM: mid, selE: ''}); } : noop,
+        grip: dep, noGrip: !dep,
+        hasFlag: !!f, flagLabel: label(f), flagTitle: titreDrap(mid, f), canRemove: !!f && dr, flagPadR: !!f && dr ? 3 : 8,
+        retirer: function (ev) { if (ev && ev.stopPropagation) ev.stopPropagation(); poser(mid, f); },
+        noFlagHint: !f && (dr || dep || multi),
+        etatCol: pct > 0 ? 'var(--module-en-cours)' : 'var(--bandeau-muet)', demiOp: pct > 0 && pct < 100 ? 1 : 0,
+        pct: pct, pctTitle: 'Moyenne de ses epics : ' + pcts.join(', ') + ' %',
+        canRanger: multi,
+        ranger: function (ev) { if (ev && ev.stopPropagation) ev.stopPropagation(); rangerMods([mid]); },
+        rangerTitle: f ? 'Ranger les epics de ' + M.nom + ' selon son drapeau (' + label(f) + ')' : 'Ranger les epics de ' + M.nom + ' par avancement (aucun drapeau)',
+        rangerBg: dep ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.12)'
+      };
+    });
+
+    // Bandeau du bas : aide du mode, ou toast après une action
+    var T = S.toast;
+    var tv = {hasToast: !!T, tIcoDrapeau: false, tIcoRanger: false, tA: '', tB: '', tC: '', hasTRanger: false, tRangerLbl: '', tRanger: noop, tAnnuler: noop, tOk: function () { set({toast: null}); }, hasTChips: false, tChips: [], hasTNote: false, tNoteA: '', tNoteB: '', tNoteC: ''};
+    var noteCroisee = function (mid, f) {
+      if (!f) return null;
+      var E = D[f.ep], res = null;
+      E.batches.forEach(function (b) { (b.stories || []).forEach(function (x) {
+        if (res || !x.dep) return;
+        var m = /^B-([A-Z]+)-\d+$/.exec(x.dep);
+        if (!m) return;
+        var om = modOf[m[1].toLowerCase()];
+        if (om && om !== mid) res = {a: E.infix + ' attend aussi ', b: x.dep, c: ', dans le module ' + MODS[om].nom + ', qui garde sa propre priorité.'};
+      }); });
+      return res;
+    };
+    if (T && T.kind === 'drapeau') {
+      var fT = S.drap[T.mid];
+      var multiT = MODS[T.mid].epics.length > 1;
+      tv.tIcoDrapeau = true;
+      if (T.retire || !fT) { tv.tA = 'Drapeau de ' + MODS[T.mid].nom + ' retiré.'; }
+      else {
+        tv.tA = 'Drapeau de ' + MODS[T.mid].nom + ' posé sur ';
+        tv.tB = label(fT);
+        tv.tC = fT.s ? ' · ' + D[fT.ep].infix + ', ' + (fT.b === 'HB' ? 'hors batch' : fT.b) : (fT.b ? ' · ' + D[fT.ep].infix : '');
+        tv.hasTRanger = multiT; tv.tRangerLbl = 'Ranger ' + MODS[T.mid].nom;
+        tv.tRanger = function () { rangerMods([T.mid]); };
+      }
+      tv.tAnnuler = function () { var nd = Object.assign({}, S.drap); nd[T.mid] = T.avant || null; set({drap: nd, toast: null}); };
+    } else if (T && T.kind === 'range') {
+      var mid0 = T.mids[0];
+      var f0 = S.drap[mid0];
+      tv.tIcoRanger = true;
+      tv.tA = MODS[mid0].nom + (f0 ? ' rangé selon son drapeau ' : ' rangé par avancement : aucun drapeau');
+      tv.tB = f0 ? label(f0) : '';
+      tv.tC = T.mids.length > 1 ? ' (et ' + (T.mids.length - 1) + ' autre module)' : '';
+      tv.hasTChips = true;
+      tv.tChips = S.ordre[mid0].map(function (id, i) { return {n: i + 1, id: D[id].infix, flag: !!f0 && f0.ep === id, why: S.raisons[id] === 'drapeau' ? '' : (S.raisons[id] || '')}; });
+      var nc = noteCroisee(mid0, f0);
+      if (nc) { tv.hasTNote = true; tv.tNoteA = nc.a; tv.tNoteB = nc.b; tv.tNoteC = nc.c; }
+      tv.tAnnuler = function () { set({ordre: T.avant, raisons: {}, toast: null}); };
+    }
+
+    var H = vue === 'drapeau-chantier' ? 1420 : 980;
+    return Object.assign({
+      H: H,
+      mods: mods,
+      curseur: mode === 'drapeau' ? 'crosshair' : 'default',
+      isOuvrir: baseMode === 'ouvrir', isDeplacer: baseMode === 'deplacer', isDrapeau: mode === 'drapeau',
+      ouvBg: baseMode === 'ouvrir' ? 'var(--surface-creuse)' : 'transparent', ouvCol: baseMode === 'ouvrir' ? 'var(--encre)' : 'var(--encre-2)', ouvFw: baseMode === 'ouvrir' ? 600 : 500,
+      depBg: baseMode === 'deplacer' ? 'var(--surface-creuse)' : 'transparent', depCol: baseMode === 'deplacer' ? 'var(--encre)' : 'var(--encre-2)', depFw: baseMode === 'deplacer' ? 600 : 500,
+      drBg: mode === 'drapeau' ? 'var(--priorite-pale)' : 'var(--surface)', drBd: mode === 'drapeau' ? 'var(--priorite-bord)' : 'var(--ligne)', drCol: mode === 'drapeau' ? 'var(--priorite-bord)' : 'var(--encre)',
+      toOuvrir: function () { toMode('ouvrir'); },
+      toDeplacer: function () { toMode('deplacer'); },
+      toDrapeau: toggleDrapeau,
+      rangerTout: function () { rangerMods(multiMods); },
+      replier: function () { set({ouv: {}}); },
+      derouler: function () { var o = {}; Object.keys(D).forEach(function (e) { if (D[e].batches.length && D[e].groupe !== 'bloquee') o[e] = ''; }); set({ouv: o}); },
+      dragEnd: function () { set({drag: ''}); },
+      hasHint: !T && mode !== 'ouvrir', hintDrapeau: mode === 'drapeau', hintDeplacer: mode === 'deplacer',
+      echap: echap, echapLbl: mode === 'drapeau' ? 'Annuler' : 'Terminer',
+      onKey: function (ev) {
+        var k = (ev && ev.key) || '';
+        var tg = ev && ev.target && ev.target.tagName;
+        if (tg === 'TEXTAREA' || tg === 'INPUT' || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+        var low = k.length === 1 ? k.toLowerCase() : k;
+        var done = true;
+        if (low === 'v') toMode('ouvrir');
+        else if (low === 'm') toMode('deplacer');
+        else if (low === 'f') toggleDrapeau();
+        else if (low === 'r') rangerMods(multiMods);
+        else if (k === 'Escape') echap();
+        else if (mode === 'deplacer' && /^Arrow(Left|Right|Up|Down)$/.test(k)) {
+          var d = k === 'ArrowLeft' ? -1 : (k === 'ArrowRight' ? 1 : (k === 'ArrowUp' ? -3 : 3));
+          if (S.selE) bouger(modOf[S.selE], S.selE, d);
+          else if (S.selM) bougerMod(S.selM, d > 0 ? 1 : -1);
+          else done = false;
+        } else done = false;
+        if (done && ev.preventDefault) ev.preventDefault();
+      }
+    }, tv);
+  }
+}
+</script>
+</body>
+</html>

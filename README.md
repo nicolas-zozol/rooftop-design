@@ -4,12 +4,12 @@ Maquettes et spécification de l'écran **Blueprint** de Rooftop (app de bureau 
 
 ## Où regarder
 
-> **Direction retenue : tuiles sobres sur tapis de jeu.** Écrans : page *Application · tapis de jeu* du canevas (`AppPlateau`, `App-Chantier`, `App-Chemin`, `Planche-Plateau`, composant `EpicPlateau`). Les autres pages gardent l'historique des pistes.
+> **Direction retenue : tuiles sobres sur tapis de jeu.** Écrans : page *Application · tapis de jeu* du canevas (`AppPlateau`, `App-Chantier`, `App-Chemin`, `Planche-Plateau`, `AppQuestions`, `AppPriorites`, `AppArbre`, composant `EpicPlateau`). Les autres pages gardent l'historique des pistes.
 
 - **Le canevas vivant** (artefact Claude de type Design) : https://claude.ai/artifact/3EwPxSWQuHuvURMgwKGjyR
   Pages : *Application · tapis de jeu* (ouverture), *Palette et tailles* (jetons du système), puis l'historique : *Maquettes*, *Planche des composants*, *Pistes batchs*, *Essais jeu de plateau*, *Tuiles et chantier*.
-- **Le design system** : https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd — jetons, brand book et onze pièces du tapis de jeu. Copie dans [`design/design-system/`](design/design-system/), installée dans le canevas sous `ds/rooftop/`.
-- **La spec écrite** : [`docs/blueprint.md`](docs/blueprint.md) — hiérarchie, états, chemin de déblocage, contrat backend, mobile, jetons ; section 10 pour le design system, section 11 pour les étapes, les arrêts du boss et le calcul de l'avancement.
+- **Le design system** : https://claude.ai/artifact/55BLU1ow7qCzDD55Wnifhd — jetons, brand book et quatorze pièces du tapis de jeu. Copie dans [`design/design-system/`](design/design-system/), installée dans le canevas sous `ds/rooftop/`.
+- **La spec écrite** : [`docs/blueprint.md`](docs/blueprint.md) — hiérarchie, états, chemin de déblocage, contrat backend, mobile, jetons ; section 10 pour le design system, section 11 pour les étapes, les arrêts du boss et le calcul de l'avancement ; section 12 pour la vue Questions ; section 13 pour les priorités et l'Arbre.
 - **Les sources du canevas** : [`design/canvas/`](design/canvas/) — `canvas.json` (index des planches, notes) et un fichier `.dc.html` par planche ou composant.
 
 ## Contenu de `design/canvas/`
@@ -41,6 +41,9 @@ Maquettes et spécification de l'écran **Blueprint** de Rooftop (app de bureau 
 | `EpicPlateau.dc.html` | **Retenu** · carte d'epic sur le tapis : repliée (mini-tuiles) ou déroulée (cadre à tuiles, Hors batch, chantier au clic), étapes du chemin |
 | `AppPlateau.dc.html`, `App-Chantier.dc.html`, `App-Chemin.dc.html` | **Retenu** · l'application : plan à l'ouverture, chantier B1 ouvert, chemin de déblocage sur le plan |
 | `Planche-Plateau.dc.html` | **Retenu** · planche : les huit epics repliées, panneaux fait, tenu, hors batch |
+| `AppQuestions.dc.html` | **Retenu** · 05 · vue Questions : RLOQ d'abord, OQ par batch et story, LGTM en un clic sur les OQ |
+| `AppPriorites.dc.html` | **Retenu** · 06 · priorités sur le plan : modes Ouvrir V, Déplacer M, Drapeau F, un drapeau par module, Ranger R (prop `vue`) |
+| `AppArbre.dc.html` | **Retenu** · 07 · l'Arbre : une ligne par epic, une colonne par soumission, chemin vers un drapeau (prop `vue`) |
 | `Chantier-1.dc.html`, `Chantier-2.dc.html`, `TuilesChantier.dc.html` | Tuiles et chantier condensé, interactif : tuiles de l'epic, panneau Chantier au clic, action éditable ; fonds noyer et tapis (page *Tuiles et chantier*) |
 
 Les fichiers `.dc.html` sont le format du canevas Claude Design : balisage `<x-dc>` avec trous `{{…}}`, boucles `<sc-for>`, conditions `<sc-if>`, imports `<dc-import>`, et un script `DCLogic` dont `renderVals()` calcule les valeurs. Ils s'ouvrent dans le canevas, pas directement dans un navigateur.
@@ -49,7 +52,7 @@ Les fichiers `.dc.html` sont le format du canevas Claude Design : balisage `<x-d
 
 1. Modifier le jeton dans le design system (sa page, ou `design/design-system/tokens.json` puis republication).
 2. Recopier `tokens.json`, `tokens.css` et `components/bundle.css` du système vers `ds/rooftop/` du canevas.
-3. Les planches retenues (`EpicPlateau`, `AppPlateau`, `App-*`, `Planche-Plateau`, `Palette-Plateau`) suivent : elles n'ont plus de couleur en dur.
+3. Les planches retenues (`EpicPlateau`, `AppPlateau`, `App-*`, `Planche-Plateau`, `AppQuestions`, `AppPriorites`, `AppArbre`, `Palette-Plateau`) suivent : elles n'ont plus de couleur en dur.
 
 ## Contenu de `design/design-system/`
 

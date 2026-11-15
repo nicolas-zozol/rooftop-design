@@ -40,9 +40,12 @@
   --tuile-encre: #2a1f12;
   --tuile-muette: #5a4325;
   --selection: #111111;
-  --accent: #c026d3;
-  --accent-fonce: #86198f;
-  --accent-pale: #f5d0fe;
+  --priorite: #eab308;
+  --priorite-bord: #713f12;
+  --priorite-pale: #fef9c3;
+  --accent: #0d9488;
+  --accent-fonce: #115e59;
+  --accent-pale: #ccfbf1;
   --accent-bloque: #9ca3af;
   --fait: #16a34a;
   --fait-bord: #15803d;
